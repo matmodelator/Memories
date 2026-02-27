@@ -7,7 +7,7 @@
 body {
   font-family: "Georgia", serif;
   height: 100vh;
-  background: url("img/mobile-bg.jpg") no-repeat center center;
+  background: url("img/mobile-bg.png") no-repeat center center;
   background-size: cover;
   position: relative;
   color: #5a4634;
