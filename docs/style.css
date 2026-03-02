@@ -10,36 +10,36 @@
   --bg-y: 50%;
 
   /* ===== ПОЗИЦИЯ МЕНЮ ===== */
-  --nav-x: 8%;
+  --nav-x: 0%;
   --nav-y: 50%;
   --nav-scale: 1;
 
   /* ===== ТЕКСТ ===== */
-  --nav-font-size: 46px;
+  --nav-font-size: 40px;
   --nav-line-height: 1.2;
   --nav-letter-spacing: 1px;
 
   /* Цвет */
   --nav-color: 70, 40, 20;
-  --nav-opacity: 0.85;
+  --nav-opacity: 0.60;
 
   /* Hover */
   --nav-hover-color: 120, 60, 30;
   --nav-hover-opacity: 1;
 
   /* Лёгкий blur */
-  --nav-blur: 0.4px;
+  --nav-blur: 0.8px;
 
   /* ===== МОКРЫЕ ЧЕРНИЛА ===== */
 
   /* Насколько сильно растекается */
-  --ink-spread: 2px;
+  --ink-spread: 4px;
 
   /* Насколько вниз течёт */
   --ink-drip: 4px;
 
   /* Прозрачность растекания */
-  --ink-opacity: 0.25;
+  --ink-opacity: 0.50;
 
   /* Стиль */
   --nav-font-style: normal;
