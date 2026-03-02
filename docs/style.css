@@ -144,3 +144,20 @@ body {
   color: rgba(var(--nav-hover-color), var(--nav-hover-opacity));
   transform: translateX(6px);
 }
+
+
+/* =========================
+   АКТИВНЫЙ ПУНКТ — ОРЕОЛ
+   ========================= */
+
+.main-nav a.active {
+
+  color: rgba(var(--nav-hover-color), 1);
+
+  text-shadow:
+    0 0 6px rgba(var(--nav-hover-color), 0.5),
+    0 0 12px rgba(var(--nav-hover-color), 0.35),
+    0 0 20px rgba(var(--nav-hover-color), 0.2);
+
+  filter: blur(0.2px);
+}
