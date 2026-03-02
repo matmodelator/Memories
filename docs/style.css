@@ -278,7 +278,7 @@ body {
 
 
 /* Контейнер выпадающего меню */
-.dropside {
+.dropdown {
   position: relative;
   display: inline-block;
 }
