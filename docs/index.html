@@ -17,8 +17,8 @@
   <!-- Фон -->
   <img src="desktop-bg1.jpg" class="bg-image" alt="Background">
 
-  <!-- Навигация -->
-  <nav class="main-nav">
+  <!-- Навигация без свитка-->
+ /* <nav class="main-nav">
     <ul>
 <li><a href="index.html" class="active" data-text="Главная">Главная</a></li>
 <li><a href="poems.html" data-text="Стихи">Стихи</a></li>
@@ -26,10 +26,31 @@
 <li><a href="#" data-text="Автор">Автор</a></li>
 <li><a href="#" data-text="Контакты">Контакты</a></li>
     </ul>
-  </nav>
+  </nav> */
+
+   <!-- Навигация со свитком новая!-->
+  <nav class="main-nav">
+
+  <a href="index.html" class="nav-item active">Главная</a>
+
+  <div class="dropdown">
+
+    <a href="poems.html" class="nav-item">Стихи ▾</a>
+
+    <div class="scroll-menu">
+      <a href="poem1.html">Память о лете</a>
+      <a href="poem2.html">Чернила</a>
+      <a href="poem3.html">Вечер</a>
+    </div>
+
+  </div>
+
+</nav>
 
 </body>
 </html>
+
+
 
 
 
