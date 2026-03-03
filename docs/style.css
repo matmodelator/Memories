@@ -214,3 +214,129 @@ body {
 .nav-item:hover {
   transform: translateX(var(--hover-shift));
 }
+
+
+
+
+
+
+/* ===================================================
+   СТРАНИЦА СТИХОВ: активный пункт + свиток вправо
+   (добавка в конец style.css)
+   =================================================== */
+
+:root {
+  /* --- Свиток: геометрия (подгоняется вручную) --- */
+  --scroll-gap: 18px;          /* зазор от меню до свитка */
+  --scroll-top: 14vh;          /* верх свитка (почти от логотипа) */
+  --scroll-bottom: 10vh;       /* низ свитка (почти до копирайта) */
+  --scroll-width: 42vw;        /* ширина свитка (до девушки) */
+  --scroll-min-width: 260px;   /* минимум ширины */
+  --scroll-max-width: 720px;   /* максимум ширины */
+
+  /* --- Свиток: визуал --- */
+  --scroll-bg-top: rgba(255, 245, 225, 0.88);
+  --scroll-bg-bottom: rgba(225, 200, 160, 0.88);
+  --scroll-border: rgba(120, 80, 40, 0.22);
+  --scroll-shadow: rgba(0, 0, 0, 0.22);
+
+  /* --- Активные "Стихи": выеденность/подсветка --- */
+  --active-ink-opacity: 0.95;
+  --active-blur: 0.55px;
+  --active-glow: 0.32;         /* сила ореола */
+}
+
+/* "Стихи" на poems.html: чуть выедает + подсветка + blur */
+.nav-active {
+  color: rgba(var(--text-color), var(--active-ink-opacity));
+  filter: blur(var(--active-blur));
+  text-shadow:
+    0 0 10px rgba(var(--text-color), var(--active-glow)),
+    0 3px 18px rgba(var(--text-color), calc(var(--active-glow) * 0.75));
+}
+
+/* Контейнер dropdown */
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Свиток: скрыт по умолчанию */
+.scroll-panel {
+  position: absolute;
+
+  /* вправо от пункта "Стихи" */
+  left: calc(100% + var(--scroll-gap));
+
+  /* по вертикали: как “середина между лого и купером” */
+  top: calc(var(--scroll-top) - var(--menu-top));
+  bottom: calc(var(--scroll-bottom) - (100vh - var(--menu-top)));
+
+  /* проще и надёжнее: задаём реальную высоту через top/bottom относительно окна */
+  top: var(--scroll-top);
+  bottom: var(--scroll-bottom);
+
+  width: clamp(var(--scroll-min-width), var(--scroll-width), var(--scroll-max-width));
+
+  padding: 18px 18px;
+
+  background: linear-gradient(to bottom, var(--scroll-bg-top), var(--scroll-bg-bottom));
+  border: 1px solid var(--scroll-border);
+  border-radius: 12px;
+  box-shadow: 0 18px 36px var(--scroll-shadow);
+
+  opacity: 0;
+  transform: translateX(-10px);
+  pointer-events: none;
+  transition: 0.28s ease;
+}
+
+/* Внутри — прокрутка, если стихов много */
+.scroll-inner {
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Пункты в свитке */
+.scroll-link {
+  display: block;
+  text-decoration: none;
+  font-family: var(--font-family);
+  font-style: var(--font-style);
+  font-size: calc(var(--font-size) * 0.72);
+  letter-spacing: 0.5px;
+
+  color: rgba(var(--text-color), 0.82);
+
+  padding: 8px 6px;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+/* Hover по списку */
+.scroll-link:hover {
+  color: rgba(var(--text-color), 1);
+  text-shadow: 0 0 10px rgba(var(--text-color), 0.35);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Открытие: hover (desktop) */
+.nav-dropdown:hover .scroll-panel {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Открытие: click (iPad) */
+.nav-dropdown.open .scroll-panel {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+
+
+
+
+
