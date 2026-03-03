@@ -571,15 +571,22 @@ body{
      ВНЕШНИЙ ВИД БЛОКА
      ====================== */
 
-  --read-bg: 255, 248, 232;
-  /* Базовый цвет “бумаги” блока (RGB). */
+  /* --read-bg: 255, 248, 232;
+   Базовый цвет “бумаги” блока (RGB). 
 
   --read-bg-opacity: 0.50;
-  /* Прозрачность “бумаги” блока.
+    Прозрачность “бумаги” блока.
      0 = прозрачно (нет плашки)
      0.10–0.25 = намёк (рекомендую)
      0.35+ = заметная плашка */
 
+  --reading-bg-left: rgba(255, 244, 220, 0.75);
+  --reading-bg-right: rgba(225, 200, 165, 0.25);
+    /* Прзрачность бумаги блока с градиенто направо.
+     0 = прозрачно (нет плашки)
+     0.10–0.25 = намёк (рекомендую)
+     0.35+ = заметная плашка */
+   
   --read-blur: 1.2px;
   /* Мягкий blur фона под блоком (если браузер поддерживает).
      0px = выключено
@@ -663,7 +670,14 @@ body{
   padding: var(--read-padding);
   border-radius: var(--read-radius);
 
-  background: rgba(var(--read-bg), var(--read-bg-opacity));
+ /* background: rgba(var(--read-bg), var(--read-bg-opacity));*/
+
+   background: linear-gradient(
+  to right,
+  var(--reading-bg-left),
+  var(--reading-bg-right)
+);
+   
   border: 1px solid rgba(var(--text-color), var(--read-border-opacity));
   box-shadow: 0 18px 40px rgba(0,0,0,var(--read-shadow-opacity));
 
