@@ -20,9 +20,7 @@
     <div class="nav-dropdown" id="poemsDropdown">
       
 
-      <button type="button" class="nav-item nav-active nav-trigger" data-text="Стихи" aria-expanded="false">
-  Стихи
-</button>
+      <span class="nav-item nav-active nav-trigger" data-text="Стихи">Стихи</span>
 
       <!-- СВИТОК (раскрывается вправо) -->
       <div class="scroll-panel" role="menu" aria-label="Список стихов">
@@ -43,32 +41,17 @@
 
   <!-- Hover + Click (для iPad тоже) -->
 <script>
-  (function () {
-    const dd = document.getElementById('poemsDropdown');
-    const trigger = dd.querySelector('.nav-trigger');
+const dropdown = document.querySelector('.nav-dropdown');
+const trigger = document.querySelector('.nav-trigger');
 
-    // Открыть/закрыть с первого касания (iPad / mobile) и с клика (desktop)
-    const toggle = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      dd.classList.toggle('open');
-      trigger.setAttribute('aria-expanded', dd.classList.contains('open') ? 'true' : 'false');
-    };
+trigger.addEventListener('click', function(e) {
+  e.stopPropagation();
+  dropdown.classList.toggle('open');
+});
 
-    // pointerdown срабатывает сразу (и на touch, и на mouse)
-    trigger.addEventListener('pointerdown', toggle);
-
-    // Закрыть при тапе/клике вне
-    document.addEventListener('pointerdown', () => {
-      dd.classList.remove('open');
-      trigger.setAttribute('aria-expanded', 'false');
-    });
-
-    // Не закрывать при клике внутри свитка
-    dd.querySelector('.scroll-panel').addEventListener('pointerdown', (e) => {
-      e.stopPropagation();
-    });
-  })();
+document.addEventListener('click', function() {
+  dropdown.classList.remove('open');
+});
 </script>
 </body>
 </html>
