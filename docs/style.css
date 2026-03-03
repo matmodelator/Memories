@@ -742,3 +742,42 @@ body{
   object-fit: cover;
   z-index: -1;
 }
+
+
+
+
+
+/* =====================================================
+   ФИКС: МЕНЮ ВСЕГДА ОДИНАКОВОЕ НА ВСЕХ СТРАНИЦАХ
+   Вставить в самый конец style.css
+   ===================================================== */
+
+.main-nav{
+  position: absolute;
+  left: var(--menu-left);
+  top: var(--menu-top);
+
+  transform: translateY(-50%) scale(var(--menu-scale));
+  transform-origin: left center;
+
+  display: flex;
+  flex-direction: var(--menu-direction);
+  gap: var(--menu-gap);
+
+  z-index: 10; /* поверх фона и панелей */
+}
+
+.main-nav .nav-item{
+  /* возвращаем меню к базовым настройкам */
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  font-style: var(--font-style);
+  letter-spacing: var(--letter-spacing);
+
+  text-decoration: none;
+  color: rgba(var(--text-color), var(--text-opacity));
+
+  /* важно: чтобы стили “стиха” не влияли на меню */
+  filter: blur(var(--text-blur));
+  background: transparent;
+}
