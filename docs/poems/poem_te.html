@@ -71,5 +71,18 @@
 
   </section>
 
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+  
+
+
 </body>
 </html>
