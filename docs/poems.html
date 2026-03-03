@@ -102,5 +102,21 @@ document.addEventListener('click', function() {
   dropdown.classList.remove('open');
 });
 </script>
+
+<!-- Возврат в гланое меню кликом по фону -->
+
+  <script>
+document.addEventListener("click", function(e) {
+
+    const scrollPanel = document.querySelector(".scroll-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!scrollPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "index.html";
+    }
+
+});
+</script>
+  
 </body>
 </html>
