@@ -1,1 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!-- <title>Память о лете — Memories</title> -->
 
+
+  
+  <!-- Шрифт (можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"
+  <link rel="stylesheet" href="style.css"> -->
+  
+ <link rel="stylesheet" href="../style.css"> 
+
+  
+</head>
+
+<body>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+  </nav> 
+
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+  <section class="reading-panel" aria-label="Текст стихотворения">
+
+    <!-- Контейнер стиха -->
+
+    <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+    <pre class="poem-text">
+03.08.2018
+
+Я как спившийся командарм,
+Растерявший свои войска.
+Отступленье по всем фронтам,
+Неприятель и тут, и там, -
+Револьвер не сводя с виска,
+Я трофейный глушу вискарь.
+
+Уперевшись локтями в стол,
+Я грущу о своих полках, 
+Наливаю ещё по сто, 
+Холодит мою кожу ствол, -
+О солдатах моих, волках,
+Позаботится ли Аллах?!
+
+И сожгут ли они мосты,
+И спасётся ль хотя бы взвод??
+Отхожу я с боями в тыл,
+И последней дойдя версты, 
+Дуло-горло влагаю в рот - 
+Как всегда в этот день. Раз в год.
+    </pre>
+
+  </section>
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+  
+
+
+</body>
+</html>
