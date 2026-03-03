@@ -420,4 +420,14 @@ body {
   text-shadow: 0 0 10px rgba(var(--text-color), 0.25);
 }
 
+/* Кнопка как ссылка */
+
+.nav-trigger{
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
 
