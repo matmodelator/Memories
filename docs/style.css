@@ -488,3 +488,37 @@ body {
   pointer-events: auto;
 }
 
+
+
+
+
+
+
+
+
+
+/* ======================================
+   СТРАНИЦА СТИХОТВОРЕНИЯ
+   ====================================== */
+
+.poem-container {
+  position: absolute;
+  left: 35%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40%;
+
+  color: rgba(var(--text-color), 0.9);
+}
+
+/*.poem-title {
+  font-size: 42px;
+  margin-bottom: 30px;
+  font-family: var(--font-family);
+}. */
+
+.poem-text {
+  font-size: 24px;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+}
