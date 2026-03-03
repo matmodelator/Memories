@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!-- <title>Память о лете — Memories</title> -->
+
+
+  
+  <!-- Шрифт (можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"
+  <link rel="stylesheet" href="style.css"> -->
+  
+ <link rel="stylesheet" href="../style.css"> 
+
+  
+</head>
+
+<body>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+  </nav> 
+
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+  <section class="reading-panel" aria-label="Текст стихотворения">
+
+    <!-- Контейнер стиха -->
+
+    <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+    <pre class="poem-text">
+Гарнизонная тоска
+
+Закат над морем, волны шелестят...
+Усталый гарнизон склоняется ко сну.
+Корпит над картой чокнутый стратег,
+Поют солдаты, кортики блестят,
+И девушки ревут заранее про тех,
+Кто не увидит новую весну.
+
+Орут коты - у них сегодня джаз.
+В тени у клуба чахнет кипарис.
+Аллея павших.. выпить бы вина,
+Да не с кем пить, увы, на этот раз..
+По радио объявлена война -
+Кому не знаю, - стало быть, сюрприз!
+
+Ликует плебс на байках именных,
+Кафе открыто, парочки снуют...
+Олимпиада снова на дворе!
+И те, кто завтра выживет из них,
+Увидеть смогут на Сапун-горе
+Победы чьей-то траурный салют.
+
+Крым, 18.08.2016  
+    </pre>
+
+  </section>
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+  
+
+
+</body>
+</html>
