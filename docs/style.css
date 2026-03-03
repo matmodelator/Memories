@@ -522,3 +522,15 @@ body {
   line-height: 1.8;
   letter-spacing: 0.5px;
 }
+
+/* Табуляция */
+
+.poem-text{
+  white-space: pre-wrap;   /* сохраняет ВСЕ пробелы и переносы */
+  tab-size: 4;             /* ширина табуляции */
+  font-family: var(--font-family);
+  font-size: 24px;
+  line-height: 1.8;
+  margin: 0;
+  color: rgba(var(--text-color), 0.9);
+}
