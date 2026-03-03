@@ -187,7 +187,8 @@ body{
 
   font-size: var(--font-size);
   font-family: var(--font-family);
-  font-style: var(--font-style);
+  font-style: italic; /* ← курсив 
+  font-style: var(--font-style);*/
   letter-spacing: var(--letter-spacing);
 
   color: rgba(var(--text-color), var(--text-opacity));
