@@ -442,37 +442,6 @@ body{
 
 
 
-/* Индикатор прокрутки: справа сверху, над скроллом */
-.scroll-panel{
-  position: relative; /* чтобы индикатор позиционировался внутри свитка */
-}
-
-.scroll-indicator{
-  position: absolute;
-  top: 12px;
-  right: 14px;
-
-  /* стиль под сепию */
-  color: rgba(var(--text-color), 0.55);
-  font-size: 26px;
-  line-height: 1;
-
-  /* “чернильность”/винтаж */
-  filter: blur(0.25px);
-  text-shadow:
-    0 1px 0 rgba(255,255,255,0.10),
-    0 0 10px rgba(var(--text-color), 0.12);
-
-  user-select: none;
-  pointer-events: none; /* чтобы не мешал скроллу */
-  opacity: 0.9;
-}
-
-/* чтобы индикатор не налезал на текст */
-.scroll-inner{
-  padding-top: 18px;
-  padding-right: 24px; /* оставляем место справа под индикатор */
-}
 
 
 /* =====================================================
