@@ -420,14 +420,12 @@ body {
   text-shadow: 0 0 10px rgba(var(--text-color), 0.25);
 }
 
-/* Кнопка как ссылка */
+/* Одно нажатие */
 
-.nav-trigger{
-  background: transparent;
-  border: 0;
-  padding: 0;
-  text-align: left;
-  cursor: pointer;
+.nav-dropdown.open .scroll-panel {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
 }
 
 
