@@ -336,7 +336,19 @@ body {
 }
 
 
+/* Фикс: свиток поверх и рядом с меню */
+.nav-dropdown { position: relative; }
 
+.scroll-panel{
+  position: fixed;              /* фиксируем к окну */
+  left: calc(var(--menu-left) + 160px); /* старт справа от меню */
+  top: var(--scroll-top);
+  bottom: var(--scroll-bottom);
+
+  width: clamp(var(--scroll-min-width), var(--scroll-width), var(--scroll-max-width));
+
+  z-index: 50;                  /* поверх фона/меню */
+}
 
 
 
