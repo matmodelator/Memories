@@ -303,7 +303,7 @@ body{
 }
 
 /* Пункты в свитке */
-.scroll-link {
+/*.scroll-link {
   display: block;
   text-decoration: none;
   font-family: var(--font-family);
@@ -316,8 +316,26 @@ body{
   padding: 8px 6px;
   border-radius: 8px;
   transition: 0.2s ease;
+}*/
+
+.scroll-inner a{
+  display:block;
+  padding: 10px;
+  margin: 6px 0;
+
+  font-size: 28px;
+  text-decoration:none;
+
+  color: rgba(var(--text-color), 0.92);
+  background: rgba(255,255,255,0.08);
+
+  border-radius: 10px;
+  transition: 0.2s ease;
 }
 
+.scroll-inner a:hover{
+  background: rgba(255,255,255,0.18);
+}
 
 /* Hover по списку */
 /*.scroll-link:hover {
