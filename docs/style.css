@@ -314,26 +314,28 @@ body {
   transition: 0.2s ease;
 }
 
+
 /* Hover по списку */
-.scroll-link:hover {
+/*.scroll-link:hover {
   color: rgba(var(--text-color), 1);
   text-shadow: 0 0 10px rgba(var(--text-color), 0.35);
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* Открытие: hover (desktop) */
+/* Открытие: hover (desktop) 
 .nav-dropdown:hover .scroll-panel {
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
 }
 
-/* Открытие: click (iPad) */
+/* Открытие: click (iPad) 
 .nav-dropdown.open .scroll-panel {
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
 }
+*/
 
 
 /* Фикс: свиток поверх и рядом с меню */
@@ -420,12 +422,69 @@ body {
   text-shadow: 0 0 10px rgba(var(--text-color), 0.25);
 }
 
-/* Одно нажатие */
 
+/* =====================================================
+   1. ОТКРЫТИЕ СВИТКА (работает везде)
+   ===================================================== */
+
+/* Когда JS добавляет класс .open —
+   свиток становится видимым */
 .nav-dropdown.open .scroll-panel {
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
 }
+
+
+/* =====================================================
+   2. ПОДСВЕТКА АКТИВНОГО ПУНКТА (для iPad / touch)
+   ===================================================== */
+
+/* Когда свиток открыт — пункт "Стихи" подсвечивается */
+.nav-dropdown.open .nav-trigger {
+
+  /* Чуть плотнее цвет */
+  color: rgba(var(--text-color), 1);
+
+  /* Мягкий blur — эффект выеденных чернил */
+  filter: blur(0.6px);
+
+  /* Светящийся ореол */
+  text-shadow:
+    0 0 12px rgba(var(--text-color), 0.35),
+    0 4px 18px rgba(var(--text-color), 0.25);
+}
+
+
+/* =====================================================
+   3. HOVER ЭФФЕКТ — ТОЛЬКО ДЛЯ ДЕСКТОПА
+   ===================================================== */
+
+/* Это правило работает только если устройство
+   поддерживает настоящий hover (мышь) */
+
+@media (hover: hover) {
+
+  /* Лёгкое смещение при наведении */
+  .nav-item:hover {
+    transform: translateX(var(--hover-shift));
+  }
+
+  /* Подсветка при наведении (без открытия свитка) */
+  .nav-trigger:hover {
+    color: rgba(var(--text-color), 1);
+    text-shadow: 0 0 10px rgba(var(--text-color), 0.3);
+  }
+
+}
+
+
+/* Одно нажатие */
+
+/*.nav-dropdown.open .scroll-panel {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}*/
 
 
