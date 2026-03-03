@@ -482,10 +482,9 @@ body {
 
 /* Одно нажатие */
 
-/*.nav-dropdown.open .scroll-panel {
+.nav-dropdown.open .scroll-panel {
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
-}*/
-
+}
 
