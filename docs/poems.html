@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Стихи — Memories</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ФОН -->
+  <img src="desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+  <nav class="main-nav">
+
+    <!-- СТИХИ: активный пункт + триггер свитка -->
+    <div class="nav-dropdown" id="poemsDropdown">
+      <a href="poems.html"
+         class="nav-item nav-active"
+         data-text="Стихи"
+         aria-haspopup="true"
+         aria-expanded="false">
+        Стихи
+      </a>
+
+      <!-- СВИТОК (раскрывается вправо) -->
+      <div class="scroll-panel" role="menu" aria-label="Список стихов">
+        <div class="scroll-inner">
+          <a class="scroll-link" href="poem1.html">Память о лете</a>
+          <a class="scroll-link" href="poem2.html">Чернила</a>
+          <a class="scroll-link" href="poem3.html">Вечер</a>
+          <a class="scroll-link" href="poem4.html">…</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="author.html" class="nav-item" data-text="Автор">Автор</a>
+
+  </nav>
+
+  <!-- Hover + Click (для iPad тоже) -->
+  <script>
+    (function () {
+      const dd = document.getElementById('poemsDropdown');
+      const trigger = dd.querySelector('.nav-item');
+
+      // На этой странице клик по "Стихи" не должен перезагружать страницу
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        dd.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', dd.classList.contains('open') ? 'true' : 'false');
+        e.stopPropagation();
+      });
+
+      // Клик вне — закрыть
+      document.addEventListener('click', () => {
+        dd.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    })();
+  </script>
+</body>
+</html>
