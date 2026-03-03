@@ -501,36 +501,233 @@ body {
    СТРАНИЦА СТИХОТВОРЕНИЯ
    ====================================== */
 
-.poem-container {
-  position: absolute;
-  left: 35%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40%;
 
-  color: rgba(var(--text-color), 0.9);
-}
-
-/*.poem-title {
-  font-size: 42px;
-  margin-bottom: 30px;
-  font-family: var(--font-family);
-}. */
-
-.poem-text {
-  font-size: 24px;
-  line-height: 1.8;
-  letter-spacing: 0.5px;
-}
-
-/* Табуляция */
+/* Табуляция 
 
 .poem-text{
-  white-space: pre-wrap;   /* сохраняет ВСЕ пробелы и переносы */
-  tab-size: 4;             /* ширина табуляции */
+  white-space: pre-wrap;   
+  tab-size: 4;             
   font-family: var(--font-family);
   font-size: 24px;
   line-height: 1.8;
   margin: 0;
   color: rgba(var(--text-color), 0.9);
+}. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   СТРАНИЦА СТИХА: область чтения со скроллом
+   Все настройки — здесь.
+   ===================================================== */
+
+:root {
+
+  /* ======================
+     ГЕОМЕТРИЯ БЛОКА ЧТЕНИЯ
+     ====================== */
+
+  --read-left: 30%;
+  /* Позиция блока слева.
+     Увеличишь — уедет вправо.
+     Уменьшишь — уедет влево. */
+
+  --read-top: 50%;
+  /* Позиция блока сверху.
+     50% = центр по вертикали. */
+
+  --read-width: 42vw;
+  /* Ширина блока чтения.
+     vw = % от ширины экрана.
+     Пример: 38vw (уже), 50vw (шире). */
+
+  --read-max-width: 720px;
+  /* Максимальная ширина (на больших экранах),
+     чтобы текст не растягивался слишком широко. */
+
+  --read-height: 68vh;
+  /* Высота блока чтения.
+     vh = % от высоты экрана.
+     Пример: 60vh (ниже), 80vh (выше). */
+
+  /* ======================
+     ВНЕШНИЙ ВИД БЛОКА
+     ====================== */
+
+  --read-bg: 255, 248, 232;
+  /* Базовый цвет “бумаги” блока (RGB). */
+
+  --read-bg-opacity: 0.20;
+  /* Прозрачность “бумаги” блока.
+     0 = прозрачно (нет плашки)
+     0.10–0.25 = намёк (рекомендую)
+     0.35+ = заметная плашка */
+
+  --read-blur: 1.2px;
+  /* Мягкий blur фона под блоком (если браузер поддерживает).
+     0px = выключено
+     1–2px = лёгкий “воздух” */
+
+  --read-border-opacity: 0.16;
+  /* Прозрачность рамки. Чем выше — тем заметнее. */
+
+  --read-shadow-opacity: 0.18;
+  /* Прозрачность тени блока. */
+
+  --read-padding: 26px;
+  /* Внутренние отступы. Больше — больше воздуха. */
+
+  --read-radius: 16px;
+  /* Скругление углов. */
+
+
+  /* ======================
+     ТИПОГРАФИКА (ШРИФТЫ)
+     ====================== */
+
+  --poem-title-size: 40px;
+  /* Размер заголовка стиха */
+
+  --poem-title-opacity: 0.92;
+  /* Прозрачность заголовка */
+
+  --poem-text-size: 24px;
+  /* Размер текста стиха */
+
+  --poem-line-height: 1.85;
+  /* Межстрочный интервал.
+     1.6 = плотнее
+     1.9 = воздушнее */
+
+  --poem-letter-spacing: 0.4px;
+  /* Межбуквенный интервал (аккуратно, слегка) */
+
+  --poem-text-opacity: 0.88;
+  /* Прозрачность текста.
+     1 = плотный
+     0.75–0.9 = винтажно */
+
+  --poem-tab-size: 4;
+  /* Ширина табуляции. Если отступы “слишком” — меняй 2/4/6/8 */
+
+
+  /* ======================
+     СКРОЛЛ ВНУТРИ ТЕКСТА
+     ====================== */
+
+  --scrollbar-size: 10px;
+  /* Толщина скролла (в браузерах, где можно) */
+
+  --scrollbar-track: rgba(255,255,255,0.10);
+  /* Цвет дорожки скролла */
+
+  --scrollbar-thumb-top: rgba(140, 95, 55, 0.55);
+  --scrollbar-thumb-bot: rgba(100, 60, 30, 0.55);
+  /* Цвет “ползунка” (градиент) */
+
+  --scrollbar-thumb-border: rgba(255,255,255,0.12);
+  /* Обводка ползунка */
+}
+
+/* ======================
+   Блок чтения (скроллится внутри)
+   ====================== */
+
+.reading-panel{
+  position: absolute;
+
+  left: var(--read-left);
+  top: var(--read-top);
+  transform: translateY(-50%);
+
+  width: min(var(--read-width), var(--read-max-width));
+  height: var(--read-height);
+
+  padding: var(--read-padding);
+  border-radius: var(--read-radius);
+
+  background: rgba(var(--read-bg), var(--read-bg-opacity));
+  border: 1px solid rgba(var(--text-color), var(--read-border-opacity));
+  box-shadow: 0 18px 40px rgba(0,0,0,var(--read-shadow-opacity));
+
+  backdrop-filter: blur(var(--read-blur));
+  -webkit-backdrop-filter: blur(var(--read-blur));
+
+  overflow: hidden; /* заголовок фикс, текст скроллится */
+}
+
+/* Заголовок */
+.poem-title{
+  font-size: var(--poem-title-size);
+  font-family: var(--font-family);
+  color: rgba(var(--text-color), var(--poem-title-opacity));
+  margin: 0 0 18px 0;
+  filter: blur(0.15px);
+}
+
+/* Текст стиха: сохраняем пробелы/табуляции/переносы + включаем внутренний скролл */
+.poem-text{
+  margin: 0;
+
+  height: calc(100% - 60px); /* место под заголовок */
+  overflow-y: auto;
+
+  white-space: pre-wrap;  /* сохраняет структуру + переносит длинные строки */
+  tab-size: var(--poem-tab-size);
+
+  font-family: var(--font-family);
+  font-size: var(--poem-text-size);
+  line-height: var(--poem-line-height);
+  letter-spacing: var(--poem-letter-spacing);
+
+  color: rgba(var(--text-color), var(--poem-text-opacity));
+
+  /* лёгкая бумажная мягкость */
+  filter: blur(0.12px);
+
+  padding-right: 10px; /* чтобы текст не залезал под скролл */
+}
+
+/* ======================
+   Скроллбар “под старину”
+   В iOS Safari стилизация ограничена, но на desktop работает красиво.
+   ====================== */
+
+/* Firefox */
+.poem-text{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(120,80,40,0.45) var(--scrollbar-track);
+}
+
+/* WebKit (Chrome / Safari desktop) */
+.poem-text::-webkit-scrollbar{
+  width: var(--scrollbar-size);
+}
+
+.poem-text::-webkit-scrollbar-track{
+  background: var(--scrollbar-track);
+  border-radius: 999px;
+  box-shadow: inset 0 0 10px rgba(120,80,40,0.10);
+}
+
+.poem-text::-webkit-scrollbar-thumb{
+  background: linear-gradient(to bottom,
+    var(--scrollbar-thumb-top),
+    var(--scrollbar-thumb-bot)
+  );
+  border-radius: 999px;
+  border: 2px solid var(--scrollbar-thumb-border);
+  box-shadow:
+    inset 0 0 10px rgba(255,255,255,0.10),
+    0 0 10px rgba(120,80,40,0.18);
 }
