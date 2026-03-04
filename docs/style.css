@@ -687,6 +687,24 @@ body{
   overflow: hidden; /* заголовок фикс, текст скроллится */
 }
 
+.reading-panel::after{
+  content: "༺༻";
+
+  position: absolute;
+
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 34px;
+
+  color: rgba(var(--text-color), 0.6);
+
+  filter: blur(0.25px);
+
+  pointer-events: none;
+}
+
 /* Заголовок */
 .poem-title{
   font-size: var(--poem-title-size);
