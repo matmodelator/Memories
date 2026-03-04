@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+
+
+  
+  <!-- Шрифт (можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"
+  <link rel="stylesheet" href="style.css"> -->
+  
+ <link rel="stylesheet" href="../style.css"> 
+
+  
+</head>
+
+<!-- Утилита переадресации для Меню 
+  <script src="../nav.js"></script> -->
+  
+<body>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+  </nav> 
+
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+  <section class="reading-panel" aria-label="Текст стихотворения">
+
+    <!-- Контейнер стиха -->
+
+    <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+    <pre class="poem-text">
+Здравствуй, рай пятиэтажек, 
+Здравствуй, город мой промозглый.
+Здравствуй, дом мой. Здравствуй даже,
+У подъезда пёс безмозглый.
+
+Здравствуй, здравствуй, друг мой старый!
+Может быть, напьёмся  в сраку?
+Или в Туле плохо с тарой,
+И никто не лезет в драку?
+
+Здравствуй, школа, где я вырос,
+Где любил в десятом классе.
+Здравствуй, бар, где хань на вынос
+И знакомая на кассе.
+
+Здравствуй, девочка с глазами,
+Что в мои смотрели жадно.
+Здравствуй, запись с голосами,
+Что забыл я...   Ну и ладно.
+
+      
+1996
+    </pre>
+
+  </section>
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+  
+
+
+</body>
+</html>
