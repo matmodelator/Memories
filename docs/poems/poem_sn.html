@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+
+
+  
+  <!-- Шрифт (можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"
+  <link rel="stylesheet" href="style.css"> -->
+  
+ <link rel="stylesheet" href="../style.css"> 
+
+  
+</head>
+
+
+  
+<body>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+  </nav> 
+
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+  <section class="reading-panel" aria-label="Текст стихотворения">
+
+    <!-- Контейнер стиха -->
+
+    <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+    <pre class="poem-text">
+Снова дождь.
+              Снова капли ложатся к земле.
+Снова небо набухло тяжёлой водою.
+Я остатки тепла собираю в ладони,
+Только пальцы дрожат, - 
+              Видно дело к зиме.
+
+Видно дело к зиме,
+              Позвонить бы отцу,
+Дописать бы стихи, разобраться с делами,
+И заснуть с сигаретой во рту на диване,
+Только сон не идёт, -
+              Видно дело к концу.
+
+Видно дело к концу…
+              Не вернуться весёлым денькам,
+Не вдохнуть больше вольного воздуха Крыма,
+И несётся куда-то душа, многокрыла,
+Над студёной водой, - 
+              Видно дело к деньгам.
+
+Видно дело к деньгам! -
+              Обменять на динары рубли,
+Взять в дорогу вина и рвануть до Белграда,
+И писать черногорским красоткам баллады
+На промокшем песке, - 
+              Видно дело к любви.
+
+Видно дело к любви,
+              Но тогда почему я дрожу,
+Выходя в моросящую ночь из бильярдной?.. 
+Вероятность метели не выше одной миллиардной, 
+Значит, дело к дождю.
+              Значит дело к дождю.
+
+      
+2000
+    </pre>
+
+  </section>
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+  
+<!-- Утилита переадресации для Меню -->
+  <script src="../nav.js"></script>
+
+</body>
+</html>
