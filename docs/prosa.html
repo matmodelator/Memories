@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Стихи — Memories</title>
+  
 
+  <link rel="stylesheet" href="style.css"/>
+  <!--<link rel="stylesheet" href="scroll.css"/>-->
+  
+</head>
+
+<body>
+  <!-- ФОН -->
+  <img src="desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+  <nav class="main-nav">
+
+    <!-- ПРОЗА: активный пункт + триггер свитка -->
+    
+    
+    <div class="nav-dropdown open">
+  <span class="nav-item nav-active nav-trigger" data-text="Проза">Проза</span>
+
+    
+<div class="scroll-panel">
+  <div class="scroll-ornament-top">
+     ↕️
+  </div>
+<!--<div class="scroll-indicator" aria-hidden="true">↕</div>-->
+
+  <div class="scroll-inner">
+    
+    
+    
+      <a class="scroll-link" href="poems/poem_af.html">Дом</a>
+      <a class="scroll-link" href="poems/poem_ba1.html">Барахас. Дождь. Кончается февраль.</a>
+      <a class="scroll-link" href="poems/poem_ba2.html">Барахтаюсь в Барахасе как сом</a>
+      <a class="scroll-link" href="poems/poem_bvo1.html">Вот Вена, полночь, Австрия, ручей</a>
+      <a class="scroll-link" href="poems/poem_bvo2.html">Вот дождь на озере</a>
+      
+
+  </div>
+</div>
+</div>
+
+    <a href="prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="author.html" class="nav-item" data-text="Автор">Автор</a>
+
+  </nav>
+
+  <!-- Hover + Click (для iPad тоже) -->
+<script>
+const dropdown = document.querySelector('.nav-dropdown');
+const trigger = document.querySelector('.nav-trigger');
+
+trigger.addEventListener('click', function(e) {
+  e.stopPropagation();
+  dropdown.classList.toggle('open');
+});
+
+document.addEventListener('click', function() {
+  dropdown.classList.remove('open');
+});
+</script>
+
+<!-- Возврат в гланое меню кликом по фону -->
+
+  <script>
+document.addEventListener("click", function(e) {
+
+    const scrollPanel = document.querySelector(".scroll-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!scrollPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "index.html";
+    }
+
+});
+</script>
+  
+</body>
+</html>
