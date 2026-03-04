@@ -598,7 +598,7 @@ body{
   --read-shadow-opacity: 0.18;
   /* Прозрачность тени блока. */
 
-  --read-padding: 26px;
+  --read-padding: 15px;
   /* Внутренние отступы. Больше — больше воздуха. */
 
   --read-radius: 16px;
