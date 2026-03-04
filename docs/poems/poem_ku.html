@@ -155,17 +155,9 @@ if (!poem.title.trim()) {
   poem.title = poem.text.trim().split("\n")[0];
 }
 
-// вывод значений 
-document.getElementById("title").textContent = poem.title;
-document.getElementById("author").textContent = poem.author;
-document.getElementById("year").textContent = poem.year;
-document.getElementById("text").textContent = poem.text;
-
-  // вывод прямо в файл
-document.write("<h1>" + poem.title + "</h1>");
-document.write("<p>" + poem.author + "</p>");
-document.write("<p>" + poem.year + "</p>");
-document.write("<div>" + poem.text + "</div>");
+// вывод значений //
+  document.getElementById("meta").textContent =
+  poem.author + " — " + poem.title + " — " + poem.year;
 </script>
 
 </body>
