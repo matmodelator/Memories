@@ -21,14 +21,27 @@
     <!-- ПРОЗА: активный пункт + триггер свитка -->
     
     
-    <nav class="main-nav">
+   <nav class="main-nav">
   <a href="poems.html" class="nav-item" data-text="Стихи">Стихи</a>
-  <a href="prosa.html" class="nav-item nav-active" data-text="Проза">Проза</a>
+
+  <div class="nav-dropdown open">
+    <a href="prosa.html" class="nav-item nav-active nav-trigger" data-text="Проза">Проза</a>
+
+    <div class="scroll-panel">
+      <div class="scroll-ornament-top">↕️</div>
+
+      <div class="scroll-inner">
+        <a href="prosa/dom.html">Дом</a>
+        <a href="prosa/ded.html">Дед</a>
+      </div>
+    </div>
+  </div>
+
   <a href="songs.html" class="nav-item" data-text="Песни">Песни</a>
   <a href="author.html" class="nav-item" data-text="Автор">Автор</a>
 </nav>
 
-<div class="scroll-panel open">
+
 
   <div class="scroll-ornament-top">↕️</div>
 
@@ -37,7 +50,7 @@
     <a href="prosa/ded.html">Дед</a>
   </div>
 
-</div>
+
 
   
 
