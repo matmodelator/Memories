@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+  
+  <!-- Шрифт (можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"
+  <link rel="stylesheet" href="style.css"> -->
+  
+ <link rel="stylesheet" href="../style.css"> 
+
+  
+</head>
+
+<body>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+  </nav> 
+
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+  <section class="reading-panel" aria-label="Текст стихотворения">
+
+    <!-- Контейнер стиха -->
+
+    <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+    <pre class="poem-text">
+Куда бежать мне,
+ Если ты повсюду
+В одной пижаме – 
+ Мыслимо ли в путь?..
+И где держать 
+ Немытую посуду? -
+Куда бежать? – 
+ Бежать куда-нибудь.
+
+Куда деваться,
+ Если мир конечен?
+Как одеваться –  
+ Дело то к зиме?
+Я мог бы разлюбить 
+ Тебя, конечно,
+Да веки разлепить 
+ Я не сумел.
+
+Куда мне
+ Посылать немые письма
+И молнии несрочных 
+ Телеграмм?
+Мне миллиметр 
+ Без тебя немыслим,
+Мне без тебя несносен 
+ Миллиграмм.
+
+Я про тебя забуду
+ На минуту,
+А ты на годы
+ Про меня забудь.
+Бежим мы.
+ Ты бежишь к кому-то,
+И я бегу.
+ Бегу куда-нибудь.
+
+      
+октябрь 2000 – июль 2002
+    </pre>
+
+  </section>
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+
+  <!-- Утилита переадресации по пунктам Меню (для контента)-->
+  <script src="../nav.js"></script>
+
+  
+
+
+ <!--  Контейнер для контента с переменными -->
+
+<h1 id="title"></h1>
+<p id="author"></p>
+<p id="year"></p>
+<div id="text"></div>
+  
+<script>
+const poem = {
+  year: "2000",
+  author: "Игорь Хорош",
+  title: "",   // если пусто — возьмётся первая строка текста
+  text: `
+Куда бежать мне,
+ Если ты повсюду
+В одной пижаме – 
+ Мыслимо ли в путь?..
+И где держать 
+ Немытую посуду? -
+Куда бежать? – 
+ Бежать куда-нибудь.
+
+Куда деваться,
+ Если мир конечен?
+Как одеваться –  
+ Дело то к зиме?
+Я мог бы разлюбить 
+ Тебя, конечно,
+Да веки разлепить 
+ Я не сумел.
+
+Куда мне
+ Посылать немые письма
+И молнии несрочных 
+ Телеграмм?
+Мне миллиметр 
+ Без тебя немыслим,
+Мне без тебя несносен 
+ Миллиграмм.
+
+Я про тебя забуду
+ На минуту,
+А ты на годы
+ Про меня забудь.
+Бежим мы.
+ Ты бежишь к кому-то,
+И я бегу.
+ Бегу куда-нибудь.
+`
+      
+октябрь 2000 – июль 2002
+};
+
+// если название пустое
+if (!poem.title.trim()) {
+  poem.title = poem.text.trim().split("\n")[0];
+}
+
+// вывод значений 
+document.getElementById("title").textContent = poem.title;
+document.getElementById("author").textContent = poem.author;
+document.getElementById("year").textContent = poem.year;
+document.getElementById("text").textContent = poem.text;
+
+  // вывод прямо в файл
+document.write("<h1>" + poem.title + "</h1>");
+document.write("<p>" + poem.author + "</p>");
+document.write("<p>" + poem.year + "</p>");
+document.write("<div>" + poem.text + "</div>");
+</script>
+
+</body>
+</html>
