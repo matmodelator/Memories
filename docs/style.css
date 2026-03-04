@@ -800,8 +800,8 @@ body{
   pointer-events: none;
 } */
 
-/* Подключение nav */
+/* Подключение nav 
 .nav-dropdown { display: none; }
-.nav-dropdown.open { display: block; }
+.nav-dropdown.open { display: block; }*/
 
 
