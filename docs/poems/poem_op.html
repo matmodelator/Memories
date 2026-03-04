@@ -74,7 +74,7 @@ document.addEventListener("click", function(e) {
 <p id="year"></p>
 <div id="text"></div>
   
-<script>
+<!--<script>
 (function () {
   // 1) Данные (проверь, что именно тут ты задаёшь значения)
   const poem = {
@@ -142,7 +142,72 @@ document.addEventListener("click", function(e) {
 })();
 </script>
 
-  
+
+-->
+
+
+
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const poem = {
+    author: "Игорь",
+    year: "2016",
+    title: "",
+    text: `
+Опять ноябрь. В городе зима.
+Бушует шторм на Средиземном море.
+Теперь я чаще слышу "бен зонА",
+Чем русский мат, привычный в разговоре.
+
+Всю ночь поют под окнами коты,
+Ведут бои в своих кошачьих войнах.
+И где-то женщина - такая же как ты, -
+Кого-то ждёт, прекрасна и свободна.
+
+Датишник спит в трущобах городских,
+На дискотеке пляшет гастарбайтер,
+Репатриант бухает от тоски, 
+Тинейджер посещает порносайты.
+
+Струится жизнь обычным чередом,
+Оркестр играет джаз на променаде,
+И что-то перевозят через Дон,
+Подняв знамена будто на параде.
+
+
+18.11.2016
+`
+  };
+
+  // title = первая непустая строка, если пусто
+  if (!poem.title.trim()) {
+    poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
+  }
+
+  // 1) НАХОДИМ <pre id="poem">, или создаём
+  let pre = document.getElementById("poem");
+  if (!pre) {
+    const panel = document.querySelector(".reading-panel");
+    if (!panel) {
+      alert("Не найден .reading-panel (проверь класс в HTML)");
+      return;
+    }
+    pre = document.createElement("pre");
+    pre.id = "poem";
+    pre.className = "poem-text";
+    panel.appendChild(pre);
+  }
+
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
+  pre.textContent = poem.text;
+
+  // 3) НИЖНЯЯ ПОДПИСЬ
+  const meta = document.getElementById("meta");
+  if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;
+
+
+});
+</script>
 
 </body>
 </html>
