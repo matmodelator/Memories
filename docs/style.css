@@ -787,7 +787,18 @@ body{
   z-index: -1;
 }
 
-
+/* вывод значений переменных на страницу сайта */
+#meta {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+  opacity: 0.8;
+  pointer-events: none;
+}
 
 
 
