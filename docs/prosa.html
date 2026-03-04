@@ -28,13 +28,17 @@
     <a href="/Memories/prosa.html" class="nav-item nav-active nav-trigger" data-text="Проза">Проза</a>
 
     <div class="scroll-panel">
-      <div class="scroll-ornament-top">↕️</div>
 
+      
+      <!-- стрелка -->
+      <div class="scroll-ornament-top">↕️</div>
+   
+       <!-- свиток -->
       <div class="scroll-inner">
-  <a class="scroll-link" href="prosa/ded.html">Дед</a>
-  <a class="scroll-link" href="prosa/dom.html">Дом</a>
-  <a class="scroll-link" href="prosa/pisoyka.html">Сказ про Писёйку</a>
-  <a class="scroll-link" href="prosa/yerev_hag.html">Эрев Хаг</a>
+  <a class="scroll-link" href="/Memories/prosa/ded.html">Дед</a>
+  <a class="scroll-link" href="/Memories/prosa/dom.html">Дом</a>
+  <a class="scroll-link" href="/Memories/prosa/pisoyka.html">Сказ про Писёйку</a>
+  <a class="scroll-link" href="/Memories/prosa/yerev_hag.html">Эрев Хаг</a>
         
 </div>
         
@@ -73,7 +77,7 @@ document.addEventListener("click", function(e) {
     const nav = document.querySelector(".main-nav");
 
     if (!scrollPanel.contains(e.target) && !nav.contains(e.target)) {
-        window.location.href = "index.html";
+        window.location.href = "window.location.href = "/Memories/";
     }
 
 });
