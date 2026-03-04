@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Стихи — Memories</title>
+  
+
+  <link rel="stylesheet" href="style.css"/>
+  <!--<link rel="stylesheet" href="scroll.css"/>-->
+  
+</head>
+
+
+  
+<body>
+  <!-- ФОН -->
+<img src="desktop-bg1.jpg" class="bg-image" alt="Background">
+
+<!-- МЕНЮ (подгрузится автоматически) -->
+<div id="nav-slot"></div>
+
+<!-- Возврат в главное меню кликом по фону -->
+<script>
+document.addEventListener("click", function(e) {
+  const scrollPanel = document.querySelector(".scroll-panel");
+  const nav = document.querySelector(".main-nav");
+
+  if (scrollPanel && scrollPanel.contains(e.target)) return;
+  if (nav && nav.contains(e.target)) return;
+
+  window.location.href = "/Memories/index.html";
+});
+</script>
+
+<!-- загрузчик меню -->
+<script src="nav-loader.js"></script>
+
+
+
+<!-- Возврат в гланое меню кликом по фону -->
+
+  <script>
+document.addEventListener("click", function(e) {
+
+    const scrollPanel = document.querySelector(".scroll-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!scrollPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "/Memories/index.html";
+    }
+
+});
+</script>
+
+  <!-- Утилита переадресации для Меню -->
+  <script src="nav.js"></script>
+  
+</body>
+</html>
