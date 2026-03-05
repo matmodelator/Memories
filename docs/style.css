@@ -665,7 +665,7 @@ body{
 .reading-panel{
   position: absolute;
 
-/* вывод меты в поле стиха*/
+/* вывод меты в поле стиха
 #meta{
   position: absolute;
   bottom: 0;
@@ -675,7 +675,7 @@ body{
   padding-bottom: 10px;
   font-size: 14px;
   opacity: 0.8;
-}
+}*/
 
 
 
