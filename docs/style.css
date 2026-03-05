@@ -866,3 +866,15 @@ cursor:pointer;
 
 color:white;
 }
+
+
+/* Шрифт для ввода в форму обратной связи */
+
+.contact-form input,
+.contact-form textarea {
+
+font-family: inherit;
+
+color: black;
+
+}
