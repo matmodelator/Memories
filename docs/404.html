@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Memories — страница не найдена</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<!-- ФОН -->
+<img src="desktop-bg1.jpg" class="bg-image" alt="Background">
+
+
+<!-- МЕНЮ -->
+<nav class="main-nav">
+
+<a href="/Memories/poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+<a href="/Memories/prosa.html" class="nav-item" data-text="Проза">Проза</a>
+<a href="/Memories/songs.html" class="nav-item" data-text="Песни">Песни</a>
+<a href="/Memories/author.html" class="nav-item" data-text="Автор">Автор</a>
+
+</nav>
+
+
+
+<!-- READING PANEL -->
+<section class="reading-panel" aria-label="Текст страницы">
+
+<pre class="poem-text">
+Упс!.. а над этим я еще работаю 😤
+</pre>
+
+</section>
+
+
+
+<!-- КЛИК ПО ФОНУ ВЕДЕТ НА ГЛАВНУЮ -->
+<script>
+
+document.addEventListener("click", function(e) {
+
+const readingPanel = document.querySelector(".reading-panel");
+const nav = document.querySelector(".main-nav");
+
+if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+
+window.location.href = "/Memories/index.html";
+
+}
+
+});
+
+</script>
+
+
+</body>
+</html>
