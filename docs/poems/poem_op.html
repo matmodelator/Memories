@@ -131,10 +131,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
   pre.textContent = poem.text;
 
-  // 3) НИЖНЯЯ ПОДПИСЬ
+  // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
   const meta = document.getElementById("meta");
-  if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;
-});
+  // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;
+}); 
+if (meta) meta.textContent = `$${poem.title} — ${poem.year}`;
+}); 
 
     
   // 4) Стили “поверх фона” + внизу
