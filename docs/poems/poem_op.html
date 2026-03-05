@@ -204,9 +204,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // 3) НИЖНЯЯ ПОДПИСЬ
   const meta = document.getElementById("meta");
   if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;
+}
 
+ document.getElementById("poem").textContent = poem.text;
 
-});
+document.getElementById("meta").textContent =
+  poem.author + " — " + poem.title + " — " + poem.year;
+    
 </script>
 
 </body>
