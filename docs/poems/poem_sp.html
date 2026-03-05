@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <!-- Шрифт (сейчас можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"
+   -->
+  
+ <link rel="stylesheet" href="../style.css"> 
+
+  
+</head>
+
+<body>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+  </nav> 
+
+
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+<section class="reading-panel" aria-label="Текст стихотворения">
+
+  <!-- Контейнер стиха -->
+
+  <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+  <pre id="poem" class="poem-text"></pre>
+  <!-- подпись внизу страницы -->
+  
+</section>
+
+<div id="meta"></div>
+
+  
+  
+
+    </pre>
+
+  </section>
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+
+  <!-- Утилита переадресации по пунктам Меню (для контента)-->
+  <script src="../nav.js"></script>
+
+  
+
+
+ <!--  Контейнер для контента с переменными -->
+
+<h1 id="title"></h1>
+<p id="author"></p>
+<p id="year"></p>
+<div id="text"></div>
+  
+
+
+
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const poem = {
+    author: "Игорь",
+    year: "2020",
+    title: "Спят усталые солдаты",
+    text: `
+От Моздока до Тивата
+Спят усталые солдаты.
+Не летают Мессершмидты,
+И орудия молчком.
+Спят солдаты, дышат ровно
+От Воронежа до Ровно.
+Где-то с ними, папа, спишь ты,
+К земляку прильнув бочком.
+
+От Смоленска до Варшавы
+Посреди железок ржавых
+Спят солдаты молодецким
+Сном без храпа и без слез.
+От Даляня до Анапы
+Спят в окопах чьи-то папы
+Словно пьяные мертвецки,
+Спят навеки и всерьёз.
+
+От Алушты и до Бреста,
+От Твери до Нове-Место
+Спят непапы не рождённых
+Да невиданных чудес.
+Дождевой воды напившись,
+Спят, шинелями укрывшись.
+В дырках, пулями прожжённых,
+Звёзды светятся с небес.
+
+В глиноземе этом скверном
+Папа мой уснул, наверно.
+Сон его подобен смерти -
+Нехороший это сон!
+И письмо лежит в кармане, 
+Что писал тогда он маме,
+Фотокарточка в конверте,
+Авторучка и жетон.
+
+И недоброе почуяв,
+Через жизнь ему кричу я - 
+От Белграда до Рязани,
+От начала до седин.
+Только он меня не слышит,
+Ветер ветлами колышет 
+В этих дебрях партизаньих,
+Где лежит он не один.
+
+С ним, растерзаны, распяты,
+И другие папы спят тут -
+Ото Ржева до Одессы 
+И от Выборга до Мги.
+На земле чужой и нашей,
+Где вповалку спят папаши,
+В босоногом нашем детстве
+Наследили сапоги.
+
+А когда дожди зарядят
+От Тамани до Зарядья,
+И по жидкой этой грязи
+Вдруг покатится весна,
+Наши бравые солдаты,
+В смерть шагнувшие когда-то,
+В гимнастёрочках из бязи
+Возвращаются во снах.  
+
+Пьют коньяк трофейный, курят,
+Матерятся, балагурят, 
+А потом садятся в танки,
+Самолёты, поезда.
+По земле пыля ногами,
+Бесконечными рядами
+За ближайшим полустанком
+Исчезают навсегда.
+
+Знать, судьбина их, планида,
+В шар земной уткнув ланиты,
+Так лежать десятилетья,
+Что слагаются в века,
+В ямах, занесённых илом
+Где ни камня, ни могилы, -
+Там, где не возложат дети
+Ни букета, ни венка.
+
+
+06.05.2020
+`
+  };
+
+  // title = первая непустая строка, если пусто
+  if (!poem.title.trim()) {
+    poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
+  }
+
+  // 1) НАХОДИМ <pre id="poem">, или создаём
+  let pre = document.getElementById("poem");
+  if (!pre) {
+    const panel = document.querySelector(".reading-panel");
+    if (!panel) {
+      alert("Не найден .reading-panel (проверь класс в HTML)");
+      return;
+    }
+    pre = document.createElement("pre");
+    pre.id = "poem";
+    pre.className = "poem-text";
+    panel.appendChild(pre);
+  }
+
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
+  pre.textContent = poem.text;
+
+  // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
+  const meta = document.getElementById("meta");
+ // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
+if (meta) meta.textContent = `${poem.title} — ${poem.year}`;});
+    
+  // 4) Стили “поверх фона” + внизу
+  meta.style.position = "fixed";
+  meta.style.left = "0";
+  meta.style.right = "0";
+  meta.style.bottom = "10px";
+  meta.style.textAlign = "center";
+  meta.style.fontSize = "14px";
+  meta.style.color = "brown";
+  meta.style.opacity = "0.85";
+  meta.style.zIndex = "9999";
+  meta.style.pointerEvents = "none";
+  meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
+ 
+    
+</script>
+
+</body>
+</html>
