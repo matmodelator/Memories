@@ -662,8 +662,25 @@ body{
    Блок чтения (скроллится внутри)
    ====================== */
 
-.reading-panel{
+/*.reading-panel{
+  position: absolute;*/
+   .reading-panel{
+  position: relative;
+}
+/* вывод меты в поле стиха*/
+#meta{
   position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+
+
 
   left: var(--read-left);
   top: var(--read-top);
