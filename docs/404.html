@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memories — страница не найдена</title>
+
+  <!-- ВАЖНО: абсолютный путь -->
+  <link rel="stylesheet" href="/Memories/style.css" />
+</head>
+
+<body>
+  <!-- ФОН: тоже абсолютный путь -->
+  <img src="/Memories/desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- Если у тебя меню грузится через nav-loader -->
+  <div id="nav-slot"></div>
+
+  <!-- READING PANEL -->
+  <section class="reading-panel" aria-label="Текст страницы">
+    <pre class="poem-text" id="nf-text"></pre>
+  </section>
+
+  <script>
+    const p = decodeURIComponent(window.location.pathname);
+    document.getElementById("nf-text").textContent =
+`Эта страница не найдена.
+
+Запрошено:
+${p}
+
+Возможно, ссылка устарела
+или файл был переименован.
+
+Нажмите на фон, чтобы вернуться на главную.`;
+  </script>
+
+  <!-- Клик по фону → на главную -->
+  <script>
+    document.addEventListener("click", function(e) {
+      const readingPanel = document.querySelector(".reading-panel");
+      const nav = document.querySelector(".main-nav");
+      const scrollPanel = document.querySelector(".scroll-panel");
+
+      if (readingPanel && readingPanel.contains(e.target)) return;
+      if (nav && nav.contains(e.target)) return;
+      if (scrollPanel && scrollPanel.contains(e.target)) return;
+
+      window.location.href = "/Memories/index.html";
+    });
+  </script>
+
+  <!-- Тоже абсолютный путь -->
+  <script src="/Memories/nav-loader.js"></script>
+</body>
+</html>
