@@ -820,3 +820,49 @@ body{
 .nav-dropdown.open { display: block; }*/
 
 
+  /* ======================
+     ФОРМА Обратной Связи
+     ====================== */
+
+
+.contact-form{
+margin-top:20px;
+max-width:500px;
+}
+
+.contact-form input,
+.contact-form textarea{
+
+width:100%;
+margin-top:10px;
+
+padding:10px;
+
+background:rgba(255,255,255,0.15);
+
+border:none;
+border-radius:6px;
+
+color:white;
+font-family:inherit;
+}
+
+.contact-form textarea{
+resize:vertical;
+}
+
+.contact-form button{
+
+margin-top:12px;
+
+padding:10px 20px;
+
+background:rgba(255,255,255,0.25);
+
+border:none;
+border-radius:6px;
+
+cursor:pointer;
+
+color:white;
+}
