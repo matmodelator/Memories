@@ -864,7 +864,7 @@ border-radius:6px;
 
 cursor:pointer;
 
-color:white;
+color:black;
 }
 
 
@@ -874,6 +874,7 @@ color:white;
 .contact-form textarea {
 
 font-family: inherit;
+   font-size: 16px;
 
 color: black;
 }
@@ -896,8 +897,8 @@ color: black;
   border: none;
   border-radius: 6px;
 
-  color: #000;
-  -webkit-text-fill-color: #000;
+  color: #555;
+  -webkit-text-fill-color: #555;
 
   font-family: inherit;
   font-size: 16px;
