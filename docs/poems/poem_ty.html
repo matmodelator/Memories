@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <!-- Шрифт (сейчас можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"
+   -->
+  
+ <link rel="stylesheet" href="../style.css"> 
+
+  
+</head>
+
+<body>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+  </nav> 
+
+
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+<section class="reading-panel" aria-label="Текст стихотворения">
+
+  <!-- Контейнер стиха -->
+
+  <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+  <pre id="poem" class="poem-text"></pre>
+  <!-- подпись внизу страницы -->
+  
+</section>
+
+<div id="meta"></div>
+
+  
+  
+
+    </pre>
+
+  </section>
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+
+  <!-- Утилита переадресации по пунктам Меню (для контента)-->
+  <script src="../nav.js"></script>
+
+  
+
+
+ <!--  Контейнер для контента с переменными -->
+
+<h1 id="title"></h1>
+<p id="author"></p>
+<p id="year"></p>
+<div id="text"></div>
+  
+
+
+
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const poem = {
+    author: "Игорь",
+    year: "2025",
+    title: "Ты мне вослед, прошу, не сквернословь",
+    text: `
+Когда-нибудь закончится война,
+И будем мы лежать вдвоём с тобою
+Под чашей неба светло голубою
+С бутылкой арагонского вина,
+И будешь ты устала и пьяна.
+
+Я стану декламировать стихи,
+Картавя, с выражением, как Бродский,
+С рассеянной улыбкой этой плотской,
+В далёкой и невидимой тиши,
+Неосязаем и недостижим.
+
+И заглянув в старинный мемуар,
+Что будешь ты держать в руках седая,
+Своим прекрасным цветом отцветая,
+Заплачешь и сквозь призрачный муар
+Прочтёшь прощальный этот мадригал.
+
+Когда-нибудь окончится любовь,
+И выйду я один под дождь сутулясь,
+Чтобы исчезнуть в лабиринте улиц,
+И умереть, и не воскреснуть вновь…
+Ты мне вослед, прошу, не сквернословь.
+
+
+05.07.25
+`
+  };
+
+  // title = первая непустая строка, если пусто
+  if (!poem.title.trim()) {
+    poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
+  }
+
+  // 1) НАХОДИМ <pre id="poem">, или создаём
+  let pre = document.getElementById("poem");
+  if (!pre) {
+    const panel = document.querySelector(".reading-panel");
+    if (!panel) {
+      alert("Не найден .reading-panel (проверь класс в HTML)");
+      return;
+    }
+    pre = document.createElement("pre");
+    pre.id = "poem";
+    pre.className = "poem-text";
+    panel.appendChild(pre);
+  }
+
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
+  pre.textContent = poem.text;
+
+  // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
+  const meta = document.getElementById("meta");
+ // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
+if (meta) meta.textContent = `${poem.title} — ${poem.year}`;});
+    
+  // 4) Стили “поверх фона” + внизу
+  meta.style.position = "fixed";
+  meta.style.left = "0";
+  meta.style.right = "0";
+  meta.style.bottom = "10px";
+  meta.style.textAlign = "center";
+  meta.style.fontSize = "14px";
+  meta.style.color = "brown";
+  meta.style.opacity = "0.85";
+  meta.style.zIndex = "9999";
+  meta.style.pointerEvents = "none";
+  meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
+ 
+    
+</script>
+
+</body>
+</html>
