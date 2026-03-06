@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (text === "Песни" && path.includes("songs"))
           item.classList.add("nav-active");
 
-        if (text === "Автор" && path.includes("comments"))
+        if (text === "Контакты" && path.includes("contacts"))
           item.classList.add("nav-active");
 
       });
