@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Memories</title>
 
-  <!-- Рукописный шрифт -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-
-  <!-- Подключение CSS -->
+  <!-- Шрифт (можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+-->
   <link rel="stylesheet" href="style.css">
+  
 </head>
+  
 
 <body>
 
-  <!-- Фон -->
+  <!-- ФОН -->
   <img src="desktop-bg1.jpg" class="bg-image" alt="Background">
 
-  <!-- Навигация без свитка-->
- <nav class="main-nav">
-    <ul>
-<li><a href="index.html" class="active" data-text="Главная">Главная</a></li>
-<li><a href="poems.html" data-text="Стихи">Стихи</a></li>
-<li><a href="#" data-text="Вехи">Вехи</a></li>
-<li><a href="#" data-text="Автор">Автор</a></li>
-<li><a href="#" data-text="Контакты">Контакты</a></li>
-    </ul>
- </nav>
+  <!-- МЕНЮ -->
+<div id="nav-slot"></div>
 
+<script src="nav-loader.js"></script> 
+
+  <!-- Утилита переадресации для Меню -->
+  <script src="nav.js"></script>
   
 </body>
 </html>
-
-
-
-
-
