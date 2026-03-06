@@ -1,0 +1,32 @@
+docs/
+│
+├─ index.html
+├─ poems.html
+├─ prosa.html
+├─ songs.html
+├─ author.html
+├─ 404.html
+│
+├─ style.css
+├─ nav-loader.js
+├─ panel-loader.js
+│
+├─ components/
+│   ├─ nav-panel.html
+│   ├─ scroll-panel-poems.html
+│   ├─ scroll-panel-prosa.html
+│   └─ reading-panel.html
+│
+├─ poems/
+│   ├─ poem1.html
+│   ├─ poem2.html
+│   └─ ...
+│
+├─ prosa/
+│   ├─ dom.html
+│   ├─ ded.html
+│   └─ ...
+│
+└─ assets/
+    ├─ desktop-bg1.jpg
+    └─ ...
