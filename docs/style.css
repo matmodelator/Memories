@@ -376,7 +376,7 @@ body{
   padding: 20px 18px;
 }
 
-/* “Скрученные” края свитка */
+/* “Скрученные” края свитка 
 .scroll-panel::before,
 .scroll-panel::after{
   content:"";
@@ -400,7 +400,7 @@ body{
   height: 100%;
   overflow-y: auto;
   padding-right: 6px;
-}
+} */
 
 
 /* Текст внутри свитка — читаемый */
@@ -751,8 +751,8 @@ body{
 /*горизонтальное расположение стрелок*/
 .poem-nav{
   position: absolute;
-  left: 600px;
-  top: 400px;
+  left: 700px;
+  top: 500px;
   display: flex;
   flex-direction: row;
   gap: 2px;
