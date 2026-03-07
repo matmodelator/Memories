@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
           item.classList.add("nav-active");
         }
 
-        if (text === "Контакты" && path.includes("contacts")) {
+        if (text === "Автор" && path.includes("author")) {
           item.classList.add("nav-active");
         }
       });
