@@ -759,6 +759,26 @@ body{
   font-size: 22px;
   z-index: 50;
 }
+
+/* Кнопка отзыв из reading-panel */
+.review{
+position:fixed;
+top:600px;
+left:500px;
+z-index:1000;
+}
+
+.review a{
+font-size:32px;
+text-decoration:none;
+transition:0.2s;
+}
+
+.review a:hover{
+transform:scale(1.3);
+}
+
+
 /* Заголовок */
 .poem-title{
   font-size: var(--poem-title-size);
