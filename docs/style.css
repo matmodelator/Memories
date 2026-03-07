@@ -734,6 +734,31 @@ body{
   pointer-events: none;
 }
 
+/* Прокрутка для навигации по reading.panel */
+
+/*вертикальное расположение стрелок
+.poem-nav{
+  position: absolute;
+  left: 900px;
+  top: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 22px;
+  z-index: 50; 
+} */
+
+/*горизонтальное расположение стрелок*/
+.poem-nav{
+  position: absolute;
+  left: 600px;
+  top: 400px;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  font-size: 22px;
+  z-index: 50;
+}
 /* Заголовок */
 .poem-title{
   font-size: var(--poem-title-size);
@@ -771,13 +796,13 @@ body{
    В iOS Safari стилизация ограничена, но на desktop работает красиво.
    ====================== */
 
-/* Firefox */
+/* Firefox 
 .poem-text{
   scrollbar-width: thin;
   scrollbar-color: rgba(120,80,40,0.45) var(--scrollbar-track);
 }
 
-/* WebKit (Chrome / Safari desktop) */
+/* WebKit (Chrome / Safari desktop) 
 .poem-text::-webkit-scrollbar{
   width: var(--scrollbar-size);
 }
@@ -798,7 +823,7 @@ body{
   box-shadow:
     inset 0 0 10px rgba(255,255,255,0.10),
     0 0 10px rgba(120,80,40,0.18);
-} 
+} */
 
 /* фон для стиха */
 
@@ -933,3 +958,5 @@ color: black;
   margin-top: 12px;
   opacity: .9;
 }
+
+
