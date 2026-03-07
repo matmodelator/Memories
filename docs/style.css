@@ -764,12 +764,12 @@ body{
 .review{
 position:fixed;
 top:500px;
-left:400px;
+left:300px;
 z-index:1000;
 }
 
 .review a{
-font-size:32px;
+font-size:30px;
 text-decoration:none;
 transition:0.2s;
 }
