@@ -662,8 +662,6 @@ body{
    Блок чтения (скроллится внутри)
    ====================== */
 
-.reading-panel{
-  position: absolute
 
 /* Навигация по разделу 
 .poem-nav{
@@ -688,7 +686,8 @@ body{
   opacity: 0.8;
 }*/
 
-
+.reading-panel{
+  position: absolute
 
 
   left: var(--read-left);
