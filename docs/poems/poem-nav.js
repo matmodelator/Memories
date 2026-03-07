@@ -1,35 +1,46 @@
 document.addEventListener("DOMContentLoaded", async function () {
+  const container = document.getElementById("poem-nav");
+  if (!container) return;
 
   const current = location.pathname.split("/").pop();
 
-  const response = await fetch("../poem.html");
-  const html = await response.text();
+  try {
+    const response = await fetch("../poem.html");
+    if (!response.ok) return;
 
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, "text/html");
+    const html = await response.text();
 
-  const links = [...doc.querySelectorAll("a[href]")];
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
 
-  const files = links
-    .map(a => a.getAttribute("href"))
-    .filter(href => href && href.includes("poem_"));
+    const links = [...doc.querySelectorAll("a[href$='.html']")];
 
-  const names = files.map(href => href.split("/").pop());
+    const files = links
+      .map(a => a.getAttribute("href"))
+      .filter(href => href);
 
-  const index = names.indexOf(current);
-  if (index === -1) return;
+    const names = files.map(href => href.split("/").pop());
 
-  const prev = files[index - 1];
-  const next = files[index + 1];
+    const index = names.indexOf(current);
+    if (index === -1) return;
 
-  let nav = '<div class="poem-nav">';
+    const prev = files[index - 1];
+    const next = files[index + 1];
 
-  if (prev) nav += `<a href="../${prev}">🔼</a>`;
-  if (next) nav += `<a href="../${next}">🔽</a>`;
+    let nav = '<div class="poem-nav">';
 
-  nav += '</div>';
+    if (prev) {
+      nav += `<a href="../${prev}">🔼</a>`;
+    }
 
-  const container = document.getElementById("poem-nav");
-  if (container) container.innerHTML = nav;
+    if (next) {
+      nav += `<a href="../${next}">🔽</a>`;
+    }
 
+    nav += "</div>";
+    container.innerHTML = nav;
+
+  } catch (error) {
+    return;
+  }
 });
