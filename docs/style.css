@@ -663,7 +663,7 @@ body{
    ====================== */
 
 
-/* Навигация по разделу 
+/* Навигация по разделу */
 .poem-nav{
   position: fixed;
   left: 880px;
@@ -672,7 +672,7 @@ body{
   flex-direction:column;
   gap:16px;
   font-size:22px;
-} */
+} 
 
 /* вывод меты в поле стиха
 #meta{
@@ -687,7 +687,7 @@ body{
 }*/
 
 .reading-panel{
-  position: absolute
+  position: absolute;
 
 
   left: var(--read-left);
