@@ -665,7 +665,7 @@ body{
 .reading-panel{
   position: absolute
 
-/* Навигация по разделу */
+/* Навигация по разделу 
 .poem-nav{
   position: fixed;
   left: 880px;
@@ -674,7 +674,7 @@ body{
   flex-direction:column;
   gap:16px;
   font-size:22px;
-}
+} */
 
 /* вывод меты в поле стиха
 #meta{
@@ -772,13 +772,13 @@ body{
    В iOS Safari стилизация ограничена, но на desktop работает красиво.
    ====================== */
 
-/* Firefox 
+/* Firefox */
 .poem-text{
   scrollbar-width: thin;
   scrollbar-color: rgba(120,80,40,0.45) var(--scrollbar-track);
 }
 
-/* WebKit (Chrome / Safari desktop) 
+/* WebKit (Chrome / Safari desktop) */
 .poem-text::-webkit-scrollbar{
   width: var(--scrollbar-size);
 }
@@ -799,7 +799,7 @@ body{
   box-shadow:
     inset 0 0 10px rgba(255,255,255,0.10),
     0 0 10px rgba(120,80,40,0.18);
-} */
+} 
 
 /* фон для стиха */
 
