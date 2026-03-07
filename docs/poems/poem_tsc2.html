@@ -8,3 +8,76 @@
 От Катманду до пика Эвереста.
 
 Москва. Осень 1991г.
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Память о лете — Memories</title>
+
+<link rel="stylesheet" href="/Memories/style.css">
+
+</head>
+
+
+<body>
+
+<!-- ФОН -->
+<img src="/Memories/desktop-bg1.jpg" class="bg-image" alt="Background">
+
+
+<!-- МЕНЮ -->
+<div id="nav-slot"></div>
+
+
+<!-- READING PANEL -->
+<section class="reading-panel">
+
+<pre class="poem-text">
+
+Память о лете
+
+Опять ноябрь. В городе зима.
+Бушует шторм на Средиземном море.
+Теперь я чаще слышу "бен зона",
+Чем русский мат, привычный в разговоре.
+
+Всю ночь поют под окнами коты,
+Ведут бои в своих кошачьих войнах.
+И где-то женщина — такая же как ты,
+Кого-то ждёт, прекрасна и свободна.
+
+</pre>
+
+</section>
+
+
+
+<!-- NAV LOADER -->
+<script src="../nav-loader.js"></script>
+
+
+<!-- Клик по фону → назад -->
+<script>
+
+document.addEventListener("click", function(e){
+
+const reading = document.querySelector(".reading-panel");
+const nav = document.querySelector(".main-nav");
+
+if (!reading.contains(e.target) && !nav.contains(e.target)){
+
+window.history.back();
+
+}
+
+});
+
+</script>
+
+
+</body>
+</html>
