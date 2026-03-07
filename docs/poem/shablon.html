@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <!-- Фон -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- Меню -->
+  <div id="nav-slot"></div>
+
+  <!-- Область чтения -->
+  <section class="reading-panel" aria-label="Текст стихотворения">
+    <pre id="poem" class="poem-text"></pre>
+  </section>
+
+  <!-- Подпись -->
+  <div id="meta"></div>
+
+  <!-- nav.js -->
+  <script src="../nav.js"></script>
+
+  <!-- Переменные стихотворения -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const poem = {
+        author: "Игорь",
+        year: "1991",
+        title: "Что позади?..",
+        text: `
+Что позади? Все то, о чем жалею…
+А впереди - безрадостная осень,
+И с ней тоска, но только тяжелее,
+Чем раньше. Мир по-прежнему несносен,
+И жизнь уходит, как песок сквозь пальцы.
+И мы с тобой так далеки от места,
+Где встретились, как далеки непальцы
+От Катманду до пика Эвереста.
+
+Осень 1991г.
+`
+      };
+
+      if (!poem.title.trim()) {
+        poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
+      }
+
+      let pre = document.getElementById("poem");
+      if (!pre) {
+        const panel = document.querySelector(".reading-panel");
+        if (!panel) return;
+
+        pre = document.createElement("pre");
+        pre.id = "poem";
+        pre.className = "poem-text";
+        panel.appendChild(pre);
+      }
+
+      pre.textContent = poem.text;
+
+      const meta = document.getElementById("meta");
+      if (meta) {
+        meta.textContent = `${poem.title} — ${poem.year}`;
+
+        meta.style.position = "fixed";
+        meta.style.left = "0";
+        meta.style.right = "0";
+        meta.style.bottom = "10px";
+        meta.style.textAlign = "center";
+        meta.style.fontSize = "14px";
+        meta.style.color = "brown";
+        meta.style.opacity = "0.85";
+        meta.style.zIndex = "9999";
+        meta.style.pointerEvents = "none";
+        meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
+      }
+    });
+  </script>
+
+  <!-- Загрузка меню -->
+  <script src="../nav-loader.js"></script>
+
+  <!-- Клик вне панели и меню -->
+  <script>
+    document.addEventListener("click", function(e) {
+      const reading = document.querySelector(".reading-panel");
+      const nav = document.querySelector(".main-nav");
+
+      if (
+        reading &&
+        !reading.contains(e.target) &&
+        (!nav || !nav.contains(e.target))
+      ) {
+        window.history.back();
+      }
+    });
+  </script>
+
+</body>
+</html>
