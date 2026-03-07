@@ -763,8 +763,8 @@ body{
 /* Кнопка отзыв из reading-panel */
 .review{
 position:fixed;
-top:600px;
-left:500px;
+top:500px;
+left:400px;
 z-index:1000;
 }
 
