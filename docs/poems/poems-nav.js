@@ -27,6 +27,6 @@ document.addEventListener("DOMContentLoaded", async function(){
 
   html += '</div>'
 
-  document.getElementById("poem-nav").innerHTML = html
+  document.getElementById("poems-nav").innerHTML = html
 
 })
