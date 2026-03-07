@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async function(){
   const prev = files[index-1]
   const next = files[index+1]
 
-  let html = '<div class="poem-nav">'
+  let html = '<div class="poems-nav">'
 
   if(prev)
     html += `<a href="${prev}">🔼</a>`
