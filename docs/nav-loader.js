@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const slot = document.getElementById("nav-slot");
   if (!slot) return;
 
-  fetch("components/nav-panel.html")
+  fetch("nav-panel.html")
     .then(response => {
       if (!response.ok) {
-        throw new Error("Файл меню не найден: components/nav-panel.html");
+        throw new Error("Файл меню не найден: nav-panel.html");
       }
       return response.text();
     })
