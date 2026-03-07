@@ -13,25 +13,16 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-
   const container = document.getElementById("poem-nav");
   if (!container) return;
 
-  const current = location.pathname.split("/").pop();
-
-  const match = current.match(/poem_(\d+)\.html/);
-  if (!match) return;
-
-  const num = parseInt(match[1]);
-
-  const prev = "poem_" + (num - 1) + ".html";
-  const next = "poem_" + (num + 1) + ".html";
+  const prevPath = "poem_tsc1.html";
+  const nextPath = "poem_tsc2.html";
 
   container.innerHTML = `
     <div class="poem-nav">
-      <a href="${prev}">🔼</a>
-      <a href="${next}">🔽</a>
+      <a href="${prevPath}">🔼</a>
+      <a href="${nextPath}">🔽</a>
     </div>
   `;
-
 });
