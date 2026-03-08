@@ -51,6 +51,9 @@
 <div class="review">
   <a href="/Memories/comments.html" title="Отзыв">💟</a>
 </div>
+<div class="like">
+  <a href="#" id="heart">💟</a>
+</div>  
 <!-- Метаданные к файлу --> 
 <div id="meta"></div>
 
@@ -162,5 +165,48 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;});
     
 </script>
 
+  
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const heart = document.getElementById("heart");
+
+heart.addEventListener("click", function(e){
+
+e.preventDefault();
+
+const text = document.getElementById("text").innerText;
+
+fetch("https://formspree.io/f/xvzwoqzk", {
+
+method: "POST",
+
+headers: {
+"Content-Type": "application/json",
+"Accept": "application/json"
+},
+
+body: JSON.stringify({
+
+type: "like",
+
+url: window.location.href,
+
+title: document.title,
+
+text: text
+
+})
+
+});
+
+heart.textContent = "❤️";
+
+});
+
+});
+
+</script>
 </body>
 </html>
