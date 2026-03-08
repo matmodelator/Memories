@@ -197,7 +197,8 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("_subject", "Лайк с сайта Memories");
     formData.append("type", "like");
     formData.append("url", window.location.href);
-    formData.append("title", document.getElementById("title").innerText.trim());
+    const title = document.getElementById("title")?.textContent.trim() || document.title;
+    formData.append("title", title);
 
     try {
       await fetch("https://formspree.io/f/xvzwoqzk", {
