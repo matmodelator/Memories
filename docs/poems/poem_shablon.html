@@ -57,10 +57,10 @@
   <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
 </div>
   
-<!-- Отзыв о тексте-->
+<!-- Отзыв о тексте
 <div class="review">
   <a href="/Memories/comments.html" title="Отзыв">💟</a>
-</div>
+</div> -->
 
 
 </div>  
@@ -100,7 +100,7 @@ document.addEventListener("click", function(e) {
   
 
 
-
+<!-- ВВОД тескта с параметрами -->
   <script>
 document.addEventListener("DOMContentLoaded", function () {
   const poem = {
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
   const meta = document.getElementById("meta");
  // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
-if (meta) meta.textContent = `${poem.title} — ${poem.year}`;});
+if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
     
   // 4) Стили “поверх фона” + внизу
   meta.style.position = "fixed";
@@ -171,14 +171,59 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;});
   meta.style.zIndex = "9999";
   meta.style.pointerEvents = "none";
   meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
- 
+ });
     
 </script>
 
-  
-
-
+ <!-- ЛАЙК тескта с параметрами --> 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const heart = document.getElementById("heart");
+  if (!heart) return;
+
+  heart.addEventListener("click", async function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetUrl = heart.getAttribute("href");
+
+    const textDiv = document.getElementById("text");
+    const poemPre = document.getElementById("poem");
+
+    let text = "";
+
+    if (textDiv && textDiv.innerText.trim()) {
+      text = textDiv.innerText.trim().slice(0, 200);
+    } else if (poemPre && poemPre.innerText.trim()) {
+      text = poemPre.innerText.trim().slice(0, 200);
+    }
+
+    const formData = new FormData();
+    formData.append("_subject", "Лайк с сайта Memories");
+    formData.append("type", "like");
+    formData.append("url", window.location.href);
+    formData.append("text", text);
+
+    try {
+      await fetch("https://formspree.io/f/xvzwoqzk", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      heart.textContent = "❤️";
+    } catch (err) {
+      heart.textContent = "⚠️";
+    }
+
+    setTimeout(function () {
+      window.location.href = targetUrl;
+    }, 1000);
+  });
+});
+</script>
+
+<!--<script>
 document.addEventListener("DOMContentLoaded", function () {
   const heart = document.getElementById("heart");
   if (!heart) return;
@@ -218,6 +263,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 350);
   });
 });
-</script>
+</script> -->
 </body>
 </html>
