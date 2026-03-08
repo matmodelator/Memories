@@ -167,46 +167,31 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;});
 
   
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener("DOMContentLoaded", function(){
+  const heart = document.getElementById("heart");
 
-const heart = document.getElementById("heart");
+  heart.addEventListener("click", function (e) {
+    e.preventDefault();
 
-heart.addEventListener("click", function(e){
+    const textEl = document.getElementById("text");
+    const text = textEl ? textEl.innerText.trim() : "";
 
-e.preventDefault();
+    const formData = new FormData();
+    formData.append("type", "like");
+    formData.append("url", window.location.href);
+    formData.append("text", text);
 
-const text = document.getElementById("text").innerText;
+    fetch("https://formspree.io/f/xvzwoqzk", {
+      method: "POST",
+      body: formData,
+      headers: { "Accept": "application/json" }
+    });
 
-fetch("https://formspree.io/f/xvzwoqzk", {
-
-method: "POST",
-
-headers: {
-"Content-Type": "application/json",
-"Accept": "application/json"
-},
-
-body: JSON.stringify({
-
-type: "like",
-
-url: window.location.href,
-
-title: document.title,
-
-text: text
-
-})
+    heart.textContent = "❤️";
+  });
 
 });
-
-heart.textContent = "❤️";
-
-});
-
-});
-
 </script>
 </body>
 </html>
