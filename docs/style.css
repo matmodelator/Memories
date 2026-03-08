@@ -760,8 +760,8 @@ body{
   z-index: 50;
 }
 
-/* Кнопка отзыв из reading-panel */
-.review{
+/* Кнопка ЛАЙК на reading-panel */
+.like{
 position:fixed;
 top:500px;
 left:300px;
