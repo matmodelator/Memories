@@ -187,18 +187,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const targetUrl = heart.getAttribute("href");
 
-    const textEl =
-      document.getElementById("text") ||
-      document.getElementById("poem");
-
-    const text = textEl ? textEl.innerText.trim().slice(0, 200) : "";
 
     const formData = new FormData();
     formData.append("_subject", "Лайк с сайта Memories");
     formData.append("type", "like");
     formData.append("url", window.location.href);
-    const title = document.getElementById("title")?.textContent.trim() || document.title;
-    formData.append("title", title);
+    formData.append("title", document.title);
 
     try {
       await fetch("https://formspree.io/f/xvzwoqzk", {
@@ -214,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(function () {
       window.location.href = targetUrl;
-    }, 350);
+    }, 1000);
   });
 });
 </script> 
