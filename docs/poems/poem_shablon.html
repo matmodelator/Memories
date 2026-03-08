@@ -47,12 +47,18 @@
   
 <!-- Навигатор по разделу -->
   <div id="poem-nav"></div>
+
+<!-- Лайк на текст-->
+  <div class="like">
+  <a href="#" id="heart" title="Нравится💜">💟</a>
+</div>
+  
 <!-- Отзыв о тексте-->
 <div class="review">
   <a href="/Memories/comments.html" title="Отзыв">💟</a>
 </div>
-<div class="like">
-  <a href="#" id="heart">💟</a>
+
+
 </div>  
 <!-- Метаданные к файлу --> 
 <div id="meta"></div>
@@ -166,31 +172,43 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;});
 </script>
 
   
+
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
   const heart = document.getElementById("heart");
+  if (!heart) return;
 
-  heart.addEventListener("click", function (e) {
+  heart.addEventListener("click", async function (e) {
     e.preventDefault();
 
     const textEl = document.getElementById("text");
-    const text = textEl ? textEl.innerText.trim() : "";
+    const text = textEl ? textEl.innerText.trim().slice(0, 200) : "";
 
     const formData = new FormData();
+    formData.append("_subject", "Лайк с сайта Memories");
     formData.append("type", "like");
     formData.append("url", window.location.href);
     formData.append("text", text);
 
-    fetch("https://https://formspree.io/f/xvzwoqzk", {
-      method: "POST",
-      body: formData,
-      headers: { "Accept": "application/json" }
-    });
+    try {
+      const res = await fetch("https://formspree.io/f/xvzwoqzk", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "Accept": "application/json"
+        }
+      });
 
-    heart.textContent = "❤️";
+      if (res.ok) {
+        heart.textContent = "❤️";
+      } else {
+        heart.textContent = "⚠️";
+      }
+    } catch (err) {
+      heart.textContent = "⚠️";
+    }
   });
-
 });
 </script>
 </body>
