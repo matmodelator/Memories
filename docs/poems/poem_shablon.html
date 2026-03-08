@@ -48,9 +48,13 @@
 <!-- Навигатор по разделу -->
   <div id="poem-nav"></div>
 
-<!-- Лайк на текст-->
+<!-- Лайк на текст
   <div class="like">
-  <a href="#" id="heart" title="Нравится💜">💟</a>
+  <a href="#" id="heart" title="Нравится💜">💟</a>-->
+  <!-- Лайк + Переход к Отзыву -->
+</div>
+  <div class="like">
+  <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
 </div>
   
 <!-- Отзыв о тексте-->
@@ -181,8 +185,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   heart.addEventListener("click", async function (e) {
     e.preventDefault();
+    e.stopPropagation();
 
-    const textEl = document.getElementById("text");
+    const targetUrl = heart.getAttribute("href");
+
+    const textEl =
+      document.getElementById("text") ||
+      document.getElementById("poem");
+
     const text = textEl ? textEl.innerText.trim().slice(0, 200) : "";
 
     const formData = new FormData();
@@ -192,22 +202,20 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("text", text);
 
     try {
-      const res = await fetch("https://formspree.io/f/xvzwoqzk", {
+      await fetch("https://formspree.io/f/xvzwoqzk", {
         method: "POST",
         body: formData,
-        headers: {
-          "Accept": "application/json"
-        }
+        headers: { "Accept": "application/json" }
       });
 
-      if (res.ok) {
-        heart.textContent = "❤️";
-      } else {
-        heart.textContent = "⚠️";
-      }
+      heart.textContent = "❤️";
     } catch (err) {
       heart.textContent = "⚠️";
     }
+
+    setTimeout(function () {
+      window.location.href = targetUrl;
+    }, 350);
   });
 });
 </script>
