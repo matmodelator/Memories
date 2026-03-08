@@ -52,11 +52,10 @@
   <div class="like">
   <a href="#" id="heart" title="Нравится💜">💟</a>-->
   <!-- Лайк + Переход к Отзыву -->
-</div>
   <div class="like">
   <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
-</div>
-  
+  <span class="like-count">0</span>
+</div> 
 <!-- Отзыв о тексте
 <div class="review">
   <a href="/Memories/comments.html" title="Отзыв">💟</a>
@@ -198,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("_subject", "Лайк с сайта Memories");
     formData.append("type", "like");
     formData.append("url", window.location.href);
-    formData.append("text", document.getElementById("text").innerText.trim());
+    formData.append("title", document.getElementById("title").innerText.trim());
 
     try {
       await fetch("https://formspree.io/f/xvzwoqzk", {
@@ -207,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: { "Accept": "application/json" }
       });
 
-      heart.textContent = "❤️";
+      heart.textContent = "💗";
     } catch (err) {
       heart.textContent = "⚠️";
     }
