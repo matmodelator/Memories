@@ -778,6 +778,22 @@ transition:0.2s;
 transform:scale(1.3);
 }
 
+/* Кнопка Лайк + переход к Отзыву */
+.like{
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.like a{
+  font-size: 32px;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.like a:active{
+  transform: scale(1.2);
 
 /* Заголовок */
 .poem-title{
