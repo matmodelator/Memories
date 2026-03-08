@@ -175,7 +175,7 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
     
 </script>
 
- <!-- ЛАЙК тескта с параметрами --> 
+ <!-- ЛАЙК тескта с параметрами 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const heart = document.getElementById("heart");
@@ -221,9 +221,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 1000);
   });
 });
-</script>
+</script> -->
 
-<!--<script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
   const heart = document.getElementById("heart");
   if (!heart) return;
@@ -244,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("_subject", "Лайк с сайта Memories");
     formData.append("type", "like");
     formData.append("url", window.location.href);
-    formData.append("text", text);
+    formData.append("title", title);
 
     try {
       await fetch("https://formspree.io/f/xvzwoqzk", {
@@ -263,6 +263,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 350);
   });
 });
-</script> -->
+</script> 
 </body>
 </html>
