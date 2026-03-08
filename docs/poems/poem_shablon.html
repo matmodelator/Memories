@@ -175,53 +175,7 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
     
 </script>
 
- <!-- ЛАЙК тескта с параметрами 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const heart = document.getElementById("heart");
-  if (!heart) return;
-
-  heart.addEventListener("click", async function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const targetUrl = heart.getAttribute("href");
-
-    const textDiv = document.getElementById("text");
-    const poemPre = document.getElementById("poem");
-
-    let text = "";
-
-    if (textDiv && textDiv.innerText.trim()) {
-      text = textDiv.innerText.trim().slice(0, 200);
-    } else if (poemPre && poemPre.innerText.trim()) {
-      text = poemPre.innerText.trim().slice(0, 200);
-    }
-
-    const formData = new FormData();
-    formData.append("_subject", "Лайк с сайта Memories");
-    formData.append("type", "like");
-    formData.append("url", window.location.href);
-    formData.append("text", text);
-
-    try {
-      await fetch("https://formspree.io/f/xvzwoqzk", {
-        method: "POST",
-        body: formData,
-        headers: { "Accept": "application/json" }
-      });
-
-      heart.textContent = "❤️";
-    } catch (err) {
-      heart.textContent = "⚠️";
-    }
-
-    setTimeout(function () {
-      window.location.href = targetUrl;
-    }, 1000);
-  });
-});
-</script> -->
+ <!-- ЛАЙК тескта с параметрами -->
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -244,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("_subject", "Лайк с сайта Memories");
     formData.append("type", "like");
     formData.append("url", window.location.href);
-    formData.append("title", title);
+    formData.append("text", document.getElementById("text").innerText.trim());
 
     try {
       await fetch("https://formspree.io/f/xvzwoqzk", {
