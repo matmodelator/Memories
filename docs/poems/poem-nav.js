@@ -55,14 +55,20 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (index !== -1) {
 
-      if (files[index - 1]) {
+    /* if (files[index - 1]) {
         prevPath = files[index - 1];
       }
 
       if (files[index + 1]) {
         nextPath = files[index + 1];
-      }
+      } */
+if (files[index - 1]) {
+  prevPath = files[index - 1].replace(/^poems\//, "");
+}
 
+if (files[index + 1]) {
+  nextPath = files[index + 1].replace(/^poems\//, "");
+}
     }
 
   } catch (e) {}
