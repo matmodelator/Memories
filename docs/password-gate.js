@@ -38,9 +38,9 @@
     if (e.key === "Enter") checkPassword();
   }); 
 
-}); */
+}); 
 
-
+___________
 
 document.addEventListener("DOMContentLoaded", function () {
   const correctPassword = document.body.dataset.password;
@@ -148,4 +148,38 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(function () {
     input.focus();
   }, 50);
-});
+}); */
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const correctPassword = "rose1984";
+
+  const gate = document.createElement("div");
+  gate.innerHTML = `
+    <div id="password-gate-box">
+      <div id="password-gate-title">Введите пароль</div>
+      <form id="password-form" autocomplete="off">
+        <input
+          type="password"
+          id="page-password"
+          autocomplete="off"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+        >
+        <button type="submit" id="password-btn">Открыть</button>
+      </form>
+      <div id="password-error"></div>
+    </div>
+  `;
+
+  gate.style.position = "fixed";
+  gate.style.inset = "0";
+  gate.style.background = "rgba(0,0,0,0.78)";
+  gate.style.display = "flex";
+  gate.style.alignItems = "center";
+  gate.style.justifyContent = "center";
+  gate.style.zIndex = "999999";
+
+  document.body.append
