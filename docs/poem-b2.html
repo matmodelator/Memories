@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <!-- Шрифт (сейчас можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"
+   -->
+  
+ <link rel="stylesheet" href="../style.css">
+
+  
+</head>
+
+<body>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (5 пунктов, без изменений по структуре) -->
+
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+    <a href="../comments.html" class="nav-item" data-text="Отзывы">Отзывы</a>
+  </nav> 
+
+
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+<section class="reading-panel" aria-label="Текст стихотворения">
+ 
+  <!-- Контейнер стиха -->
+
+  <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+  <pre id="poem" class="poem-text"></pre>
+  <!-- подпись внизу страницы -->
+
+
+  
+</section>
+
+  
+<!-- Навигатор по разделу -->
+  <div id="poem-nav"></div>
+
+<!-- Лайк на текст
+  <div class="like">
+  <a href="#" id="heart" title="Нравится💜">💟</a>-->
+  <!-- Лайк + Переход к Отзыву -->
+  <div class="like">
+  <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
+  <span class="like-count">0</span>
+</div> 
+<!-- Отзыв о тексте
+<div class="review">
+  <a href="/Memories/comments.html" title="Отзыв">💟</a>
+</div> -->
+
+
+</div>  
+<!-- Метаданные к файлу --> 
+<div id="meta"></div>
+
+  
+  
+
+    </pre>
+
+  </section>
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+
+  <!-- Утилита переадресации по пунктам Меню-->
+  <script src="../nav.js"></script>
+ <!-- Утилита навигации по разделу (для контента)--> 
+ <script src="poem-nav.js"></script>
+  
+
+ <!--  Контейнер для контента с переменными -->
+
+<h1 id="title"></h1>
+<p id="author"></p>
+<p id="year"></p>
+<div id="text"></div>
+  
+
+
+<!-- ВВОД тескта с параметрами -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const poem = {
+    author: "Игорь Хорош",
+    year: "2015",
+",
+    text: `
+В хурмяно́м саду декабрь.
+Пахнет сыростью и тленом…
+Кем-то брошенные грабли
+И забытое полено,
+
+Кем-то срубленные ветки
+Или прожитые годы, 
+Мной не рожденные детки 
+И неписаные оды.
+
+По планете этой грешной
+Я болтаюсь словно мячик,
+Впереди во тьме кромешной
+Нечто страшное маячит.
+
+Между будущим и прошлым,
+Между вымыслом и явью
+Я скитаюсь девкой пошлой
+И шатаюсь точно пьяный.
+
+В тридевятом этом царстве 
+Между небом и Китаем,
+Где монарх послушной пастве 
+Леденцы с крыльца кидает.
+
+А народ вкушает явства,
+Жадно, падко, торопливо…
+И глядит на них с лукавством
+С Мавзолея чёрт глумливый.
+
+Далеко теперь я, мама!..
+Пролегли средь нами мили,
+Страны, горы, океаны,
+Жизнь, что прожита с другими.
+ 
+Помнишь, в закуте у стенки
+Мою детскую кроватку?..
+Я как будто неврастеник
+Про неё грущу украдкой.
+
+Помнишь, как шагали к деду
+Снежной тропкой, дном оврага?
+Дни рожденья, День Победы-
+Это было все неправда...
+
+Это было всё не с нами - 
+Не с тобою, не со мною...
+Помнишь, как сдавал экзамен
+Тридесятую весною?
+ 
+Помнишь, мама, это чудо -
+Новый год, подарки, полночь..,
+А вокруг родные люди -
+Все живые, мама, помнишь?!
+
+Живы папа и Чурилка,
+Обе бабушки, три деда,
+И Серёжка жив, курилка! -
+Ни бомбёжек, ни трагедий,
+
+Ни волнения, ни качки,
+И ни грохота орудий, 
+Только маленькая дачка
+И заросший тиной прудик…
+
+Всё, что было с нами прежде,
+Устарело и сломалось…
+Нет ни веры, ни надежды, 
+Лишь любовь одна осталась.
+
+И дождёмся ли рассвета
+После нового заката? -
+В девяностом разве это
+Представляли мы когда-то?..
+
+Как о том поведать, мама?
+Рассказать кому об этом?
+Нам всего досталось мало -
+Мира, юности и лета.
+
+Я с друзьями погутарю,
+Им спою, что прежде пелось,
+Да пожалуюсь гитаре:
+Наша жизнь куда-то делась!
+
+И пропало где-то время - 
+Страхи, споры, страсти, ссоры..
+Я вернусь однажды - верю!
+Я приеду, мама. Скоро.
+
+16.12.2015
+`
+  };
+
+  // title = первая непустая строка, если пусто
+  if (!poem.title.trim()) {
+    poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
+  }
+
+  // 1) НАХОДИМ <pre id="poem">, или создаём
+  let pre = document.getElementById("poem");
+  if (!pre) {
+    const panel = document.querySelector(".reading-panel");
+    if (!panel) {
+      alert("Не найден .reading-panel (проверь класс в HTML)");
+      return;
+    }
+    pre = document.createElement("pre");
+    pre.id = "poem";
+    pre.className = "poem-text";
+    panel.appendChild(pre);
+  }
+
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
+  pre.textContent = poem.text;
+
+  // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
+  const meta = document.getElementById("meta");
+ // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
+if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
+    
+  // 4) Стили “поверх фона” + внизу
+  meta.style.position = "fixed";
+  meta.style.left = "0";
+  meta.style.right = "0";
+  meta.style.bottom = "10px";
+  meta.style.textAlign = "center";
+  meta.style.fontSize = "14px";
+  meta.style.color = "brown";
+  meta.style.opacity = "0.85";
+  meta.style.zIndex = "9999";
+  meta.style.pointerEvents = "none";
+  meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
+ });
+    
+</script>
+
+ <!-- ЛАЙК тескта с параметрами -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const heart = document.getElementById("heart");
+  if (!heart) return;
+
+  heart.addEventListener("click", async function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetUrl = heart.getAttribute("href");
+
+
+    const formData = new FormData();
+    formData.append("_subject", "Лайк с сайта Memories");
+    formData.append("type", "like");
+    formData.append("url", window.location.href);
+    formData.append("text", document.getElementById("meta").textContent);
+
+    try {
+      await fetch("https://formspree.io/f/xvzwoqzk", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      heart.textContent = "💗";
+    } catch (err) {
+      heart.textContent = "⚠️";
+    }
+
+    setTimeout(function () {
+      window.location.href = targetUrl;
+    }, 1000);
+  });
+});
+</script> 
+
+/* ПАРОЛЬ */
+<body data-password="пароль">
+<script src="../password-gate.js"></script>
+  
+</body>
+</html>
