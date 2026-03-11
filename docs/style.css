@@ -996,3 +996,53 @@ color: black;
 }
 
 
+
+/* Запароленные файлы */
+
+body.locked .reading-panel,
+body.locked #meta,
+body.locked #poem-nav{
+  visibility: hidden;
+}
+
+.password-gate{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.password-box{
+  width: 320px;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(20,20,20,0.95);
+  border: 1px solid rgba(255,255,255,0.15);
+  text-align: center;
+}
+
+.password-title{
+  margin-bottom: 14px;
+  font-size: 20px;
+  color: white;
+}
+
+.password-input{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+}
+
+.password-btn{
+  padding: 10px 18px;
+  border-radius: 10px;
+}
+
+.password-error{
+  margin-top: 10px;
+  color: #ff8a8a;
+}
