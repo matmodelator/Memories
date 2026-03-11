@@ -997,7 +997,7 @@ color: black;
 
 
 
-/* Запароленные файлы 
+/* Запароленные файлы */
 
 body.locked .reading-panel,
 body.locked #meta,
@@ -1045,4 +1045,4 @@ body.locked #poem-nav{
 .password-error{
   margin-top: 10px;
   color: #ff8a8a;
-} */
+} 
