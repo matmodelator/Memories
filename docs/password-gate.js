@@ -1,4 +1,17 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const pass = document.body.dataset.password;
+  if (!pass) return;
 
+  const gate = document.createElement("div");
+
+  gate.innerHTML = `
+    <div id="password-box">
+      <div id="password-title">Введите пароль</div>
+      <input type="password" id="password-input" autocomplete="off">
+      <button id="password-btn">Открыть</button>
+      <div id="password-error"></div>
+    </div>
+  `;
 
   gate.style.position = "fixed";
   gate.style.inset = "0";
