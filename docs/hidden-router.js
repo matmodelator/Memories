@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+/* тест */
+  alert("hidden-router запустился");
+  
   const poemEl = document.getElementById("poem");
   const metaEl = document.getElementById("meta");
 
