@@ -999,7 +999,7 @@ color: black;
 
 /* Запароленные файлы */
 
-body.locked .reading-panel,
+body.locked .-panel,
 body.locked #meta,
 body.locked #poem-nav{
   visibility: hidden;
@@ -1046,3 +1046,14 @@ body.locked #poem-nav{
   margin-top: 10px;
   color: #ff8a8a;
 } 
+
+/* Размытие фона под паролем */
+
+#password-box{
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.6);
+}
+
+
+
+
