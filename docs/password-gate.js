@@ -1,14 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const pass = document.body.dataset.password;
-  if (!pass) return;
+  const correctPassword = "rose1984";
 
   const gate = document.createElement("div");
-
   gate.innerHTML = `
-    <div id="password-box">
-      <div id="password-title">Введите пароль</div>
-      <input type="password" id="password-input" autocomplete="off">
-      <button id="password-btn">Открыть</button>
+    <div id="password-gate-box">
+      <div id="password-gate-title">Введите пароль</div>
+      <form id="password-form" autocomplete="off">
+        <input
+          type="password"
+          id="page-password"
+          autocomplete="off"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+        >
+        <button type="submit" id="password-btn">Открыть</button>
+      </form>
       <div id="password-error"></div>
     </div>
   `;
