@@ -762,7 +762,7 @@ body{
 
 /* Кнопка ЛАЙК на reading-panel */
 .like{
-position:fixed;
+position: absolute;
 top:500px;
 left:300px;
 z-index:1000;
