@@ -9,7 +9,7 @@
   gate.style.zIndex = "999999";
 
   document.body.appendChild(gate);
-  document.body.classList.add("password-lock");
+  /*document.body.classList.add("password-lock");*/
 
   const box = document.getElementById("password-gate-box");
   const form = document.getElementById("password-form");
@@ -63,7 +63,7 @@
 
   function unlock() {
     gate.remove();
-   document.body.classList.remove("password-lock"); 
+   /*document.body.classList.remove("password-lock"); */
   }
 
   function checkPassword(e) {
