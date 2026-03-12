@@ -29,9 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   gate.style.zIndex = "999999";
 
   document.body.appendChild(gate);
-  const like = document.querySelector(".like");
-if (like) like.style.display = "none";
-
+  
   const box = document.getElementById("password-gate-box");
   const form = document.getElementById("password-form");
   const input = document.getElementById("page-password");
@@ -84,7 +82,6 @@ if (like) like.style.display = "none";
 
   function unlock() {
     gate.remove();
-   if (like) like.style.display = ""; 
   }
 
   function checkPassword(e) {
