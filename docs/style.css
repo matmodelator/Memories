@@ -1047,13 +1047,13 @@ body.locked #poem-nav{
   color: #ff8a8a;
 } 
 
-/* Размытие фона под паролем 
+Размытие фона под паролем 
 
 #password-box{
   backdrop-filter: blur(10px);
   background: rgba(0,0,0,0.6);
 }
-*/
+
 
 
 
