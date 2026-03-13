@@ -46,14 +46,25 @@ const correctPassword = passwords[pageType];
   
   const box = document.getElementById("password-gate-box");
 
-// Возврат назад без пароля 
+/* Возврат назад без пароля 
   gate.addEventListener("click", function(e){
 
   if (!box.contains(e.target)) {
     history.back();
   }
 
+});*/
+
+box.addEventListener("click", function(e) {
+  e.stopPropagation();
 });
+
+gate.addEventListener("click", function(e) {
+  if (e.target === gate) {
+    history.back();
+  }
+});
+ 
 //
   
   const form = document.getElementById("password-form");
