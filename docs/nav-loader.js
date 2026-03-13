@@ -1,6 +1,6 @@
   /* ===================================================
      ПОВОРОТ ЭКРАНА
-     =================================================== */
+     =================================================== 
 
 
 
@@ -30,7 +30,7 @@ if (checkOrientationRedirect()) {
 window.addEventListener("resize", checkOrientationRedirect);
 window.addEventListener("orientationchange", function () {
   setTimeout(checkOrientationRedirect, 150);
-});
+}); */
 
 
 
