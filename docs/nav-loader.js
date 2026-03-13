@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   /* ===================================================
      ПОВОРОТ ЭКРАНА
-     =================================================== */
+     =================================================== 
 
   function checkOrientationRedirect() {
 
@@ -18,13 +18,38 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "/Memories/index.html";
     }
 
+  }*/
+
+function checkOrientationRedirect() {
+  const path = window.location.pathname;
+
+  const isIndex =
+    path.endsWith("/Memories/") ||
+    path.endsWith("/Memories/index.html");
+
+  if (!isIndex && window.innerHeight > window.innerWidth) {
+    window.location.replace("/Memories/index.html");
+    return true;
   }
 
-  checkOrientationRedirect();
+  return false;
+}
+
+
+  
+if (checkOrientationRedirect()) return;
+
+window.addEventListener("resize", checkOrientationRedirect);
+
+window.addEventListener("orientationchange", function () {
+  setTimeout(checkOrientationRedirect, 100);
+});
+  
+/*  checkOrientationRedirect();
   window.addEventListener("resize", checkOrientationRedirect);
   window.addEventListener("orientationchange", checkOrientationRedirect);
 
- /*
+ 
   / Проверка ориентации
 if (window.matchMedia("(orientation: portrait)").matches) {
   window.location.href = "/Memories/index.html";
