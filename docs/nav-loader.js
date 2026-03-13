@@ -1,10 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+
+  
+  /* ===================================================
+     ПОВОРОТ ЭКРАНА
+     =================================================== */
+
+  function checkOrientationRedirect() {
+
+    const path = window.location.pathname;
+
+    const isIndex =
+      path.endsWith("/Memories/") ||
+      path.endsWith("/Memories/index.html");
+
+    if (!isIndex && window.innerHeight > window.innerWidth) {
+      window.location.href = "/Memories/index.html";
+    }
+
+  }
+
+  checkOrientationRedirect();
+  window.addEventListener("resize", checkOrientationRedirect);
+  window.addEventListener("orientationchange", checkOrientationRedirect);
+
+ /*
   / Проверка ориентации
 if (window.matchMedia("(orientation: portrait)").matches) {
   window.location.href = "/Memories/index.html";
   return;
 }
+  
+
+
+  /* ===================================================
+     ЗАГРУЗКА NAV
+     =================================================== */
 
 
   const slot = document.getElementById("nav-slot");
