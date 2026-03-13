@@ -16,7 +16,7 @@
   const routes = {
     home:  base + 'index.html',
     poems: base + 'poems.html',
-    prosa: base + 'prosa.html',
+    stories: base + 'stories.html',
     songs: base + 'songs.html',
     author: base + 'author.html',
   };
@@ -31,7 +31,7 @@
 
       let target = null;
       if (label === 'Стихи') target = routes.poems;
-      else if (label === 'Проза') target = routes.prosa;
+      else if (label === 'Проза') target = routes.stories;
       else if (label === 'Песни') target = routes.songs;
       else if (label === 'Автор') target = routes.author;
 
