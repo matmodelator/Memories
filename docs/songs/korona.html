@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Шрифт (сейчас можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"-->
+  
+  <link rel="stylesheet" href="../style.css">
+  
+</head>
+
+  
+<!-- ВВОД тескта с параметрами -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const poem = {
+    author: "Игорь Хорош",
+    year: "2020",
+    title: "Коронавирь",
+    text: `
+Очень в целом мире вырос
+Ёбаный коронавирус - 
+Сотни тыщ уже больных без малого!
+Если хилый - в карантин,
+И глотай аугментин,
+Если только это все не наебалово.
+
+Я запутался слегка,
+Где, в натуре, логика:
+Полпроцента смертность - много это ли?
+Толки, слухи про виря -
+Все какая-то херня!..
+Есть вопросы, но голяк с ответами.
+
+Дело в том, что этот вирус
+Чрезвычайно заковырист,
+Ни вакцины нет и ни лечения.
+Вирус абсолютно новый
+Но имеет лютый норов 
+И двукратное увеличение.
+
+Этот вирус плох тем паче,
+Что в Китае захерачен!
+То ли мыши, то ли змеи постаралися.
+Нам китайское говно
+Поступает все равно,
+Хоть оно тут вовсе нам не обосралося.
+
+Говорят, что этот вирус,
+Может быть, какой-то выброс 
+То ли с фабрики, а то ли из статистики.
+Но по-моему, братва,
+Это полная ботва…
+Это фейк, а может даже мистика!
+
+Вирус этот, сука, сраный,
+По натуре очень странный,
+Косит старичье, детей не трогая.
+Тут впадаю я в тоску,
+Он стучится мне в доску -
+Гробовую, не виндсерфинговую.
+
+Вероятность есть, что вирус-
+Это просто мозга вынос,
+Это чисто падла разводилово.
+Если мог бы этой мути 
+Подхватить товарищ Путин,
+Ты бы этот вирус полюбила бы!..
+
+Заразившись этим вирем,
+Мы наверно нахрен вымрем!
+Я впадаю, братцы, в ажитацию…
+Доберётся до меня 
+Та китайская хуйня,
+И во мне замутится мутация.
+
+Расплодился мрачно вширь он,
+Что зовут коронавирем,
+Пятый месяц мир трясёт в агонии.
+Этот вирус точно спрут,
+Доктора как мухи мрут, 
+И вывозят мертвецов вагонами!
+
+Ну дела!.. какой-то вирус!
+Скоро я башкою двинусь,
+Вискарем его залить пытаючись.
+Если с маленькой посуды
+Не берёт его паскуду, 
+Мы с горла его возьмём, товарищи.
+
+Ну откуда сука вылез 
+Ёбаный коронавирус -
+Из Китая ли, Ирана или Англии?
+Не поможет, сука нах,
+Ни Талмуд, и ни Танах,
+Ни Коран, и даже ни Евангелие.
+
+
+12.03.20
+`
+  };
+
+  // title = первая непустая строка, если пусто
+  if (!poem.title.trim()) {
+    poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
+  }
+
+  // 1) НАХОДИМ <pre id="poem">, или создаём
+  let pre = document.getElementById("poem");
+  if (!pre) {
+    const panel = document.querySelector(".reading-panel");
+    if (!panel) {
+      alert("Не найден .reading-panel (проверь класс в HTML)");
+      return;
+    }
+    pre = document.createElement("pre");
+    pre.id = "poem";
+    pre.className = "poem-text";
+    panel.appendChild(pre);
+  }
+
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
+  pre.textContent = poem.text;
+
+  // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
+  const meta = document.getElementById("meta");
+ // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
+if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
+    
+  // 4) Стили “поверх фона” + внизу
+  meta.style.position = "fixed";
+  meta.style.left = "0";
+  meta.style.right = "0";
+  meta.style.bottom = "10px";
+  meta.style.textAlign = "center";
+  meta.style.fontSize = "14px";
+  meta.style.color = "brown";
+  meta.style.opacity = "0.85";
+  meta.style.zIndex = "9999";
+  meta.style.pointerEvents = "none";
+  meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
+ });
+    
+</script>
+
+  
+<body data-access="privat">
+
+  <!-- ОРИЕНТАЦИЯ -->
+ <div id="rotate-message">
+Пожалуйста, поверните устройство горизонтально
+</div>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (5 пунктов, без изменений по структуре) -->
+
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+    <a href="../comments.html" class="nav-item" data-text="Отзывы">Отзывы</a>
+  </nav> 
+
+
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+<section class="reading-panel" aria-label="Текст стихотворения">
+ 
+  <!-- Контейнер стиха -->
+
+  <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+  <pre id="poem" class="poem-text"></pre>
+  <!-- подпись внизу страницы -->
+
+
+  
+</section>
+
+  
+<!-- Навигатор по разделу -->
+  <div id="poem-nav"></div>
+
+<!-- Лайк на текст
+  <div class="like">
+  <a href="#" id="heart" title="Нравится💜">💟</a>-->
+  <!-- Лайк + Переход к Отзыву -->
+  <div class="like">
+  <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
+  <span class="like-count">0</span>
+</div> 
+  <!--Отзыв о тексте
+<div class="review">
+  <a href="/Memories/comments.html" title="Отзыв">📳</a>
+</div> -->
+
+
+<!-- Метаданные к файлу --> 
+<div id="meta"></div>
+
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+
+  <!-- Утилита переадресации по пунктам Меню-->
+  <script src="../nav.js"></script>
+ <!-- Утилита навигации по разделу (для контента)--> 
+ <script src="poem-nav.js"></script>
+  
+
+ <!--  Контейнер для контента с переменными 
+
+<h1 id="title"></h1>
+<p id="author"></p>
+<p id="year"></p>
+<div id="text"></div> -->
+  
+
+
+
+
+ <!-- ЛАЙК тескта с параметрами -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const heart = document.getElementById("heart");
+  if (!heart) return;
+
+  heart.addEventListener("click", async function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetUrl = heart.getAttribute("href");
+
+
+    const formData = new FormData();
+    formData.append("_subject", "Лайк с сайта Memories");
+    formData.append("type", "like");
+    formData.append("url", window.location.href);
+    formData.append("text", document.getElementById("meta").textContent);
+
+    try {
+      await fetch("https://formspree.io/f/xvzwoqzk", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      heart.textContent = "💗";
+    } catch (err) {
+      heart.textContent = "⚠️";
+    }
+
+    setTimeout(function () {
+      window.location.href = targetUrl;
+    }, 1000);
+  });
+});
+</script> 
+
+<!--ПАРОЛЬ-->
+<script src="../password-gate.js"></script>
+    
+</body>
+</html>
