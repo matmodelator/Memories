@@ -1,3 +1,39 @@
+  /* ===================================================
+     ПОВОРОТ ЭКРАНА
+     =================================================== */
+
+
+
+function checkOrientationRedirect() {
+  const path = window.location.pathname;
+
+  const isIndex =
+    path.endsWith("/Memories/") ||
+    path.endsWith("/Memories/index.html");
+
+  const isPortrait =
+    document.documentElement.clientHeight >
+    document.documentElement.clientWidth;
+
+  if (!isIndex && isPortrait) {
+    window.location.replace("/Memories/index.html");
+    return true;
+  }
+
+  return false;
+}
+
+if (checkOrientationRedirect()) {
+  throw new Error("Redirecting to index");
+}
+
+window.addEventListener("resize", checkOrientationRedirect);
+window.addEventListener("orientationchange", function () {
+  setTimeout(checkOrientationRedirect, 150);
+});
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
 
@@ -18,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "/Memories/index.html";
     }
 
-  }*/
+  }
 
 function checkOrientationRedirect() {
   const path = window.location.pathname;
