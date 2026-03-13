@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
   gate.style.position = "fixed";
   gate.style.inset = "0";
   gate.style.background = "rgba(0,0,0,0.78)";
+  gate.style.background = "rgba(0,0,0,0.35)";
+gate.style.backdropFilter = "blur(8px)";
+gate.style.webkitBackdropFilter = "blur(8px)";
   gate.style.display = "flex";
   gate.style.alignItems = "center";
   gate.style.justifyContent = "center";
