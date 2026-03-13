@@ -122,7 +122,7 @@ if (window.matchMedia("(orientation: portrait)").matches) {
           item.classList.add("nav-active");
         }
 
-        if (text === "Проза" && path.includes("prosa")) {
+        if (text === "Проза" && path.includes("stories")) {
           item.classList.add("nav-active");
         }
 
