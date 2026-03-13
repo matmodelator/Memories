@@ -1047,34 +1047,3 @@ body.locked #poem-nav{
   color: #ff8a8a;
 } 
 
-Размытие фона под паролем 
-
-/* окно пароля */
-.password-box{
-
-position: fixed;
-
-/* координаты окна */
-top: 200px;
-left: 400px;
-
-/* размеры области размытия */
-width: 300px;
-padding: 20px;
-
-/* глубина размытия */
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
-
-/* лёгкое стекло */
-background: rgba(255,255,255,0.15);
-
-border-radius: 10px;
-
-z-index: 10000;
-
-}
-
-
-
-
