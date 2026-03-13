@@ -1,6 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const correctPassword = "rose1984";
+ 
+  // const correctPassword = "rose1984";
 
+  // Типы запароленных текстов
+const passwords = {
+  hidden: "hidden123",
+  secret: "secret123",
+  privat: "privat123"
+};
+const pageType = document.body.dataset.access;
+const correctPassword = passwords[pageType];
+ //
+  
   const gate = document.createElement("div");
   gate.innerHTML = `
     <div id="password-gate-box">
