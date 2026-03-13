@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+  / Проверка ориентации
+  if (window.innerHeight > window.innerWidth) {
+    window.location.href = "/Memories/index.html";
+    return;
+  }
+
+
   const slot = document.getElementById("nav-slot");
   if (!slot) return;
 
