@@ -101,7 +101,7 @@ gate.style.webkitBackdropFilter = "blur(8px)";
 
   form.addEventListener("submit", checkPassword);
 
-  setTimeout(function () {
-    input.focus();
-  }, 50);
+//  setTimeout(function () {
+//    input.focus();
+//  }, 50);
 });
