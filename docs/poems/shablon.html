@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Шрифт (сейчас можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"-->
+  
+  <link rel="stylesheet" href="../style.css">
+  
+</head>
+
+  
+<!-- ВВОД тескта с параметрами -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const poem = {
+    author: "Игорь Хорош",
+    year: "2019",
+    title: "Вечерний Ялта",
+    text: `
+Marina Pevzner 
+(пародия-песня)
+
+Вечерний Ялта.*
+
+Моя новая песня в великолепном исполнении. Огромное спасибо прекрасному композитору и замечательному певцу. Мне!
+Исполнение именно такое, какое должно быть для песни о городе/герое Ялте - лучше невозможно себе даже сука представить!
+
+Слова, Музыка, Аранжировка, Вокал, Аккомпанимент, Грим и все такое: Игорян
+
+1.
+Солнце топится в море угрюмо,
+Взгляд прощальный кидая на Ялту,
+Моряки вылезают из трюмов,
+И воняет дерьмом непонятным.
+Растянувшись на гальке прибрежной,
+Проститутка икает в истоме,
+И срывает с гетеры одежду
+Алкоголик, сбежавший из дому.
+
+Припев 1.
+Променадом притихшим, ночною тропою,
+Средь богатых и нищих проходят порою
+Представители среднего класса 
+И занудствуют часто не в кассу.
+С Партенита идя, морщит носик ужасно,
+Тоже чьё-то дитя - госпожа из Луганска.
+
+2.
+Я по Ленина выйду на берег
+И войду в помутневшие волны,
+На хрена мне вообще столько денег?
+Я рублями, как песней наполнен!
+И в песок погрузившись по брюхо,
+Я отброшу ненужные цацки,
+И спрошу эту Ялту: «Старуха,
+Что ты значишь вообще по-татарски?»
+
+Припев 2.
+Променадом притихшим, ночною тропою,
+Средь богатых и нищих проходят порою
+Представители среднего класса 
+И занудствуют часто не в кассу.
+Там сидят старички-изуверы,
+Персональные пенсионеры.
+
+3.
+Слышен русский и матерный тоже,
+А какой же ещё ?..- не иврит же!
+Бьют подростки друг другу по роже, -
+Ну а ты что, хотел как в Париже?!!
+Ты смеешься, но как-то не в тему,
+Умываясь своими слезами,
+Стих про Крым сочиняешь нетленный,
+На Ай-Петри по пьяни влезая.
+
+Припев 3.
+Променадом притихшим, ночною тропою,
+Средь богатых и нищих проходят порою
+Представители среднего класса 
+И занудствуют часто не в кассу.
+Ты не спишь никогда, не скучаешь,
+Ты занудствуешь тут. 
+И бухаешь.
+
+Игорян**©️
+
+*Вечерний Ялта в переводе с грузинского - Вечерняя Ялта. Типо Ялта ввечерi по-украински или к примеру на иврите: ילטה בערב
+**Игорян в переводе с армянского - сын Игоря. Навроде как Иванов по-русски или там Абрамзон на идиш...
+
+В Ютюбе ролик - пока ещё не сняли. Ждём Тарантину
+
+
+16.09.2019
+`
+  };
+
+  // title = первая непустая строка, если пусто
+  if (!poem.title.trim()) {
+    poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
+  }
+
+  // 1) НАХОДИМ <pre id="poem">, или создаём
+  let pre = document.getElementById("poem");
+  if (!pre) {
+    const panel = document.querySelector(".reading-panel");
+    if (!panel) {
+      alert("Не найден .reading-panel (проверь класс в HTML)");
+      return;
+    }
+    pre = document.createElement("pre");
+    pre.id = "poem";
+    pre.className = "poem-text";
+    panel.appendChild(pre);
+  }
+
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
+  pre.textContent = poem.text;
+
+  // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
+  const meta = document.getElementById("meta");
+ // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
+if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
+    
+  // 4) Стили “поверх фона” + внизу
+  meta.style.position = "fixed";
+  meta.style.left = "0";
+  meta.style.right = "0";
+  meta.style.bottom = "10px";
+  meta.style.textAlign = "center";
+  meta.style.fontSize = "14px";
+  meta.style.color = "brown";
+  meta.style.opacity = "0.85";
+  meta.style.zIndex = "9999";
+  meta.style.pointerEvents = "none";
+  meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
+ });
+    
+</script>
+
+  
+<body data-access="secret">
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (5 пунктов, без изменений по структуре) -->
+
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+    <a href="../comments.html" class="nav-item" data-text="Отзывы">Отзывы</a>
+  </nav> 
+
+
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+<section class="reading-panel" aria-label="Текст стихотворения">
+ 
+  <!-- Контейнер стиха -->
+
+  <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+  <pre id="poem" class="poem-text"></pre>
+  <!-- подпись внизу страницы -->
+
+
+  
+</section>
+
+  
+<!-- Навигатор по разделу -->
+  <div id="poem-nav"></div>
+
+<!-- Лайк на текст
+  <div class="like">
+  <a href="#" id="heart" title="Нравится💜">💟</a>-->
+  <!-- Лайк + Переход к Отзыву -->
+  <div class="like">
+  <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
+  <span class="like-count">0</span>
+</div> 
+  <!--Отзыв о тексте
+<div class="review">
+  <a href="/Memories/comments.html" title="Отзыв">📳</a>
+</div> -->
+
+
+<!-- Метаданные к файлу --> 
+<div id="meta"></div>
+
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+
+  <!-- Утилита переадресации по пунктам Меню-->
+  <script src="../nav.js"></script>
+ <!-- Утилита навигации по разделу (для контента)--> 
+ <script src="poem-nav.js"></script>
+  
+
+ <!--  Контейнер для контента с переменными 
+
+<h1 id="title"></h1>
+<p id="author"></p>
+<p id="year"></p>
+<div id="text"></div> -->
+  
+
+
+
+
+ <!-- ЛАЙК тескта с параметрами -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const heart = document.getElementById("heart");
+  if (!heart) return;
+
+  heart.addEventListener("click", async function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetUrl = heart.getAttribute("href");
+
+
+    const formData = new FormData();
+    formData.append("_subject", "Лайк с сайта Memories");
+    formData.append("type", "like");
+    formData.append("url", window.location.href);
+    formData.append("text", document.getElementById("meta").textContent);
+
+    try {
+      await fetch("https://formspree.io/f/xvzwoqzk", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      heart.textContent = "💗";
+    } catch (err) {
+      heart.textContent = "⚠️";
+    }
+
+    setTimeout(function () {
+      window.location.href = targetUrl;
+    }, 1000);
+  });
+});
+</script> 
+
+<!--ПАРОЛЬ-->
+<script src="../password-gate.js"></script>
+    
+</body>
+</html>
