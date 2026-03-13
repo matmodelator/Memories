@@ -1047,3 +1047,10 @@ body.locked #poem-nav{
   color: #ff8a8a;
 } 
 
+/* метаданные стиха */
+#title,
+#author,
+#year,
+#text{
+  display:none;
+}
