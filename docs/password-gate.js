@@ -34,6 +34,17 @@ gate.style.webkitBackdropFilter = "blur(8px)";
   document.body.appendChild(gate);
   
   const box = document.getElementById("password-gate-box");
+
+// Возврат назад без пароля 
+  gate.addEventListener("click", function(e){
+
+  if (!box.contains(e.target)) {
+    history.back();
+  }
+
+});
+//
+  
   const form = document.getElementById("password-form");
   const input = document.getElementById("page-password");
   const button = document.getElementById("password-btn");
@@ -74,7 +85,9 @@ gate.style.webkitBackdropFilter = "blur(8px)";
   error.style.color = "#ff8a8a";
   error.style.fontSize = "14px";
 
-  function stopAll(e) {
+ 
+  // Блокировка кликов мимо окна
+/*  function stopAll(e) {
     e.stopPropagation();
   }
 
@@ -82,7 +95,8 @@ gate.style.webkitBackdropFilter = "blur(8px)";
   gate.addEventListener("mousedown", stopAll, true);
   gate.addEventListener("touchstart", stopAll, true);
   gate.addEventListener("pointerdown", stopAll, true);
-
+*/
+ 
   function unlock() {
     gate.remove();
   }
@@ -101,7 +115,5 @@ gate.style.webkitBackdropFilter = "blur(8px)";
 
   form.addEventListener("submit", checkPassword);
 
-//  setTimeout(function () {
-//    input.focus();
-//  }, 50);
+
 });
