@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
   gate.style.inset = "0";
   gate.style.background = "rgba(0,0,0,0.78)";
   gate.style.background = "rgba(0,0,0,0.35)";
-gate.style.backdropFilter = "blur(8px)";
-gate.style.webkitBackdropFilter = "blur(8px)";
+  gate.style.backdropFilter = "blur(8px)";
+  gate.style.webkitBackdropFilter = "blur(8px)";
   gate.style.display = "flex";
   gate.style.alignItems = "center";
   gate.style.justifyContent = "center";
@@ -106,11 +106,19 @@ gate.style.webkitBackdropFilter = "blur(8px)";
 
     if (input.value === correctPassword) {
       unlock();
-    } else {
+    } 
+    
+   /* else {
       error.textContent = "Неверный пароль";
       input.value = "";
       input.focus();
-    }
+    } */
+
+// Переход на 404
+    else {
+  window.location.href = "/Memories/404.html";
+}
+    
   }
 
   form.addEventListener("submit", checkPassword);
