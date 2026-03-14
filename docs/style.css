@@ -1153,7 +1153,7 @@ body.locked #poem-nav{
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .bg-image{
     position: absolute;
     top: 0;
