@@ -734,6 +734,12 @@ body{
   pointer-events: none;
 }
 
+.reading-panel{
+  max-height: 80vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Прокрутка для навигации по reading.panel */
 
 /*вертикальное расположение стрелок
@@ -748,7 +754,7 @@ body{
   z-index: 50; 
 } */
 
-/*горизонтальное расположение стрелок*/
+/*горизонтальное расположение стрелок
 .poem-nav{
   position: absolute;
   left: 700px;
@@ -758,7 +764,7 @@ body{
   gap: 2px;
   font-size: 22px;
   z-index: 50;
-}
+} */
 
 /* Кнопка ЛАЙК на reading-panel 
 .like{
