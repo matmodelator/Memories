@@ -760,7 +760,7 @@ body{
   z-index: 50;
 }
 
-/* Кнопка ЛАЙК на reading-panel */
+/* Кнопка ЛАЙК на reading-panel 
 .like{
 position: absolute;
 top:500px;
@@ -776,7 +776,7 @@ transition:0.2s;
 
 .review a:hover{
 transform:scale(1.3);
-}
+} */
 
 /* Кнопка Лайк + переход к Отзыву 
 .like{
@@ -1096,33 +1096,6 @@ body.locked #poem-nav{
 
 
 
-
-<!-- БЛОК для Мобильных телефонов -->
-@media (max-width: 768px) {
-
-  .poem-nav{
-    position: fixed;
-    left: 50%;
-    bottom: 24px;
-    top: auto;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: row;
-    gap: 18px;
-    font-size: 28px;
-    z-index: 3000;
-  }
-
-  .like{
-    position: fixed;
-    right: 20px;
-    bottom: 70px;
-    left: auto;
-    top: auto;
-    z-index: 3000;
-  }
-
-}
 
 <!-- СТРЕЛКИ для Мобильных телефонов через HTML-->
 .poem-buttons{
