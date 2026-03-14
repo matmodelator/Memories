@@ -1093,11 +1093,31 @@ body.locked #poem-nav{
 
 }
 
+<!-- СТРЕЛКИ через HTML-->
+
+.poem-buttons{
+  position:absolute;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  gap:22px;
+  z-index:2000;
+}
+
+.poem-buttons a{
+  font-size:34px;
+  line-height:1;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
 
-
-
-<!-- СТРЕЛКИ для Мобильных телефонов через HTML-->
+/* СТРЕЛКИ для Мобильных телефонов через HTML
 .poem-buttons{
   position:absolute;
   right:14px;
@@ -1137,3 +1157,4 @@ body.locked #poem-nav{
   }
 
 }
+*/
