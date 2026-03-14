@@ -131,13 +131,15 @@
   box-sizing: border-box;
 }
 
+ /* overflow: hidden;  ---- поставь вместо y/x */
+
 
 body{
-  height: 100svh;
-  overflow: hidden;
+  min-height: 100svh;
+  overflow-y: auto;
+  overflow-x: hidden;
   background: transparent; /* важно: не перекрывать картинку */
 }
-
 /* ===================================================
    ФОН
    =================================================== */
