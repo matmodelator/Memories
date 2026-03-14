@@ -113,35 +113,40 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
   
 <script>
-
-(async function(){
+document.addEventListener("DOMContentLoaded", async function () {
 
   const prev = document.getElementById("prev-poem");
   const next = document.getElementById("next-poem");
 
-  const current = location.pathname.split("/").pop();
+  if (!prev || !next) return;
 
-  try{
+  try {
+    const current = location.pathname.split("/").pop();
 
-    const r = await fetch("/Memories/poems.html");
-    const html = await r.text();
+    const response = await fetch("/Memories/poems.html");
+    const html = await response.text();
 
-    const doc = new DOMParser().parseFromString(html,"text/html");
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
 
     const links = [...doc.querySelectorAll("a[href$='.html']")];
+    const files = links.map(a => a.getAttribute("href"));
+    const names = files.map(href => href.split("/").pop());
 
-    const files = links.map(a=>a.getAttribute("href"));
-    const names = files.map(f=>f.split("/").pop());
+    const index = names.indexOf(current);
 
-    const i = names.indexOf(current);
+    if (index !== -1) {
+      if (files[index - 1]) {
+        prev.href = new URL(files[index - 1], location.origin + "/Memories/").href;
+      }
 
-    if(i>0) prev.href = "/Memories/" + files[index - 1];
-    if(i<files.length-1) next.href = "/Memories/" + files[index + 1];
+      if (files[index + 1]) {
+        next.href = new URL(files[index + 1], location.origin + "/Memories/").href;
+      }
+    }
 
-  }catch(e){}
-
-})();
-
+  } catch (e) {}
+});
 </script>
 
 </div>
