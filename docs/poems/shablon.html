@@ -99,18 +99,46 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
 <!-- СТРЕЛКИ и СЕРДЦА -->
   
-  <div class="poem-buttons">
-  <a class="poem-arrow" id="prev-poem" href="#" title="Предыдущее">
-    ⬆️
-  </a>
-  <a class="poem-like" href="/Memories/comments.html" id="heart" title="Нравится💜">
-    💜
-  </a>
-  <a class="poem-arrow" id="next-poem" href="#" title="Следующее">
-    ⬇️
-  </a>
+<div class="poem-buttons">
+
+  <a class="poem-arrow" href="prev.html">⬆️</a>
+  <a class="poem-arrow" href="next.html">⬇️</a>
+
+  <span class="poem-like">
+    <span id="like-count">0</span>
+    <a id="heart" style="cursor:pointer;">💟</a>
+  </span>
 
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const heart = document.getElementById("heart");
+  const count = document.getElementById("like-count");
+
+  let likes = parseInt(count.textContent);
+
+  if (heart) {
+    heart.addEventListener("click", function () {
+
+      if (heart.classList.contains("liked")) {
+        heart.classList.remove("liked");
+        heart.textContent = "💟";
+        likes--;
+      } else {
+        heart.classList.add("liked");
+        heart.textContent = "💜";
+        likes++;
+      }
+
+      count.textContent = likes;
+
+    });
+  }
+
+});
+</script>
 
   
 </section>
@@ -165,7 +193,7 @@ document.addEventListener("click", function(e) {
 
 
 
- <!-- ЛАЙК тескта с параметрами -->
+ <!-- ЛАЙК текста с параметрами 
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -203,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script> 
-
+-->
 
   <script>
 document.addEventListener("DOMContentLoaded", async function () {
