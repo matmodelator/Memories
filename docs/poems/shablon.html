@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="../style.css">
   
 </head>
-
   
 <!-- ВВОД тескта с параметрами -->
   <script>
@@ -67,8 +66,7 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
  });
     
 </script>
-
-  
+ 
 <body data-access="secret">
 
   <!-- Стрелки для проверки
@@ -83,7 +81,6 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
   <!-- МЕНЮ (5 пунктов, без изменений по структуре) -->
 
-
   <nav class="main-nav">
     <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
     <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
@@ -92,16 +89,28 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
     <a href="../comments.html" class="nav-item" data-text="Отзывы">Отзывы</a>
   </nav> 
 
-
   <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
 <section class="reading-panel" aria-label="Текст стихотворения">
  
   <!-- Контейнер стиха -->
-
   <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
   <pre id="poem" class="poem-text"></pre>
   <!-- подпись внизу страницы -->
 
+<!-- СТРЕЛКИ и СЕРДЦА -->
+  
+  <div class="poem-buttons">
+  <a class="poem-arrow" id="prev-poem" href="#" title="Предыдущее">
+    ⬆️
+  </a>
+  <a class="poem-like" href="/Memories/comments.html" id="heart" title="Нравится💜">
+    💜
+  </a>
+  <a class="poem-arrow" id="next-poem" href="#" title="Следующее">
+    ⬇️
+  </a>
+
+</div>
 
   
 </section>
@@ -194,6 +203,49 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script> 
+
+
+  <script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+  const prev = document.getElementById("prev-poem");
+  const next = document.getElementById("next-poem");
+
+  if (!prev || !next) return;
+
+  try {
+
+    const current = location.pathname.split("/").pop();
+
+    const response = await fetch("/Memories/poems.html");
+    const html = await response.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    const links = [...doc.querySelectorAll("a[href$='.html']")];
+
+    const files = links.map(a => a.getAttribute("href"));
+    const names = files.map(href => href.split("/").pop());
+
+    const index = names.indexOf(current);
+
+    if (index !== -1) {
+
+      if (files[index - 1]) {
+        prev.href = files[index - 1].replace(/^poems\//, "");
+      }
+
+      if (files[index + 1]) {
+        next.href = files[index + 1].replace(/^poems\//, "");
+      }
+
+    }
+
+  } catch (e) {}
+
+});
+</script>
 
 <!--ПАРОЛЬ
 <script src="../password-gate.js"></script>-->
