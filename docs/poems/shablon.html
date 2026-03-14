@@ -110,6 +110,8 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
     <span class="like-count">0</span>
   </div>
 
+
+  
 <script>
 
 (async function(){
@@ -133,8 +135,8 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
     const i = names.indexOf(current);
 
-    if(i>0) prev.href = files[i-1];
-    if(i<files.length-1) next.href = files[i+1];
+    if(i>0) prev.href = "/Memories/" + files[index - 1];
+    if(i<files.length-1) next.href = "/Memories/" + files[index + 1];
 
   }catch(e){}
 
@@ -224,7 +226,7 @@ document.addEventListener("click", function(e) {
 
 
 
-<!-- ЛАЙК текста с параметрами -->
+<!-- ЛАЙК текста с отсылкой на мейл -->
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
