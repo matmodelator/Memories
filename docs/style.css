@@ -1127,7 +1127,7 @@ body.locked #poem-nav{
   font-size:28px;
 }
 
-@media (max-width:768px){
+/* @media (max-width:768px){
 
   .poem-buttons{
     right:10px;
@@ -1140,5 +1140,16 @@ body.locked #poem-nav{
     font-size:30px;
   }
 
+} */
+
+
+@media (max-width: 768px) {
+  .reading-panel {
+    height: 78vh;
+    min-height: 78vh;
+    max-height: 78vh;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
