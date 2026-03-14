@@ -1092,3 +1092,34 @@ body.locked #poem-nav{
   }
 
 }
+
+
+
+
+
+<!-- БЛОК для Мобильных телефонов -->
+@media (max-width: 768px) {
+
+  .poem-nav{
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    top: auto;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    font-size: 28px;
+    z-index: 3000;
+  }
+
+  .like{
+    position: fixed;
+    right: 20px;
+    bottom: 70px;
+    left: auto;
+    top: auto;
+    z-index: 3000;
+  }
+
+}
