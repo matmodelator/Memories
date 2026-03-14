@@ -136,9 +136,8 @@
 
 body{
   min-height: 100svh;
-  overflow: hidden; 
-  /*overflow-y: auto;
-  overflow-x: hidden;*/
+  overflow-y: auto;
+  overflow-x: hidden;
   background: transparent; /* важно: не перекрывать картинку */
 }
 /* ===================================================
