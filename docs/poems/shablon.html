@@ -103,12 +103,11 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
   <a class="poem-arrow" href="prev.html">⬆️</a>
   <a class="poem-arrow" href="next.html">⬇️</a>
-
-  <span class="poem-like">
-    <span id="like-count">0</span>
-    <a id="heart" style="cursor:pointer;">💟</a>
-  </span>
-
+ <!-- Лайк + Переход к Отзыву --> 
+<div class="like">
+  <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
+  <span class="like-count">0</span>
+</div>
 </div>
 
 <script>
@@ -148,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <div id="poem-nav"></div>
 -->
 
-  <!-- Лайк + Переход к Отзыву -->
+  <!-- Лайк + Переход к Отзыву 
   <div class="like">
   <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
   <span class="like-count">0</span>
