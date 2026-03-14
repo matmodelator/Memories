@@ -98,18 +98,52 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
   <!-- подпись внизу страницы -->
 
 <!-- СТРЕЛКИ и СЕРДЦА -->
-  
+
 <div class="poem-buttons">
 
-  <a class="poem-arrow" href="prev.html">⬆️</a>
-  <a class="poem-arrow" href="next.html">⬇️</a>
- <!-- Лайк + Переход к Отзыву --> 
-<div class="like">
-  <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
-  <span class="like-count">0</span>
-</div>
-</div>
+  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
+  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
 
+  <!-- Лайк + переход к отзыву -->
+  <div class="like">
+    <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
+    <span class="like-count">0</span>
+  </div>
+
+<script>
+
+(async function(){
+
+  const prev = document.getElementById("prev-poem");
+  const next = document.getElementById("next-poem");
+
+  const current = location.pathname.split("/").pop();
+
+  try{
+
+    const r = await fetch("/Memories/poems.html");
+    const html = await r.text();
+
+    const doc = new DOMParser().parseFromString(html,"text/html");
+
+    const links = [...doc.querySelectorAll("a[href$='.html']")];
+
+    const files = links.map(a=>a.getAttribute("href"));
+    const names = files.map(f=>f.split("/").pop());
+
+    const i = names.indexOf(current);
+
+    if(i>0) prev.href = files[i-1];
+    if(i<files.length-1) next.href = files[i+1];
+
+  }catch(e){}
+
+})();
+
+</script>
+
+</div>
+  
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -228,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script> 
--->
+
 
   <script>
 document.addEventListener("DOMContentLoaded", async function () {
@@ -274,6 +308,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 <!--ПАРОЛЬ
 <script src="../password-gate.js"></script>-->
-    
+    -->
 </body>
 </html>
