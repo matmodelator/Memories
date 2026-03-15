@@ -130,6 +130,7 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
 <div class="poem-buttons">
 
+  <a class="poem-arrow" id="back-arrow">◀️</a>
   <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
   <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
 
@@ -139,8 +140,14 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
     <span class="like-count">0</span>
   </div>
 
+<!-- Возврат назад  -->
+  <script>
+document.getElementById("back-arrow").onclick = function () {
+  history.back();
+};
+</script>
 
-  
+<!-- Навигация по списку  -->  
 <script>
 document.addEventListener("DOMContentLoaded", async function () {
 
@@ -300,49 +307,8 @@ document.addEventListener("DOMContentLoaded", function () {
 </script> 
 
 
-<!--  <script>
-document.addEventListener("DOMContentLoaded", async function () {
+<!-- ПАРОЛЬ  -->
 
-  const prev = document.getElementById("prev-poem");
-  const next = document.getElementById("next-poem");
-
-  if (!prev || !next) return;
-
-  try {
-
-    const current = location.pathname.split("/").pop();
-
-    const response = await fetch("/Memories/poems.html");
-    const html = await response.text();
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-
-    const links = [...doc.querySelectorAll("a[href$='.html']")];
-
-    const files = links.map(a => a.getAttribute("href"));
-    const names = files.map(href => href.split("/").pop());
-
-    const index = names.indexOf(current);
-
-    if (index !== -1) {
-
-      if (files[index - 1]) {
-        prev.href = files[index - 1].replace(/^poems\//, "");
-      }
-
-      if (files[index + 1]) {
-        next.href = files[index + 1].replace(/^poems\//, "");
-      }
-
-    }
-
-  } catch (e) {}
-
-});
-</script> -->
-
-/* ПАРОЛЬ */
 <body data-password="пароль">
 <script src="../password-gate.js"></script>
     
