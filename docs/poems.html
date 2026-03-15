@@ -159,8 +159,29 @@ document.addEventListener("click", function(e) {
 
 <!-- Утилита переадресации для Меню -->
   <script src="nav.js"></script>
-  
 
+ <!-- Сохранение позиции в свитке(списке)--> 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const panel = document.querySelector(".scroll-panel");
+  if (!panel) return;
+
+  const saved = sessionStorage.getItem("poemsScrollTop");
+  if (saved !== null) {
+    panel.scrollTop = parseInt(saved, 10);
+  }
+
+  panel.addEventListener("scroll", function () {
+    sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
+  });
+
+  document.querySelectorAll('a[href$=".html"]').forEach(link => {
+    link.addEventListener("click", function () {
+      sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
+    });
+  });
+});
+</script>
 
 </body>
 </html>
