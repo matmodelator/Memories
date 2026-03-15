@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Стихи — Memories</title>
-  
+
 
   <link rel="stylesheet" href="style.css"/>
   <!--<link rel="stylesheet" href="scroll.css"/>-->
-  
+
 </head>
 
 
@@ -27,12 +27,12 @@
   <nav class="main-nav">
 
     <!-- СТИХИ: активный пункт + триггер свитка -->
-    
-    
+
+
     <div class="nav-dropdown open">
  <a href="/Memories/poems.html" class="nav-item nav-active nav-trigger" data-text="Стихи">Стихи</a>
 
-    
+
 <div class="scroll-panel">
   <div class="scroll-ornament-top">
      ↕️
@@ -40,8 +40,8 @@
 
 
   <div class="scroll-inner">
-    
-    
+
+
       <a class="scroll-link" href="poems/shablon.html">TEST</a>
       <a class="scroll-link" href="poems/poem_af.html">Афтаркия</a>
       <a class="scroll-link" href="poems/poem_ba1.html">Барахас. Дождь. Кончается февраль.</a>
@@ -159,71 +159,30 @@ document.addEventListener("click", function(e) {
 
 <!-- Утилита переадресации для Меню -->
   <script src="nav.js"></script>
+  
 
- <!-- Сохранение позиции в свитке(списке) 
+ <!-- Сохранение позиции в свитке(списке)--> 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const panel = document.querySelector(".scroll-panel");
   if (!panel) return;
 
   const saved = sessionStorage.getItem("poemsScrollTop");
-
-  if (saved !== null) {
-    requestAnimationFrame(function () {
-      panel.scrollTop = parseInt(saved, 10);
-
-      requestAnimationFrame(function () {
-        panel.scrollTop = parseInt(saved, 10);
-      });
-    });
-  }
-
-  panel.addEventListener("scroll", function () {
-    sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
-  });
-
-  panel.querySelectorAll('a[href$=".html"]').forEach(link => {
-    link.addEventListener("click", function () {
-      sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
-    });
-  });
-});
-</script>
-
-
-
-
-<!--  <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const panel = document.querySelector(".scroll-panel");
-  if (!panel) return;
-
-  /* восстановление позиции */
-  const saved = sessionStorage.getItem("poemsScrollTop");
   if (saved !== null) {
     panel.scrollTop = parseInt(saved, 10);
   }
 
-  /* сохраняем при прокрутке */
   panel.addEventListener("scroll", function () {
     sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
   });
 
-  /* обязательно сохраняем при клике на стих */
-  panel.querySelectorAll('a[href$=".html"]').forEach(link => {
+  document.querySelectorAll('a[href$=".html"]').forEach(link => {
     link.addEventListener("click", function () {
       sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
     });
   });
-
 });
 </script>
-
--->
-
-
-  
 
 </body>
 </html>
