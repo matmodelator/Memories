@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Песни — Memories</title>
+  
+
+  <link rel="stylesheet" href="style.css"/>
+  <!--<link rel="stylesheet" href="scroll.css"/>-->
+  
+</head>
+
+
+  
+<body>
+
+<!-- ОРИЕНТАЦИЯ -->
+ <div id="rotate-message">
+Пожалуйста, поверните устройство горизонтально
+</div>
+  
+  <!-- ФОН -->
+  <img src="desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+  
+    
+    
+   <nav class="main-nav">
+     <a href="/Memories/poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+     <a href="/Memories/stories.html" class="nav-item" data-text="Проза">Проза</a>
+ 
+   <!-- ПЕСНИ: активный пункт + триггер свитка -->
+     <div class="nav-dropdown open">
+    <a href="/Memories/songs.html" class="nav-item nav-active nav-trigger" data-text="Песни">Песни</a>
+
+    <div class="scroll-panel">
+
+      
+      <!-- стрелка -->
+      <div class="scroll-ornament-top">↕️</div>
+   
+       <!-- свиток -->
+      <div class="scroll-inner">
+  <a class="scroll-link" href="/Memories/songs/all_good.html">Всё ОК (All good)</a>
+  <a class="scroll-link" href="/Memories/songs/fly.html">Жёлтая муха тоски (Fly)</a>
+  <a class="scroll-link" href="/Memories/songs/korona.html">Коронавирь (Korona)</a>   
+  <a class="scroll-link" href="/Memories/songs/no_hide_face.html">Не пряча лица (Baby)</a>     
+  
+        
+</div>
+        
+      </div>
+    </div>
+  </div>
+
+  
+
+<a href="/Memories/author.html" class="nav-item" data-text="Автор">Автор</a>
+
+</nav>
+
+
+
+<!-- Возврат в гланое меню кликом по фону -->
+
+  <script>
+document.addEventListener("click", function(e) {
+
+    const scrollPanel = document.querySelector(".scroll-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!scrollPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "/Memories/index.html";
+    }
+
+});
+</script>
+
+  <!-- Утилита переадресации для Меню -->
+  <script src="nav.js"></script>
+  
+</body>
+</html>
