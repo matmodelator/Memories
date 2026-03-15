@@ -167,21 +167,63 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!panel) return;
 
   const saved = sessionStorage.getItem("poemsScrollTop");
+
   if (saved !== null) {
-    panel.scrollTop = parseInt(saved, 10);
+    requestAnimationFrame(function () {
+      panel.scrollTop = parseInt(saved, 10);
+
+      requestAnimationFrame(function () {
+        panel.scrollTop = parseInt(saved, 10);
+      });
+    });
   }
 
   panel.addEventListener("scroll", function () {
     sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
   });
 
-  document.querySelectorAll('a[href$=".html"]').forEach(link => {
+  panel.querySelectorAll('a[href$=".html"]').forEach(link => {
     link.addEventListener("click", function () {
       sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
     });
   });
 });
 </script>
+
+
+
+
+<!--  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const panel = document.querySelector(".scroll-panel");
+  if (!panel) return;
+
+  /* восстановление позиции */
+  const saved = sessionStorage.getItem("poemsScrollTop");
+  if (saved !== null) {
+    panel.scrollTop = parseInt(saved, 10);
+  }
+
+  /* сохраняем при прокрутке */
+  panel.addEventListener("scroll", function () {
+    sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
+  });
+
+  /* обязательно сохраняем при клике на стих */
+  panel.querySelectorAll('a[href$=".html"]').forEach(link => {
+    link.addEventListener("click", function () {
+      sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
+    });
+  });
+
+});
+</script>
+
+-->
+
+
+  
 
 </body>
 </html>
