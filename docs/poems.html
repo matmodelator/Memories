@@ -161,10 +161,11 @@ document.addEventListener("click", function(e) {
   <script src="nav.js"></script>
   
 
- <!-- Сохранение позиции в свитке(списке)--> 
+<!-- Сохранение позиции в свитке (списке) -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const panel = document.querySelector(".scroll-panel");
+
+  const panel = document.querySelector(".scroll-inner");
   if (!panel) return;
 
   const saved = sessionStorage.getItem("poemsScrollTop");
@@ -181,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
       sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
     });
   });
+
 });
 </script>
 
