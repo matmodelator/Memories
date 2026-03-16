@@ -1167,12 +1167,14 @@ body.locked #poem-nav{
 
 @media (max-width: 900px) {
 
-  .nav-panel{
-    top: 60px;   /* увеличить */
+  .reading-panel{
+    top: 20px;   /* меньше ^ */
+    left: 60px;   /* меньше < */
   }
 
   .scroll-panel{
-    top: 140px;  /* увеличить */
+    top: 140px;  /* меньше ^ */
+   left: 160px;   /* меньше < */
   }
 
 }
