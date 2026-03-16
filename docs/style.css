@@ -1167,26 +1167,12 @@ body.locked #poem-nav{
 
 @media (max-width: 900px) {
 
-  html, body{
-    height: auto;
-    min-height: 100svh;
-  }
-
-  body{
-    overflow-x: hidden;
-  }
-
-}
-
-
-@media (max-width: 900px) {
-
-  .reading-panel{
-    position: fixed;
+  .nav-panel{
+    top: 60px;   /* увеличить */
   }
 
   .scroll-panel{
-    position: fixed;
+    top: 140px;  /* увеличить */
   }
 
 }
