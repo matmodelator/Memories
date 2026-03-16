@@ -229,7 +229,7 @@ body{
 /* ===================================================
    СТРАНИЦА СТИХОВ: активный пункт + свиток вправо
    (добавка в конец style.css)
-   =================================================== 
+   =================================================== */
 
 :root {
   /* --- Свиток: геометрия (подгоняется вручную) --- */
@@ -297,22 +297,6 @@ body{
   transition: 0.28s ease;
 }
 
-:root {
-  --scroll-gap: 18px;
-  --scroll-top: 14vh;
-  --scroll-bottom: 10vh;
-  --scroll-width: 42vw;
-  --scroll-min-width: 260px;
-  --scroll-max-width: 720px;
-
-  --scroll-bg-top: rgba(255, 244, 220, 0.78);
-  --scroll-bg-bottom: rgba(225, 200, 165, 0.68);
-  --scroll-border: rgba(120, 80, 40, 0.22);
-  --scroll-shadow: rgba(0, 0, 0, 0.22);
-}
-
-
-   
 /* Внутри — прокрутка, если стихов много */
 .scroll-inner {
   height: 100%;
@@ -1181,22 +1165,21 @@ body.locked #poem-nav{
   }
 }
 
-/* @media (max-width: 900px) {
+@media (max-width: 900px) {
 
   .main-nav{
-    top: 300px;   /* меньше ^ 
-    left: 60px;   /* меньше < 
+    top: 300px;   /* меньше ^ */
+    left: 60px;   /* меньше < */
   }
 
   .scroll-panel{
-    top: 200px;  /* меньше ^ 
-    left: 150px;   /* меньше <
+    top: 200px;  /* меньше ^ */
+    left: 150px;   /* меньше < */
     height:500px !important;
   }
 
    .reading-panel{
-    top: 150px;   /* меньше ^ 
-    left: 150px;   /* меньше < 
+    top: 150px;   /* меньше ^ */
+    left: 150px;   /* меньше < */
   }
-} 
-*/
+}
