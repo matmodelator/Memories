@@ -192,34 +192,31 @@ top:10px;
 right:10px;
 background:rgba(0,0,0,0.7);
 color:white;
-padding:8px 10px;
+padding:6px 10px;
 font-size:14px;
 z-index:9999;
-white-space:pre-line;
 ">
-test
+0
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+
+  const inner = document.querySelector(".scroll-inner");
   const out = document.getElementById("scroll-value");
-  const panel = document.querySelector(".scroll-panel");
+
+  if (!inner) {
+    out.textContent = "Нет .scroll-inner";
+    return;
+  }
 
   function show() {
-    out.textContent =
-      "panel.scrollTop = " + (panel ? panel.scrollTop : "нет .scroll-panel") + "\n" +
-      "window.scrollY = " + window.scrollY + "\n" +
-      "doc.scrollTop = " + document.documentElement.scrollTop;
+    out.textContent = inner.scrollTop;
   }
 
   show();
+  inner.addEventListener("scroll", show);
 
-  if (panel) {
-    panel.addEventListener("scroll", show);
-  }
-
-  window.addEventListener("scroll", show);
-  document.addEventListener("scroll", show, true);
 });
 </script>
 </body>
