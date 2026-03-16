@@ -232,12 +232,12 @@ body{
    =================================================== 
 
 :root {
-  /* --- Свиток: геометрия (подгоняется вручную) --- 
-  --scroll-gap: 18px;          /* зазор от меню до свитка 
-  --scroll-top: 14vh;          /* верх свитка (почти от логотипа) 
-  --scroll-bottom: 10vh;       /* низ свитка (почти до копирайта) 
-  --scroll-width: 42vw;        /* ширина свитка (до девушки) 
-  --scroll-min-width: 260px;   /* минимум ширины 
+  /* --- Свиток: геометрия (подгоняется вручную) --- */
+  --scroll-gap: 18px;          /* зазор от меню до свитка */
+  --scroll-top: 14vh;          /* верх свитка (почти от логотипа) */
+  --scroll-bottom: 10vh;       /* низ свитка (почти до копирайта) */
+  --scroll-width: 42vw;        /* ширина свитка (до девушки) */
+  --scroll-min-width: 260px;   /* минимум ширины */
   --scroll-max-width: 720px;   /* максимум ширины */
 
   /* --- Свиток: визуал --- */
@@ -271,14 +271,14 @@ body{
 .scroll-panel {
   position: absolute;
 
-  /* вправо от пункта "Стихи" 
+  /* вправо от пункта "Стихи" */
   left: calc(100% + var(--scroll-gap));
 
-  /* по вертикали: как “середина между лого и купером” 
+  /* по вертикали: как “середина между лого и купером” */
   top: calc(var(--scroll-top) - var(--menu-top));
   bottom: calc(var(--scroll-bottom) - (100vh - var(--menu-top)));
 
-  /* проще и надёжнее: задаём реальную высоту через top/bottom относительно окна 
+  /* проще и надёжнее: задаём реальную высоту через top/bottom относительно окна */
   top: var(--scroll-top);
   bottom: var(--scroll-bottom);
 
@@ -311,38 +311,7 @@ body{
   --scroll-shadow: rgba(0, 0, 0, 0.22);
 }
 
-/* сам свиток */
-.scroll-panel {
-  position: fixed;
-  left: calc(var(--menu-left) + 160px);
-  top: var(--scroll-top);
-  width: clamp(var(--scroll-min-width), var(--scroll-width), var(--scroll-max-width));
-  height: calc(100vh - var(--scroll-top) - var(--scroll-bottom));
 
-  padding: 18px;
-  box-sizing: border-box;
-
-  background: linear-gradient(to bottom, var(--scroll-bg-top), var(--scroll-bg-bottom));
-  border: 1px solid var(--scroll-border);
-  border-radius: 12px;
-  box-shadow: 0 18px 36px var(--scroll-shadow);
-
-  opacity: 0;
-  transform: translateX(-10px);
-  pointer-events: none;
-  transition: opacity 0.28s ease, transform 0.28s ease;
-
-  z-index: 50;
-  overflow: hidden;
-}
-
-/* внутренняя прокрутка 
-.scroll-inner {
-  height: 100%;
-  overflow-y: auto;
-  padding-right: 6px;
-  box-sizing: border-box;
-}
    
 /* Внутри — прокрутка, если стихов много */
 .scroll-inner {
@@ -1212,21 +1181,22 @@ body.locked #poem-nav{
   }
 }
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
 
   .main-nav{
-    top: 300px;   /* меньше ^ */
-    left: 60px;   /* меньше < */
+    top: 300px;   /* меньше ^ 
+    left: 60px;   /* меньше < 
   }
 
   .scroll-panel{
-    top: 200px;  /* меньше ^ */
-    left: 150px;   /* меньше < */
+    top: 200px;  /* меньше ^ 
+    left: 150px;   /* меньше <
     height:500px !important;
   }
 
    .reading-panel{
-    top: 150px;   /* меньше ^ */
-    left: 150px;   /* меньше < */
+    top: 150px;   /* меньше ^ 
+    left: 150px;   /* меньше < 
   }
-}
+} 
+*/
