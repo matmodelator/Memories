@@ -1174,7 +1174,8 @@ body.locked #poem-nav{
 
   .scroll-panel{
     top: 200px;  /* меньше ^ */
-   left: 150px;   /* меньше < */
+    left: 150px;   /* меньше < */
+    height:500px !important;
   }
 
    .reading-panel{
