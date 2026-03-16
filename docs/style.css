@@ -1173,13 +1173,13 @@ body.locked #poem-nav{
   }
 
   .scroll-panel{
-    top: 200px;  /* меньше ^ */
+    top: 100px;  /* меньше ^ */
     left: 150px;   /* меньше < */
     height:500px !important;
   }
 
    .reading-panel{
-    top: 150px;   /* меньше ^ */
-    left: 150px;   /* меньше < */
+    top: 200px;   /* меньше ^ */
+    left: 200px;   /* меньше < */
   }
 }
