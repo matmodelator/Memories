@@ -1168,7 +1168,7 @@ body.locked #poem-nav{
 @media (max-width: 900px) {
 
   .main-nav{
-    top: 200px;   /* меньше ^ */
+    top: 300px;   /* меньше ^ */
     left: 60px;   /* меньше < */
   }
 
@@ -1178,7 +1178,7 @@ body.locked #poem-nav{
   }
 
    .reading-panel{
-    top: 100px;   /* меньше ^ */
+    top: 150px;   /* меньше ^ */
     left: 150px;   /* меньше < */
   }
 }
