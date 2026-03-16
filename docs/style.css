@@ -1143,7 +1143,7 @@ body.locked #poem-nav{
 } */
 
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .reading-panel {
     height: 78vh;
     min-height: 78vh;
@@ -1163,4 +1163,30 @@ body.locked #poem-nav{
     min-height: 100%;
     object-fit: contain;
   }
+}
+
+@media (max-width: 900px) {
+
+  html, body{
+    height: auto;
+    min-height: 100svh;
+  }
+
+  body{
+    overflow-x: hidden;
+  }
+
+}
+
+
+@media (max-width: 900px) {
+
+  .reading-panel{
+    position: fixed;
+  }
+
+  .scroll-panel{
+    position: fixed;
+  }
+
 }
