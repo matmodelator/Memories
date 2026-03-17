@@ -33,6 +33,46 @@
 
   <!-- Утилита переадресации для Меню -->
   <script src="nav.js"></script>
+
+<!-- Анимация -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const field = document.querySelector(".memory-field");
+  if (!field) return;
+
+  const lines = [
+    "И это было…",
+    "Как будто память держит свет",
+    "Не всё исчезает бесследно",
+    "Есть вещи, которые возвращаются",
+    "Имена уходят — интонации остаются",
+    "То, что прошло, продолжает говорить"
+  ];
+
+  function spawnLine() {
+
+    const el = document.createElement("div");
+    el.className = "memory-ghost";
+    el.textContent = lines[Math.floor(Math.random() * lines.length)];
+
+    const x = 30 + Math.random() * 40;
+    const y = 30 + Math.random() * 40;
+
+    el.style.left = x + "%";
+    el.style.top = y + "%";
+
+    field.appendChild(el);
+
+    setTimeout(() => el.classList.add("show"), 50);
+    setTimeout(() => el.classList.add("fade"), 3500);
+    setTimeout(() => el.remove(), 6000);
+  }
+
+  setInterval(spawnLine, 1800);
+
+});
+</script>
   
 </body>
 </html>
