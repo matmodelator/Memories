@@ -131,7 +131,7 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
   <pre id="poem" class="poem-text"></pre>
   <!-- подпись внизу страницы -->
 
-  <div id="annotation-box" class="overlay-box">
+ <!-- <div id="annotation-box" class="overlay-box">
     <div id="annotation-text"></div>
 
     <div class="annotation-menu">
@@ -139,7 +139,7 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
       <button id="review-btn">🚻</button>
       <button id="back-btn">🔄</button>
     </div>
-  </div>
+  </div>-->
 
 </section>
   
@@ -301,6 +301,34 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script> 
 
+<!-- АНОТАЦИИ -->
+  const annotationBox = document.getElementById("annotation-box");
+const annotationText = document.getElementById("annotation-text");
+
+const openBtn = document.getElementById("open-annotation");
+const backBtn = document.getElementById("back-btn");
+const aiBtn = document.getElementById("ai-btn");
+const reviewBtn = document.getElementById("review-btn");
+
+if (annotationText){
+  annotationText.textContent = poem.annotation;
+}
+
+openBtn.onclick = () => {
+  annotationBox.classList.add("open");
+};
+
+backBtn.onclick = () => {
+  annotationBox.classList.remove("open");
+};
+
+aiBtn.onclick = () => {
+  annotationText.textContent = poem.aiReview;
+};
+
+reviewBtn.onclick = () => {
+  annotationText.textContent = poem.readerReview;
+};
 
 <!-- ПАРОЛЬ  
 <body data-password="пароль">
