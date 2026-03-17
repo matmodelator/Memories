@@ -16,58 +16,67 @@ document.addEventListener("DOMContentLoaded", function () {
   // как часто появляется новая фраза
   const SPAWN_DELAY = 1800;
 
-  // через сколько начинается исчезновение
-  const FADE_DELAY = 3200;
-
 
   // ==================================================
   // 3. ЗАПУСК ЭФФЕКТА
   // ==================================================
-  function spawnLine() {
+  function startEffect(lines) {
 
-  const el = document.createElement("div");
-  el.className = "memory-ghost";
+    // защита: если массива нет или он пустой — выходим
+    if (!lines || !lines.length) return;
 
-  // 👇 все строки рукописные
-  el.classList.add("hand");
+    function spawnLine() {
 
-  const skew = -3 - Math.random() * 6;
-  const scale = 0.96 + Math.random() * 0.08;
+      const el = document.createElement("div");
+      el.className = "memory-ghost";
 
-  el.style.transform =
-    `translate(-50%, -50%) scale(${scale}) skewX(${skew}deg)`;
+      // 👇 все строки рукописные
+      el.classList.add("hand");
 
-  // берём случайную фразу из готового массива
-  const text = lines[Math.floor(Math.random() * lines.length)];
-  el.textContent = text;
+      const skew = -3 - Math.random() * 6;
+      const scale = 0.96 + Math.random() * 0.08;
 
-  // случайная позиция в центральной зоне экрана
-  // X: от 35% до 65%
-  // Y: от 35% до 65%
-  const x = 35 + Math.random() * 30;
-  const y = 35 + Math.random() * 30;
+      el.style.transform =
+        `translate(-50%, -50%) scale(${scale}) skewX(${skew}deg)`;
 
-  el.style.left = x + "%";
-  el.style.top = y + "%";
+      // берём случайную фразу из готового массива
+      const text = lines[Math.floor(Math.random() * lines.length)];
+      el.textContent = text;
 
-  // вставляем фразу в контейнер
-  field.appendChild(el);
+      // случайная позиция в центральной зоне экрана
+      // X: от 35% до 65%
+      // Y: от 35% до 65%
+      const x = 35 + Math.random() * 30;
+      const y = 35 + Math.random() * 30;
 
-  // небольшая задержка перед появлением
-  setTimeout(function () {
-    el.classList.add("show");
-  }, 50);
+      el.style.left = x + "%";
+      el.style.top = y + "%";
 
-  // запускаем фазу исчезновения
-  setTimeout(function () {
-    el.classList.add("fade");
-  }, 3500);
+      // вставляем фразу в контейнер
+      field.appendChild(el);
 
-  // удаляем после окончания плавного ухода
-  setTimeout(function () {
-    el.remove();
-  }, 6300);
-}
+      // небольшая задержка перед появлением
+      setTimeout(function () {
+        el.classList.add("show");
+      }, 50);
+
+      // запускаем фазу исчезновения
+      setTimeout(function () {
+        el.classList.add("fade");
+      }, 3500);
+
+      // удаляем после окончания плавного ухода
+      setTimeout(function () {
+        el.remove();
+      }, 6300);
+    }
+
+    // первая фраза появляется сразу
+    spawnLine();
+
+    // остальные появляются по таймеру
+    setInterval(spawnLine, SPAWN_DELAY);
+  }
 
 
   // ==================================================
