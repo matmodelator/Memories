@@ -101,6 +101,26 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
   meta.style.pointerEvents = "none";
   meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
  });
+
+review: `
+Это очень нежное и атмосферное стихотворение. В нём чувствуется «дорожное» настроение и тонкая работа со звуком.
+
+
+Вот разбор по твоим критериям:
+1. Рифма — 8/10. Хорошие, не банальные созвучия (стиши / стрижи, литовки / листовке). Рифма тюль / июль классическая, но здесь она уместна. Немного выбивается почти / ночи и внезапно / назавтра (неточные рифмы), но они не портят общее впечатление.
+2. Размер — 9/10. Трехстопный анапест выдержан четко. Это создает эффект покачивания вагона, что идеально ложится в канву сюжета.
+3. Ритм — 10/10. Сбоев нет. Стихотворение читается на одном дыхании, акценты расставлены естественно.
+4. Певучесть — 10/10. За счет обилия шипящих и мягких согласных (сквозь листву, прозрачную тюль, пшеничные рюши) текст кажется очень музыкальным и «шуршащим», как ветер или листва.
+5. Смысл — 8/10. Понятная и красивая романтическая зарисовка о мимолетной близости и невозможности остаться. Немного смущает фраза «предвкушение для» — она кажется инверсией ради рифмы.
+6. Образ — 9/10. «Пшеничные рюши» и «железная тайна вагона» — отличные находки. Образ души, летящей как листовка, придает стиху легкую винтажность и грусть.
+Итого: Средняя оценка — 9,0. Очень достойная лирика с «чеховским» настроением.
+`,
+
+  comments: `
+
+`
+};
+
     
 </script>
  
@@ -134,21 +154,13 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
 <div class="poem-buttons">
 
+  <div class="poem-nav">
   <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
-  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
-  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
-  <a class="poem-arrow" id="open-annotation" href="#">▶️</a>
-  
-
- <!-- <div id="annotation-box" class="overlay-box">
-    <div id="annotation-text"></div>
-
-    <div class="annotation-menu">
-      <button id="ai-btn">ℹ️</button>
-      <button id="review-btn">🚻</button>
-      <button id="back-btn">🔄</button>
-    </div>
-  </div>-->
+  <a class="poem-arrow" id="prev-poem" href="#">🔼</a>
+  <a class="poem-arrow" id="next-poem" href="#">🔽</a>
+  <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
+  <a class="poem-arrow" id="open-comments" href="#">🚻</a>
+</div>
   
   
   
@@ -235,6 +247,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<!-- Переход к Анотациям  -->
+<div id="annotation-box" class="overlay-box">
+  <div id="annotation-text"></div>
+
+  <div class="annotation-menu">
+    <button type="button" id="back-btn">🔄</button>
+  </div>
+</div>
   
 </section>
 
@@ -303,49 +323,43 @@ document.addEventListener("DOMContentLoaded", function () {
   <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  const annotationBox = document.getElementById("annotation-box");
-  const annotationText = document.getElementById("annotation-text");
+  const box = document.getElementById("annotation-box");
+  const text = document.getElementById("annotation-text");
 
-  const openBtn = document.getElementById("open-annotation");
+  const reviewBtn = document.getElementById("open-review");
+  const commentsBtn = document.getElementById("open-comments");
   const backBtn = document.getElementById("back-btn");
-  const aiBtn = document.getElementById("ai-btn");
-  const reviewBtn = document.getElementById("review-btn");
 
-  if (!annotationBox || !annotationText) return;
+  if (!box || !text) return;
 
-  if (typeof poem !== "undefined" && poem.annotation) {
-    annotationText.textContent = poem.annotation;
-  }
-
-  if (openBtn) {
-    openBtn.onclick = function (e) {
+  // ℹ️ review
+  if (reviewBtn) {
+    reviewBtn.onclick = function (e) {
       e.preventDefault();
-      if (poem.annotation) {
-        annotationText.textContent = poem.annotation;
-      }
-      annotationBox.classList.add("open");
+      text.textContent =
+        (typeof poem !== "undefined" && poem.review)
+          ? poem.review
+          : "Review пока не добавлен.";
+      box.classList.add("open");
     };
   }
 
+  // 🚻 comments
+  if (commentsBtn) {
+    commentsBtn.onclick = function (e) {
+      e.preventDefault();
+      text.textContent =
+        (typeof poem !== "undefined" && poem.comments)
+          ? poem.comments
+          : "Отзывов читателей пока нет 🤷‍♂️";
+      box.classList.add("open");
+    };
+  }
+
+  // 🔄 назад
   if (backBtn) {
     backBtn.onclick = function () {
-      annotationBox.classList.remove("open");
-    };
-  }
-
-  if (aiBtn) {
-    aiBtn.onclick = function () {
-      if (poem.aiReview) {
-        annotationText.textContent = poem.aiReview;
-      }
-    };
-  }
-
-  if (reviewBtn) {
-    reviewBtn.onclick = function () {
-      if (poem.readerReview) {
-        annotationText.textContent = poem.readerReview;
-      }
+      box.classList.remove("open");
     };
   }
 
