@@ -13,91 +13,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // 2. НАСТРОЙКИ
   // ==================================================
 
-  // сюда соберём все фразы:
-  // сначала из lines.js, потом из phrases.txt
-  let MEMORY_LINES = [];
-
   // как часто появляется новая фраза
   const SPAWN_DELAY = 1800;
 
   // через сколько начинается исчезновение
   const FADE_DELAY = 3200;
 
-  // через сколько полностью удаляем фразу из DOM
-  const REMOVE_DELAY = 6000;
-
 
   // ==================================================
-  // 3. ЗАГРУЗКА ФРАЗ ИЗ lines.js
-  // ==================================================
-  function loadFromJS() {
-
-    // если lines.js уже создал window.MEMORY_LINES
-    // и там действительно массив — возвращаем его
-    if (window.MEMORY_LINES && Array.isArray(window.MEMORY_LINES)) {
-      return window.MEMORY_LINES;
-    }
-
-    // иначе возвращаем пустой массив
-    return [];
-  }
-
-
-  // ==================================================
-  // 4. ЗАГРУЗКА ФРАЗ ИЗ phrases.txt
-  // ==================================================
-  async function loadFromTXT() {
-    try {
-      const response = await fetch("phrases.txt");
-      const text = await response.text();
-
-      // делим текст на строки
-      // обрезаем пробелы
-      // убираем пустые строки
-      return text
-        .split("\n")
-        .map(function (line) {
-          return line.trim();
-        })
-        .filter(function (line) {
-          return line.length > 0;
-        });
-
-    } catch (e) {
-      console.log("Не удалось загрузить phrases.txt", e);
-      return [];
-    }
-  }
-
-
-  // ==================================================
-  // 5. ОБЪЕДИНЕНИЕ ФРАЗ
-  // ==================================================
-  async function loadLines() {
-
-    // берём массив из lines.js
-    const jsLines = loadFromJS();
-
-    // берём массив из phrases.txt
-    const txtLines = await loadFromTXT();
-
-    // объединяем оба массива в один
-    MEMORY_LINES = jsLines.concat(txtLines);
-
-    // если нужно убрать дубли — раскомментируй строку ниже
-    // MEMORY_LINES = [...new Set(MEMORY_LINES)];
-
-    // записываем общий массив в window.MEMORY_LINES,
-    // чтобы остальной код работал как раньше
-    window.MEMORY_LINES = MEMORY_LINES;
-
-    // сообщаем, что фразы уже готовы
-    window.dispatchEvent(new Event("memoryLinesReady"));
-  }
-
-
-  // ==================================================
-  // 6. ЗАПУСК ЭФФЕКТА
+  // 3. ЗАПУСК ЭФФЕКТА
   // ==================================================
   function startEffect(lines) {
 
@@ -111,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const el = document.createElement("div");
       el.className = "memory-ghost";
 
-      // 👇 ВСЕ строки рукописные
+      // 👇 все строки рукописные
       el.classList.add("hand");
 
       const skew = -3 - Math.random() * 6;
@@ -144,17 +68,13 @@ document.addEventListener("DOMContentLoaded", function () {
       // запускаем фазу исчезновения
       setTimeout(function () {
         el.classList.add("fade");
+
+        // удаляем только после окончания fade
+        el.addEventListener("transitionend", function () {
+          el.remove();
+        }, { once: true });
+
       }, FADE_DELAY);
-
-      // полностью удаляем элемент
-      setTimeout(function () {
-  el.classList.add("fade");
-
-  el.addEventListener("transitionend", function () {
-    el.remove();
-  }, { once: true });
-
-}, FADE_DELAY);
     }
 
     // первая фраза появляется сразу
@@ -166,21 +86,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // ==================================================
-  // 7. ЕДИНЫЙ ЗАПУСК
+  // 4. ЖДЁМ, ПОКА СОБЕРЁТСЯ МАССИВ
   // ==================================================
+  function waitForLinesAndStart() {
 
-  // ждём, пока объединённый массив будет готов,
-  // и только потом запускаем эффект
-  window.addEventListener("memoryLinesReady", function () {
+    // если массив уже готов — запускаем сразу
     if (window.MEMORY_LINES && window.MEMORY_LINES.length) {
       startEffect(window.MEMORY_LINES);
+      return;
     }
-  }, { once: true });
+
+    // иначе ждём событие от lines.js
+    window.addEventListener("memoryLinesReady", function () {
+      startEffect(window.MEMORY_LINES);
+    }, { once: true });
+  }
 
 
   // ==================================================
-  // 8. ЗАПУСКАЕМ ЗАГРУЗКУ ФРАЗ
+  // 5. ЗАПУСК ОЖИДАНИЯ
   // ==================================================
-  loadLines();
+  waitForLinesAndStart();
 
 });
