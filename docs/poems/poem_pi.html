@@ -85,41 +85,6 @@ comments: `
 
   };
 
-  const poemEl = document.getElementById("poem");
-  const reviewBtn = document.getElementById("open-review");
-  const commentsBtn = document.getElementById("open-comments");
-  const backBtn = document.getElementById("back-to-poem");
-
-  const originalText = poemEl ? poemEl.textContent : "";
-
-  if (reviewBtn && poemEl) {
-    reviewBtn.onclick = function (e) {
-      e.preventDefault();
-      poemEl.textContent =
-        poem.review && poem.review.trim()
-          ? poem.review
-          : "Аннотация пока не добавлена.";
-    };
-  }
-
-  if (commentsBtn && poemEl) {
-    commentsBtn.onclick = function (e) {
-      e.preventDefault();
-      poemEl.textContent =
-        poem.comments && poem.comments.trim()
-          ? poem.comments
-          : "Отзывов читателей пока нет 🤷‍♂️";
-    };
-  }
-
-  if (backBtn && poemEl) {
-    backBtn.onclick = function (e) {
-      e.preventDefault();
-      poemEl.textContent = originalText;
-    };
-  }
-});
-    
 
   // title = первая непустая строка, если пусто
   if (!poem.title.trim()) {
