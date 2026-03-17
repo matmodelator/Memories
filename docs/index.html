@@ -42,7 +42,33 @@
   
 <!-- Анимация -->
   <script src="effect.js"></script>  
- <!-- <script>
+ 
+
+<script>
+window.addEventListener("memoryLinesReady", function () {
+
+  const box = document.createElement("div");
+  box.style.position = "fixed";
+  box.style.top = "20px";
+  box.style.left = "20px";
+  box.style.zIndex = "999999";
+  box.style.background = "black";
+  box.style.color = "white";
+  box.style.padding = "10px";
+  box.style.maxHeight = "300px";
+  box.style.overflow = "auto";
+  box.style.fontSize = "12px";
+
+  box.innerHTML =
+    "COUNT: " + window.MEMORY_LINES.length + "<hr>" +
+    window.MEMORY_LINES.join("<br>");
+
+  document.body.appendChild(box);
+
+});
+</script>
+
+<!-- <script>  
 document.addEventListener("DOMContentLoaded", function () {
 
   const field = document.querySelector(".memory-field");
