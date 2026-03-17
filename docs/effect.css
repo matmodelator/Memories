@@ -53,3 +53,37 @@
     font-size: 18px;
   }
 }
+
+
+
+
+/* ===================================================
+   РУКОПИСНЫЙ СЛОЙ (ТОЛЬКО ДЛЯ ЭФФЕКТА)
+   =================================================== */
+
+/* рукописный вариант строки */
+.memory-ghost.hand{
+  font-family: "Marck Script", cursive;
+  font-style: normal;
+  color: rgba(255, 245, 230, 0.85);
+  opacity: 0;
+}
+
+/* появление + "живое движение" */
+.memory-ghost.hand.show{
+  animation: inkFade 2.5s ease forwards, drift 8s ease-in-out infinite;
+}
+
+/* лёгкое “дыхание” (движение) */
+@keyframes drift{
+  0%   { transform: translate(-50%, -50%) rotate(-0.5deg); }
+  50%  { transform: translate(calc(-50% + 1px), calc(-50% - 1px)) rotate(0.8deg); }
+  100% { transform: translate(-50%, -50%) rotate(-0.5deg); }
+}
+
+/* появление как чернила */
+@keyframes inkFade{
+  0%   { opacity: 0; filter: blur(6px); }
+  50%  { opacity: 0.7; }
+  100% { opacity: 1; filter: blur(0); }
+}
