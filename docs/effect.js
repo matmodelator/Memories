@@ -13,72 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // 2. НАСТРОЙКИ
   // ==================================================
 
-
-
-// 📜 Загрузка фраз (ОБЪЕДИНЕНИЕ)
-
-// режим:
-// "js"   → только lines.js
-// "txt"  → только phrases.txt
-// "both" → ОБА источника
-const SOURCE = "both";
-
-let MEMORY_LINES = [];
-
-// 👉 1. Берем из lines.js (если есть)
-function loadFromJS() {
-  if (window.MEMORY_LINES && Array.isArray(window.MEMORY_LINES)) {
-    return window.MEMORY_LINES;
-  }
-  return [];
-}
-
-// 👉 2. Берем из txt
-async function loadFromTXT() {
-  try {
-    const response = await fetch("phrases.txt");
-    const text = await response.text();
-
-    return text
-      .split("\n")
-      .map(line => line.trim())
-      .filter(line => line.length > 0);
-
-  } catch (e) {
-    console.log("TXT не загрузился", e);
-    return [];
-  }
-}
-
-// 👉 3. ОБЪЕДИНЕНИЕ
-async function loadLines() {
-
-  let lines = [];
-
-  if (SOURCE === "js" || SOURCE === "both") {
-    lines = lines.concat(loadFromJS());
-  }
-
-  if (SOURCE === "txt" || SOURCE === "both") {
-    const txtLines = await loadFromTXT();
-    lines = lines.concat(txtLines);
-  }
-
-  // 👉 удаляем дубли (важно)
-  MEMORY_LINES = [...new Set(lines)];
-
-  // сигнал системе
-  window.MEMORY_LINES = MEMORY_LINES;
-
-  window.dispatchEvent(new Event("memoryLinesReady"));
-}
-
-// запуск
-loadLines();
- 
-
-  // путь к txt-файлу
-  const TXT_PATH = "phrases.txt";
+  // сюда соберём все фразы:
+  // сначала из lines.js, потом из phrases.txt
+  let MEMORY_LINES = [];
 
   // как часто появляется новая фраза
   const SPAWN_DELAY = 1800;
@@ -91,7 +28,76 @@ loadLines();
 
 
   // ==================================================
-  // 3. ЗАПУСК ЭФФЕКТА
+  // 3. ЗАГРУЗКА ФРАЗ ИЗ lines.js
+  // ==================================================
+  function loadFromJS() {
+
+    // если lines.js уже создал window.MEMORY_LINES
+    // и там действительно массив — возвращаем его
+    if (window.MEMORY_LINES && Array.isArray(window.MEMORY_LINES)) {
+      return window.MEMORY_LINES;
+    }
+
+    // иначе возвращаем пустой массив
+    return [];
+  }
+
+
+  // ==================================================
+  // 4. ЗАГРУЗКА ФРАЗ ИЗ phrases.txt
+  // ==================================================
+  async function loadFromTXT() {
+    try {
+      const response = await fetch("phrases.txt");
+      const text = await response.text();
+
+      // делим текст на строки
+      // обрезаем пробелы
+      // убираем пустые строки
+      return text
+        .split("\n")
+        .map(function (line) {
+          return line.trim();
+        })
+        .filter(function (line) {
+          return line.length > 0;
+        });
+
+    } catch (e) {
+      console.log("Не удалось загрузить phrases.txt", e);
+      return [];
+    }
+  }
+
+
+  // ==================================================
+  // 5. ОБЪЕДИНЕНИЕ ФРАЗ
+  // ==================================================
+  async function loadLines() {
+
+    // берём массив из lines.js
+    const jsLines = loadFromJS();
+
+    // берём массив из phrases.txt
+    const txtLines = await loadFromTXT();
+
+    // объединяем оба массива в один
+    MEMORY_LINES = jsLines.concat(txtLines);
+
+    // если нужно убрать дубли — раскомментируй строку ниже
+    // MEMORY_LINES = [...new Set(MEMORY_LINES)];
+
+    // записываем общий массив в window.MEMORY_LINES,
+    // чтобы остальной код работал как раньше
+    window.MEMORY_LINES = MEMORY_LINES;
+
+    // сообщаем, что фразы уже готовы
+    window.dispatchEvent(new Event("memoryLinesReady"));
+  }
+
+
+  // ==================================================
+  // 6. ЗАПУСК ЭФФЕКТА
   // ==================================================
   function startEffect(lines) {
 
@@ -106,14 +112,13 @@ loadLines();
       el.className = "memory-ghost";
 
       // 👇 ВСЕ строки рукописные
-  el.classList.add("hand");
+      el.classList.add("hand");
 
-  const skew = -3 - Math.random() * 6;
-  const scale = 0.96 + Math.random() * 0.08;
+      const skew = -3 - Math.random() * 6;
+      const scale = 0.96 + Math.random() * 0.08;
 
-  el.style.transform =
-    `translate(-50%, -50%) scale(${scale}) skewX(${skew}deg)`;
-
+      el.style.transform =
+        `translate(-50%, -50%) scale(${scale}) skewX(${skew}deg)`;
 
       // берём случайную фразу из готового массива
       const text = lines[Math.floor(Math.random() * lines.length)];
@@ -156,56 +161,21 @@ loadLines();
 
 
   // ==================================================
-  // 4. ВАРИАНТ 1 — ФРАЗЫ ИЗ lines.js
+  // 7. ЕДИНЫЙ ЗАПУСК
   // ==================================================
-  if (SOURCE === "js") {
 
-    // если lines.js уже успел подготовить массив
+  // ждём, пока объединённый массив будет готов,
+  // и только потом запускаем эффект
+  window.addEventListener("memoryLinesReady", function () {
     if (window.MEMORY_LINES && window.MEMORY_LINES.length) {
       startEffect(window.MEMORY_LINES);
     }
-
-    // если ещё не успел — ждём специальное событие
-    window.addEventListener("memoryLinesReady", function () {
-      startEffect(window.MEMORY_LINES);
-    }, { once: true });
-  }
+  }, { once: true });
 
 
   // ==================================================
-  // 5. ВАРИАНТ 2 — ФРАЗЫ ИЗ phrases.txt
+  // 8. ЗАПУСКАЕМ ЗАГРУЗКУ ФРАЗ
   // ==================================================
-  if (SOURCE === "txt") {
-
-    fetch(TXT_PATH)
-      .then(function (res) {
-        return res.text();
-      })
-      .then(function (text) {
-
-        // делим txt по строкам
-        // убираем пробелы по краям
-        // убираем пустые строки
-        const lines = text
-          .split("\n")
-          .map(function (s) {
-            return s.trim();
-          })
-          .filter(Boolean);
-
-        // запускаем эффект уже с фразами из txt
-        startEffect(lines);
-      })
-      .catch(function () {
-
-        // если txt не загрузился —
-        // пробуем использовать lines.js как запасной вариант
-        if (window.MEMORY_LINES && window.MEMORY_LINES.length) {
-          startEffect(window.MEMORY_LINES);
-        }
-
-        // если и там пусто — просто ничего не делаем
-      });
-  }
+  loadLines();
 
 });
