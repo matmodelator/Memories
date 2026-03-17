@@ -12,94 +12,85 @@ document.addEventListener("DOMContentLoaded", function () {
   // ==================================================
   // 2. НАСТРОЙКИ
   // ==================================================
-
-  // как часто появляется новая фраза
   const SPAWN_DELAY = 1800;
 
+  // сюда потом положим готовый массив
+  let lines = [];
+
 
   // ==================================================
-  // 3. ЗАПУСК ЭФФЕКТА
+  // 3. БЛОК ЭФФЕКТА
   // ==================================================
-  function startEffect(lines) {
+  function spawnLine() {
 
-    // защита: если массива нет или он пустой — выходим
-    if (!lines || !lines.length) return;
+    const el = document.createElement("div");
+    el.className = "memory-ghost";
 
-    function spawnLine() {
+    // 👇 все строки рукописные
+    el.classList.add("hand");
 
-      const el = document.createElement("div");
-      el.className = "memory-ghost";
+    const skew = -3 - Math.random() * 6;
+    const scale = 0.96 + Math.random() * 0.08;
 
-      // 👇 все строки рукописные
-      el.classList.add("hand");
+    el.style.transform =
+      `translate(-50%, -50%) scale(${scale}) skewX(${skew}deg)`;
 
-      const skew = -3 - Math.random() * 6;
-      const scale = 0.96 + Math.random() * 0.08;
+    // берём случайную фразу из готового массива
+    const text = lines[Math.floor(Math.random() * lines.length)];
+    el.textContent = text;
 
-      el.style.transform =
-        `translate(-50%, -50%) scale(${scale}) skewX(${skew}deg)`;
+    // случайная позиция в центральной зоне экрана
+    // X: от 35% до 65%
+    // Y: от 35% до 65%
+    const x = 35 + Math.random() * 30;
+    const y = 35 + Math.random() * 30;
 
-      // берём случайную фразу из готового массива
-      const text = lines[Math.floor(Math.random() * lines.length)];
-      el.textContent = text;
+    el.style.left = x + "%";
+    el.style.top = y + "%";
 
-      // случайная позиция в центральной зоне экрана
-      // X: от 35% до 65%
-      // Y: от 35% до 65%
-      const x = 35 + Math.random() * 30;
-      const y = 35 + Math.random() * 30;
+    // вставляем фразу в контейнер
+    field.appendChild(el);
 
-      el.style.left = x + "%";
-      el.style.top = y + "%";
+    // небольшая задержка перед появлением
+    setTimeout(function () {
+      el.classList.add("show");
+    }, 50);
 
-      // вставляем фразу в контейнер
-      field.appendChild(el);
+    // запускаем фазу исчезновения
+    setTimeout(function () {
+      el.classList.add("fade");
+    }, 3500);
 
-      // небольшая задержка перед появлением
-      setTimeout(function () {
-        el.classList.add("show");
-      }, 50);
+    // удаляем после окончания плавного ухода
+    setTimeout(function () {
+      el.remove();
+    }, 6300);
+  }
 
-      // запускаем фазу исчезновения
-      setTimeout(function () {
-        el.classList.add("fade");
-      }, 3500);
 
-      // удаляем после окончания плавного ухода
-      setTimeout(function () {
-        el.remove();
-      }, 6300);
-    }
+  // ==================================================
+  // 4. ЗАПУСК, КОГДА МАССИВ ГОТОВ
+  // ==================================================
+  function startWhenReady() {
 
-    // первая фраза появляется сразу
+    if (!window.MEMORY_LINES || !window.MEMORY_LINES.length) return;
+
+    lines = window.MEMORY_LINES;
+
     spawnLine();
-
-    // остальные появляются по таймеру
     setInterval(spawnLine, SPAWN_DELAY);
   }
 
 
   // ==================================================
-  // 4. ЖДЁМ, ПОКА СОБЕРЁТСЯ МАССИВ
+  // 5. ЖДЁМ ГОТОВЫЙ МАССИВ
   // ==================================================
-  function waitForLinesAndStart() {
-
-    // если массив уже готов — запускаем сразу
-    if (window.MEMORY_LINES && window.MEMORY_LINES.length) {
-      startEffect(window.MEMORY_LINES);
-      return;
-    }
-
-    // иначе ждём событие от lines.js
+  if (window.MEMORY_LINES && window.MEMORY_LINES.length) {
+    startWhenReady();
+  } else {
     window.addEventListener("memoryLinesReady", function () {
-      startEffect(window.MEMORY_LINES);
+      startWhenReady();
     }, { once: true });
   }
-
-
-  // ==================================================
-  // 5. ЗАПУСК ОЖИДАНИЯ
-  // ==================================================
-  waitForLinesAndStart();
 
 });
