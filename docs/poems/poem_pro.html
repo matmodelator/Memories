@@ -163,6 +163,7 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
   <a class="poem-arrow" id="next-poem" href="#">🔽</a>
   <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
   <a class="poem-arrow" id="open-comments" href="#">🚻</a>
+  <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
 </div>
   
   
@@ -250,14 +251,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-<!-- Переход к Анотациям  -->
+<!-- Переход к Анотациям  
 <div id="annotation-box" class="overlay-box">
   <div id="annotation-text"></div>
 
   <div class="annotation-menu">
     <button type="button" id="back-btn">🔄</button>
   </div>
-</div>
+</div>-->
   
 </section>
 
@@ -326,43 +327,54 @@ document.addEventListener("DOMContentLoaded", function () {
   <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  const box = document.getElementById("annotation-box");
-  const text = document.getElementById("annotation-text");
+  const poemEl = document.getElementById("poem");
 
   const reviewBtn = document.getElementById("open-review");
   const commentsBtn = document.getElementById("open-comments");
-  const backBtn = document.getElementById("back-btn");
+  const backBtn = document.getElementById("back-to-poem");
 
-  if (!box || !text) return;
+  if (!poemEl) return;
 
-  // ℹ️ review
+  // исходный текст (если он уже в HTML)
+  let originalText = poemEl.textContent;
+
+  // если стих задаётся через poem.text — берём его как главный источник
+  if (typeof poem !== "undefined" && poem.text && poem.text.trim() !== "") {
+    poemEl.textContent = poem.text;
+    originalText = poem.text;
+  }
+
+  // ℹ️ review (аннотация)
   if (reviewBtn) {
     reviewBtn.onclick = function (e) {
       e.preventDefault();
-      text.textContent =
-        (typeof poem !== "undefined" && poem.review)
-          ? poem.review
-          : "Review пока не добавлен.";
-      box.classList.add("open");
+
+      if (typeof poem !== "undefined" && poem.review && poem.review.trim() !== "") {
+        poemEl.textContent = poem.review;
+      } else {
+        poemEl.textContent = "Аннотация пока не добавлена.";
+      }
     };
   }
 
-  // 🚻 comments
+  // 🚻 comments (отзывы)
   if (commentsBtn) {
     commentsBtn.onclick = function (e) {
       e.preventDefault();
-      text.textContent =
-        (typeof poem !== "undefined" && poem.comments)
-          ? poem.comments
-          : "Отзывов читателей пока нет 🤷‍♂️";
-      box.classList.add("open");
+
+      if (typeof poem !== "undefined" && poem.comments && poem.comments.trim() !== "") {
+        poemEl.textContent = poem.comments;
+      } else {
+        poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
+      }
     };
   }
 
-  // 🔄 назад
+  // 🔄 назад к стиху
   if (backBtn) {
-    backBtn.onclick = function () {
-      box.classList.remove("open");
+    backBtn.onclick = function (e) {
+      e.preventDefault();
+      poemEl.textContent = originalText;
     };
   }
 
