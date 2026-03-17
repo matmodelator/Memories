@@ -12,7 +12,7 @@
 
 
 
-<script>
+
 // Глобальный массив для effect.js
 window.MEMORY_LINES = [];
 
