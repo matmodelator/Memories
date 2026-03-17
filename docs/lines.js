@@ -12,69 +12,90 @@
 
 
 
-  // Глобальный массив, который будет использовать effect.js
+// Глобальный массив, который будет использовать effect.js
 window.MEMORY_LINES = [];
 
 document.addEventListener("DOMContentLoaded", async function () {
 
-  // сюда собираем все строки из всех poem_*.html
+  // ==================================================
+  // 1. ТАБЛИЦА (HTML ССЫЛКИ)
+  // ==================================================
+
+  // 👇 сюда просто копируешь свои <a> строки
+  const POEM_TABLE_HTML = `
+    <a class="scroll-link" href="poems/shablon.html">TEST</a>
+    <a class="scroll-link" href="poems/poem_af.html">Афтаркия</a>
+    <a class="scroll-link" href="poems/poem_ba1.html">Барахас. Дождь. Кончается февраль.</a>
+  `;
+
+
+  // ==================================================
+  // 2. ПАРСИМ HTML → ПОЛУЧАЕМ ССЫЛКИ
+  // ==================================================
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(POEM_TABLE_HTML, "text/html");
+
+  const links = [...doc.querySelectorAll("a.scroll-link")];
+
+  const pages = links
+    .map(a => a.getAttribute("href"))
+    .filter(href => href && href.includes("poem_") && href.endsWith(".html"));
+
+
+  // сюда собираем все строки
   const collected = [];
 
-  try {
-    // 1. Загружаем poems.html (это наш "список файлов")
-    const res = await fetch("poems.html");
-    const html = await res.text();
 
-    // 2. Парсим HTML, чтобы работать как с DOM
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
+  // ==================================================
+  // 3. ЧИТАЕМ КАЖДЫЙ poem_*.html
+  // ==================================================
 
-    // 3. Находим все ссылки, содержащие poem_
-    const links = [...doc.querySelectorAll("a[href*='poem_']")];
+  for (const path of pages) {
+    try {
+      const response = await fetch(path);
+      if (!response.ok) continue;
 
-    // 4. Достаём пути к файлам
-    const pages = links
-      .map(a => a.getAttribute("href"))
-      .filter(href => href && href.includes("poem_"));
+      const pageHtml = await response.text();
 
-    // 5. Обходим каждую страницу стихотворения
-    for (const path of pages) {
-      try {
-        const response = await fetch(path);
-        if (!response.ok) continue; // если файл не найден — пропускаем
+      // ==================================================
+      // 4. ВЫТАСКИВАЕМ resume
+      // ==================================================
 
-        const pageHtml = await response.text();
+      const match = pageHtml.match(/resume\s*:\s*`([\s\S]*?)`/);
 
-        // 6. Вытаскиваем поле resume из объекта poem
-        // Ищем: resume: `...`
-        const match = pageHtml.match(/resume:\s*`([\s\S]*?)`/);
+      if (!match) continue;
 
-        if (!match) continue; // если resume нет — пропускаем
+      const resumeText = match[1];
 
-        const resumeText = match[1];
+      // ==================================================
+      // 5. РАЗБИВАЕМ НА СТРОКИ
+      // ==================================================
 
-        // 7. Разбиваем на строки
-        const lines = resumeText
-          .split("\n")        // разбили по строкам
-          .map(s => s.trim())// убрали пробелы
-          .filter(Boolean);  // убрали пустые строки
+      const lines = resumeText
+        .split("\n")
+        .map(s => s.trim())
+        .filter(Boolean);
 
-        // 8. Добавляем все строки в общий массив
-        collected.push(...lines);
+      collected.push(...lines);
 
-      } catch (e) {
-        // если ошибка загрузки конкретного файла — просто игнорируем
-      }
+    } catch (e) {
+      // ошибка одного файла не ломает всё
     }
-
-  } catch (e) {
-    // если не загрузился poems.html — тоже тихо падаем
   }
 
-  // 9. Перемешиваем строки (рандомный порядок)
+
+  // ==================================================
+  // 6. ПЕРЕМЕШИВАЕМ
+  // ==================================================
+
   window.MEMORY_LINES = collected.sort(() => Math.random() - 0.5);
 
-  // 10. Сообщаем effect.js, что данные готовы
+
+  // ==================================================
+  // 7. СИГНАЛ ДЛЯ effect.js
+  // ==================================================
+
   window.dispatchEvent(new Event("memoryLinesReady"));
 
 });
