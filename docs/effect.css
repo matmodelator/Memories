@@ -24,12 +24,15 @@
   transform: translateY(10px) scale(0.98);
   filter: blur(6px);
 
-  text-shadow: 0 0 12px rgba(255,255,255,0.08);
+  text-shadow:
+    0 0 12px rgba(255,255,255,0.08),
+    0 0 20px rgba(255,245,230,0.04);
 
   transition:
-    opacity 2.5s ease,
-    transform 2.5s ease,
-    filter 2.5s ease;
+    opacity 2.8s ease-in-out,
+    transform 2.8s ease-in-out,
+    filter 2.8s ease-in-out,
+    text-shadow 2.8s ease-in-out;
 }
 
 /* появление */
@@ -44,6 +47,9 @@
   opacity: 0;
   transform: translateY(-6px) scale(1.02);
   filter: blur(8px);
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.04),
+    0 0 18px rgba(255,245,230,0.02);
 }
 
 /* мобильная адаптация */
@@ -53,8 +59,6 @@
     font-size: 18px;
   }
 }
-
-
 
 
 /* ===================================================
@@ -67,14 +71,24 @@
   font-style: normal;
   color: rgba(255, 245, 230, 0.85);
   opacity: 0;
+  will-change: opacity, transform, filter, text-shadow;
 }
 
-/* появление + "живое движение" */
+/* появление + живое движение + слабое мерцание */
 .memory-ghost.hand.show{
-  animation: inkFade 2.5s ease forwards, drift 8s ease-in-out infinite;
+  animation:
+    inkFade 2.8s ease forwards,
+    drift 8s ease-in-out infinite,
+    shimmer 5.5s ease-in-out infinite;
 }
 
-/* лёгкое “дыхание” (движение) */
+/* при исчезновении отменяем бесконечную анимацию
+   и отдаём управление классу .fade */
+.memory-ghost.hand.fade{
+  animation: none;
+}
+
+/* лёгкое "дыхание" */
 @keyframes drift{
   0%   { transform: translate(-50%, -50%) rotate(-0.5deg); }
   50%  { transform: translate(calc(-50% + 1px), calc(-50% - 1px)) rotate(0.8deg); }
@@ -83,7 +97,38 @@
 
 /* появление как чернила */
 @keyframes inkFade{
-  0%   { opacity: 0; filter: blur(6px); }
-  50%  { opacity: 0.7; }
-  100% { opacity: 1; filter: blur(0); }
+  0%   {
+    opacity: 0;
+    filter: blur(6px);
+  }
+  50%  {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* слабое переливание / мерцание по тексту */
+@keyframes shimmer{
+  0%{
+    text-shadow:
+      0 0 10px rgba(255,255,255,0.05),
+      0 0 18px rgba(255,245,230,0.03);
+    color: rgba(255, 245, 230, 0.82);
+  }
+  50%{
+    text-shadow:
+      0 0 14px rgba(255,255,255,0.11),
+      0 0 24px rgba(255,245,230,0.07),
+      0 0 34px rgba(255,240,220,0.04);
+    color: rgba(255, 248, 238, 0.9);
+  }
+  100%{
+    text-shadow:
+      0 0 10px rgba(255,255,255,0.05),
+      0 0 18px rgba(255,245,230,0.03);
+    color: rgba(255, 245, 230, 0.82);
+  }
 }
