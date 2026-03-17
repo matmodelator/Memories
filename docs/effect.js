@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Откуда брать фразы:
   // "js"  -> из lines.js
   // "txt" -> из phrases.txt
-  const SOURCE = "txt";
+  const SOURCE = "js";
 
   // путь к txt-файлу
   const TXT_PATH = "phrases.txt";
