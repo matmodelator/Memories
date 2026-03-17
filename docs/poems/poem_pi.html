@@ -15,7 +15,7 @@
 <!-- ВВОД тескта с параметрами -->
   <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const poem = {
+  window.poem = {
     author: "Игорь Хорош",
     year: "1990",
     title: "Пилат",
@@ -150,12 +150,14 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
   <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
   <a class="poem-arrow" id="open-comments" href="#">🚻</a>
   <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
-  
-  <!-- Лайк + переход к отзыву -->
+  <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
+    <span class="like-count">0</span>
+
+  <!-- Лайк + переход к отзыву 
   <div class="like">
     <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
     <span class="like-count">0</span>
-  </div>
+  </div>. -->
 
 <!-- Возврат назад  -->
   <script>
