@@ -67,13 +67,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // запускаем фазу исчезновения
       setTimeout(function () {
-  el.classList.add("fade");
-}, FADE_DELAY);
+        el.classList.add("fade");
 
         // удаляем только после окончания fade
-        setTimeout(function () {
-  el.remove();
-}, FADE_DELAY + FADE_DURATION);
+        el.addEventListener("transitionend", function () {
+          el.remove();
+        }, { once: true });
+
+      }, FADE_DELAY);
     }
 
     // первая фраза появляется сразу
