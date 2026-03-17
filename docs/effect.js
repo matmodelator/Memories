@@ -13,10 +13,69 @@ document.addEventListener("DOMContentLoaded", function () {
   // 2. НАСТРОЙКИ
   // ==================================================
 
-  // Откуда брать фразы:
-  // "js"  -> из lines.js
-  // "txt" -> из phrases.txt
-  const SOURCE = "js";
+
+
+// 📜 Загрузка фраз (ОБЪЕДИНЕНИЕ)
+
+// режим:
+// "js"   → только lines.js
+// "txt"  → только phrases.txt
+// "both" → ОБА источника
+const SOURCE = "both";
+
+let MEMORY_LINES = [];
+
+// 👉 1. Берем из lines.js (если есть)
+function loadFromJS() {
+  if (window.MEMORY_LINES && Array.isArray(window.MEMORY_LINES)) {
+    return window.MEMORY_LINES;
+  }
+  return [];
+}
+
+// 👉 2. Берем из txt
+async function loadFromTXT() {
+  try {
+    const response = await fetch("phrases.txt");
+    const text = await response.text();
+
+    return text
+      .split("\n")
+      .map(line => line.trim())
+      .filter(line => line.length > 0);
+
+  } catch (e) {
+    console.log("TXT не загрузился", e);
+    return [];
+  }
+}
+
+// 👉 3. ОБЪЕДИНЕНИЕ
+async function loadLines() {
+
+  let lines = [];
+
+  if (SOURCE === "js" || SOURCE === "both") {
+    lines = lines.concat(loadFromJS());
+  }
+
+  if (SOURCE === "txt" || SOURCE === "both") {
+    const txtLines = await loadFromTXT();
+    lines = lines.concat(txtLines);
+  }
+
+  // 👉 удаляем дубли (важно)
+  MEMORY_LINES = [...new Set(lines)];
+
+  // сигнал системе
+  window.MEMORY_LINES = MEMORY_LINES;
+
+  window.dispatchEvent(new Event("memoryLinesReady"));
+}
+
+// запуск
+loadLines();
+ 
 
   // путь к txt-файлу
   const TXT_PATH = "phrases.txt";
