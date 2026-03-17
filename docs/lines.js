@@ -1,4 +1,4 @@
-<script>
+
 /*const MEMORY_LINES = [
   "И это было…",
   "Как будто память держит свет",
@@ -168,4 +168,4 @@ document.addEventListener("DOMContentLoaded", async function () {
   );
 
 });
-</script>
+
