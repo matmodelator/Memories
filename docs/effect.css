@@ -1,0 +1,55 @@
+/* ===================================================
+   MEMORY FIELD (призрачные строки)
+   =================================================== */
+
+.memory-field{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+/* отдельная строка */
+.memory-ghost{
+  position: absolute;
+  max-width: 40vw;
+  color: rgba(255, 245, 230, 0.65);
+  font-size: clamp(18px, 2vw, 34px);
+  font-style: italic;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  filter: blur(6px);
+
+  text-shadow: 0 0 12px rgba(255,255,255,0.08);
+
+  transition:
+    opacity 2.5s ease,
+    transform 2.5s ease,
+    filter 2.5s ease;
+}
+
+/* появление */
+.memory-ghost.show{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* исчезновение */
+.memory-ghost.fade{
+  opacity: 0;
+  transform: translateY(-6px) scale(1.02);
+  filter: blur(8px);
+}
+
+/* мобильная адаптация */
+@media (max-width: 900px){
+  .memory-ghost{
+    max-width: 70vw;
+    font-size: 18px;
+  }
+}
