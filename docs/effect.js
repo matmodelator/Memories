@@ -148,8 +148,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // полностью удаляем элемент
       setTimeout(function () {
-        el.remove();
-      }, REMOVE_DELAY);
+  el.classList.add("fade");
+
+  el.addEventListener("transitionend", function () {
+    el.remove();
+  }, { once: true });
+
+}, FADE_DELAY);
     }
 
     // первая фраза появляется сразу
