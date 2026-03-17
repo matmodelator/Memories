@@ -122,14 +122,23 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
   
   </nav> 
 
-  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
-<section class="reading-panel" 
-  aria-label="Текст стихотворения">
+<!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+<section class="reading-panel" aria-label="Текст стихотворения">
  
   <!-- Контейнер стиха -->
   <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
   <pre id="poem" class="poem-text"></pre>
   <!-- подпись внизу страницы -->
+
+<!-- СТРЕЛКИ и СЕРДЦА -->
+
+<div class="poem-buttons">
+
+  <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
+  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
+  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
+  <a class="poem-arrow" id="open-annotation" href="#">▶️</a>
+  
 
  <!-- <div id="annotation-box" class="overlay-box">
     <div id="annotation-text"></div>
@@ -145,15 +154,6 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
   
   
   
-
-<!-- СТРЕЛКИ и СЕРДЦА -->
-
-<div class="poem-buttons">
-
-  <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
-  <a class="poem-arrow" id="prev-poem" href="#">🔼</a>
-  <a class="poem-arrow" id="next-poem" href="#">🔽</a>
-  <button id="open-annotation" class="review-toggle">▶️</button>
 
   <!-- Лайк + переход к отзыву -->
   <div class="like">
@@ -302,33 +302,57 @@ document.addEventListener("DOMContentLoaded", function () {
 </script> 
 
 <!-- АНОТАЦИИ -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
   const annotationBox = document.getElementById("annotation-box");
-const annotationText = document.getElementById("annotation-text");
+  const annotationText = document.getElementById("annotation-text");
 
-const openBtn = document.getElementById("open-annotation");
-const backBtn = document.getElementById("back-btn");
-const aiBtn = document.getElementById("ai-btn");
-const reviewBtn = document.getElementById("review-btn");
+  const openBtn = document.getElementById("open-annotation");
+  const backBtn = document.getElementById("back-btn");
+  const aiBtn = document.getElementById("ai-btn");
+  const reviewBtn = document.getElementById("review-btn");
 
-if (annotationText){
-  annotationText.textContent = poem.annotation;
-}
+  if (!annotationBox || !annotationText) return;
 
-openBtn.onclick = () => {
-  annotationBox.classList.add("open");
-};
+  if (typeof poem !== "undefined" && poem.annotation) {
+    annotationText.textContent = poem.annotation;
+  }
 
-backBtn.onclick = () => {
-  annotationBox.classList.remove("open");
-};
+  if (openBtn) {
+    openBtn.onclick = function (e) {
+      e.preventDefault();
+      if (poem.annotation) {
+        annotationText.textContent = poem.annotation;
+      }
+      annotationBox.classList.add("open");
+    };
+  }
 
-aiBtn.onclick = () => {
-  annotationText.textContent = poem.aiReview;
-};
+  if (backBtn) {
+    backBtn.onclick = function () {
+      annotationBox.classList.remove("open");
+    };
+  }
 
-reviewBtn.onclick = () => {
-  annotationText.textContent = poem.readerReview;
-};
+  if (aiBtn) {
+    aiBtn.onclick = function () {
+      if (poem.aiReview) {
+        annotationText.textContent = poem.aiReview;
+      }
+    };
+  }
+
+  if (reviewBtn) {
+    reviewBtn.onclick = function () {
+      if (poem.readerReview) {
+        annotationText.textContent = poem.readerReview;
+      }
+    };
+  }
+
+});
+</script>
 
 <!-- ПАРОЛЬ  
 <body data-password="пароль">
