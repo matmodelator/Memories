@@ -123,20 +123,37 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
   </nav> 
 
   <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
-<section class="reading-panel" aria-label="Текст стихотворения">
+<section class="reading-panel" 
+  aria-label="Текст стихотворения">
  
   <!-- Контейнер стиха -->
   <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
   <pre id="poem" class="poem-text"></pre>
   <!-- подпись внизу страницы -->
 
+  <div id="annotation-box" class="overlay-box">
+    <div id="annotation-text"></div>
+
+    <div class="annotation-menu">
+      <button id="ai-btn">ℹ️</button>
+      <button id="review-btn">🚻</button>
+      <button id="back-btn">🔄</button>
+    </div>
+  </div>
+
+</section>
+  
+  
+  
+
 <!-- СТРЕЛКИ и СЕРДЦА -->
 
 <div class="poem-buttons">
 
   <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
-  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
-  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
+  <a class="poem-arrow" id="prev-poem" href="#">🔼</a>
+  <a class="poem-arrow" id="next-poem" href="#">🔽</a>
+  <a class="poem-arrow" id="next-poem" href="#">▶️</a>
 
   <!-- Лайк + переход к отзыву -->
   <div class="like">
