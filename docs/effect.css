@@ -1,0 +1,78 @@
+/* ===================================================
+   MEMORY FIELD (призрачные строки)
+   =================================================== */
+
+.memory-field{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+/* отдельная строка */
+.memory-ghost{
+  position: absolute;
+  max-width: 40vw;
+  color: rgba(255, 245, 230, 0.65);
+  font-size: clamp(18px, 2vw, 34px);
+  font-style: italic;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+
+  opacity: 0;
+  filter: blur(6px);
+
+  text-shadow:
+    0 0 12px rgba(255,255,255,0.08),
+    0 0 20px rgba(255,245,230,0.04);
+
+  transition:
+    opacity 2.8s ease-in-out,
+    filter 2.8s ease-in-out,
+    text-shadow 2.8s ease-in-out;
+}
+
+/* появление */
+.memory-ghost.show{
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* исчезновение */
+.memory-ghost.fade{
+  opacity: 0;
+  filter: blur(8px);
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.04),
+    0 0 18px rgba(255,245,230,0.02);
+}
+
+/* мобильная адаптация */
+@media (max-width: 900px){
+  .memory-ghost{
+    max-width: 70vw;
+    font-size: 18px;
+  }
+}
+
+
+/* ===================================================
+   РУКОПИСНЫЙ СЛОЙ (ТОЛЬКО ДЛЯ ЭФФЕКТА)
+   =================================================== */
+
+.memory-ghost.hand{
+  font-family: "Marck Script", cursive;
+  font-style: normal;
+  color: rgba(255, 245, 230, 0.85);
+  opacity: 0;
+  will-change: opacity, filter, text-shadow;
+}
+
+.memory-ghost.hand.show{
+  opacity: 1;
+}
+
+.memory-ghost.hand.fade{
+  opacity: 0;
+}
