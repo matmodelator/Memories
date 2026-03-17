@@ -318,13 +318,9 @@ if (reviewBtn) {
   reviewBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    const reviewText = String(poem.review || "").trim();
+    const reviewText = poem.review ? poem.review.trim() : "";
 
-    if (reviewText !== "") {
-      poemEl.textContent = reviewText;
-    } else {
-      poemEl.textContent = "Аннотация пока не добавлена.";
-    }
+    poemEl.textContent = reviewText || "Аннотация пока не добавлена.";
   });
 }
 
