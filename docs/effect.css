@@ -60,8 +60,8 @@
 
 
 /* ===================================================
-   РУКОПИСНЫЙ СЛОЙ (ТОЛЬКО ДЛЯ ЭФФЕКТА)
-   =================================================== */
+   РУКОПИСНЫЙ СЛОЙ (ТОЛЬКО ДЛЯ ЭФФЕКТА) шрифт Марк
+   ===================================================
 
 .memory-ghost.hand{
   font-family: "Marck Script", cursive;
@@ -78,3 +78,25 @@
 .memory-ghost.hand.fade{
   opacity: 0;
 }
+ */
+
+
+
+/* ===================================================
+   ШРИФТЫ (РАЗНЫЕ ПОЧЕРКИ)
+   =================================================== */
+
+.hand-1  { font-family: "Marck Script", cursive; }
+.hand-2  { font-family: "Caveat", cursive; }
+.hand-3  { font-family: "Neucha", cursive; }
+.hand-4  { font-family: "Shadows Into Light", cursive; }
+.hand-5  { font-family: "Indie Flower", cursive; }
+.hand-6  { font-family: "Covered By Your Grace", cursive; }
+.hand-7  { font-family: "Just Another Hand", cursive; font-style: italic; }
+.hand-8  { font-family: "Nanum Pen Script", cursive; font-style: italic; }
+.hand-9  { font-family: "Gloria Hallelujah", cursive; font-style: italic; }
+.hand-10 { font-family: "Patrick Hand", cursive; font-style: italic; }
+.hand-11 { font-family: "Cormorant Garamond", serif; }
+.hand-12 { font-family: "Playfair Display", serif; font-style: italic; }
+
+
