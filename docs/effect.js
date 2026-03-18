@@ -43,14 +43,14 @@ const scale = 0.96 + Math.random() * 0.08;
 el.style.transform =
   `translate(-50%, -50%) scale(${scale}) skewX(${skew}deg)`;
 
-    // 👇 все строки рукописные
+  /*  // 👇 все строки рукописные
     el.classList.add("hand");
 
     const skew = -3 - Math.random() * 6;
     const scale = 0.96 + Math.random() * 0.08;
 
     el.style.transform =
-      `translate(-50%, -50%) scale(${scale}) skewX(${skew}deg)`;
+      `translate(-50%, -50%) scale(${scale}) skewX(${skew}deg)`; */
 
     // берём случайную фразу из готового массива
     const text = lines[Math.floor(Math.random() * lines.length)];
