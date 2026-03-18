@@ -58,8 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 1993-2023
-`
-
+`,
   review: `
 Это очень нежное и атмосферное стихотворение. В нём чувствуется «дорожное» настроение и тонкая работа со звуком.
 
@@ -85,9 +84,7 @@ resume: `
   comments: `
 
 `
-  
   };
-
   // title = первая непустая строка, если пусто
   if (!poem.title.trim()) {
     poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
