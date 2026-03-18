@@ -165,24 +165,22 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
 <div class="poem-buttons">
 
-  <div class="poem-nav">
   <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
-  <a class="poem-arrow" id="prev-poem" href="#">🔼</a>
-  <a class="poem-arrow" id="next-poem" href="#">🔽</a>
+  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
+  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
   <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
   <a class="poem-arrow" id="open-comments" href="#">🚻</a>
   <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
-</div>
-  
-  
-  
+  <a class="poem-arrow" id="heart" href="#">💟</a>
+    <span class="like-count">0</span>
 
-  <!-- Лайк + переход к отзыву -->
+  <!-- Лайк + переход к отзыву 
   <div class="like">
     <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
     <span class="like-count">0</span>
-  </div>
+  </div>. -->
 
+  
 <!-- Возврат назад  -->
   <script>
 document.getElementById("back-arrow").onclick = function () {
