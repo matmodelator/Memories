@@ -26,6 +26,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const el = document.createElement("div");
     el.className = "memory-ghost";
 
+
+    // 👇 СЛУЧАЙНЫЙ ШРИФТ
+  const fonts = [
+    "hand-1","hand-2","hand-3","hand-4","hand-5","hand-6",
+    "hand-7","hand-8","hand-9","hand-10","hand-11","hand-12"
+  ];
+
+  const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+  el.classList.add(randomFont);
+
+    // 👇 РАНДОМНЫЙ НАКЛОН
+const skew = (Math.random() * 12 - 6);
+const scale = 0.96 + Math.random() * 0.08;
+
+el.style.transform =
+  `translate(-50%, -50%) scale(${scale}) skewX(${skew}deg)`;
+
     // 👇 все строки рукописные
     el.classList.add("hand");
 
