@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
   el.classList.add(randomFont);
 
     // 👇 РАНДОМНЫЙ НАКЛОН
-const skew = (Math.random() * 12 - 6);
-const scale = 0.96 + Math.random() * 0.08;
+const skew = (Math.random() * 8 + 2);
+const scale = 1 + Math.random() * 0.1;
 
 el.style.transform =
   `translate(-50%, -50%) scale(${scale}) skewX(${skew}deg)`;
