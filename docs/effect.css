@@ -18,7 +18,7 @@
   max-width: 40vw;
   color: rgba(255, 245, 230, 0.65);
   font-size: clamp(18px, 2vw, 34px);
-  font-style: italic;
+  font-style: normal;
   line-height: 1.4;
   letter-spacing: 0.04em;
 
