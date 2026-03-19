@@ -100,6 +100,10 @@ resume: `
 Я так хотел насытиться тобою!..
 запечатлённый в образе Дали...
 `,
+
+note: `
+
+`.
     
 comments: `
 
@@ -346,6 +350,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const reviewBtn = document.getElementById("open-review");
   const commentsBtn = document.getElementById("open-comments");
+  const rangeBtn = document.getElementById("open-range");
+  const noteBtn = document.getElementById("open-note");  
   const backBtn = document.getElementById("back-to-poem");
 
   // 🔒 используем уже существующий poem.text (ничего не переинициализируем)
@@ -376,13 +382,13 @@ if (rangeBtn) {
 }
 
 // 🔤 autoan
-if (autoanBtn) {
-  autoanBtn.addEventListener("click", function (e) {
+if (noteBtn) {
+  noteBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    const autoanText = poem.autoan ? poem.autoan.trim() : "";
+    const noteText = poem.note ? poem.note.trim() : "";
 
-    poemEl.textContent = autoanText || "Автор пока не прокомментировал";
+    poemEl.textContent = noteText || "Автор пока не прокомментировал";
   });
 }
   
