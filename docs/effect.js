@@ -1,33 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
 
-  // защита: не запускать эффект второй раз
-  if (window.__memoryEffectStarted) return;
-  window.__memoryEffectStarted = true;
-
-  const field = document.querySelector(".memory-field");
-  if (!field) return;
-
-  const SOURCE = "txt";
-  const TXT_PATH = "phrases.txt";
-  const SPAWN_DELAY = 1800;
-  const FADE_DELAY = 3200;
-  const REMOVE_DELAY = 6000;
-
-  function startEffect(lines) {
-
-    // защита: не запускать startEffect повторно
-    if (window.__memoryEffectRunning) return;
-    window.__memoryEffectRunning = true;
-
-    if (!lines || !lines.length) return;
-
-    function spawnLine() {
-      const el = document.createElement("div");
-      el.className = "memory-ghost";
-
-  
-
   // ==================================================
   // 1. ИЩЕМ КОНТЕЙНЕР, КУДА БУДУТ ПОПАДАТЬ ФРАЗЫ
   // ==================================================
