@@ -48,10 +48,19 @@
 
 <!-- стопКлик по фону -->
   <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const bg = document.querySelector(".bg-image");
-  if (bg) bg.style.pointerEvents = "none";
-});
+document.addEventListener("click", function (e) {
+  if (
+    e.target.closest(".main-nav") ||
+    e.target.closest(".nav-panel") ||
+    e.target.closest("a") ||
+    e.target.closest("button")
+  ) {
+    return;
+  }
+
+  e.preventDefault();
+  e.stopPropagation();
+}, true);
 </script>
   
 
