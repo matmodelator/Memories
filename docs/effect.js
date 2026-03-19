@@ -32,13 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const fonts = [
     "hand-1","hand-2","hand-3","hand-4","hand-5","hand-6",
     "hand-7","hand-8","hand-9","hand-10","hand-11","hand-12", 
-    "hand-arial", "hand-time", "hand-courier"
+    "hand-arial", "hand-time", "hand-courier" ];
 
   const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
   el.classList.add(randomFont);
 
     // 👇 РАНДОМНЫЙ НАКЛОН
-const skew = (Math.random() * 8 + 2);
+const skew = (Math.random() * 8 - 5);
 const scale = 1 + Math.random() * 0.1;
 
 el.style.transform =
