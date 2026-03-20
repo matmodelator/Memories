@@ -154,8 +154,10 @@ comments: `
   }
 
   // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
-  pre.textContent = poem.text;
+ // pre.textContent = poem.text;
 
+pre.innerHTML = poem.text.replace(/\n/g, "<br>");
+  
   // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
   const meta = document.getElementById("meta");
  // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
