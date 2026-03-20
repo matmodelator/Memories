@@ -142,14 +142,17 @@ async function downloadTable() {
           title = fileName;
         }
 
-        const parsed = parseRange(rangeMatch[1]);
 
-        const row = [
-          fileName,
-          title,
-          ...criteriaOrder.map(c => parsed[c] || "")
-        ];
+const values = parseRange(rangeMatch[1]);
 
+const row = [
+  fileName,
+  title,
+  ...values
+];
+
+        
+        
         rows.push(row);
       } catch (e) {
         debug.textContent += "Ошибка в " + path + ": " + e + "\n";
