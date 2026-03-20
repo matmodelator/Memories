@@ -426,11 +426,41 @@ if (rangeBtn) {
 
     const rangeText = poem.range ? poem.range.trim() : "";
 
-    poemEl.textContent = rangeText || "Я всё жду, когда его оценят по достоинству";
+    if (!rangeText) {
+      poemEl.textContent = "Я всё жду, когда его оценят по достоинству";
+      return;
+    }
+
+    const rows = rangeText
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+
+    let html = '<table class="range-table">';
+
+    rows.forEach((row, index) => {
+      const cols = row.split("|").map(col => col.trim());
+
+      html += "<tr>";
+
+      cols.forEach(col => {
+        if (index === 0) {
+          html += `<th>${col}</th>`;
+        } else {
+          html += `<td>${col}</td>`;
+        }
+      });
+
+      html += "</tr>";
+    });
+
+    html += "</table>";
+
+    poemEl.innerHTML = html;
   });
 }
 
-// 🔤 autoan
+// 🔤 note
 if (noteBtn) {
   noteBtn.addEventListener("click", function (e) {
     e.preventDefault();
