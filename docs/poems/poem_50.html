@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -20,10 +15,11 @@
 <!-- ВВОД тескта с параметрами -->
   <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const poem = {
+  window.poem = {
     author: "Игорь Хорош",
-    year: "2021",
+    year: "2025",
     title: "",
+    
     text: `
 50 лет и один вечер
 
@@ -59,9 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 3.08.21
-`
+`,
 
-  review: `
+review: `
+Аннотация от ИИ
+
 1. Тема и идея 
 * Тема: Воспоминание о мгновении любви и горечь её утраты.
 * Идея: Любовь может казаться яркой и «радужной», но порой она оказывается лишь хрупким сном или «картонными крыльями», которые не могут удержать героя в реальности счастья. 
@@ -79,20 +77,19 @@ document.addEventListener("DOMContentLoaded", function () {
 * Рифмовка: Перекрестная (АБАБ). Стоит отметить интересные рифмы: оттаивать — удваивать, топ-спинами — в спины нам. 
 Итог: Стихотворение очень искреннее. Оно начинается как гимн единству, а заканчивается признанием слабости лирического героя, чей полет за мечтой ограничен «картонностью» его собственных чувств или обстоятельств. 
 Хотите разобрать конкретный образ подробнее, например, что могут значить «картонные крылья» в этом контексте? 
-
-Вот итоговый разбор стихотворения по пунктам с оценками и финальным средним баллом: 
-1. Техника и ритм — 9/10 Использован трехстопный анапест, который задаёт тексту стремительный, почти танцевальный темп. Это идеально передаёт динамику игры в теннис и прогулки, о которых пишет автор. Сбоев в ритме нет, стихотворение «дышит» легко.
-2. Рифмовка — 10/10 Это самая сильная сторона текста. Автор использует редкие, составные и нетривиальные рифмы: «топ-спинами — в спины нам», «разово — заживо», «оттаивать — удваивать». Это уровень высокого мастерства, который выводит стих за рамки любительской поэзии.
-3. Образный строй — 8/10 Очень точное сочетание бытовых, почти детских деталей («галечка», «пальчики») со спортивной экспрессией («топ-спины»). Финальный образ «картонных крыльев» — мощная метафора иллюзорности и хрупкости чувств, которая мгновенно меняет настроение текста с радостного на трагическое.
-4. Смысловая глубина — 7/10 В центре — классический сюжет о хрупкости момента. Смысл в том, что счастье часто оказывается лишь «сном» или «разовым» всплеском, а реальность — это «пыльные степи» и «кордоны». Глубина добавляется через признание собственной беспомощности перед уходящим временем.
-5. Актуальность — 8/10 Тема эскапизма (побега в воспоминания) и ощущения «картонности» (искусственности) мира сегодня звучит очень современно. Это стихи о человеке, который пытается удержать крупицы тепла в мире, разделенном «мрачными кордонами».
-6. Эмоциональное воздействие — 8/10 Стихотворение вызывает искреннее чувство грусти. Переход от тепла («оттаивать») к холодному исчезновению в «южной полночи» прописан очень кинематографично — читатель буквально видит, как картинка тускнеет и покрывается пылью. 
-
-
-Средняя оценка: 8.3 / 10 
-Итог: Это качественная, технически выверенная лирика. Она цепляет сочетанием спортивного азарта и личной беззащитности. Автор мастерски владеет формой, превращая частную историю в глубокое размышление о границах любви и реальности. 
-Хотите, чтобы я помог сформулировать главную идею одним предложением для подзаголовка? 
 `,
+    
+range: `
+Критерий | Балл (1–10) | Комментарий
+Техника и ритм | 9 | Использован трехстопный анапест, который задаёт тексту стремительный, почти танцевальный темп. Это идеально передаёт динамику игры в теннис и прогулки, о которых пишет автор. Сбоев в ритме нет, стихотворение «дышит» легко.
+Рифмовка | 10 | Это самая сильная сторона текста. Автор использует редкие, составные и нетривиальные рифмы: «топ-спинами — в спины нам», «разово — заживо», «оттаивать — удваивать». Это уровень высокого мастерства, который выводит стих за рамки любительской поэзии.
+Образный строй | 8 | Очень точное сочетание бытовых, почти детских деталей («галечка», «пальчики») со спортивной экспрессией («топ-спины»). Финальный образ «картонных крыльев» — мощная метафора иллюзорности и хрупкости чувств, которая мгновенно меняет настроение текста с радостного на трагическое.
+Смысловая глубина | 7 | В центре — классический сюжет о хрупкости момента. Смысл в том, что счастье часто оказывается лишь «сном» или «разовым» всплеском, а реальность — это «пыльные степи» и «кордоны». Глубина добавляется через признание собственной беспомощности перед уходящим временем.
+Актуальность | 8 | Тема эскапизма (побега в воспоминания) и ощущения «картонности» (искусственности) мира сегодня звучит очень современно. Это стихи о человеке, который пытается удержать крупицы тепла в мире, разделенном «мрачными кордонами».
+Эмоциональное воздействие | 8 | Стихотворение вызывает искреннее чувство грусти. Переход от тепла («оттаивать») к холодному исчезновению в «южной полночи» прописан очень кинематографично — читатель буквально видит, как картинка тускнеет и покрывается пылью.
+СРЕДНИЙ БАЛЛ | 8.3 | Сильный, динамичный текст с редкими рифмами и выразительным финальным образом. Сочетает лёгкость формы и меланхолическую глубину содержания.
+`,
+    
 resume: `
 в руках твоих оттаивать
 как я сгораю заживо 
@@ -104,11 +101,16 @@ resume: `
 степями пыльными над мрачными кордонами
 влекомый крыльями любви своей картонными
 `,
-  comments: `
+
+note: `
+
+`,
+    
+comments: `
 
 `
-  
   };
+
 
   // title = первая непустая строка, если пусто
   if (!poem.title.trim()) {
@@ -150,17 +152,11 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
   meta.style.pointerEvents = "none";
   meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
  });
-
-
-};
-
     
 </script>
  
 <body>
 
-  
-</div>
 
   <!-- Фон (на уровень выше) -->
   <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
@@ -175,7 +171,7 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
   
   </nav> 
 
-<!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
 <section class="reading-panel" aria-label="Текст стихотворения">
  
   <!-- Контейнер стиха -->
@@ -187,24 +183,58 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
 <div class="poem-buttons">
 
-  <div class="poem-nav">
   <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
-  <a class="poem-arrow" id="prev-poem" href="#">🔼</a>
-  <a class="poem-arrow" id="next-poem" href="#">🔽</a>
+  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
+  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
   <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
+  <a class="poem-arrow" id="open-range" href="#">🔢</a>
+  <a class="poem-arrow" id="open-note" href="#">🔤</a>
   <a class="poem-arrow" id="open-comments" href="#">🚻</a>
   <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
-</div>
-  
-  
-  
+  <a class="poem-arrow" id="heart" href="#">💟</a>
+    <span class="like-count">0</span>
 
-  <!-- Лайк + переход к отзыву -->
+  <!-- Лайк + переход к отзыву 
   <div class="like">
     <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
     <span class="like-count">0</span>
-  </div>
+  </div>. -->
 
+<!-- Локальный счетчик лайков  -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const heart = document.getElementById("heart");
+  const count = document.querySelector(".like-count");
+
+  if (!heart || !count) return;
+
+  const key = "likes_" + location.pathname;
+
+  // берём сохранённое или стартовое из HTML
+  let likes = localStorage.getItem(key);
+
+  if (likes === null) {
+    likes = parseInt(count.textContent) || 0;
+  } else {
+    likes = parseInt(likes);
+  }
+
+  count.textContent = likes;
+
+  heart.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    likes++;
+    count.textContent = likes;
+
+    localStorage.setItem(key, likes);
+
+  });
+
+});
+</script>
+  
 <!-- Возврат назад  -->
   <script>
 document.getElementById("back-arrow").onclick = function () {
@@ -281,14 +311,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-<!-- Переход к Анотациям  
-<div id="annotation-box" class="overlay-box">
-  <div id="annotation-text"></div>
-
-  <div class="annotation-menu">
-    <button type="button" id="back-btn">🔄</button>
-  </div>
-</div>-->
   
 </section>
 
@@ -353,65 +375,115 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script> 
 
-<!-- АНОТАЦИИ 
+<!-- Аннотации -->
   <script>
 document.addEventListener("DOMContentLoaded", function () {
 
   const poemEl = document.getElementById("poem");
+  if (!poemEl) return;
 
   const reviewBtn = document.getElementById("open-review");
   const commentsBtn = document.getElementById("open-comments");
+  const rangeBtn = document.getElementById("open-range");
+  const noteBtn = document.getElementById("open-note");  
   const backBtn = document.getElementById("back-to-poem");
 
-  if (!poemEl) return;
+  // 🔒 используем уже существующий poem.text (ничего не переинициализируем)
+  const originalText = (typeof poem !== "undefined" && poem.text)
+    ? poem.text
+    : poemEl.textContent;
 
-  // исходный текст (если он уже в HTML)
-  let originalText = poemEl.textContent;
+  // ℹ️ review
+if (reviewBtn) {
+  reviewBtn.addEventListener("click", function (e) {
+    e.preventDefault();
 
-  // если стих задаётся через poem.text — берём его как главный источник
-  if (typeof poem !== "undefined" && poem.text && poem.text.trim() !== "") {
-    poemEl.textContent = poem.text;
-    originalText = poem.text;
-  }
+    const reviewText = poem.review ? poem.review.trim() : "";
 
-  // ℹ️ review (аннотация)
-  if (reviewBtn) {
-    reviewBtn.onclick = function (e) {
-      e.preventDefault();
+    poemEl.textContent = reviewText || "Аннотация пока не добавлена";
+  });
+}
 
-      if (typeof poem !== "undefined" && poem.review && poem.review.trim() !== "") {
-        poemEl.textContent = poem.review;
-      } else {
-        poemEl.textContent = "Аннотация пока не добавлена.";
-      }
-    };
-  }
+// 🔢 range
+if (rangeBtn) {
+  rangeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
 
-  // 🚻 comments (отзывы)
-  if (commentsBtn) {
-    commentsBtn.onclick = function (e) {
-      e.preventDefault();
+    const rangeText = poem.range ? poem.range.trim() : "";
 
-      if (typeof poem !== "undefined" && poem.comments && poem.comments.trim() !== "") {
-        poemEl.textContent = poem.comments;
-      } else {
-        poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
-      }
-    };
-  }
+    if (!rangeText) {
+      poemEl.textContent = "Я всё жду, когда его оценят по достоинству";
+      return;
+    }
 
-  // 🔄 назад к стиху
+    const rows = rangeText
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+
+    let html = '<table class="range-table">';
+
+    rows.forEach((row, index) => {
+      const cols = row.split("|").map(col => col.trim());
+
+      html += "<tr>";
+
+      cols.forEach(col => {
+        if (index === 0) {
+          html += `<th>${col}</th>`;
+        } else {
+          html += `<td>${col}</td>`;
+        }
+      });
+
+      html += "</tr>";
+    });
+
+    html += "</table>";
+
+    poemEl.innerHTML = html;
+  });
+}
+
+// 🔤 note
+if (noteBtn) {
+  noteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const noteText = poem.note ? poem.note.trim() : "";
+
+    poemEl.textContent = noteText || "Автор пока не прокомментировал";
+  });
+}
+  
+// 🚻 comments
+if (commentsBtn) {
+  commentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const commentsText = String(poem.comments || "").trim();
+
+    if (commentsText !== "") {
+      poemEl.textContent = commentsText;
+    } else {
+      poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
+    }
+  });
+}
+
+  // 🔄 назад
   if (backBtn) {
-    backBtn.onclick = function (e) {
+    backBtn.addEventListener("click", function (e) {
       e.preventDefault();
       poemEl.textContent = originalText;
-    };
+    });
   }
 
 });
-</script> 
+</script>
 
- ПАРОЛЬ  
+
+<!-- ПАРОЛЬ  
 <body data-password="пароль">
 <script src="../password-gate.js"></script> -->
     
