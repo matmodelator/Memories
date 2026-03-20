@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Export</title>
+</head>
+
+<body>
+
+<button onclick="downloadTable()">Скачать таблицу</button>
+
+<script>
+async function downloadTable() {
+
+  const criteriaOrder = [
+    "Образность и метафоры",
+    "Ритм и рифма",
+    "Эмоциональность",
+    "Стиль и лексика",
+    "Композиция",
+    "Оригинальность",
+    "СРЕДНИЙ БАЛЛ"
+  ];
+
+  function parseRange(text) {
+    const result = {};
+
+    text.split("\n")
+      .map(s => s.trim())
+      .filter(Boolean)
+      .forEach(line => {
+        const parts = line.split("|").map(s => s.trim());
+        if (parts[0] && parts[1] && parts[0] !== "Критерий") {
+          result[parts[0]] = parts[1];
+        }
+      });
+
+    return result;
+  }
+
+  const res = await fetch("poems.html");
+  const html = await res.text();
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, "text/html");
+
+  const links = [...doc.querySelectorAll("a[href*='poem_']")]
+    .map(a => a.getAttribute("href"));
+
+  const rows = [];
+
+  rows.push([
+    "Стих",
+    "Образность",
+    "Ритм",
+    "Эмоции",
+    "Стиль",
+    "Композиция",
+    "Оригинальность",
+    "Средний"
+  ]);
+
+  for (const path of links) {
+    try {
+      const r = await fetch(path);
+      const text = await r.text();
+
+      const titleMatch = text.match(/title:\s*"([^"]*)"/);
+      const rangeMatch = text.match(/range:\s*`([\s\S]*?)`/);
+
+      if (!rangeMatch) continue;
+
+      const title = titleMatch ? titleMatch[1] : path;
+      const parsed = parseRange(rangeMatch[1]);
+
+      const row = [
+        title,
+        ...criteriaOrder.map(c => parsed[c] || "")
+      ];
+
+      rows.push(row);
+
+    } catch(e){}
+  }
+
+  const csv = rows.map(r => r.join(",")).join("\n");
+
+  const blob = new Blob([csv], {type: "text/csv"});
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "poems-table.csv";
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
