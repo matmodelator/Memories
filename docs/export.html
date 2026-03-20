@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Export</title>
+  <meta charset="UTF-8">
+  <title>Export</title>
 </head>
-
 <body>
 
-<button onclick="downloadTable()">Скачать таблицу</button>
+<button id="download-btn">Скачать таблицу</button>
+<pre id="debug"></pre>
 
 <script>
+document.getElementById("download-btn").addEventListener("click", downloadTable);
+
 async function downloadTable() {
+  const debug = document.getElementById("debug");
+  debug.textContent = "Старт...\n";
 
   const criteriaOrder = [
     "Образность и метафоры",
@@ -38,62 +42,111 @@ async function downloadTable() {
     return result;
   }
 
-  const res = await fetch("poems.html");
-  const html = await res.text();
+  try {
+    debug.textContent += "Гружу poems.html...\n";
 
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, "text/html");
+    const res = await fetch("poems.html");
+    if (!res.ok) {
+      debug.textContent += "Ошибка загрузки poems.html: " + res.status + "\n";
+      return;
+    }
 
-  const links = [...doc.querySelectorAll("a[href*='poem_']")]
-    .map(a => a.getAttribute("href"));
+    const html = await res.text();
+    debug.textContent += "poems.html загружен\n";
 
-  const rows = [];
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
 
-  rows.push([
-    "Стих",
-    "Образность",
-    "Ритм",
-    "Эмоции",
-    "Стиль",
-    "Композиция",
-    "Оригинальность",
-    "Средний"
-  ]);
+    const links = [...doc.querySelectorAll("a[href*='poem_']")]
+      .map(a => a.getAttribute("href"))
+      .filter(Boolean);
 
-  for (const path of links) {
-    try {
-      const r = await fetch(path);
-      const text = await r.text();
+    debug.textContent += "Найдено ссылок: " + links.length + "\n";
 
-      const titleMatch = text.match(/title:\s*"([^"]*)"/);
-      const rangeMatch = text.match(/range:\s*`([\s\S]*?)`/);
+    if (!links.length) {
+      debug.textContent += "Ссылки poem_*.html не найдены\n";
+      return;
+    }
 
-      if (!rangeMatch) continue;
+    const rows = [];
 
-      const title = titleMatch ? titleMatch[1] : path;
-      const parsed = parseRange(rangeMatch[1]);
+    rows.push([
+      "Стих",
+      "Образность",
+      "Ритм",
+      "Эмоции",
+      "Стиль",
+      "Композиция",
+      "Оригинальность",
+      "Средний"
+    ]);
 
-      const row = [
-        title,
-        ...criteriaOrder.map(c => parsed[c] || "")
-      ];
+    for (const path of links) {
+      try {
+        debug.textContent += "Гружу: " + path + "\n";
 
-      rows.push(row);
+        const r = await fetch(path);
+        if (!r.ok) {
+          debug.textContent += "Пропуск " + path + " : " + r.status + "\n";
+          continue;
+        }
 
-    } catch(e){}
+        const text = await r.text();
+
+        const titleMatch = text.match(/title:\s*"([^"]*)"/);
+        const rangeMatch = text.match(/range:\s*`([\s\S]*?)`/);
+
+        if (!rangeMatch) {
+          debug.textContent += "range не найден в: " + path + "\n";
+          continue;
+        }
+
+        const title = titleMatch ? titleMatch[1].trim() : path;
+        const parsed = parseRange(rangeMatch[1]);
+
+        const row = [
+          title,
+          ...criteriaOrder.map(c => parsed[c] || "")
+        ];
+
+        rows.push(row);
+      } catch (e) {
+        debug.textContent += "Ошибка в " + path + ": " + e + "\n";
+      }
+    }
+
+    debug.textContent += "Строк в итоговой таблице: " + rows.length + "\n";
+
+    if (rows.length <= 1) {
+      debug.textContent += "Данных нет\n";
+      return;
+    }
+
+    const csv = rows
+      .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(","))
+      .join("\n");
+
+    debug.textContent += "CSV собран\n";
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "poems-table.csv";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    debug.textContent += "Команда на скачивание отправлена\n";
+
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 1000);
+
+  } catch (e) {
+    debug.textContent += "Общая ошибка: " + e + "\n";
   }
-
-  const csv = rows.map(r => r.join(",")).join("\n");
-
-  const blob = new Blob([csv], {type: "text/csv"});
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "poems-table.csv";
-  a.click();
-
-  URL.revokeObjectURL(url);
 }
 </script>
 
