@@ -1183,3 +1183,26 @@ body.locked #poem-nav{
     left: 200px;   /* меньше < */
   }
 }
+
+
+
+<!-- Таблица оценок в range -->
+.range-table{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.range-table th,
+.range-table td{
+  border: 1px solid rgba(120, 80, 40, 0.35);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.range-table th{
+  background: rgba(120, 80, 40, 0.12);
+}
+
