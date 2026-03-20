@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const POEM_TABLE_HTML = `
     <a class="scroll-link" href="poems/poem_50.html">50 лет и один вечер</a>
-    <a class="scroll-link" href="poems/poem_af.html">Афтаркия</a>
+    <a class="scroll-link" href="poems/poem_al.html">Алаверда</a>
+    <a class="scroll-link" href="poems/poem_ath.html">Афтаркия</a>
     <a class="scroll-link" href="poems/poem_ba1.html">Барахас. Дождь. Кончается февраль.</a>
     <a class="scroll-link" href="poems/poem_ba2.html">Барахтаюсь в Барахасе как сом</a>
     <a class="scroll-link" href="poems/poem_bve.html">Век одиночества</a>
