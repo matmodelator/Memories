@@ -26,7 +26,30 @@ async function downloadTable() {
     "СРЕДНИЙ БАЛЛ"
   ];
 
+  
   function parseRange(text) {
+  const values = [];
+
+  text.split("\n")
+    .map(s => s.trim())
+    .filter(Boolean)
+    .forEach(line => {
+      const parts = line.split("|").map(s => s.trim());
+
+      // пропускаем заголовок
+      if (parts[0].toLowerCase().includes("критерий")) return;
+
+      if (parts[1]) {
+        values.push(parts[1]); // берём ТОЛЬКО число
+      }
+    });
+
+  return values;
+}
+  
+  
+  
+/*  function parseRange(text) {
     const result = {};
 
     text.split("\n")
@@ -41,6 +64,7 @@ async function downloadTable() {
 
     return result;
   }
+  */
 
   try {
     debug.textContent += "Гружу poems.html...\n";
