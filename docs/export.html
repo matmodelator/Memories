@@ -71,6 +71,7 @@ async function downloadTable() {
     const rows = [];
 
     rows.push([
+      "Файл",
       "Стих",
       "Образность",
       "Ритм",
@@ -85,6 +86,8 @@ async function downloadTable() {
       try {
         debug.textContent += "Гружу: " + path + "\n";
 
+        const fileName = path.split("/").pop();
+
         const r = await fetch(path);
         if (!r.ok) {
           debug.textContent += "Пропуск " + path + " : " + r.status + "\n";
@@ -94,17 +97,31 @@ async function downloadTable() {
         const text = await r.text();
 
         const titleMatch = text.match(/title:\s*"([^"]*)"/);
-        const rangeMatch = text.match(/range:\s*`([\s\S]*?)`/);
+        const textMatch = text.match(/text:\s*`([\s\S]*?)`,/);
+        const rangeMatch = text.match(/range:\s*`([\s\S]*?)`,/);
 
         if (!rangeMatch) {
           debug.textContent += "range не найден в: " + path + "\n";
           continue;
         }
 
-        const title = titleMatch ? titleMatch[1].trim() : path;
+        let title = "";
+
+        if (titleMatch && titleMatch[1].trim()) {
+          title = titleMatch[1].trim();
+        } else if (textMatch && textMatch[1]) {
+          title = textMatch[1]
+            .split("\n")
+            .map(s => s.trim())
+            .find(Boolean) || fileName;
+        } else {
+          title = fileName;
+        }
+
         const parsed = parseRange(rangeMatch[1]);
 
         const row = [
+          fileName,
           title,
           ...criteriaOrder.map(c => parsed[c] || "")
         ];
@@ -133,7 +150,7 @@ async function downloadTable() {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = "poems-table.csv";
+    a.download = "export-table-range.csv";
     document.body.appendChild(a);
     a.click();
     a.remove();
