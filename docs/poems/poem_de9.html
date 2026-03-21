@@ -11,60 +11,111 @@
   <link rel="stylesheet" href="../style.css">
   
 </head>
-
   
 <!-- ВВОД тескта с параметрами -->
   <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const poem = {
-    author: "Игорь Хорош",
-    year: "2017",
-    title: "Девятый май",
+  window.poem = {
+    author: "",
+    year: "",
+    title: "Великий день",
+    
     text: `
-Девятый май... Он влез на мавзолей
+Великий день... Он влез на табурет
 И дряблою рукой поправил китель.
-Они стоят - великий предводитель 
-И рядом генералы всех мастей.
+Они стоят — верховный предводитель,
+А рядом бравый генералитет.
 
 Бредут по снегу верные войска:
-Пехота, кони, танки из фанеры -
+Пехота, кони, танки из фанеры —
 Чеканный шаг, гвардейские манеры
 И белые перчатки у виска.
 
 Текут ряды картонные полков,
 И громыхают сталью по брусчатке
 Огромные ракеты без взрывчатки
-И пушки без снарядов и замков.
+Да пушки без снарядов и замков.
 
 Свершая вечный свой парадный круг,
 Они идут торжественно и гордо,
 И данный им на разграбленье город
 Огнями окон вспыхивает вдруг.
 
-Армады древних супертягачей,
-Ползут как будто жёлтые улитки,
-И на лице его - почти улыбка,
+Армады древних супертягачей
+Ползут, как будто жёлтые улитки,
+И на лице его — почти улыбка,
 И кровь его бежит погорячей.
 
-Он молча поправляет микрофон
-И озирает армию из ложи.
+Он молча поправляет микрофон.
+Он озирает армию из ложи.
 На то, что будет ею он низложен,
-Есть шанс всего один на миллион. 
+Есть шанс всего один на миллион.
 
-Притихла публика, и те, кто повзрослей, -
+Притихла публика, и те, кто повзрослей, —
 Усатые седые ветераны,
-И молодые, - внемлют все тирану,
-Который поднялся́ на мавзолей.
+И молодые, — внемлют все тирану,
+Который отмечает юбилей.
 
 И он для речи открывает рот,
-И падают слова как будто гири…
+И падают слова, как будто гири…
 Внизу застыл, готовый к харакири,
 Когда-то им возлюбленный народ.
 
 
-09.05.2017
+<i>
+Некоторый день какого-то года определённого столетия в безымянном городе...
+</i>
+`,
+
+review: `
+Аннотация от ИИ
+
+Перед нами ироничное, постмодернистское стихотворение, которое играет с классической формой и бытовыми смыслами.
+Вот краткий разбор:
+1. Жанр и структура
+Несмотря на подзаголовок «Сонет 156», это не классический сонет (в котором должно быть 14 строк). Перед нами объемное произведение из нескольких строф с рефреном (повторяющимися выводами). Число 156 — это аллюзия на Шекспира (у которого 154 сонета), что сразу задает тон литературной игры и самоиронии.
+2. Тема и идея
+Тема: Поиск как универсальное состояние человека (и животного). Автор перечисляет профессиональные, бытовые и духовные изыскания.
+Идея: Жизнь представлена как суетливый и часто бессмысленный процесс. Финал сводит всё к творческому тупику: пока мир что-то ищет, поэт ищет рифму и не находит её.
+3. Композиция и образы
+Стихотворение построено на параллелизме и приеме каталога (перечисления). Автор намеренно смешивает «высокое» и «низкое»:
+Контраст: Рядом стоят Аксаков, ищущий аленький цветок, и проктолог; Галаха и Фейсбук. Это создает комический эффект и подчеркивает абсурдность бытия.
+Рефрен: Двустишия между длинными строфами («...ведут ко дну», «...находим ту, что нас ведет на дно») привносят ноту фатализма и пессимизма, которая маскируется юмором.
+4. Язык и стиль
+Стиль: Разговорно-интеллектуальный. Автор использует как книжную лексику (вуайерист, хиропракт), так и грубовато-бытовую (дерьмо, жопа).
+Ирония: Высмеиваются все — от президента до самого автора («ищу слова, как идиот»).
+5. Ритм и рифма
+Размер: Пятистопный ямб. Это классический «серьезный» размер, который в данном контексте вступает в противоречие с ироничным содержанием, усиливая эффект пародии.
+Рифмовка: Перекрестная (абаб) в строфах и парная (аа) в связках.
+Резюме: Это мастерская стилизация под классику, наполненная современными реалиями. Основной посыл — ироничное признание тщетности поисков и трудностей творчества («рифма не идет»), что само по себе является лукавством, так как стихотворение технически выстроено очень четко.
+`,
+    
+range: `
+Критерий | Балл (1–10) | Комментарий
+Образность и метафоры | 8 | Сильные образы строятся на профессиональных деталях (хиропракт, золотарь, проктолог). Метафора «дороги на дно» связывает разрозненные картинки в единую мысль.
+Ритм и рифма | 9 | Пятистопный ямб выдержан четко. Рифмовка классическая, мужские и женские рифмы чередуются правильно. Небольшая ироничная «жалоба» в конце только подчеркивает мастерство владения формой.
+Эмоциональность | 7 | Стихотворение читается легко, «взахлеб». Настроение плавно переходит от шутливого перечисления к меланхоличному вопросу в финале.
+Стиль и лексика | 9 | Прекрасное сочетание высокого (Аксаков, Галаха) и низкого (дерьмо, хайп, проктолог). Это создает эффект ироничного сонета, где форма спорит с содержанием.
+Композиция | 8 | Структура логична: тезис (все что-то ищут) -> развитие (профессии и курьезы) -> финал (личная растерянность автора). Смысл о тщетности поиска и неизбежном «дне» подан ненавязчиво.
+Оригинальность | 8 | Свежий взгляд на классическую тему поиска смысла. Упоминание Фейсбука, блогеров и президента делает текст живым и современным.
+СРЕДНИЙ БАЛЛ | 8.2 | Крепкий, техничный и остроумный текст с удачным финальным пуантом.
+`,
+    
+resume: `
+дороги выбор часто неказист
+во мне чего ты ищешь не пойму…
+а я ищу слова как идиот
+`,
+
+note: `
+
+`,
+    
+comments: `
+
 `
   };
+
 
   // title = первая непустая строка, если пусто
   if (!poem.title.trim()) {
@@ -85,9 +136,10 @@ document.addEventListener("DOMContentLoaded", function () {
     panel.appendChild(pre);
   }
 
-  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
-  pre.textContent = poem.text;
-
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений” + курсив)
+// pre.textContent = poem.text;
+pre.innerHTML = poem.text.replace(/\n/g, "<br>");
+  
   // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
   const meta = document.getElementById("meta");
  // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
@@ -108,54 +160,165 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
  });
     
 </script>
-
-  
+ 
 <body data-access="secret">
+
 
   <!-- Фон (на уровень выше) -->
   <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
 
-  <!-- МЕНЮ (5 пунктов, без изменений по структуре) -->
-
+  <!-- МЕНЮ ( без изменений по структуре) -->
 
   <nav class="main-nav">
     <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
-    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../stories.html" class="nav-item" data-text="Проза">Проза</a>
     <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
     <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
-    <a href="../comments.html" class="nav-item" data-text="Отзывы">Отзывы</a>
+  
   </nav> 
-
 
   <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
 <section class="reading-panel" aria-label="Текст стихотворения">
  
   <!-- Контейнер стиха -->
-
   <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
   <pre id="poem" class="poem-text"></pre>
   <!-- подпись внизу страницы -->
 
+<!-- СТРЕЛКИ и СЕРДЦА -->
+
+<div class="poem-buttons">
+
+  <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
+  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
+  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
+  <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
+  <a class="poem-arrow" id="open-range" href="#">🔢</a>
+  <a class="poem-arrow" id="open-note" href="#">🔤</a>
+  <a class="poem-arrow" id="open-comments" href="#">🚻</a>
+  <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
+  <a class="poem-arrow" id="heart" href="#">💟</a>
+    <span class="like-count">0</span>
+
+  <!-- Лайк + переход к отзыву 
+  <div class="like">
+    <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
+    <span class="like-count">0</span>
+  </div>. -->
+
+<!-- Локальный счетчик лайков  -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const heart = document.getElementById("heart");
+  const count = document.querySelector(".like-count");
+
+  if (!heart || !count) return;
+
+  const key = "likes_" + location.pathname;
+
+  // берём сохранённое или стартовое из HTML
+  let likes = localStorage.getItem(key);
+
+  if (likes === null) {
+    likes = parseInt(count.textContent) || 0;
+  } else {
+    likes = parseInt(likes);
+  }
+
+  count.textContent = likes;
+
+  heart.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    likes++;
+    count.textContent = likes;
+
+    localStorage.setItem(key, likes);
+
+  });
+
+});
+</script>
+  
+<!-- Возврат назад  -->
+  <script>
+document.getElementById("back-arrow").onclick = function () {
+  history.back();
+};
+</script>
+
+<!-- Навигация по списку  -->  
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+  const prev = document.getElementById("prev-poem");
+  const next = document.getElementById("next-poem");
+
+  if (!prev || !next) return;
+
+  try {
+    const current = location.pathname.split("/").pop();
+
+    const response = await fetch("/Memories/poems.html");
+    const html = await response.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    const links = [...doc.querySelectorAll("a[href$='.html']")];
+    const files = links.map(a => a.getAttribute("href"));
+    const names = files.map(href => href.split("/").pop());
+
+    const index = names.indexOf(current);
+
+    if (index !== -1) {
+      if (files[index - 1]) {
+        prev.href = new URL(files[index - 1], location.origin + "/Memories/").href;
+      }
+
+      if (files[index + 1]) {
+        next.href = new URL(files[index + 1], location.origin + "/Memories/").href;
+      }
+    }
+
+  } catch (e) {}
+});
+</script>
+
+</div>
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const heart = document.getElementById("heart");
+  const count = document.getElementById("like-count");
+
+  let likes = parseInt(count.textContent);
+
+  if (heart) {
+    heart.addEventListener("click", function () {
+
+      if (heart.classList.contains("liked")) {
+        heart.classList.remove("liked");
+        heart.textContent = "💟";
+        likes--;
+      } else {
+        heart.classList.add("liked");
+        heart.textContent = "💜";
+        likes++;
+      }
+
+      count.textContent = likes;
+
+    });
+  }
+
+});
+</script>
 
   
 </section>
-
-  
-<!-- Навигатор по разделу -->
-  <div id="poem-nav"></div>
-
-<!-- Лайк на текст
-  <div class="like">
-  <a href="#" id="heart" title="Нравится💜">💟</a>-->
-  <!-- Лайк + Переход к Отзыву -->
-  <div class="like">
-  <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
-  <span class="like-count">0</span>
-</div> 
-  <!--Отзыв о тексте
-<div class="review">
-  <a href="/Memories/comments.html" title="Отзыв">📳</a>
-</div> -->
 
 
 <!-- Метаданные к файлу --> 
@@ -179,18 +342,7 @@ document.addEventListener("click", function(e) {
  <script src="poem-nav.js"></script>
   
 
- <!--  Контейнер для контента с переменными 
-
-<h1 id="title"></h1>
-<p id="author"></p>
-<p id="year"></p>
-<div id="text"></div> -->
-  
-
-
-
-
- <!-- ЛАЙК тескта с параметрами -->
+<!-- ЛАЙК текста с отсылкой на мейл -->
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -229,33 +381,118 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script> 
 
-<!--ПАРОЛЬ-->
-<script src="../password-gate.js"></script>
-
-<!--Выделение запароленных файлов-->
+<!-- Аннотации -->
   <script>
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-  const links = document.querySelectorAll('a[href*="poem_"]');
+  const poemEl = document.getElementById("poem");
+  if (!poemEl) return;
 
-  for (const link of links) {
-    try {
-      const res = await fetch(link.href);
-      if (!res.ok) continue;
+  const reviewBtn = document.getElementById("open-review");
+  const commentsBtn = document.getElementById("open-comments");
+  const rangeBtn = document.getElementById("open-range");
+  const noteBtn = document.getElementById("open-note");  
+  const backBtn = document.getElementById("back-to-poem");
 
-      const html = await res.text();
+  // 🔒 используем уже существующий poem.text (ничего не переинициализируем)
+  const originalText = (typeof poem !== "undefined" && poem.text)
+    ? poem.text
+    : poemEl.textContent;
 
-      // если в файле есть <body data-access= ... >
-      if (html.includes('<body data-access=')) {
-        link.classList.add("locked");
-      }
+  // ℹ️ review
+if (reviewBtn) {
+  reviewBtn.addEventListener("click", function (e) {
+    e.preventDefault();
 
-    } catch (e) {
+    const reviewText = poem.review ? poem.review.trim() : "";
+
+    poemEl.textContent = reviewText || "Аннотация пока не добавлена";
+  });
+}
+
+// 🔢 range
+if (rangeBtn) {
+  rangeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const rangeText = poem.range ? poem.range.trim() : "";
+
+    if (!rangeText) {
+      poemEl.textContent = "Я всё жду, когда его оценят по достоинству";
+      return;
     }
+
+    const rows = rangeText
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+
+    let html = '<table class="range-table">';
+
+    rows.forEach((row, index) => {
+      const cols = row.split("|").map(col => col.trim());
+
+      html += "<tr>";
+
+      cols.forEach(col => {
+        if (index === 0) {
+          html += `<th>${col}</th>`;
+        } else {
+          html += `<td>${col}</td>`;
+        }
+      });
+
+      html += "</tr>";
+    });
+
+    html += "</table>";
+
+    poemEl.innerHTML = html;
+  });
+}
+
+// 🔤 note
+if (noteBtn) {
+  noteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const noteText = poem.note ? poem.note.trim() : "";
+
+    poemEl.textContent = noteText || "Автор пока не прокомментировал";
+  });
+}
+  
+// 🚻 comments
+if (commentsBtn) {
+  commentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const commentsText = String(poem.comments || "").trim();
+
+    if (commentsText !== "") {
+      poemEl.textContent = commentsText;
+    } else {
+      poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
+    }
+  });
+}
+
+  // 🔄 назад
+  if (backBtn) {
+    backBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      poemEl.textContent = originalText;
+    });
   }
 
 });
 </script>
+
+
+<!-- ПАРОЛЬ  -->
+<body data-password="пароль">
+<script src="../password-gate.js"></script>
     
 </body>
 </html>
+
