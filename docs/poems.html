@@ -192,35 +192,33 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- Lock на запароленные тескты-->
  <script>
 document.addEventListener("DOMContentLoaded", async function () {
-
   const links = document.querySelectorAll('.scroll-panel a[href$=".html"]');
 
   for (const link of links) {
-
     const href = link.getAttribute("href");
+    if (!href) continue;
 
     try {
       const response = await fetch(href);
-      const html = await response.text();
+      if (!response.ok) continue;
 
+      const html = await response.text();
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
 
-      const access = doc.body?.dataset?.access;
+      const access = doc.body ? doc.body.getAttribute("data-access") : null;
 
-      if (access) {
+      if (access === "hidden" || access === "secret" || access === "privat") {
         link.classList.add("locked");
         link.dataset.lock = access;
       }
 
     } catch (err) {
-      console.warn("Не удалось проверить файл:", href);
+      console.warn("Ошибка проверки:", href, err);
     }
-
   }
-
 });
-</script> 
+</script>
 
  <!-- Счетчмк скролла (Не убивать!) 
   <div id="scroll-value"
