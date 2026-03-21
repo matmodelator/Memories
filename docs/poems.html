@@ -189,6 +189,39 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<!-- Lock на запароленные тескты-->
+ <script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+  const links = document.querySelectorAll('.scroll-panel a[href$=".html"]');
+
+  for (const link of links) {
+
+    const href = link.getAttribute("href");
+
+    try {
+      const response = await fetch(href);
+      const html = await response.text();
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+
+      const access = doc.body?.dataset?.access;
+
+      if (access) {
+        link.classList.add("locked");
+        link.dataset.lock = access;
+      }
+
+    } catch (err) {
+      console.warn("Не удалось проверить файл:", href);
+    }
+
+  }
+
+});
+</script> 
+
  <!-- Счетчмк скролла (Не убивать!) 
   <div id="scroll-value"
 style="
