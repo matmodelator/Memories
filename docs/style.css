@@ -1055,11 +1055,11 @@ body.locked #poem-nav{
   color: #ff8a8a;
 } 
 
-/* Запароленные файлы - ЗАЛОЧЕНЫ в скролл-панели */
+/* Запароленные файлы - ЗАЛОЧЕНЫ в скролл-панели (с курсивом и без)
 .locked{
   opacity: 0.6;
   font-style: italic;
-}
+} */
 
 .locked::after{
   content: " 🔒";
