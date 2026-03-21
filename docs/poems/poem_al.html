@@ -339,7 +339,6 @@ document.addEventListener("DOMContentLoaded", function () {
   
 </section>
 
-
 <!-- Метаданные к файлу --> 
 <div id="meta"></div>
 
@@ -413,10 +412,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const noteBtn = document.getElementById("open-note");  
   const backBtn = document.getElementById("back-to-poem");
 
-  // 🔒 используем уже существующий poem.text (ничего не переинициализируем)
-  const originalText = (typeof poem !== "undefined" && poem.text)
-    ? poem.text
-    : poemEl.textContent;
+  // 🔒 используем уже существующий poem.text (сохраняя курсив и табуляцию)
+  const originalText = poemEl.innerHTML;
 
   // ℹ️ review
 if (reviewBtn) {
@@ -496,15 +493,14 @@ if (commentsBtn) {
   });
 }
 
-   // 🔄 возврат к тексту
-if (resetBtn) {
-  resetBtn.addEventListener("click", function (e) {
+// 🔄 назад возврат к тексту
+if (backBtn) {
+  backBtn.addEventListener("click", function (e) {
     e.preventDefault();
-
-    poemEl.innerHTML = poem.text;
+    poemEl.innerHTML = originalText;
   });
 }
-
+  
 });
 </script>
 
