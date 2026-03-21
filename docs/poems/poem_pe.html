@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     author: "Игорь Хорош",
     year: "2020",
 	place: "Нетания",  
+	style: "пародия",
     title: "Пёсья рыжь",
     
     text: `
@@ -247,20 +248,19 @@ review: `
 `,
     
 range: `
-Критерий | Пародия-фантасмагория | Оригинал (С. Безик) с комментарием
-	1.	Содержание и глубина | 9 | 8
-	2.	Техника (размер и ритм) | 8 | 5
-	3.	Рифмовка и созвучия | 8 | 4
-	4.	Юмор / Образность | 10 | 5
-	5.	Логика и композиция | 9 | 9
-	6.	Оригинальность | 8 | 4
-СРЕДНИЙ БАЛЛ | 8.7 | 5.8
+Критерий | Пародия | Оригинал
+Содержание и глубина | 9 | 8; Пародия не просто высмеивает сюжет, она полностью переворачивает смыслы. Замена «святого мученика» на «циничного ницшеанца» — это сильный художественный ход, который обнажает излишнюю сентиментальность оригинала.
+Техника (размер и ритм) | 8 | 5; Автор пародии сознательно сохраняет хорей оригинала, но делает его более «злым» и динамичным. Ритм держится уверенно, а намеренные сбои (вроде «Новийгод») работают на комический эффект, высмеивая техническую беспомощность исходного текста.
+Рифмовка и созвучия | 8 | 4; Здесь рифма на порядок сложнее и интереснее, чем в оригинале: рваной — нирваны, центральной — инфернальной, Израиль — из рая. Это качественная «умная» рифмовка, которая подчеркивает ироничный тон.
+Образность / Юмор | 10 | 5; Высмеяно всё: от нелепого «рваного уха» (которое в пародии стало «ухой рваной») до внезапного отъезда хозяев. Образ бантика, который «попи́здил» за девочкой — это вершина черного юмора, доводящая трагедию оригинала до абсолютного абсурда.
+Логика и композиция | 9 | 9; Пародия идет строго по стопам оригинала, «подсвечивая» каждый его этап: детство, изгнание, мороз, кульминация с машиной. Завершение «басней» с абсурдной моралью — идеальная точка для этого жанра.
+Оригинальность | 8 | 4; Несмотря на то, что это вторичный жанр (зависимый от оригинала), автор нашел уникальный голос — смесь черного юмора, философии и дворового сленга. Это выделяет текст на фоне стандартных «переделок».
+СРЕДНИЙ БАЛЛ | 8.7 | 5.8; Эта пародия технически и интеллектуально сильнее оригинала. Она превращает слабую лирику в крепкий сатирический арт-объект.
 `,
     
 resume: `
-дороги выбор часто неказист
-во мне чего ты ищешь не пойму…
-а я ищу слова как идиот
+Рыжий пёс со ухой рваной
+Коль не ждёте вы трамвая, сам трамвай порой приходит
 `,
 
 note: `
@@ -645,9 +645,9 @@ if (commentsBtn) {
 </script>
 
 
-<!-- ПАРОЛЬ  
+<!-- ПАРОЛЬ  -->
 <body data-password="пароль">
-<script src="../password-gate.js"></script> -->
+<script src="../password-gate.js"></script> 
     
 </body>
 </html>
@@ -656,298 +656,3 @@ if (commentsBtn) {
 
 
 
-
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Шрифт (сейчас можешь менять в CSS) 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"-->
-  
-  <link rel="stylesheet" href="../style.css">
-  
-</head>
-
-  
-<!-- ВВОД тескта с параметрами -->
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const poem = {
-    author: "Игорь Хорош",
-    year: "2020",
-    title: "Пёсья рыжь",
-    text: `
-Пёсья рыжь
-(пародия-фантасмагория)
-
-
-Рыжий пёс со ухой рваной
-Брёл по улице центральной.
-Он искал себе нирваны
-В этой жизни инфернальной.
-
-Отощав от дней постылых,
-На прохожих он не метил, 
-Не хватало ему силы,
-Чтоб сожрать прохожих этих.
-
-Изучив законы джунглей
-С философиею Ницше,
-Он считал искусство - хуйли?!
-Мне кого-то схавать лишь бы!..
-
-В юности своей беззлобной
-Любопытным рос, сметливым,
-Балованным был и воблу
-Запивал ирландским пивом.
-
-Но семья по беспределу
-Вдруг намылилась в Израиль…
-Так, походу, прилетело
-Псу изгнание из рая.
-
-Он сказал: «не догоняю,
-Отчего такая лажа?!»
-Оказался мой хозяин 
-Не отцом, а сукой даже!..
-
-Дни текли, настало время -
-Русский праздник Новийгод:
-Ёлки-палки всюду, ребя,
-И бухой в говно народ.
- 
-Фейерверки эти, пробки,
-Ну и прочие подляны…
-Он бродил по насту робко,
-Точно пьяный по полянам.
-
-Он в мороз лихой, колючий
-Алкоголем согревался.
-Этот дом ещё подлючий 
-Ему часто вспоминался.
-
-Рваный ух с собакой рыжей,
-Брёл во тьме как гость незваный,
-И башкой своей бесстыжей
-Думал он, о чём незнамо.
-
-Он чутьём своим собачьим
-Всё, прям, чуял падла сразу.
-Если дети, скажем, плачут,
-Ну и прочую заразу.
-
-Видит, чу! Вдали девчушка
-Лет пяти, и бант игривый…
-Побежала за игрушкой,
-А за нею бантик прыгал.
-
-По дороге шла машина
-Натурально без водилы -
-Кепка лишь одна в кабине
-И с вином ещё бутыли.
-
-Пес подумал безучастно,
-Поведя нерваным ухом:
-«Нехуй на проезжей части
-За игрушкой бегать, сука!»
-
-И спокойно наблюдал он,
-Как взлетела будто фантик,
-Та девчушка над кварталом,
-А за ней попи́здил бантик.
-
-Обойдя всё это сзади, 
-Пёс еще подумал: «Точно!
-Посижу часок в засаде,
-Чтоб потом пошамать сочно!»
-
-Суть той басни таковая -
-В жизни всяко происходит…
-Коль не ждёте вы трамвая,
-Сам трамвай порой приходит.
-
-Ну а коль вы не собака
-И не глупое чего-нить,
-Ваша цель ещё однако
-Тот трамвай не проворонить.
-
-
-02.03.2020
-`
-  };
-
-  // title = первая непустая строка, если пусто
-  if (!poem.title.trim()) {
-    poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
-  }
-
-  // 1) НАХОДИМ <pre id="poem">, или создаём
-  let pre = document.getElementById("poem");
-  if (!pre) {
-    const panel = document.querySelector(".reading-panel");
-    if (!panel) {
-      alert("Не найден .reading-panel (проверь класс в HTML)");
-      return;
-    }
-    pre = document.createElement("pre");
-    pre.id = "poem";
-    pre.className = "poem-text";
-    panel.appendChild(pre);
-  }
-
-  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
-  pre.textContent = poem.text;
-
-  // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
-  const meta = document.getElementById("meta");
- // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
-if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
-    
-  // 4) Стили “поверх фона” + внизу
-  meta.style.position = "fixed";
-  meta.style.left = "0";
-  meta.style.right = "0";
-  meta.style.bottom = "10px";
-  meta.style.textAlign = "center";
-  meta.style.fontSize = "14px";
-  meta.style.color = "brown";
-  meta.style.opacity = "0.85";
-  meta.style.zIndex = "9999";
-  meta.style.pointerEvents = "none";
-  meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
- });
-    
-</script>
-
-  
-<body data-access="privat">
-
-  <!-- ОРИЕНТАЦИЯ -->
- <div id="rotate-message">
-Пожалуйста, поверните устройство горизонтально
-</div>
-
-  <!-- Фон (на уровень выше) -->
-  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
-
-  <!-- МЕНЮ (5 пунктов, без изменений по структуре) -->
-
-
-  <nav class="main-nav">
-    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
-    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
-    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
-    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
-    <a href="../comments.html" class="nav-item" data-text="Отзывы">Отзывы</a>
-  </nav> 
-
-
-  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
-<section class="reading-panel" aria-label="Текст стихотворения">
- 
-  <!-- Контейнер стиха -->
-
-  <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
-  <pre id="poem" class="poem-text"></pre>
-  <!-- подпись внизу страницы -->
-
-
-  
-</section>
-
-  
-<!-- Навигатор по разделу -->
-  <div id="poem-nav"></div>
-
-<!-- Лайк на текст
-  <div class="like">
-  <a href="#" id="heart" title="Нравится💜">💟</a>-->
-  <!-- Лайк + Переход к Отзыву -->
-  <div class="like">
-  <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
-  <span class="like-count">0</span>
-</div> 
-  <!--Отзыв о тексте
-<div class="review">
-  <a href="/Memories/comments.html" title="Отзыв">📳</a>
-</div> -->
-
-
-<!-- Метаданные к файлу --> 
-<div id="meta"></div>
-
-
-<script>
-document.addEventListener("click", function(e) {
-    const readingPanel = document.querySelector(".reading-panel");
-    const nav = document.querySelector(".main-nav");
-
-    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
-        window.location.href = "../index.html";
-    }
-});
-</script>
-
-  <!-- Утилита переадресации по пунктам Меню-->
-  <script src="../nav.js"></script>
- <!-- Утилита навигации по разделу (для контента)--> 
- <script src="poem-nav.js"></script>
-  
-
- <!--  Контейнер для контента с переменными 
-
-<h1 id="title"></h1>
-<p id="author"></p>
-<p id="year"></p>
-<div id="text"></div> -->
-  
-
-
-
-
- <!-- ЛАЙК тескта с параметрами -->
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const heart = document.getElementById("heart");
-  if (!heart) return;
-
-  heart.addEventListener("click", async function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const targetUrl = heart.getAttribute("href");
-
-
-    const formData = new FormData();
-    formData.append("_subject", "Лайк с сайта Memories");
-    formData.append("type", "like");
-    formData.append("url", window.location.href);
-    formData.append("text", document.getElementById("meta").textContent);
-
-    try {
-      await fetch("https://formspree.io/f/xvzwoqzk", {
-        method: "POST",
-        body: formData,
-        headers: { "Accept": "application/json" }
-      });
-
-      heart.textContent = "💗";
-    } catch (err) {
-      heart.textContent = "⚠️";
-    }
-
-    setTimeout(function () {
-      window.location.href = targetUrl;
-    }, 1000);
-  });
-});
-</script> 
-
-<!--ПАРОЛЬ-->
-<script src="../password-gate.js"></script>
-    
-</body>
-</html>
