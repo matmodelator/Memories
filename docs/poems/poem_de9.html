@@ -110,7 +110,7 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 </script>
 
   
-<body>
+<body data-access="secret">
 
   <!-- Фон (на уровень выше) -->
   <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
@@ -231,6 +231,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <!--ПАРОЛЬ-->
 <script src="../password-gate.js"></script>
+
+<!--Выделение запароленных файлов-->
+  <script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+  const links = document.querySelectorAll('a[href*="poem_"]');
+
+  for (const link of links) {
+    try {
+      const res = await fetch(link.href);
+      if (!res.ok) continue;
+
+      const html = await res.text();
+
+      // если в файле есть <body data-access= ... >
+      if (html.includes('<body data-access=')) {
+        link.classList.add("locked");
+      }
+
+    } catch (e) {
+    }
+  }
+
+});
+</script>
     
 </body>
 </html>
