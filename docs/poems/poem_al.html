@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     text: `
 Алаверда
 
+<i>
 Сонет 156
 (Серафима Тупикова)
 
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 Из всех дорог, что нас ведут ко дну,
 Мы выбираем, всё равно, одну.
-
+<i>
 ***
 
 Гадалка ищет истину в золе,
@@ -153,9 +154,8 @@ comments: `
     panel.appendChild(pre);
   }
 
-  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
- // pre.textContent = poem.text;
-
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений” + курсив)
+// pre.textContent = poem.text;
 pre.innerHTML = poem.text.replace(/\n/g, "<br>");
   
   // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
