@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 Он сказал: «не догоняю,
 Отчего такая лажа?!»
-Оказался мой хозяин 
+Оказался наш хозяин 
 Не отцом, а сукой даже!..
 
 Дни текли, настало время -
@@ -260,7 +260,9 @@ range: `
     
 resume: `
 Рыжий пёс со ухой рваной
-Коль не ждёте вы трамвая, сам трамвай порой приходит
+Коль не ждёте вы трамвая,<br> сам трамвай порой приходит
+Оказался наш хозяин <br> 
+не отцом, а сукой даже!..
 `,
 
 note: `
@@ -633,13 +635,14 @@ if (commentsBtn) {
   });
 }
 
-  // 🔄 назад
-  if (backBtn) {
-    backBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      poemEl.textContent = originalText;
-    });
-  }
+ // 🔄 возврат к тексту
+if (resetBtn) {
+  resetBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    poemEl.innerHTML = poem.text;
+  });
+}
 
 });
 </script>
