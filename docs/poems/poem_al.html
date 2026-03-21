@@ -17,12 +17,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   window.poem = {
     author: "Игорь Хорош",
+    style: "пародия",
     year: "2025",
     title: "",
     
     text: `
-Алаверда
-
 <i>
 Сонет 156
 (Серафима Тупикова)
@@ -40,7 +39,10 @@ document.addEventListener("DOMContentLoaded", function () {
 Из всех дорог, что нас ведут ко дну,
 Мы выбираем, всё равно, одну.
 </i>
+
 ***
+Алаверда
+
 
 Гадалка ищет истину в золе,
 Стукач в фейсбуке ищет экстремизм,
@@ -495,13 +497,17 @@ if (commentsBtn) {
   });
 }
 
-  // 🔄 назад
-  if (backBtn) {
-    backBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      poemEl.textContent = originalText;
-    });
-  }
+   // 🔄 возврат к тексту
+if (resetBtn) {
+  resetBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    poemEl.innerHTML = poem.text;
+  });
+}
+
+});
+</script>
 
 });
 </script>
