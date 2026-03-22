@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <script src="../password-gate.js"></script>-->
 
     
-  <!-- FULL Screen mode -->
+  <!-- FULL Screen mode 
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -292,8 +292,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const panel = document.querySelector(".reading-panel");
+  if (!panel) return;
 
-
+  panel.addEventListener("click", function () {
+    panel.classList.toggle("is-fullscreen");
+  });
+});
+</script>
     
 </body>
 </html>
