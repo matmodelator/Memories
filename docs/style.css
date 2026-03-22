@@ -1217,7 +1217,7 @@ body.locked #poem-nav{
   background: rgba(120, 80, 40, 0.12);
 }
 
-<!-- fullscreen MODE -->
+/* fullscreen MODE */
 
 .reading-panel.fullscreen {
   position: fixed;
@@ -1232,4 +1232,31 @@ body.locked #poem-nav{
   overflow-y: auto;
 
   border-radius: 0;
-}
+} 
+
+/* FULL SCREEN для reading-panel 
+
+.reading-panel.is-fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+
+  width: 100vw !important;
+  height: 100svh !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+  padding: 24px !important;
+
+  z-index: 99999 !important;
+  border-radius: 0 !important;
+
+  overflow-y: auto !important;
+} */
+
+
