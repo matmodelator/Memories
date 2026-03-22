@@ -1217,3 +1217,19 @@ body.locked #poem-nav{
   background: rgba(120, 80, 40, 0.12);
 }
 
+<!-- fullscreen MODE -->
+
+.reading-panel.fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: 9999;
+
+  margin: 0;
+  padding: 20px;
+
+  overflow-y: auto;
+
+  border-radius: 0;
+}
