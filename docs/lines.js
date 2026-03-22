@@ -132,6 +132,13 @@ document.addEventListener("DOMContentLoaded", async function () {
   <a class="scroll-link" href="/Memories/songs/korona.html">Коронавирь (Korona)</a>   
   <a class="scroll-link" href="/Memories/songs/no_hide_face.html">Не пряча лица (No hide face)</a>    
   <a class="scroll-link" href="/Memories/songs/we_were_no.html">Шампанское!.. (We were no)</a>
+  <a class="scroll-link" href="/Memories/stories/baba.html">Хорошая квартира</a>
+  <a class="scroll-link" href="/Memories/stories/ded.html">Дед</a>
+  <a class="scroll-link" href="/Memories/stories/dom.html">Дом</a>
+  <a class="scroll-link" href="/Memories/stories/pisoyka.html">Сказ про Писёйку</a>
+  <a class="scroll-link" href="/Memories/stories/vse.html">Фсё зашибись!..</a>   
+  <a class="scroll-link" href="/Memories/stories/yeklers.html">Эклеры</a>
+  <a class="scroll-link" href="/Memories/stories/yerev_hag.html">Эрев Хаг</a>  
   `;
 
   // ==================================================
