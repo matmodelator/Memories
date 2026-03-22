@@ -16,6 +16,267 @@ async function downloadTable() {
   const debug = document.getElementById("debug");
   debug.textContent = "Старт...\n";
 
+  // какие index-файлы проверять
+  const indexFiles = [
+    "poems.html",
+    "songs.html",
+    "stories.html"
+  ];
+
+  function parseRange(text) {
+    const values = [];
+
+    text.split("\n")
+      .map(s => s.trim())
+      .filter(Boolean)
+      .forEach(line => {
+        const parts = line.split("|").map(s => s.trim());
+
+        if (parts[0] && parts[0].toLowerCase().includes("критерий")) return;
+
+        if (parts[1]) {
+          values.push(parts[1]);
+        }
+      });
+
+    return values;
+  }
+
+  try {
+
+    const allLinks = [];
+
+    // грузим каждый index-файл
+    for (const indexPath of indexFiles) {
+
+      debug.textContent += "Гружу: " + indexPath + "\n";
+
+      const res = await fetch(indexPath);
+
+      if (!res.ok) {
+        debug.textContent += "Не найден: " + indexPath + "\n";
+        continue;
+      }
+
+      const html = await res.text();
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+
+      const links = [...doc.querySelectorAll("a[href*='_']")]
+        .map(a => a.getAttribute("href"))
+        .filter(Boolean);
+
+      debug.textContent +=
+        "Ссылок в " + indexPath + ": " + links.length + "\n";
+
+      allLinks.push(...links);
+    }
+
+    debug.textContent +=
+      "Всего файлов: " + allLinks.length + "\n";
+
+    if (!allLinks.length) {
+      debug.textContent += "Файлы не найдены\n";
+      return;
+    }
+
+    const rows = [];
+
+    rows.push([
+      "Файл",
+      "Автор",
+      "Жанр",
+      "Стих",
+      "Образность",
+      "Ритм",
+      "Эмоции",
+      "Стиль",
+      "Композиция",
+      "Оригинальность",
+      "Средний",
+      "Год",
+      "Место"
+    ]);
+
+    for (const path of allLinks) {
+      try {
+
+        debug.textContent += "Гружу: " + path + "\n";
+
+        const fileName = path.split("/").pop();
+
+        const r = await fetch(path);
+
+        if (!r.ok) {
+          debug.textContent +=
+            "Пропуск " + path + " : " + r.status + "\n";
+          continue;
+        }
+
+        const text = await r.text();
+
+        const authorMatch =
+          text.match(/author:\s*"([^"]*)"/);
+
+        const styleMatch =
+          text.match(/style:\s*"([^"]*)"/);
+
+        const titleMatch =
+          text.match(/title:\s*"([^"]*)"/);
+
+        const yearMatch =
+          text.match(/year:\s*"([^"]*)"/);
+
+        const placeMatch =
+          text.match(/place:\s*"([^"]*)"/);
+
+        const textMatch =
+          text.match(/text:\s*`([\s\S]*?)`,/);
+
+        const rangeMatch =
+          text.match(/range:\s*`([\s\S]*?)`,/);
+
+        if (!rangeMatch) {
+          debug.textContent +=
+            "range не найден в: " + path + "\n";
+          continue;
+        }
+
+        const author =
+          authorMatch ? authorMatch[1].trim() : "";
+
+        const genre =
+          styleMatch ? styleMatch[1].trim() : "";
+
+        const year =
+          yearMatch ? yearMatch[1].trim() : "";
+
+        const place =
+          placeMatch ? placeMatch[1].trim() : "";
+
+        let title = "";
+
+        if (titleMatch && titleMatch[1].trim()) {
+          title = titleMatch[1].trim();
+        }
+
+        else if (textMatch && textMatch[1]) {
+          title = textMatch[1]
+            .split("\n")
+            .map(s => s.trim())
+            .find(Boolean) || fileName;
+        }
+
+        else {
+          title = fileName;
+        }
+
+        const values =
+          parseRange(rangeMatch[1]);
+
+        while (values.length < 7) {
+          values.push("");
+        }
+
+        const row = [
+          fileName,
+          author,
+          genre,
+          title,
+          values[0],
+          values[1],
+          values[2],
+          values[3],
+          values[4],
+          values[5],
+          values[6],
+          year,
+          place
+        ];
+
+        rows.push(row);
+
+      } catch (e) {
+
+        debug.textContent +=
+          "Ошибка в " + path + ": " + e + "\n";
+      }
+    }
+
+    if (rows.length <= 1) {
+      debug.textContent += "Данных нет\n";
+      return;
+    }
+
+    const csv = rows
+      .map(row =>
+        row
+          .map(cell =>
+            `"${String(cell).replace(/"/g, '""')}"`
+          )
+          .join(",")
+      )
+      .join("\n");
+
+    const blob =
+      new Blob([csv],
+      { type: "text/csv;charset=utf-8" });
+
+    const url =
+      URL.createObjectURL(blob);
+
+    const a =
+      document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+      "export-table-range.csv";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 1000);
+
+    debug.textContent +=
+      "Готово\n";
+
+  } catch (e) {
+
+    debug.textContent +=
+      "Общая ошибка: " + e + "\n";
+  }
+}
+</script>
+
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>export-table-range</title>
+</head>
+<body>
+
+<button id="download-btn">Скачать таблицу</button>
+<pre id="debug"></pre>
+
+<script>
+document.getElementById("download-btn").addEventListener("click", downloadTable);
+
+async function downloadTable() {
+  const debug = document.getElementById("debug");
+  debug.textContent = "Старт...\n";
+
   function parseRange(text) {
     const values = [];
 
@@ -135,211 +396,6 @@ async function downloadTable() {
           fileName,
           author,
           genre,
-          title,
-          values[0] || "",
-          values[1] || "",
-          values[2] || "",
-          values[3] || "",
-          values[4] || "",
-          values[5] || "",
-          values[6] || "",
-          year,
-          place
-        ];
-
-        rows.push(row);
-      } catch (e) {
-        debug.textContent += "Ошибка в " + path + ": " + e + "\n";
-      }
-    }
-
-    debug.textContent += "Строк в итоговой таблице: " + rows.length + "\n";
-
-    if (rows.length <= 1) {
-      debug.textContent += "Данных нет\n";
-      return;
-    }
-
-    const csv = rows
-      .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(","))
-      .join("\n");
-
-    debug.textContent += "CSV собран\n";
-
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "export-table-range.csv";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-
-    debug.textContent += "Команда на скачивание отправлена\n";
-
-    setTimeout(function () {
-      URL.revokeObjectURL(url);
-    }, 1000);
-
-  } catch (e) {
-    debug.textContent += "Общая ошибка: " + e + "\n";
-  }
-}
-</script>
-
-</body>
-</html>
-
-
-
-
-
-
-
-<!--<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>export-table-range</title>
-</head>
-<body>
-
-<button id="download-btn">Скачать таблицу</button>
-<pre id="debug"></pre>
-
-<script>
-document.getElementById("download-btn").addEventListener("click", downloadTable);
-
-async function downloadTable() {
-  const debug = document.getElementById("debug");
-  debug.textContent = "Старт...\n";
-
-  const criteriaOrder = [
-    "Образность и метафоры",
-    "Ритм и рифма",
-    "Эмоциональность",
-    "Стиль и лексика",
-    "Композиция",
-    "Оригинальность",
-    "СРЕДНИЙ БАЛЛ"
-  ];
-
-  function parseRange(text) {
-    const values = [];
-
-    text.split("\n")
-      .map(s => s.trim())
-      .filter(Boolean)
-      .forEach(line => {
-        const parts = line.split("|").map(s => s.trim());
-
-        // пропускаем заголовок
-        if (parts[0].toLowerCase().includes("критерий")) return;
-
-        if (parts[1]) {
-          values.push(parts[1]); // берём ТОЛЬКО число
-        }
-      });
-
-    return values;
-  }
-
-  try {
-    debug.textContent += "Гружу poems.html...\n";
-
-    const res = await fetch("poems.html");
-    if (!res.ok) {
-      debug.textContent += "Ошибка загрузки poems.html: " + res.status + "\n";
-      return;
-    }
-
-    const html = await res.text();
-    debug.textContent += "poems.html загружен\n";
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-
-    const links = [...doc.querySelectorAll("a[href*='poem_']")]
-      .map(a => a.getAttribute("href"))
-      .filter(Boolean);
-
-    debug.textContent += "Найдено ссылок: " + links.length + "\n";
-
-    if (!links.length) {
-      debug.textContent += "Ссылки poem_*.html не найдены\n";
-      return;
-    }
-
-    const rows = [];
-
-    rows.push([
-      "Файл",
-      "Автор",
-      "Стих",
-      "Образность",
-      "Ритм",
-      "Эмоции",
-      "Стиль",
-      "Композиция",
-      "Оригинальность",
-      "Средний",
-      "Год",
-      "Место"
-    ]);
-
-    for (const path of links) {
-      try {
-        debug.textContent += "Гружу: " + path + "\n";
-
-        const fileName = path.split("/").pop();
-
-        const r = await fetch(path);
-        if (!r.ok) {
-          debug.textContent += "Пропуск " + path + " : " + r.status + "\n";
-          continue;
-        }
-
-        const text = await r.text();
-
-        const authorMatch = text.match(/author:\s*"([^"]*)"/);
-        const titleMatch = text.match(/title:\s*"([^"]*)"/);
-        const yearMatch = text.match(/year:\s*"([^"]*)"/);
-        const placeMatch = text.match(/place:\s*"([^"]*)"/);
-        const textMatch = text.match(/text:\s*`([\s\S]*?)`,/);
-        const rangeMatch = text.match(/range:\s*`([\s\S]*?)`,/);
-
-        if (!rangeMatch) {
-          debug.textContent += "range не найден в: " + path + "\n";
-          continue;
-        }
-
-        const author = authorMatch ? authorMatch[1].trim() : "";
-        const year = yearMatch ? yearMatch[1].trim() : "";
-        const place = placeMatch ? placeMatch[1].trim() : "";
-
-        let title = "";
-
-        if (titleMatch && titleMatch[1].trim()) {
-          title = titleMatch[1].trim();
-        } else if (textMatch && textMatch[1]) {
-          title = textMatch[1]
-            .split("\n")
-            .map(s => s.trim())
-            .find(Boolean) || fileName;
-        } else {
-          title = fileName;
-        }
-
-        const values = parseRange(rangeMatch[1]);
-
-        while (values.length < 7) {
-          values.push("");
-        }
-
-        const row = [
-          fileName,
-          author,
           title,
           values[0] || "",
           values[1] || "",
