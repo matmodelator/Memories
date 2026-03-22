@@ -1217,7 +1217,7 @@ body.locked #poem-nav{
   background: rgba(120, 80, 40, 0.12);
 }
 
-/* fullscreen MODE */
+/* fullscreen MODE 
 
 .reading-panel.fullscreen {
   position: fixed;
@@ -1232,9 +1232,9 @@ body.locked #poem-nav{
   overflow-y: auto;
 
   border-radius: 0;
-} 
+} */
 
-/* FULL SCREEN для reading-panel 
+/* FULL SCREEN для reading-panel */
 
 .reading-panel.is-fullscreen {
   position: fixed !important;
@@ -1257,6 +1257,6 @@ body.locked #poem-nav{
   border-radius: 0 !important;
 
   overflow-y: auto !important;
-} */
+} 
 
 
