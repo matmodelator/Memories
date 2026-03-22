@@ -337,63 +337,112 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script> 
 
-<!-- АНОТАЦИИ 
+<!-- Аннотации -->
   <script>
 document.addEventListener("DOMContentLoaded", function () {
 
   const poemEl = document.getElementById("poem");
+  if (!poemEl) return;
 
   const reviewBtn = document.getElementById("open-review");
   const commentsBtn = document.getElementById("open-comments");
+  const rangeBtn = document.getElementById("open-range");
+  const noteBtn = document.getElementById("open-note");  
   const backBtn = document.getElementById("back-to-poem");
 
-  if (!poemEl) return;
+  // 🔒 используем уже существующий poem.text (ничего не переинициализируем)
+  const originalText = (typeof poem !== "undefined" && poem.text)
+    ? poem.text
+    : poemEl.textContent;
 
-  // исходный текст (если он уже в HTML)
-  let originalText = poemEl.textContent;
+  // ℹ️ review
+if (reviewBtn) {
+  reviewBtn.addEventListener("click", function (e) {
+    e.preventDefault();
 
-  // если стих задаётся через poem.text — берём его как главный источник
-  if (typeof poem !== "undefined" && poem.text && poem.text.trim() !== "") {
-    poemEl.textContent = poem.text;
-    originalText = poem.text;
-  }
+    const reviewText = poem.review ? poem.review.trim() : "";
 
-  // ℹ️ review (аннотация)
-  if (reviewBtn) {
-    reviewBtn.onclick = function (e) {
-      e.preventDefault();
+    poemEl.textContent = reviewText || "Аннотация пока не добавлена";
+  });
+}
 
-      if (typeof poem !== "undefined" && poem.review && poem.review.trim() !== "") {
-        poemEl.textContent = poem.review;
-      } else {
-        poemEl.textContent = "Аннотация пока не добавлена.";
-      }
-    };
-  }
+// 🔢 range
+if (rangeBtn) {
+  rangeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
 
-  // 🚻 comments (отзывы)
-  if (commentsBtn) {
-    commentsBtn.onclick = function (e) {
-      e.preventDefault();
+    const rangeText = poem.range ? poem.range.trim() : "";
 
-      if (typeof poem !== "undefined" && poem.comments && poem.comments.trim() !== "") {
-        poemEl.textContent = poem.comments;
-      } else {
-        poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
-      }
-    };
-  }
+    if (!rangeText) {
+      poemEl.textContent = "Я всё жду, когда его оценят по достоинству";
+      return;
+    }
 
-  // 🔄 назад к стиху
+    const rows = rangeText
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+
+    let html = '<table class="range-table">';
+
+    rows.forEach((row, index) => {
+      const cols = row.split("|").map(col => col.trim());
+
+      html += "<tr>";
+
+      cols.forEach(col => {
+        if (index === 0) {
+          html += `<th>${col}</th>`;
+        } else {
+          html += `<td>${col}</td>`;
+        }
+      });
+
+      html += "</tr>";
+    });
+
+    html += "</table>";
+
+    poemEl.innerHTML = html;
+  });
+}
+
+// 🔤 note
+if (noteBtn) {
+  noteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const noteText = poem.note ? poem.note.trim() : "";
+
+    poemEl.textContent = noteText || "Автор пока не прокомментировал";
+  });
+}
+  
+// 🚻 comments
+if (commentsBtn) {
+  commentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const commentsText = String(poem.comments || "").trim();
+
+    if (commentsText !== "") {
+      poemEl.textContent = commentsText;
+    } else {
+      poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
+    }
+  });
+}
+
+  // 🔄 назад
   if (backBtn) {
-    backBtn.onclick = function (e) {
+    backBtn.addEventListener("click", function (e) {
       e.preventDefault();
       poemEl.textContent = originalText;
-    };
+    });
   }
 
 });
-</script> 
+</script>
 
 <!-- FULL Screen mode -->
 
