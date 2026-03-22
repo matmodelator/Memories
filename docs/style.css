@@ -1274,7 +1274,9 @@ body.locked #poem-nav{
   max-height: 100vh !important;
 
   margin: 0 !important;
-  padding: 24px !important;
+ /* padding: 24px !important; */
+  padding: 12px 16px !important;   /* ← меньше кропа */
+  box-sizing: border-box !important; /* ← ключевая строка */
 
   transform: none !important;
   inset: auto !important;
