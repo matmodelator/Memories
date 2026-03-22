@@ -89,7 +89,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   <a class="scroll-link" href="/songs/fly.html">Жёлтая муха тоски (Fly)</a>
   <a class="scroll-link" href="/songs/korona.html">Коронавирь (Korona)</a>   
   <a class="scroll-link" href="/songs/no_hide_face.html">Не пряча лица (No hide face)</a>    
-  <a class="scroll-link" href="Memories/songs/we_were_no.html">Шампанское!.. (We were no)</a>
+  <a class="scroll-link" href="/songs/we_were_no.html">Шампанское!.. (We were no)</a>
+  `;
   `;
 
   // ==================================================
