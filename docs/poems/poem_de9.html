@@ -497,7 +497,18 @@ if (commentsBtn) {
 
 });
 </script>
+<!-- FULL Screen mode -->
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const panel = document.querySelector(".reading-panel");
+  if (!panel) return;
+
+  panel.addEventListener("click", function () {
+    panel.classList.toggle("is-fullscreen");
+  });
+});
+</script>
 
 <!-- ПАРОЛЬ  -->
 <body data-password="пароль">
