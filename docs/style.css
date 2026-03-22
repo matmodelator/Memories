@@ -1286,6 +1286,8 @@ body.locked #poem-nav{
   overflow-y: auto !important;
 
   box-sizing: border-box !important;
+
+font-weight: 700;   /* ← Жирный Шрифт */
 }
 
 
