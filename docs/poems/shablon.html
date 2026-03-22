@@ -67,7 +67,7 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
     
 </script>
  
-<body data-access="secret">
+<body>
 
   
 </div>
@@ -267,50 +267,34 @@ document.addEventListener("DOMContentLoaded", function () {
 </script> 
 
 
-<!--  <script>
-document.addEventListener("DOMContentLoaded", async function () {
 
-  const prev = document.getElementById("prev-poem");
-  const next = document.getElementById("next-poem");
-
-  if (!prev || !next) return;
-
-  try {
-
-    const current = location.pathname.split("/").pop();
-
-    const response = await fetch("/Memories/poems.html");
-    const html = await response.text();
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-
-    const links = [...doc.querySelectorAll("a[href$='.html']")];
-
-    const files = links.map(a => a.getAttribute("href"));
-    const names = files.map(href => href.split("/").pop());
-
-    const index = names.indexOf(current);
-
-    if (index !== -1) {
-
-      if (files[index - 1]) {
-        prev.href = files[index - 1].replace(/^poems\//, "");
-      }
-
-      if (files[index + 1]) {
-        next.href = files[index + 1].replace(/^poems\//, "");
-      }
-
-    }
-
-  } catch (e) {}
-
-});
-</script> -->
 
 <!--ПАРОЛЬ
 <script src="../password-gate.js"></script>-->
+
+    
+  <!-- FULL Screen mode -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const panel = document.querySelector(".reading-panel");
+  if (!panel) return;
+
+  panel.addEventListener("click", function (e) {
+
+    // не реагировать на кнопки и ссылки
+    if (e.target.closest("a, button, input, textarea")) return;
+
+    panel.classList.toggle("fullscreen");
+
+  });
+
+});
+</script>
+
+</body>
+</html>
     
 </body>
 </html>
