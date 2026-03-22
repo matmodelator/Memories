@@ -5,6 +5,47 @@ window.MEMORY_LINES = [];
 
 document.addEventListener("DOMContentLoaded", async function () {
 
+  
+
+// Индикатор текущего файла (правый верхний угол)
+(function () {
+
+  const indicator = document.createElement("div");
+
+  indicator.style.position = "fixed";
+  indicator.style.top = "10px";
+  indicator.style.right = "10px";
+  indicator.style.zIndex = "99999";
+  indicator.style.background = "rgba(0,0,0,0.78)";
+  indicator.style.color = "#fff";
+  indicator.style.padding = "6px 10px";
+  indicator.style.fontFamily = "monospace";
+  indicator.style.fontSize = "13px";
+  indicator.style.borderRadius = "6px";
+
+  indicator.textContent = "—";
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.body.appendChild(indicator);
+  });
+
+  const originalFetch = window.fetch;
+
+  window.fetch = async function () {
+    try {
+      const path = arguments[0];
+
+      if (typeof path === "string") {
+        indicator.textContent = path;
+      }
+
+    } catch (e) {}
+
+    return originalFetch.apply(this, arguments);
+  };
+
+})();
+  
   // ==================================================
   // 1. СПИСОК текстов для Парсера resume
   // ==================================================
