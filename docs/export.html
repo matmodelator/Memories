@@ -59,7 +59,7 @@ async function downloadTable() {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
 
-      const links = [...doc.querySelectorAll("a[href*='_']")]
+      const links = [...doc.querySelectorAll("a[href$='.html']")]
         .map(a => a.getAttribute("href"))
         .filter(Boolean);
 
