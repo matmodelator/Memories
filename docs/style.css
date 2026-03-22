@@ -1275,7 +1275,7 @@ body.locked #poem-nav{
 
   margin: 0 !important;
  /* padding: 24px !important; */
-  padding: 12px 16px !important;   /* ← меньше кропа */
+  padding: 24px 14px 36px 14px !important;   /* ^>_< меньше кропа */
   box-sizing: border-box !important; /* ← ключевая строка */
 
   transform: none !important;
