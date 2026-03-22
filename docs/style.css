@@ -742,66 +742,6 @@ body{
   -webkit-overflow-scrolling: touch;
 }
 
-/* Прокрутка для навигации по reading.panel */
-
-/*вертикальное расположение стрелок
-.poem-nav{
-  position: absolute;
-  left: 900px;
-  top: 300px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 22px;
-  z-index: 50; 
-} */
-
-/*горизонтальное расположение стрелок
-.poem-nav{
-  position: absolute;
-  left: 700px;
-  top: 500px;
-  display: flex;
-  flex-direction: row;
-  gap: 2px;
-  font-size: 22px;
-  z-index: 50;
-} */
-
-/* Кнопка ЛАЙК на reading-panel 
-.like{
-position: absolute;
-top:500px;
-left:300px;
-z-index:1000;
-}
-
-.review a{
-font-size:32px;
-text-decoration:none;
-transition:0.2s;
-}
-
-.review a:hover{
-transform:scale(1.3);
-} */
-
-/* Кнопка Лайк + переход к Отзыву 
-.like{
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
-}
-
-.like a{
-  font-size: 32px;
-  text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.like a:active{
-  transform: scale(1.2); */
 
 /* Заголовок */
 .poem-title{
@@ -879,23 +819,6 @@ transform:scale(1.3);
   object-fit: cover;
   z-index: -1;
 }
-
-/* вывод значений переменных на страницу сайта 
-#meta {
-  position: fixed;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  color: white;
-  opacity: 0.8;
-  pointer-events: none;
-} */
-
-/* Подключение nav 
-.nav-dropdown { display: none; }
-.nav-dropdown.open { display: block; }*/
 
 
   /* ======================
@@ -1138,21 +1061,6 @@ body.locked #poem-nav{
   font-size:28px;
 }
 
-/* @media (max-width:768px){
-
-  .poem-buttons{
-    right:10px;
-    gap:12px;
-    z-index:9999;
-  }
-
-  .poem-arrow,
-  .poem-like{
-    font-size:30px;
-  }
-
-} */
-
 
 @media (max-width: 900px) {
   .reading-panel {
@@ -1217,48 +1125,9 @@ body.locked #poem-nav{
   background: rgba(120, 80, 40, 0.12);
 }
 
-/* fullscreen MODE 
 
-.reading-panel.fullscreen {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100svh;
-  z-index: 9999;
 
-  margin: 0;
-  padding: 20px;
-
-  overflow-y: auto;
-
-  border-radius: 0;
-} */
-
-/* FULL SCREEN для reading-panel 
-
-.reading-panel.is-fullscreen {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-
-  width: 100vw !important;
-  height: 100svh !important;
-  max-width: none !important;
-  max-height: none !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-
-  margin: 0 !important;
-  padding: 24px !important;
-
-  z-index: 99999 !important;
-  border-radius: 0 !important;
-
-  overflow-y: auto !important;
-} 
-*/
+/* FULL SCREEN для reading-panel */
 
 
 .reading-panel.is-fullscreen {
@@ -1275,7 +1144,7 @@ body.locked #poem-nav{
 
   margin: 0 !important;
  /* padding: 24px !important; */
-  padding: 24px 14px 36px 14px !important;   /* ^>_< меньше кропа */
+  padding: 24px 14px 36px 24px !important;   /* ^>_< меньше кропа */
   box-sizing: border-box !important; /* ← ключевая строка */
 
   transform: none !important;
