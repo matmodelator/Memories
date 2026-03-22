@@ -1234,7 +1234,7 @@ body.locked #poem-nav{
   border-radius: 0;
 } */
 
-/* FULL SCREEN для reading-panel */
+/* FULL SCREEN для reading-panel 
 
 .reading-panel.is-fullscreen {
   position: fixed !important;
@@ -1258,5 +1258,35 @@ body.locked #poem-nav{
 
   overflow-y: auto !important;
 } 
+*/
+
+
+.reading-panel.is-fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-height: 100vh !important;
+
+  margin: 0 !important;
+  padding: 24px !important;
+
+  transform: none !important;
+  inset: auto !important;
+
+  z-index: 99999 !important;
+  border-radius: 0 !important;
+
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+
+  box-sizing: border-box !important;
+}
+
 
 
