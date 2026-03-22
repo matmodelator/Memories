@@ -31,9 +31,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     <a class="scroll-link" href="poems/poem_dn.html">Дни проходят как в тумане</a>
     <a class="scroll-link" href="poems/poem_do.html">Дом опустел</a>
     <a class="scroll-link" href="poems/poem_ed.html">Едва мерцают стылые огни</a>
-    <a class="scroll-link" href="poems/poem_fge.html">Жёлтый мустанг</a>
-    <a class="scroll-link" href="poems/poem_gzd.html">Здравстуй, рай пятиэтажек</a>
-    <a class="scroll-link" href="poems/poem_gzi.html">Зима которую неделю...</a>
+    <a class="scroll-link" href="poems/poem_ge.html">Жёлтый мустанг</a>
+    <a class="scroll-link" href="poems/poem_hzd.html">Здравстуй, рай пятиэтажек</a>
+    <a class="scroll-link" href="poems/poem_hzi.html">Зима которую неделю...</a>
     <a class="scroll-link" href="poems/poem_is.html">Испанский жёлтый свет</a>
     <a class="scroll-link" href="poems/poem_iz.html">Из писем Белле</a>
     <a class="scroll-link" href="poems/poem_ka.html">Канары. Август.</a>
@@ -91,7 +91,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   <a class="scroll-link" href="/songs/korona.html">Коронавирь (Korona)</a>   
   <a class="scroll-link" href="/songs/no_hide_face.html">Не пряча лица (No hide face)</a>    
   <a class="scroll-link" href="/songs/we_were_no.html">Шампанское!.. (We were no)</a>
-  `;
   `;
 
   // ==================================================
