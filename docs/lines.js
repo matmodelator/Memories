@@ -85,11 +85,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     <a class="scroll-link" href="poems/poem_ya2.html">Я как спившийся командарм</a>
     <a class="scroll-link" href="poems/poem_ya3.html">Я тщусь понять</a>
     <a class="scroll-link" href="poems/poem_yan.html">Январи</a>
-  <a class="scroll-link" href="/Memories/songs/all_good.html">Всё ОК (All good)</a>
-  <a class="scroll-link" href="/Memories/songs/fly.html">Жёлтая муха тоски (Fly)</a>
-  <a class="scroll-link" href="/Memories/songs/korona.html">Коронавирь (Korona)</a>   
-  <a class="scroll-link" href="/Memories/songs/no_hide_face.html">Не пряча лица (No hide face)</a>    
-  <a class="scroll-link" href="/Memories/songs/we_were_no.html">Шампанское!.. (We were no)</a>
+  <a class="scroll-link" href="/songs/all_good.html">Всё ОК (All good)</a>
+  <a class="scroll-link" href="/songs/fly.html">Жёлтая муха тоски (Fly)</a>
+  <a class="scroll-link" href="/songs/korona.html">Коронавирь (Korona)</a>   
+  <a class="scroll-link" href="/songs/no_hide_face.html">Не пряча лица (No hide face)</a>    
+  <a class="scroll-link" href="/songs/we_were_no.html">Шампанское!.. (We were no)</a>
   `;
 
   // ==================================================
