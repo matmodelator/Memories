@@ -6,7 +6,7 @@ window.MEMORY_LINES = [];
 document.addEventListener("DOMContentLoaded", async function () {
 
   // ==================================================
-  // 1. ТАБЛИЦА ССЫЛОК
+  // 1. СПИСОК текстов для Парсера resume
   // ==================================================
 
   const POEM_TABLE_HTML = `
