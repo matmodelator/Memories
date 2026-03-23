@@ -1153,6 +1153,12 @@ body.locked #poem-nav{
   z-index: 99999 !important;
   border-radius: 0 !important;
 
+  background: linear-gradient(
+  to top left,
+  rgba(255, 244, 220, 0.85),  /* внизу справа */
+  rgba(225, 200, 165, 0.95)   /* вверху слева */
+);
+
   overflow-x: hidden !important;
   overflow-y: auto !important;
 
