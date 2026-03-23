@@ -590,23 +590,30 @@ if (commentsBtn) {
 </script>
 
 <!-- FULL Screen mode -->
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+
+  // Находим область чтения
   const panel = document.querySelector(".reading-panel");
   if (!panel) return;
 
-    // игнорируем интерактивные элементы
-panel.addEventListener("click", function (e) {
+  // Обработчик клика по reading-panel
+  panel.addEventListener("click", function (e) {
 
-  // 1. Клик должен быть внутри reading-panel
-  if (!panel.contains(e.target)) return;
+    // Страховка: если клик не внутри reading-panel — ничего не делаем
+    // (обычно не требуется, но безопасно оставить)
+    if (!panel.contains(e.target)) return;
 
-  // 2. Игнорируем только кнопки
-  if (e.target.closest("button")) return;
+    // ВАЖНО:
+    // Если клик был по панели кнопок (.poem-buttons),
+    // то fullscreen НЕ переключаем.
+    // Это блокирует реакции на:
+    // ◀️ ⬆️ ⬇️ ℹ️ 🔢 🔤 🚻 🔄 💟
+    if (e.target.closest(".poem-buttons")) return;
 
-  // 3. Тогда переключаем fullscreen
-  panel.classList.toggle("is-fullscreen");
+    // Если клик был по самому полю чтения (тексту или фону),
+    // переключаем режим full screen
+    panel.classList.toggle("is-fullscreen");
 
   });
 
