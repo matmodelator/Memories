@@ -579,13 +579,41 @@ if (commentsBtn) {
 }
 
   // 🔄 назад
-  if (backBtn) {
+/* if (backBtn) {
     backBtn.addEventListener("click", function (e) {
       e.preventDefault();
       poemEl.textContent = originalText;
     });
   }
+	  */
+// 🔄 назад — логика кнопки:
+// если сейчас уже показан текст стиха → переключаем full screen
+// если показано другое поле (аннотация, range, note, comments) → просто возвращаем текст
+// при этом предотвращаем всплытие клика до reading-panel
 
+const panel = document.querySelector(".reading-panel");
+
+if (backBtn) {
+  backBtn.addEventListener("click", function (e) {
+
+    e.preventDefault();      // не выполнять переход по ссылке
+    e.stopPropagation();     // не передавать клик панели (чтобы не сработал fullscreen)
+
+    // если сейчас отображается исходный текст стиха
+    if (poemEl.innerHTML === originalText) {
+
+      // переключаем режим full screen ↔ обычный
+      panel.classList.toggle("is-fullscreen");
+
+    } else {
+
+      // иначе просто возвращаем текст стиха без переключения режима
+      poemEl.innerHTML = originalText;
+
+    }
+
+  });
+}
 });
 </script>
 
