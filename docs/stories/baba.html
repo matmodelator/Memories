@@ -596,11 +596,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const panel = document.querySelector(".reading-panel");
   if (!panel) return;
 
-  panel.addEventListener("click", function () {
-    panel.classList.toggle("is-fullscreen");
+    // игнорируем интерактивные элементы
+panel.addEventListener("click", function (e) {
+
+  // 1. Клик должен быть внутри reading-panel
+  if (!panel.contains(e.target)) return;
+
+  // 2. Игнорируем только кнопки
+  if (e.target.closest("button")) return;
+
+  // 3. Тогда переключаем fullscreen
+  panel.classList.toggle("is-fullscreen");
+
   });
+
 });
 </script>
+	
 <!-- ПАРОЛЬ  
 <body data-password="пароль">
 <script src="../password-gate.js"></script> -->
