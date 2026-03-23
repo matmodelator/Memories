@@ -1159,10 +1159,9 @@ body.locked #poem-nav{
   rgba(225, 200, 165, 1.00)    вверху слева 
 ); */
    background: linear-gradient(
-  to bottom left,
-  rgba(255, 120, 120, 0.18) 0%,
-  rgba(255, 244, 220, 0.96) 50%,
-  rgba(80, 120, 255, 0.22) 100%
+  to bottom right,
+  rgba(255, 120, 120, 0.25) 0%,   /* левый верх — светлый красный */
+  rgba(60, 90, 200, 0.65) 100%    /* правый низ — значительно темнее */
 ) !important;
 
   overflow-x: hidden !important;
