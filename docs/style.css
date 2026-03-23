@@ -1155,7 +1155,7 @@ body.locked #poem-nav{
 
   background: linear-gradient(
   to top left,
-  rgba(255, 244, 220, 0.55),  /* внизу справа */
+  rgba(255, 244, 220, 0.30),  /* внизу справа */
   rgba(225, 200, 165, 0.90)   /* вверху слева */
 );
 
