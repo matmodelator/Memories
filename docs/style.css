@@ -1158,17 +1158,39 @@ body.locked #poem-nav{
   rgba(255, 244, 220, 0.00),   внизу справа 
   rgba(225, 200, 165, 1.00)    вверху слева 
 ); */
-   background: linear-gradient(
+  /* background: linear-gradient(
   to bottom right,
-  rgba(40, 80, 200, 1) 0%,      /* левый верх — синий, полностью непрозрачный */
-  rgba(220, 80, 80, 0.25) 75%,  /* центр — красный спектр, средняя прозрачность */
-  rgba(255, 220, 120, 0) 100% /* правый низ — жёлтый спектр, максимальная засветка */
-) !important;
+  rgba(40, 80, 200, 1) 0%,      /* левый верх — синий, полностью непрозрачный 
+  rgba(220, 80, 80, 0.25) 75%,  /* центр — красный спектр, средняя прозрачность 
+  rgba(255, 220, 120, 0) 100% /* правый низ — жёлтый спектр, максимальная засветка 
+) !important;   
 
   overflow-x: hidden !important;
   overflow-y: auto !important;
 
-  box-sizing: border-box !important;
+  box-sizing: border-box !important;*/
+
+  /* Градиентный blur под fullscreen */
+
+.reading-panel.is-fullscreen::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  /* прозрачность меняется по диагонали */
+  background: linear-gradient(
+    to bottom right,
+    rgba(40, 80, 200, 0.35) 0%,     /* левый верх — меньше blur */
+    rgba(220, 80, 80, 0.25) 60%,    /* центр — средний */
+    rgba(255, 220, 120, 0.10) 100%  /* правый низ — больше blur */
+  );
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  pointer-events: none;
+  z-index: -1;
+} 
 
 font-weight: 900;   /* ← Жирный Шрифт */
 }
