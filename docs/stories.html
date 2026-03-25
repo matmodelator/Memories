@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
   
 
   <link rel="stylesheet" href="style.css"/>
-  <!--<link rel="stylesheet" href="scroll.css"/>-->
+  
   
 </head>
 
@@ -15,31 +15,31 @@
   
 <body>
   
-  <!-- ОРИЕНТАЦИЯ -->
+  <!-- ОРИЕНТАЦИЯ 
  <div id="rotate-message">
 Пожалуйста, поверните устройство горизонтально
 </div>
   
-  <!-- ФОН -->
+  <!-- ФОН 
   <img src="desktop-bg1.jpg" class="bg-image" alt="Background">
 
-  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) 
     
     
    <nav class="main-nav">
      <a href="/Memories/poems.html" class="nav-item" data-text="Стихи">Стихи</a>
 
-     <!-- ПРОЗА: активный пункт + триггер свитка -->
+     <!-- ПРОЗА: активный пункт + триггер свитка 
   <div class="nav-dropdown open">
     <a href="/Memories/stories.html" class="nav-item nav-active nav-trigger" data-text="Проза">Проза</a>
 
     <div class="scroll-panel">
 
       
-      <!-- стрелка -->
+      <!-- стрелка
       <div class="scroll-ornament-top">↕️</div>
    
-       <!-- свиток -->
+       <!-- свиток 
       <div class="scroll-inner">
  
   <a class="scroll-link" href="/Memories/stories/baba.html">Хорошая квартира</a>
@@ -63,8 +63,7 @@
 </nav>
 
 
-
-<!-- Возврат в гланое меню кликом по фону -->
+ <!-- Возврат в гланое меню кликом по фону 
 
   <script>
 document.addEventListener("click", function(e) {
@@ -79,8 +78,212 @@ document.addEventListener("click", function(e) {
 });
 </script>
 
-  <!-- Утилита переадресации для Меню -->
+  <!-- Утилита переадресации для Меню 
   <script src="nav.js"></script>
   
 </body>
 </html>
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Проза — Memories</title>
+
+
+  <link rel="stylesheet" href="style.css"/>
+  <!--<link rel="stylesheet" href="scroll.css"/>-->
+
+</head>
+
+
+
+<body>
+
+<!-- ОРИЕНТАЦИЯ -->
+ <div id="rotate-message">
+Пожалуйста, поверните устройство горизонтально
+</div>
+
+  <!-- ФОН -->
+  <img src="desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ (4 пункта, без изменений по структуре) -->
+  <nav class="main-nav">
+     <a href="/Memories/poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+
+     <!-- ПРОЗА: активный пункт + триггер свитка -->
+  <div class="nav-dropdown open">
+    <a href="/Memories/stories.html" class="nav-item nav-active nav-trigger" data-text="Проза">Проза</a>
+
+<div class="scroll-panel">
+  <div class="scroll-ornament-top">
+     ↕️
+  </div>
+
+
+  <div class="scroll-inner">
+
+
+  <a class="scroll-link" href="/Memories/stories/baba.html">Бабушкина хорошая квартира</a>
+  <a class="scroll-link" href="/Memories/stories/ded.html">Дед</a>
+  <a class="scroll-link" href="/Memories/stories/dom.html">Дом</a>
+  <a class="scroll-link" href="/Memories/stories/pisoyka.html">Сказ про Писёйку</a>
+  <a class="scroll-link" href="/Memories/stories/vse.html">Фсё зашибись!..</a>   
+  <a class="scroll-link" href="/Memories/stories/yeklers.html">Эклеры</a>
+  <a class="scroll-link" href="/Memories/stories/yerev_hag.html">Эрев Хаг</a>
+
+  </div>
+</div>
+</div>
+
+
+<a href="/Memories/songs.html" class="nav-item" data-text="Песни">Песни</a>
+<a href="/Memories/author.html" class="nav-item" data-text="Автор">Автор</a>
+
+
+  </nav>
+
+  <!-- Hover + Click (для iPad тоже) -->
+<script>
+const dropdown = document.querySelector('.nav-dropdown');
+const trigger = document.querySelector('.nav-trigger');
+
+trigger.addEventListener('click', function(e) {
+  e.stopPropagation();
+  dropdown.classList.toggle('open');
+});
+
+document.addEventListener('click', function() {
+  dropdown.classList.remove('open');
+});
+</script>
+
+<!-- Возврат в гланое меню кликом по фону -->
+
+  <script>
+document.addEventListener("click", function(e) {
+
+    const scrollPanel = document.querySelector(".scroll-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!scrollPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "index.html";
+    }
+
+});
+</script>
+
+<!-- Утилита переадресации для Меню -->
+  <script src="nav.js"></script>
+  
+
+<!-- Сохранение позиции в свитке (списке) -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const panel = document.querySelector(".scroll-inner");
+  if (!panel) return;
+
+  const saved = sessionStorage.getItem("poemsScrollTop");
+  if (saved !== null) {
+    panel.scrollTop = parseInt(saved, 10);
+  }
+
+  panel.addEventListener("scroll", function () {
+    sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
+  });
+
+  document.querySelectorAll('a[href$=".html"]').forEach(link => {
+    link.addEventListener("click", function () {
+      sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
+    });
+  });
+
+});
+</script>
+
+<!-- Lock на запароленные тескты-->
+ <script>
+document.addEventListener("DOMContentLoaded", async function () {
+  const links = document.querySelectorAll('.scroll-panel a[href$=".html"]');
+
+  for (const link of links) {
+    const href = link.getAttribute("href");
+    if (!href) continue;
+
+    try {
+      const response = await fetch(href);
+      if (!response.ok) continue;
+
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+
+      const access = doc.body ? doc.body.getAttribute("data-access") : null;
+
+      if (access === "hidden" || access === "secret" || access === "privat") {
+        link.classList.add("locked");
+        link.dataset.lock = access;
+      }
+
+    } catch (err) {
+      console.warn("Ошибка проверки:", href, err);
+    }
+  }
+});
+</script>
+
+ <!-- Счетчмк скролла (Не убивать!) 
+  <div id="scroll-value"
+style="
+position:fixed;
+top:10px;
+right:10px;
+background:rgba(0,0,0,0.7);
+color:white;
+padding:6px 10px;
+font-size:14px;
+z-index:9999;
+">
+0
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const inner = document.querySelector(".scroll-inner");
+  const out = document.getElementById("scroll-value");
+
+  if (!inner) {
+    out.textContent = "Нет .scroll-inner";
+    return;
+  }
+
+  function show() {
+    out.textContent = inner.scrollTop;
+  }
+
+  show();
+  inner.addEventListener("scroll", show);
+
+});
+</script>
+-->
+  
+</body>
+</html>
+
