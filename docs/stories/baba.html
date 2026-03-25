@@ -294,9 +294,9 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
 <div class="poem-buttons">
 
-  <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
-  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
-  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
+  <a class="story-arrow" href="/Memories/stories.html">◀️</a>
+  <a class="story-arrow" id="prev-story" href="#">⬆️</a>
+  <a class="story-arrow" id="next-story" href="#">⬇️</a>
   <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
   <a class="poem-arrow" id="open-range" href="#">🔢</a>
   <a class="poem-arrow" id="open-note" href="#">🔤</a>
@@ -357,15 +357,15 @@ document.getElementById("back-arrow").onclick = function () {
 <script>
 document.addEventListener("DOMContentLoaded", async function () {
 
-  const prev = document.getElementById("prev-poem");
-  const next = document.getElementById("next-poem");
+  const prev = document.getElementById("prev-story");
+  const next = document.getElementById("next-story");
 
   if (!prev || !next) return;
 
   try {
     const current = location.pathname.split("/").pop();
 
-    const response = await fetch("/Memories/poems.html");
+    const response = await fetch("/Memories/stories.html");
     const html = await response.text();
 
     const parser = new DOMParser();
@@ -444,7 +444,7 @@ document.addEventListener("click", function(e) {
   <!-- Утилита переадресации по пунктам Меню-->
   <script src="../nav.js"></script>
  <!-- Утилита навигации по разделу (для контента)  -->
- <script src="poem-nav.js"></script>
+ <script src="story-nav.js"></script>
   
 
 <!-- ЛАЙК текста с отсылкой на мейл -->
