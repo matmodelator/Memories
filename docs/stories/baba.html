@@ -577,13 +577,14 @@ if (commentsBtn) {
     if (commentsText !== "") {
       poemEl.textContent = commentsText;
     } else {
-      poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
+      poemEl.textContent =
+        "Отзывов читателей пока нет 🤷‍♂️";
     }
 
-    // если форма уже открыта — не открываем вторую
+    // если уже открыта — не открываем повторно
     if (document.getElementById("review-form")) return;
 
-    // затемнение
+    // затемнение фона
     const overlay = document.createElement("div");
     overlay.id = "review-overlay";
 
@@ -602,109 +603,72 @@ if (commentsBtn) {
     formBox.style.position = "fixed";
     formBox.style.top = "50%";
     formBox.style.left = "50%";
-    formBox.style.transform = "translate(-50%, -50%)";
+    formBox.style.transform =
+      "translate(-50%, -50%)";
 
-    formBox.style.width = "min(520px, 92vw)";
-    formBox.style.maxHeight = "85vh";
+    formBox.style.width =
+      "min(420px, 90vw)";
 
     formBox.style.background = "#fff";
-    formBox.style.padding = "20px";
+    formBox.style.padding = "18px";
     formBox.style.borderRadius = "12px";
 
-    formBox.style.boxShadow = "0 20px 60px rgba(0,0,0,0.45)";
+    formBox.style.boxShadow =
+      "0 20px 60px rgba(0,0,0,0.45)";
+
     formBox.style.zIndex = "99999";
 
     formBox.innerHTML = `
-      <h2 style="margin-top:0">Отзыв</h2>
+      <div style="
+        font-size:16px;
+        margin-bottom:14px;
+      ">
+        Отправить отзыв на этот текст
+      </div>
 
-      <p style="font-size:14px;margin-bottom:14px">
-        Отзыв к тексту:<br>
-        <b>${poem.title || ""}</b>
-        ${poem.author ? " — " + poem.author : ""}
-      </p>
-
-      <form action="https://formspree.io/f/xvzwoqzk" method="POST">
-
-        <input type="hidden" name="_subject"
-          value="Отзыв с сайта Memories">
-
-        <input type="hidden" name="poem_title"
-          value="${poem.title || ""}">
-
-        <input type="hidden" name="poem_author"
-          value="${poem.author || ""}">
-
-        <input type="hidden" name="poem_url"
-          value="${location.pathname}">
-
-        <input
-          type="text"
-          name="name"
-          placeholder="Ваше имя"
-          required
-          style="
-            width:100%;
-            padding:10px;
-            margin-bottom:10px;
-            border-radius:8px;
-            border:1px solid #ccc;
-            box-sizing:border-box;
-          "
-        >
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Ваш email (не обязательно)"
-          style="
-            width:100%;
-            padding:10px;
-            margin-bottom:10px;
-            border-radius:8px;
-            border:1px solid #ccc;
-            box-sizing:border-box;
-          "
-        >
-
-        <textarea
-          name="message"
-          rows="6"
-          placeholder="Ваш отзыв"
-          required
-          style="
-            width:100%;
-            padding:10px;
-            margin-bottom:12px;
-            border-radius:8px;
-            border:1px solid #ccc;
-            box-sizing:border-box;
-          "
-        ></textarea>
-
-        <button
-          type="submit"
-          style="
-            padding:10px 16px;
-            border:none;
-            border-radius:8px;
-            background:#7c5a3a;
-            color:#fff;
-            cursor:pointer;
-          "
-        >
-          Отправить
-        </button>
-
-      </form>
+      <button
+        id="go-to-comments"
+        style="
+          width:100%;
+          padding:12px 16px;
+          font-size:16px;
+          border:none;
+          border-radius:10px;
+          background:rgba(120,80,40,0.85);
+          color:#fff;
+          cursor:pointer;
+        "
+      >
+        Перейти к форме отзыва
+      </button>
     `;
 
     document.body.appendChild(formBox);
+
+    // переход на comments.html
+
+    document
+      .getElementById("go-to-comments")
+      .addEventListener("click", function () {
+
+        const url =
+          "/Memories/comments.html" +
+          "?title=" +
+          encodeURIComponent(poem.title || "") +
+          "&author=" +
+          encodeURIComponent(poem.author || "") +
+          "&page=" +
+          encodeURIComponent(location.pathname);
+
+        window.location.href = url;
+      });
 
     // закрытие по клику вне формы
     overlay.addEventListener("click", function () {
       formBox.remove();
       overlay.remove();
     });
+
   });
 }
 
