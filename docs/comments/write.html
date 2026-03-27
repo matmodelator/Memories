@@ -62,11 +62,25 @@
   </section>
 
 <script>
-document.addEventListener("click", function(e) {
+/*document.addEventListener("click", function(e) {
     const readingPanel = document.querySelector(".reading-panel");
     const nav = document.querySelector(".main-nav");
 
     if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});*/
+
+  document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel || !nav) return;
+
+    const insideReading = readingPanel.contains(e.target);
+    const insideNav = nav.contains(e.target);
+
+    if (!insideReading && !insideNav) {
         window.location.href = "../index.html";
     }
 });
