@@ -647,19 +647,20 @@ if (commentsBtn) {
 
     // переход на write.html
     document
-      .getElementById("go-to-comments")
-      .addEventListener("click", function () {
+  .getElementById("go-to-comments")
+  .addEventListener("click", function () {
 
-        const url =
-          "/Memories/write.html" +
-          "?title=" +
-          encodeURIComponent(poem.title || "") +
-          "&author=" +
-          encodeURIComponent(poem.author || "") +
-          "&page=" +
-          encodeURIComponent(location.pathname);
+    const url =
+      "https://matmodelator.github.io/Memories/write.html" +
+      "?title=" +
+      encodeURIComponent(poem.title || "") +
+      "&author=" +
+      encodeURIComponent(poem.author || "") +
+      "&page=" +
+      encodeURIComponent(location.pathname);
 
-        window.location.href = url;
+    window.location.href = url;
+
       });
 
     // закрытие по клику вне формы
