@@ -579,6 +579,45 @@ if (commentsBtn) {
     } else {
       poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
     }
+
+    // если форма уже открыта — не открываем вторую
+    if (document.getElementById("comments-frame")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "comments-overlay";
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.background = "rgba(0,0,0,0.35)";
+    overlay.style.backdropFilter = "blur(3px)";
+    overlay.style.zIndex = "99998";
+
+    const frame = document.createElement("iframe");
+    frame.id = "comments-frame";
+    frame.src =
+      "/Memories/comments/write.html" +
+      "?title=" + encodeURIComponent(poem.title || "") +
+      "&author=" + encodeURIComponent(poem.author || "") +
+      "&url=" + encodeURIComponent(location.pathname);
+
+    frame.style.position = "fixed";
+    frame.style.top = "50%";
+    frame.style.left = "50%";
+    frame.style.transform = "translate(-50%, -50%)";
+    frame.style.width = "min(520px, 90vw)";
+    frame.style.height = "min(620px, 85vh)";
+    frame.style.border = "1px solid rgba(0,0,0,0.25)";
+    frame.style.borderRadius = "12px";
+    frame.style.background = "#fff";
+    frame.style.zIndex = "99999";
+    frame.style.boxShadow = "0 20px 60px rgba(0,0,0,0.45)";
+
+    document.body.appendChild(overlay);
+    document.body.appendChild(frame);
+
+    overlay.addEventListener("click", function () {
+      frame.remove();
+      overlay.remove();
+    });
   });
 }
 
