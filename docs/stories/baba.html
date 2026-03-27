@@ -645,14 +645,13 @@ if (commentsBtn) {
 
     document.body.appendChild(formBox);
 
-    // переход на comments.html
-
+    // переход на write.html
     document
       .getElementById("go-to-comments")
       .addEventListener("click", function () {
 
         const url =
-          "/Memories/comments.html" +
+          "/Memories/write.html" +
           "?title=" +
           encodeURIComponent(poem.title || "") +
           "&author=" +
