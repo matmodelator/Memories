@@ -820,6 +820,10 @@ body{
   z-index: -1;
 }
 
+/* форма для отзыва из reading-panel */
+.form-box {
+  white-space: normal;
+}
 
   /* ======================
      ФОРМА Обратной Связи
