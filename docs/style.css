@@ -856,7 +856,7 @@ body{
 
 .form-box p {
   margin-bottom: 12px;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 /* Основной layout формы */
@@ -875,6 +875,7 @@ body{
 
 .contact-form input,
 .contact-form textarea {
+  font-weight: 600; 
   width: 100%;
   max-width: 100%;
 
@@ -898,6 +899,14 @@ body{
   resize: vertical;
 }
 
+/* Стиль текста-подсказки (placeholder) */
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  font-weight: 500;        /* регулятор жирности */
+  color: rgba(120, 80, 40, 0.6);   /* цвет подсказки */
+  opacity: 1;              /* чтобы цвет применялся полностью */
+}
 /* КНОПКА В ПРАВОМ НИЖНЕМ УГЛУ */
 
 .contact-form button {
@@ -930,6 +939,14 @@ body{
   margin-left: auto;
   margin-right: auto;
 }
+
+/* В full screen форма чуть ниже */
+
+.full-screen .form-box,
+.reading-panel.full-screen .form-box {
+  margin-top: 24px;
+}
+
 
   /* ======================
      ФОРМА Обратной Связи
