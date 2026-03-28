@@ -651,11 +651,11 @@ if (commentsBtn) {
   .addEventListener("click", function (e) {
 
     e.preventDefault();
-    e.stopPropagation();   // ВАЖНО
-    e.stopImmediatePropagation(); // еще надежнее
+    e.stopPropagation();
+    e.stopImmediatePropagation();
 
     const url =
-      "/Memories/write.html" +
+      "../comments/write.html" +
       "?title=" +
       encodeURIComponent(poem.title || "") +
       "&author=" +
