@@ -648,10 +648,14 @@ if (commentsBtn) {
     // переход на write.html
     document
   .getElementById("go-to-comments")
-  .addEventListener("click", function () {
+  .addEventListener("click", function (e) {
+
+    e.preventDefault();
+    e.stopPropagation();   // ВАЖНО
+    e.stopImmediatePropagation(); // еще надежнее
 
     const url =
-      "https://matmodelator.github.io/Memories/write.html" +
+      "/Memories/write.html" +
       "?title=" +
       encodeURIComponent(poem.title || "") +
       "&author=" +
@@ -660,8 +664,7 @@ if (commentsBtn) {
       encodeURIComponent(location.pathname);
 
     window.location.href = url;
-
-      });
+  });
 
     // закрытие по клику вне формы
     overlay.addEventListener("click", function () {
