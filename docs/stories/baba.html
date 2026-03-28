@@ -645,6 +645,10 @@ if (commentsBtn) {
 
     document.body.appendChild(formBox);
 
+formBox.addEventListener("click", function (e) {
+  e.stopPropagation();
+});
+
     // переход на write.html
     document
   .getElementById("go-to-comments")
@@ -675,6 +679,11 @@ if (commentsBtn) {
   });
 }
 
+
+
+
+
+	
   // 🔄 назад
 /* if (backBtn) {
     backBtn.addEventListener("click", function (e) {
