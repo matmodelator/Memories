@@ -393,36 +393,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 </script>
 
 </div>
-<!--  
-<script>
-document.addEventListener("DOMContentLoaded", function () {
 
-  const heart = document.getElementById("heart");
-  const count = document.getElementById("like-count");
-
-  let likes = parseInt(count.textContent);
-
-  if (heart) {
-    heart.addEventListener("click", function () {
-
-      if (heart.classList.contains("liked")) {
-        heart.classList.remove("liked");
-        heart.textContent = "💟";
-        likes--;
-      } else {
-        heart.classList.add("liked");
-        heart.textContent = "💜";
-        likes++;
-      }
-
-      count.textContent = likes;
-
-    });
-  }
-
-});
-</script>
--->
   
 </section>
 
@@ -569,116 +540,7 @@ if (noteBtn) {
 }
   
 // 🚻 open-comments
-/*if (commentsBtn) {
-  commentsBtn.addEventListener("click", function (e) {
-    e.preventDefault();
 
-    const commentsText = String(poem.comments || "").trim();
-
-    if (commentsText !== "") {
-      poemEl.textContent = commentsText;
-    } else {
-      poemEl.textContent =
-        "Отзывов читателей пока нет 🤷‍♂️";
-    }
-
-    // если уже открыта — не открываем повторно
-    if (document.getElementById("review-form")) return;
-
-    // затемнение фона
-    const overlay = document.createElement("div");
-    overlay.id = "review-overlay";
-
-    overlay.style.position = "fixed";
-    overlay.style.inset = "0";
-    overlay.style.background = "rgba(0,0,0,0.35)";
-    overlay.style.backdropFilter = "blur(3px)";
-    overlay.style.zIndex = "99998";
-
-    document.body.appendChild(overlay);
-
-    // форма
-    const formBox = document.createElement("div");
-    formBox.id = "review-form";
-
-    formBox.style.position = "fixed";
-    formBox.style.top = "50%";
-    formBox.style.left = "50%";
-    formBox.style.transform =
-      "translate(-50%, -50%)";
-
-    formBox.style.width =
-      "min(420px, 90vw)";
-
-    formBox.style.background = "#fff";
-    formBox.style.padding = "18px";
-    formBox.style.borderRadius = "12px";
-
-    formBox.style.boxShadow =
-      "0 20px 60px rgba(0,0,0,0.45)";
-
-    formBox.style.zIndex = "99999";
-
-    formBox.innerHTML = `
-      <div style="
-        font-size:16px;
-        margin-bottom:14px;
-      ">
-        Отправить отзыв на этот текст
-      </div>
-
-      <button
-        id="go-to-comments"
-        style="
-          width:100%;
-          padding:12px 16px;
-          font-size:16px;
-          border:none;
-          border-radius:10px;
-          background:rgba(120,80,40,0.85);
-          color:#fff;
-          cursor:pointer;
-        "
-      >
-        Перейти к форме отзыва
-      </button>
-    `;
-
-    document.body.appendChild(formBox);
-
-formBox.addEventListener("click", function (e) {
-  e.stopPropagation();
-});
-
-    // переход на write.html
-    document
-  .getElementById("go-to-comments")
-  .addEventListener("click", function (e) {
-
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-
-    const url =
-      "../comments/write.html" +
-      "?title=" +
-      encodeURIComponent(poem.title || "") +
-      "&author=" +
-      encodeURIComponent(poem.author || "") +
-      "&page=" +
-      encodeURIComponent(location.pathname);
-
-    window.location.href = url;
-  });
-
-    // закрытие по клику вне формы
-    overlay.addEventListener("click", function () {
-      formBox.remove();
-      overlay.remove();
-    });
-
-  });
-} */
 	
 if (commentsBtn) {
   commentsBtn.addEventListener("click", function (e) {
@@ -695,17 +557,7 @@ if (commentsBtn) {
 }
 	
 // 🚻 send-comments	
-/*const sendCommentsBtn = document.getElementById("sehd-comments");
 
-if (sendCommentsBtn) {
-  sendCommentsBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-
-    window.location.href = "../comments/write.html";
-  });
-}*/
 
 const sendCommentsBtn = document.getElementById("send-comments");
 
@@ -759,14 +611,7 @@ if (sendCommentsBtn) {
   });
 }
 	
-  // 🔄 назад
-/* if (backBtn) {
-    backBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      poemEl.textContent = originalText;
-    });
-  }
-	  */
+
 // 🔄 назад — логика кнопки:
 // если сейчас уже показан текст стиха → переключаем full screen
 // если показано другое поле (аннотация, range, note, comments) → просто возвращаем текст
