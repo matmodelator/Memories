@@ -856,6 +856,7 @@ body{
 
 .form-box p {
   margin-bottom: 12px;
+  font-weight: 600;
 }
 
 /* Основной layout формы */
