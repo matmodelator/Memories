@@ -716,29 +716,45 @@ if (sendCommentsBtn) {
     e.stopImmediatePropagation();
 
     poemEl.innerHTML = `
+      <div class="form-box">
 
-     <h2>Отзыв к тексту</h2>
+        <h2>Отправить отзыв</h2>
 
-<p>
-Если вы хотите оставить комментарий, заполните форму ниже.
-Ваш отзыв появится на сайте спустя некоторое время после модерации
-</p>
+        <p>
+          Если вы хотите оставить комментарий, заполните форму ниже.
+          Ваш отзыв появится на сайте спустя некоторое время после модерации
+        </p>
 
-<form class="contact-form" action="https://formspree.io/f/xvzwoqzk" method="POST">
+        <form class="contact-form" action="https://formspree.io/f/xvzwoqzk" method="POST">
 
-<input type="hidden" name="_subject" value="Сообщение с сайта Memories">
+          <input type="hidden" name="_subject" value="Сообщение с сайта Memories">
 
-<input type="text" name="name" placeholder="Ваше имя" required>
+          <input type="text" name="name" placeholder="Ваше имя" required>
 
-<input type="email" name="email" placeholder="Ваш email(не обязательно)">
+          <input type="email" name="email" placeholder="Ваш email(не обязательно)">
 
-<textarea name="message" rows="7" placeholder="Ваше сообщение" required></textarea>
+          <textarea name="message" rows="7" placeholder="Ваше сообщение" required></textarea>
 
-<button type="submit">Отправить</button>
+          <button type="submit">Отправить</button>
 
-</form>
+        </form>
 
+      </div>
     `;
+
+    const reviewForm = poemEl.querySelector(".contact-form");
+
+    if (reviewForm) {
+      reviewForm.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+
+      reviewForm.querySelectorAll("input, textarea, button, label").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+      });
+    }
   });
 }
 	
