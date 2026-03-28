@@ -301,6 +301,7 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
   <a class="poem-arrow" id="open-range" href="#">🔢</a>
   <a class="poem-arrow" id="open-note" href="#">🔤</a>
   <a class="poem-arrow" id="open-comments" href="#">🚻</a>
+  <a class="poem-arrow" id="sehd-comments" href="#">🚮</a>
   <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
   <a class="poem-arrow" id="heart" href="#">💟</a>
     <span class="like-count">0</span>
@@ -567,7 +568,7 @@ if (noteBtn) {
   });
 }
   
-// 🚻 comments
+// 🚻 open-comments
 if (commentsBtn) {
   commentsBtn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -679,10 +680,18 @@ formBox.addEventListener("click", function (e) {
   });
 }
 
+// 🚻 send-comments	
+const sendCommentsBtn = document.getElementById("sehd-comments");
 
+if (sendCommentsBtn) {
+  sendCommentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
 
-
-
+    window.location.href = "../comments/write.html";
+  });
+}
 	
   // 🔄 назад
 /* if (backBtn) {
