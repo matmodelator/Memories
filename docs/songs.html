@@ -64,6 +64,21 @@
 
 
 
+<!-- Hover + Click (для iPad тоже) -->
+<script>
+const dropdown = document.querySelector('.nav-dropdown');
+const trigger = document.querySelector('.nav-trigger');
+
+trigger.addEventListener('click', function(e) {
+  e.stopPropagation();
+  dropdown.classList.toggle('open');
+});
+
+document.addEventListener('click', function() {
+  dropdown.classList.remove('open');
+});
+</script>
+
 <!-- Возврат в гланое меню кликом по фону -->
 
   <script>
@@ -73,14 +88,108 @@ document.addEventListener("click", function(e) {
     const nav = document.querySelector(".main-nav");
 
     if (!scrollPanel.contains(e.target) && !nav.contains(e.target)) {
-        window.location.href = "/Memories/index.html";
+        window.location.href = "index.html";
     }
 
 });
 </script>
 
-  <!-- Утилита переадресации для Меню -->
+<!-- Утилита переадресации для Меню -->
   <script src="nav.js"></script>
+  
+
+<!-- Сохранение позиции в свитке (списке) -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const panel = document.querySelector(".scroll-inner");
+  if (!panel) return;
+
+  const saved = sessionStorage.getItem("poemsScrollTop");
+  if (saved !== null) {
+    panel.scrollTop = parseInt(saved, 10);
+  }
+
+  panel.addEventListener("scroll", function () {
+    sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
+  });
+
+  document.querySelectorAll('a[href$=".html"]').forEach(link => {
+    link.addEventListener("click", function () {
+      sessionStorage.setItem("poemsScrollTop", panel.scrollTop);
+    });
+  });
+
+});
+</script>
+
+<!-- Lock на запароленные тескты-->
+ <script>
+document.addEventListener("DOMContentLoaded", async function () {
+  const links = document.querySelectorAll('.scroll-panel a[href$=".html"]');
+
+  for (const link of links) {
+    const href = link.getAttribute("href");
+    if (!href) continue;
+
+    try {
+      const response = await fetch(href);
+      if (!response.ok) continue;
+
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+
+      const access = doc.body ? doc.body.getAttribute("data-access") : null;
+
+      if (access === "hidden" || access === "secret" || access === "privat") {
+        link.classList.add("locked");
+        link.dataset.lock = access;
+      }
+
+    } catch (err) {
+      console.warn("Ошибка проверки:", href, err);
+    }
+  }
+});
+</script>
+
+ <!-- Счетчмк скролла (Не убивать!) 
+  <div id="scroll-value"
+style="
+position:fixed;
+top:10px;
+right:10px;
+background:rgba(0,0,0,0.7);
+color:white;
+padding:6px 10px;
+font-size:14px;
+z-index:9999;
+">
+0
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const inner = document.querySelector(".scroll-inner");
+  const out = document.getElementById("scroll-value");
+
+  if (!inner) {
+    out.textContent = "Нет .scroll-inner";
+    return;
+  }
+
+  function show() {
+    out.textContent = inner.scrollTop;
+  }
+
+  show();
+  inner.addEventListener("scroll", show);
+
+});
+</script>
+-->
   
 </body>
 </html>
