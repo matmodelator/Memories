@@ -716,52 +716,28 @@ if (sendCommentsBtn) {
     e.stopImmediatePropagation();
 
     poemEl.innerHTML = `
-      <h2>Отправить отзыв</h2>
 
-      <p>
-        Если вы хотите оставить комментарий, заполните форму ниже.
-        Ваш отзыв появится на сайте спустя некоторое время после модерации.
-      </p>
+     <h2>Отзыв к тексту</h2>
 
-      <form class="contact-form"
-            action="https://formspree.io/f/xvzwoqzk"
-            method="POST">
+<p>
+Если вы хотите оставить комментарий, заполните форму ниже.
+Ваш отзыв появится на сайте спустя некоторое время после модерации
+</p>
 
-        <input type="hidden"
-               name="_subject"
-               value="Сообщение с сайта Memories">
+<form class="contact-form" action="https://formspree.io/f/xvzwoqzk" method="POST">
 
-        <input type="hidden"
-               name="title"
-               value="${String(poem.title || "").replace(/"/g, '&quot;')}">
+<input type="hidden" name="_subject" value="Сообщение с сайта Memories">
 
-        <input type="hidden"
-               name="author"
-               value="${String(poem.author || "").replace(/"/g, '&quot;')}">
+<input type="text" name="name" placeholder="Ваше имя" required>
 
-        <input type="hidden"
-               name="page"
-               value="${String(location.pathname || "").replace(/"/g, '&quot;')}">
+<input type="email" name="email" placeholder="Ваш email(не обязательно)">
 
-        <input type="text"
-               name="name"
-               placeholder="Ваше имя"
-               required>
+<textarea name="message" rows="7" placeholder="Ваше сообщение" required></textarea>
 
-        <input type="email"
-               name="email"
-               placeholder="Ваш email (не обязательно)">
+<button type="submit">Отправить</button>
 
-        <textarea name="message"
-                  rows="7"
-                  placeholder="Ваше сообщение"
-                  required></textarea>
+</form>
 
-        <button type="submit">
-          Отправить
-        </button>
-
-      </form>
     `;
   });
 }
