@@ -942,9 +942,8 @@ body{
 
 /* В full screen форма чуть ниже */
 
-.full-screen .form-box,
-.reading-panel.full-screen .form-box {
-  margin-top: 24px;
+.reading-panel.is-fullscreen #poem .form-box {
+  margin-top: 28px !important;
 }
 
 
