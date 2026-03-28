@@ -569,7 +569,7 @@ if (noteBtn) {
 }
   
 // 🚻 open-comments
-if (commentsBtn) {
+/*if (commentsBtn) {
   commentsBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
@@ -678,8 +678,23 @@ formBox.addEventListener("click", function (e) {
     });
 
   });
-}
+} */
+	
+// 🚻 comments
+if (commentsBtn) {
+  commentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
 
+    const commentsText = String(poem.comments || "").trim();
+
+    if (commentsText !== "") {
+      poemEl.textContent = commentsText;
+    } else {
+      poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
+    }
+  });
+}
+	
 // 🚻 send-comments	
 const sendCommentsBtn = document.getElementById("sehd-comments");
 
