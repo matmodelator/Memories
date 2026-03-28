@@ -696,7 +696,7 @@ if (commentsBtn) {
 }
 	
 // 🚻 send-comments	
-const sendCommentsBtn = document.getElementById("sehd-comments");
+/*const sendCommentsBtn = document.getElementById("sehd-comments");
 
 if (sendCommentsBtn) {
   sendCommentsBtn.addEventListener("click", function (e) {
@@ -705,6 +705,65 @@ if (sendCommentsBtn) {
     e.stopImmediatePropagation();
 
     window.location.href = "../comments/write.html";
+  });
+}*/
+
+const sendCommentsBtn = document.getElementById("send-comments");
+
+if (sendCommentsBtn) {
+  sendCommentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+    poemEl.innerHTML = `
+      <h2>Отправить отзыв</h2>
+
+      <p>
+        Если вы хотите оставить комментарий, заполните форму ниже.
+        Ваш отзыв появится на сайте спустя некоторое время после модерации.
+      </p>
+
+      <form class="contact-form"
+            action="https://formspree.io/f/xvzwoqzk"
+            method="POST">
+
+        <input type="hidden"
+               name="_subject"
+               value="Сообщение с сайта Memories">
+
+        <input type="hidden"
+               name="title"
+               value="${String(poem.title || "").replace(/"/g, '&quot;')}">
+
+        <input type="hidden"
+               name="author"
+               value="${String(poem.author || "").replace(/"/g, '&quot;')}">
+
+        <input type="hidden"
+               name="page"
+               value="${String(location.pathname || "").replace(/"/g, '&quot;')}">
+
+        <input type="text"
+               name="name"
+               placeholder="Ваше имя"
+               required>
+
+        <input type="email"
+               name="email"
+               placeholder="Ваш email (не обязательно)">
+
+        <textarea name="message"
+                  rows="7"
+                  placeholder="Ваше сообщение"
+                  required></textarea>
+
+        <button type="submit">
+          Отправить
+        </button>
+
+      </form>
+    `;
   });
 }
 	
