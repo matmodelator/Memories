@@ -15,14 +15,43 @@
 <!-- ВВОД тескта с параметрами -->
   <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const poem = {
-    author: "Игорь Хорош",
-    year: "",
-    title: "Test",
+  window.poem = {
+    author: "Игорян",
+    year: "2027",
+    style: "попса галимая",
+    place: "уж лучше вы к нам",
+    title: "Проба пера",
+    
     text: `
 Ща как напишу, вы все обалдеете!
+`,
+
+review: `
+Аннотация от ИИ
+
+
+
+скажу честно и без воды!
+Это самое крутое, что было когда—либо написано.
+`,
+    
+range: `
+6.0 как у родниной
+`,
+    
+resume: `
+
+`,
+
+note: `.
+еще не опубликовано в прессе
+`,
+    
+comments: `
+
 `
   };
+
 
   // title = первая непустая строка, если пусто
   if (!poem.title.trim()) {
@@ -68,21 +97,24 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 </script>
  
 <body>
-
-  
+	
+<!-- ОРИЕНТАЦИЯ -->
+ <div id="rotate-message">
+Пожалуйста, поверните устройство горизонтально
 </div>
+  
 
   <!-- Фон (на уровень выше) -->
   <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
 
-  <!-- МЕНЮ (5 пунктов, без изменений по структуре) -->
+  <!-- МЕНЮ ( без изменений по структуре) -->
 
   <nav class="main-nav">
     <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
-    <a href="../prose.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../stories.html" class="nav-item" data-text="Проза">Проза</a>
     <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
     <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
-    <a href="../comments.html" class="nav-item" data-text="Отзывы">Отзывы</a>
+  
   </nav> 
 
   <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
@@ -97,17 +129,67 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
 <div class="poem-buttons">
 
-  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
-  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
+  <a class="story-arrow" href="/Memories/poems.html">◀️</a>
+  <a class="story-arrow" id="prev-poem" href="#">⬆️</a>
+  <a class="story-arrow" id="next-poem" href="#">⬇️</a>
+  <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
+  <a class="poem-arrow" id="open-range" href="#">🔢</a>
+  <a class="poem-arrow" id="open-note" href="#">🔤</a>
+  <a class="poem-arrow" id="open-comments" href="#">🚻</a>
+  <a class="poem-arrow" id="send-comments" href="#">🚮</a>
+  <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
+  <a class="poem-arrow" id="heart" href="#">💟</a>
+    <span class="like-count">0</span>
 
-  <!-- Лайк + переход к отзыву -->
+  <!-- Лайк + переход к отзыву 
   <div class="like">
     <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
     <span class="like-count">0</span>
-  </div>
+  </div>. -->
 
+<!-- Локальный счетчик лайков  -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
 
+  const heart = document.getElementById("heart");
+  const count = document.querySelector(".like-count");
+
+  if (!heart || !count) return;
+
+  const key = "likes_" + location.pathname;
+
+  // берём сохранённое или стартовое из HTML
+  let likes = localStorage.getItem(key);
+
+  if (likes === null) {
+    likes = parseInt(count.textContent) || 0;
+  } else {
+    likes = parseInt(likes);
+  }
+
+  count.textContent = likes;
+
+  heart.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    likes++;
+    count.textContent = likes;
+
+    localStorage.setItem(key, likes);
+
+  });
+
+});
+</script>
   
+<!-- Возврат назад  -->
+  <script>
+document.getElementById("back-arrow").onclick = function () {
+  history.back();
+};
+</script> 
+
+<!-- Навигация по списку  -->  
 <script>
 document.addEventListener("DOMContentLoaded", async function () {
 
@@ -146,53 +228,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 </script>
 
 </div>
-  
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const heart = document.getElementById("heart");
-  const count = document.getElementById("like-count");
-
-  let likes = parseInt(count.textContent);
-
-  if (heart) {
-    heart.addEventListener("click", function () {
-
-      if (heart.classList.contains("liked")) {
-        heart.classList.remove("liked");
-        heart.textContent = "💟";
-        likes--;
-      } else {
-        heart.classList.add("liked");
-        heart.textContent = "💜";
-        likes++;
-      }
-
-      count.textContent = likes;
-
-    });
-  }
-
-});
-</script>
 
   
 </section>
-
-  
-<!-- Навигатор по разделу 
-  <div id="poem-nav"></div>
--->
-
-  <!-- Лайк + Переход к Отзыву 
-  <div class="like">
-  <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
-  <span class="like-count">0</span>
-</div> 
-  <!--Отзыв о тексте
-<div class="review">
-  <a href="/Memories/comments.html" title="Отзыв">📳</a>
-</div> -->
 
 
 <!-- Метаданные к файлу --> 
@@ -212,20 +250,9 @@ document.addEventListener("click", function(e) {
 
   <!-- Утилита переадресации по пунктам Меню-->
   <script src="../nav.js"></script>
- <!-- Утилита навигации по разделу (для контента)--> 
+ <!-- Утилита навигации по разделу (для контента)  -->
  <script src="poem-nav.js"></script>
   
-
- <!--  Контейнер для контента с переменными 
-
-<h1 id="title"></h1>
-<p id="author"></p>
-<p id="year"></p>
-<div id="text"></div> -->
-  
-
-
-
 
 <!-- ЛАЙК текста с отсылкой на мейл -->
 
@@ -266,43 +293,228 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script> 
 
+<!-- Аннотации -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const poemEl = document.getElementById("poem");
+  if (!poemEl) return;
+
+  const reviewBtn = document.getElementById("open-review");
+  const commentsBtn = document.getElementById("open-comments");
+  const rangeBtn = document.getElementById("open-range");
+  const noteBtn = document.getElementById("open-note");  
+  const backBtn = document.getElementById("back-to-poem");
+
+  // 🔒 используем уже существующий poem.text (ничего не переинициализируем)
+  const originalText = (typeof poem !== "undefined" && poem.text)
+    ? poem.text
+    : poemEl.textContent;
+
+  // ℹ️ review
+if (reviewBtn) {
+  reviewBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const reviewText = poem.review ? poem.review.trim() : "";
+
+    poemEl.textContent = reviewText || "Аннотация пока не добавлена";
+  });
+}
+
+// 🔢 range
+if (rangeBtn) {
+  rangeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const rangeText = poem.range ? poem.range.trim() : "";
+
+    if (!rangeText) {
+      poemEl.textContent = "Я всё жду, когда его оценят по достоинству";
+      return;
+    }
+
+    const rows = rangeText
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+
+    let html = '<table class="range-table">';
+
+    rows.forEach((row, index) => {
+      const cols = row.split("|").map(col => col.trim());
+
+      html += "<tr>";
+
+      cols.forEach(col => {
+        if (index === 0) {
+          html += `<th>${col}</th>`;
+        } else {
+          html += `<td>${col}</td>`;
+        }
+      });
+
+      html += "</tr>";
+    });
+
+    html += "</table>";
+
+    poemEl.innerHTML = html;
+  });
+}
+
+// 🔤 note
+if (noteBtn) {
+  noteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const noteText = poem.note ? poem.note.trim() : "";
+
+    poemEl.textContent = noteText || "Автор пока не прокомментировал";
+  });
+}
+  
+// 🚻 open-comments
+
+	
+if (commentsBtn) {
+  commentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const commentsText = String(poem.comments || "").trim();
+
+    if (commentsText !== "") {
+      poemEl.textContent = commentsText;
+    } else {
+      poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
+    }
+  });
+}
+	
+// 🚻 send-comments	
 
 
+const sendCommentsBtn = document.getElementById("send-comments");
 
-<!--ПАРОЛЬ
-<script src="../password-gate.js"></script>-->
+if (sendCommentsBtn) {
+  sendCommentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
 
-    
-  <!-- FULL Screen mode 
+    poemEl.innerHTML = `
+      <div class="form-box">
 
+        <h2></h2>
+
+<p>
+  Если вы хотите оставить комментарий, заполните форму ниже <br>
+  Оотзыв появится на сайте спустя некоторое время после модерации
+</p>
+       
+
+        <form class="contact-form" action="https://formspree.io/f/xvzwoqzk" method="POST">
+
+          <input type="hidden" name="_subject" value="Сообщение с сайта Memories">
+
+          <input type="text" name="name" placeholder="Ваше имя" required>
+
+          <input type="email" name="email" placeholder="Ваш email(не обязательно)">
+
+          <textarea name="message" rows="7" placeholder="Ваше сообщение" required></textarea>
+
+          <button type="submit">Отправить</button>
+
+        </form>
+
+      </div>
+    `;
+
+    const reviewForm = poemEl.querySelector(".contact-form");
+
+    if (reviewForm) {
+      reviewForm.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+
+      reviewForm.querySelectorAll("input, textarea, button, label").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+      });
+    }
+  });
+}
+	
+
+// 🔄 назад — логика кнопки:
+// если сейчас уже показан текст стиха → переключаем full screen
+// если показано другое поле (аннотация, range, note, comments) → просто возвращаем текст
+// при этом предотвращаем всплытие клика до reading-panel
+
+const panel = document.querySelector(".reading-panel");
+
+if (backBtn) {
+  backBtn.addEventListener("click", function (e) {
+
+    e.preventDefault();      // не выполнять переход по ссылке
+    e.stopPropagation();     // не передавать клик панели (чтобы не сработал fullscreen)
+
+    // если сейчас отображается исходный текст стиха
+    if (poemEl.innerHTML === originalText) {
+
+      // переключаем режим full screen ↔ обычный
+      panel.classList.toggle("is-fullscreen");
+
+    } else {
+
+      // иначе просто возвращаем текст стиха без переключения режима
+      poemEl.innerHTML = originalText;
+
+    }
+
+  });
+}
+});
+</script>
+
+<!-- FULL Screen mode -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
+  // Находим область чтения
   const panel = document.querySelector(".reading-panel");
   if (!panel) return;
 
+  // Обработчик клика по reading-panel
   panel.addEventListener("click", function (e) {
 
-    // не реагировать на кнопки и ссылки
-    if (e.target.closest("a, button, input, textarea")) return;
+    // Страховка: если клик не внутри reading-panel — ничего не делаем
+    // (обычно не требуется, но безопасно оставить)
+    if (!panel.contains(e.target)) return;
 
-    panel.classList.toggle("fullscreen");
+    // ВАЖНО:
+    // Если клик был по панели кнопок (.poem-buttons),
+    // то fullscreen НЕ переключаем.
+    // Это блокирует реакции на:
+    // ◀️ ⬆️ ⬇️ ℹ️ 🔢 🔤 🚻 🔄 💟
+    if (e.target.closest(".poem-buttons")) return;
 
-  });
-
-});
-</script>
--->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const panel = document.querySelector(".reading-panel");
-  if (!panel) return;
-
-  panel.addEventListener("click", function () {
+    // Если клик был по самому полю чтения (тексту или фону),
+    // переключаем режим full screen
     panel.classList.toggle("is-fullscreen");
+
   });
+
 });
 </script>
+	
+<!-- ПАРОЛЬ 
+<body data-password="пароль">
+<script src="../password-gate.js"></script>-->
     
 </body>
 </html>
+
+
+
