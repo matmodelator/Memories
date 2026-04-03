@@ -159,8 +159,8 @@ resume: `
 
 note: `.
 Слушать песню: Андрей Сапунов, группа Воскресенье
-<a href="https://www.youtube.com/watch?v=U6VgHoCyncY&list=RDU6VgHoCyncY&start_radio=1">
-  https://www.youtube.com/watch?v=U6VgHoCyncY&list=RDU6VgHoCyncY&start_radio=1
+<a href="https://www.youtube.com/watch?v=U6VgHoCyncY&list=RDU6VgHoCyncY&start_radio=1" target="_blank">
+https://www.youtube.com/watch?v=U6VgHoCyncY&list=RDU6VgHoCyncY&start_radio=1
 </a>
 `,
     
@@ -190,7 +190,7 @@ comments: `
   }
 
   // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
-  pre.textContent = poem.text;
+pre.innerHTML = poem.text;
 
   // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
   const meta = document.getElementById("meta");
