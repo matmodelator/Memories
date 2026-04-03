@@ -1335,11 +1335,11 @@ font-weight: 900;   /* ← Жирный Шрифт */
     bottom: auto !important;
   }
 
-  /* reading-panel — шире 
+  /* reading-panel — шире */
   .reading-panel {
     width: 70vw !important;
     max-width: 1000px !important;
     min-width: 560px !important;
   }
 
-}*/
+}
