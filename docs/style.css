@@ -1344,8 +1344,13 @@ font-weight: 900;   /* ← Жирный Шрифт */
 
  /* reading-panel — нормальная ширина half-screen */  
   .reading-panel {
-    --read-width: 65vw !important;
-    --read-max-width: 1100px !important;
+    top: 62% !important;
+    width: 70vw !important;
+    max-width: 1100px !important;
+    overflow-y: hidden !important; /* убрать внешний второй скролл */
   }
 
+  .poem-text {
+    overflow-y: auto !important;   /* оставить один внутренний скролл */
+  }
 }
