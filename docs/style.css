@@ -1342,17 +1342,4 @@ font-weight: 900;   /* ← Жирный Шрифт */
     min-width: 560px !important;
   }
 
- /* reading-panel — нормальная ширина half-screen */  
-  .reading-panel:not(.is-fullscreen) {
-    top: 62% !important;      /* ниже */
-    width: 70vw !important;   /* шире */
-    max-width: 1100px !important;
   }
-
- .reading-panel:not(.is-fullscreen) {
-    top: 62% !important;
-    width: 70vw !important;
-    max-width: 1100px !important;
-    overflow-y: hidden !important;
-  }
-}
