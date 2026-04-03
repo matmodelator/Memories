@@ -1324,19 +1324,20 @@ body.locked #poem-nav{
 font-weight: 900;   /* ← Жирный Шрифт */
 }
 
-/* Только для компьютеров — размеры панелей */
-@media (min-width: 1024px) {
+/* ТОЛЬКО компьютеры (мышь / hover) */
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
 
   /* scroll-panel — выше */
   .scroll-panel {
-    height: 85vh !important;  /* высота */
-    top: 8vh !important;      /* отступ сверху */
-    bottom: auto !important;  /* отключаем старый bottom */
+    height: 85vh !important;
+    top: 8vh !important;
+    bottom: auto !important;
   }
 
   /* reading-panel — шире */
   .reading-panel {
-    width: 70vw !important;     /* ширина относительно экрана */
+    width: 70vw !important;
     max-width: 1000px !important;
     min-width: 560px !important;
   }
