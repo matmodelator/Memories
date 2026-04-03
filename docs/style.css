@@ -1161,7 +1161,7 @@ body.locked #poem-nav{
 
 }
 
-/* СТРЕЛКИ через HTML */
+<!-- СТРЕЛКИ через HTML -->
 
  
 .poem-buttons{
@@ -1234,7 +1234,7 @@ body.locked #poem-nav{
 
 
 
-/* Таблица оценок в range */
+<!-- Таблица оценок в range -->
 .range-table{
   width: 100%;
   border-collapse: collapse;
