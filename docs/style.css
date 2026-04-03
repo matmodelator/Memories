@@ -297,14 +297,6 @@ body{
   transition: 0.28s ease;
 }
 
-/* Увеличение только вертикального scroll bar в fullscreen на PC */
-@media (min-width: 1024px) {
-
-  .reading-panel.is-fullscreen::-webkit-scrollbar:vertical {
-    width: 16px;   /* ширина вертикальной полосы */
-  }
-
-}
 
 /* Внутри — прокрутка, если стихов много */
 .scroll-inner {
@@ -711,15 +703,6 @@ body{
   padding: var(--read-padding);
   border-radius: var(--read-radius);
 
-   /* Только для компьютеров */
-@media (min-width: 1024px) {
-
-  .reading-panel {
-    --read-width: 70vw;
-    --read-max-width: 1000px;
-  }
-
-}
    
  /* background: rgba(var(--read-bg), var(--read-bg-opacity));*/
 
@@ -1341,5 +1324,21 @@ body.locked #poem-nav{
 font-weight: 900;   /* ← Жирный Шрифт */
 }
 
+/* Только для компьютеров Ширина reading-panel*/
+@media (min-width: 1024px) {
 
+  .reading-panel {
+    --read-width: 70vw;
+    --read-max-width: 1000px;
+  }
 
+}
+
+/* Увеличение только вертикального scroll bar в fullscreen на PC */
+@media (min-width: 1024px) {
+
+  .reading-panel.is-fullscreen::-webkit-scrollbar:vertical {
+    width: 16px;   /* ширина вертикальной полосы */
+  }
+
+}
