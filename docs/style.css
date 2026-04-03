@@ -1343,14 +1343,16 @@ font-weight: 900;   /* ← Жирный Шрифт */
   }
 
  /* reading-panel — нормальная ширина half-screen */  
-  .reading-panel {
+  .reading-panel:not(.is-fullscreen) {
+    top: 62% !important;      /* ниже */
+    width: 70vw !important;   /* шире */
+    max-width: 1100px !important;
+  }
+
+ .reading-panel:not(.is-fullscreen) {
     top: 62% !important;
     width: 70vw !important;
     max-width: 1100px !important;
-    overflow-y: hidden !important; /* убрать внешний второй скролл */
-  }
-
-  .poem-text {
-    overflow-y: auto !important;   /* оставить один внутренний скролл */
+    overflow-y: hidden !important;
   }
 }
