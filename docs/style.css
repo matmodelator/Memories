@@ -1342,4 +1342,10 @@ font-weight: 900;   /* ← Жирный Шрифт */
     min-width: 560px !important;
   }
 
+ /* reading-panel — нормальная ширина half-screen */  
+  .reading-panel {
+    --read-width: 65vw !important;
+    --read-max-width: 1100px !important;
+  }
+
 }
