@@ -1324,21 +1324,21 @@ body.locked #poem-nav{
 font-weight: 900;   /* ← Жирный Шрифт */
 }
 
-/* Только для компьютеров Ширина reading-panel*/
+/* Только для компьютеров — размеры панелей */
 @media (min-width: 1024px) {
 
-  .reading-panel {
-    --read-width: 70vw;
-    --read-max-width: 1000px;
+  /* scroll-panel — выше */
+  .scroll-panel {
+    height: 85vh !important;  /* высота */
+    top: 8vh !important;      /* отступ сверху */
+    bottom: auto !important;  /* отключаем старый bottom */
   }
 
-}
-
-/* Увеличение только вертикального scroll bar в fullscreen на PC */
-@media (min-width: 1024px) {
-
-  .reading-panel.is-fullscreen::-webkit-scrollbar:vertical {
-    width: 16px;   /* ширина вертикальной полосы */
+  /* reading-panel — шире */
+  .reading-panel {
+    width: 70vw !important;     /* ширина относительно экрана */
+    max-width: 1000px !important;
+    min-width: 560px !important;
   }
 
 }
