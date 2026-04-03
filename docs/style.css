@@ -1337,7 +1337,7 @@ font-weight: 900;   /* ← Жирный Шрифт */
 
   /* reading-panel — шире */
   .reading-panel {
-    width: 70vw !important;
+    width: 700vw !important;
     max-width: 1000px !important;
     min-width: 560px !important;
   }
