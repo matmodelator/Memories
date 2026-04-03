@@ -487,7 +487,7 @@ if (noteBtn) {
 
     const noteText = poem.note ? poem.note.trim() : "";
 
-    poemEl.textContent = noteText || "Автор пока не прокомментировал";
+    poemEl.innerHTML = noteText || "Автор пока не прокомментировал";
   });
 }
   
