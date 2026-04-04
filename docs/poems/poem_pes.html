@@ -263,9 +263,11 @@ resume: `
 Коль не ждёте вы трамвая, сам трамвай порой приходит
 Оказался наш хозяин не отцом, а сукой даже!..
 `,
-
-note: `
-
+note: `.
+Слушать песню: Андрей Сапунов, группа Воскресенье
+<a href="https://stihi.ru/2012/03/28/9545" target="_blank">
+https://stihi.ru/2012/03/28/9545
+</a>
 `,
     
 comments: `
@@ -293,10 +295,9 @@ comments: `
     panel.appendChild(pre);
   }
 
-  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений” + курсив)
-// pre.textContent = poem.text;
-pre.innerHTML = poem.text.replace(/\n/g, "<br>");
-  
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
+pre.innerHTML = poem.text;
+
   // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
   const meta = document.getElementById("meta");
  // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
@@ -318,8 +319,13 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
     
 </script>
  
-<body data-access="privat">
-
+<body>
+	
+<!-- ОРИЕНТАЦИЯ -->
+ <div id="rotate-message">
+Пожалуйста, поверните устройство горизонтально
+</div>
+  
 
   <!-- Фон (на уровень выше) -->
   <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
@@ -346,13 +352,14 @@ if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
 
 <div class="poem-buttons">
 
-  <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
-  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
-  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
+  <a class="story-arrow" href="/Memories/poems.html">◀️</a>
+  <a class="story-arrow" id="prev-poem" href="#">⬆️</a>
+  <a class="story-arrow" id="next-poem" href="#">⬇️</a>
   <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
   <a class="poem-arrow" id="open-range" href="#">🔢</a>
   <a class="poem-arrow" id="open-note" href="#">🔤</a>
   <a class="poem-arrow" id="open-comments" href="#">🚻</a>
+  <a class="poem-arrow" id="send-comments" href="#">🚮</a>
   <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
   <a class="poem-arrow" id="heart" href="#">💟</a>
     <span class="like-count">0</span>
@@ -403,7 +410,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById("back-arrow").onclick = function () {
   history.back();
 };
-</script>
+</script> 
 
 <!-- Навигация по списку  -->  
 <script>
@@ -444,35 +451,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 </script>
 
 </div>
-  
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const heart = document.getElementById("heart");
-  const count = document.getElementById("like-count");
-
-  let likes = parseInt(count.textContent);
-
-  if (heart) {
-    heart.addEventListener("click", function () {
-
-      if (heart.classList.contains("liked")) {
-        heart.classList.remove("liked");
-        heart.textContent = "💟";
-        likes--;
-      } else {
-        heart.classList.add("liked");
-        heart.textContent = "💜";
-        likes++;
-      }
-
-      count.textContent = likes;
-
-    });
-  }
-
-});
-</script>
 
   
 </section>
@@ -495,7 +473,7 @@ document.addEventListener("click", function(e) {
 
   <!-- Утилита переадресации по пунктам Меню-->
   <script src="../nav.js"></script>
- <!-- Утилита навигации по разделу (для контента)--> 
+ <!-- Утилита навигации по разделу (для контента)  -->
  <script src="poem-nav.js"></script>
   
 
@@ -615,11 +593,13 @@ if (noteBtn) {
 
     const noteText = poem.note ? poem.note.trim() : "";
 
-    poemEl.textContent = noteText || "Автор пока не прокомментировал";
+    poemEl.innerHTML = noteText || "Автор пока не прокомментировал";
   });
 }
   
-// 🚻 comments
+// 🚻 open-comments
+
+	
 if (commentsBtn) {
   commentsBtn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -633,40 +613,131 @@ if (commentsBtn) {
     }
   });
 }
+	
+// 🚻 send-comments	
 
- // 🔄 возврат к тексту
-if (resetBtn) {
-  resetBtn.addEventListener("click", function (e) {
+
+const sendCommentsBtn = document.getElementById("send-comments");
+
+if (sendCommentsBtn) {
+  sendCommentsBtn.addEventListener("click", function (e) {
     e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
 
-    poemEl.innerHTML = poem.text;
+    poemEl.innerHTML = `
+      <div class="form-box">
+
+        <h2></h2>
+
+<p>
+  Если вы хотите оставить комментарий, заполните форму ниже <br>
+  Оотзыв появится на сайте спустя некоторое время после модерации
+</p>
+       
+
+        <form class="contact-form" action="https://formspree.io/f/xvzwoqzk" method="POST">
+
+          <input type="hidden" name="_subject" value="Сообщение с сайта Memories">
+
+          <input type="text" name="name" placeholder="Ваше имя" required>
+
+          <input type="email" name="email" placeholder="Ваш email(не обязательно)">
+
+          <textarea name="message" rows="7" placeholder="Ваше сообщение" required></textarea>
+
+          <button type="submit">Отправить</button>
+
+        </form>
+
+      </div>
+    `;
+
+    const reviewForm = poemEl.querySelector(".contact-form");
+
+    if (reviewForm) {
+      reviewForm.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+
+      reviewForm.querySelectorAll("input, textarea, button, label").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+      });
+    }
   });
 }
+	
 
+// 🔄 назад — логика кнопки:
+// если сейчас уже показан текст стиха → переключаем full screen
+// если показано другое поле (аннотация, range, note, comments) → просто возвращаем текст
+// при этом предотвращаем всплытие клика до reading-panel
+
+const panel = document.querySelector(".reading-panel");
+
+if (backBtn) {
+  backBtn.addEventListener("click", function (e) {
+
+    e.preventDefault();      // не выполнять переход по ссылке
+    e.stopPropagation();     // не передавать клик панели (чтобы не сработал fullscreen)
+
+    // если сейчас отображается исходный текст стиха
+    if (poemEl.innerHTML === originalText) {
+
+      // переключаем режим full screen ↔ обычный
+      panel.classList.toggle("is-fullscreen");
+
+    } else {
+
+      // иначе просто возвращаем текст стиха без переключения режима
+      poemEl.innerHTML = originalText;
+
+    }
+
+  });
+}
 });
 </script>
 
-
 <!-- FULL Screen mode -->
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+
+  // Находим область чтения
   const panel = document.querySelector(".reading-panel");
   if (!panel) return;
 
-  panel.addEventListener("click", function () {
+  // Обработчик клика по reading-panel
+  panel.addEventListener("click", function (e) {
+
+    // Страховка: если клик не внутри reading-panel — ничего не делаем
+    // (обычно не требуется, но безопасно оставить)
+    if (!panel.contains(e.target)) return;
+
+    // ВАЖНО:
+    // Если клик был по панели кнопок (.poem-buttons),
+    // то fullscreen НЕ переключаем.
+    // Это блокирует реакции на:
+    // ◀️ ⬆️ ⬇️ ℹ️ 🔢 🔤 🚻 🔄 💟
+    if (e.target.closest(".poem-buttons")) return;
+
+    // Если клик был по самому полю чтения (тексту или фону),
+    // переключаем режим full screen
     panel.classList.toggle("is-fullscreen");
+
   });
+
 });
 </script>
 	
-<!-- ПАРОЛЬ  -->
+<!-- ПАРОЛЬ 
 <body data-password="пароль">
-<script src="../password-gate.js"></script> 
+<script src="../password-gate.js"></script>-->
     
 </body>
 </html>
-
 
 
 
