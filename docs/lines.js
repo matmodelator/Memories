@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       <a class="scroll-link" href="poems/poem_bvs1.html">Всё кончено. Твой статус - не в сети</a>
       <a class="scroll-link" href="poems/poem_bvs2.html">Всё плохо, Булочка!</a>
       <a class="scroll-link" href="poems/poem_bvs3.html">Всё обернётся..</a>
+      <a class="scroll-link" href="poems/poem_bvsch.html">Вчерашний</a>
       <a class="scroll-link" href="poems/poem_b1.html">В небывалых девяностых</a>
       <a class="scroll-link" href="poems/poem_b2.html">В хурмяном саду декабрь</a>
       <a class="scroll-link" href="poems/poem_b3.html">В центре мира и на краю земли</a>
