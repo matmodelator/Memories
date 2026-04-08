@@ -92,8 +92,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       <a class="scroll-link" href="poems/poem_lu.html">Любовь моя, так хочется на волю!..</a>
       <a class="scroll-link" href="poems/poem_ma.html">Мама, ты постой еще немного</a>
       <a class="scroll-link" href="poems/poem_mi.html">Мир сузился до ширины зрачка...</a>
-      <a class="scroll-link" href="poems/poem_mo.html">Москва уходит задними дворами</a>
       <a class="scroll-link" href="poems/poem_mn.html">Мне кажется порой</a>
+      <a class="scroll-link" href="poems/poem_mog.html">Может быть..</a>
+      <a class="scroll-link" href="poems/poem_mos.html">Мос.ру</a>
       <a class="scroll-link" href="poems/poem_na.html">На Средиземном третье апреля</a>
       <a class="scroll-link" href="poems/poem_no1.html">Ночи зимой длинны.</a>
       <a class="scroll-link" href="poems/poem_no2.html">Ноябрь.. Сомнения</a>
