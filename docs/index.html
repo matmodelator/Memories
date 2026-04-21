@@ -13,7 +13,8 @@
   
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="effect.css">
-
+  <link rel="stylesheet" href="search.css">
+  
 </head>
   
 <body>
@@ -37,10 +38,27 @@
       <a href="author.html" class="nav-item">Автор</a>
   </nav>
 
+  <!-- SEARCH ASIDE -->
+<aside id="searchAside">
+
+  <div class="search-title">
+    Поиск
+  </div>
+
+  <input
+    id="searchInput"
+    type="text"
+    placeholder="название, место, год, стиль, тег"
+  >
+
+  <div id="searchInfo"></div>
+  <div id="searchResults"></div>
+</aside>
+  
   <!-- Утилита переадресации для Меню -->
   <script src="nav.js"></script>
 
-<!-- Фразы -->
+  <!-- Фразы -->
   <script src="lines.js"></script>
   
 <!-- Анимация -->
@@ -92,6 +110,8 @@ window.addEventListener("memoryLinesReady", function () {
 </script>
  
  --> 
+
+<script src="search.js"></script>
   
 </body>
 </html>
