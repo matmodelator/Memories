@@ -1,7 +1,7 @@
 /*
 ========================================
 search.css
-version: v1.0.1
+version: v1.0.0
 date: 2026-04-21
 ========================================
 SEARCH ASIDE — панель поиска сбоку
@@ -16,15 +16,15 @@ SEARCH ASIDE — панель поиска сбоку
 
 #searchAside {
 
-  position: fixed;
+  position: absolute;
 
-  top: 12px;
+  top: 20px;
 
-  left: 12px;
+  right: 20px;
 
-  width: 260px;
+  width: 150px;
 
-  max-height: calc(100vh - 24px);
+  max-height: calc(100vh - 160px);
 
   overflow-y: auto;
 
@@ -32,18 +32,16 @@ SEARCH ASIDE — панель поиска сбоку
 
   border-radius: 12px;
 
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.75);
 
   backdrop-filter: blur(6px);
 
   box-shadow:
-    0 6px 16px rgba(0,0,0,0.15);
+    0 6px 16px rgba(0,0,0,0.12);
 
   font-size: 14px;
 
-  z-index: 99999;
-
-  pointer-events: auto;
+  z-index: 50;
 
 }
 
@@ -203,13 +201,21 @@ TAGS
 
   #searchAside {
 
-    top: 8px;
+    position: fixed;
 
-    left: 8px;
+    top: auto;
 
-    width: calc(100vw - 16px);
+    bottom: 0;
 
-    max-height: 40vh;
+    right: 0;
+
+    left: 0;
+
+    width: auto;
+
+    max-height: 45vh;
+
+    border-radius: 16px 16px 0 0;
 
   }
 
