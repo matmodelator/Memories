@@ -1,10 +1,6 @@
 <!DOCTYPE html>
-
-<!--
-catalog.html
-version: v1.0.4
-date: 2026-04-21
--->
+<!-- version: v1.0.5 -->
+<html lang="ru">
 
 <html lang="ru">
 
@@ -44,6 +40,12 @@ header {
   background: white;
   padding: 24px;
   border-radius: 12px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 button {
@@ -107,11 +109,17 @@ button:hover {
 
 <div class="container">
 
+<div class="buttons">
+
 <button onclick="buildCatalog()">
-
 Собрать catalog.json
-
 </button>
+
+<button onclick="saveCatalog()">
+Сохранить catalog.json
+</button>
+
+</div>
 
 <div id="status"
      class="status">
@@ -508,7 +516,7 @@ function extractPoemMeta(source, file) {
 
 /*
 ========================================
-BUILD
+СБОРКА КАТАЛОГА
 ========================================
 */
 
@@ -630,8 +638,8 @@ async function buildCatalog() {
         "Каталог пуст"
       )
 
-    downloadJson(
-      CATALOG
+    log(
+      "Каталог готов — нажмите Сохранить"
     )
 
     setStatus(
@@ -650,6 +658,39 @@ async function buildCatalog() {
     )
 
   }
+
+}
+
+/*
+========================================
+СОХРАНЕНИЕ ГОТОВОГО КАТАЛОГА
+========================================
+*/
+
+function saveCatalog() {
+
+  if (!CATALOG.length) {
+
+    log(
+      "Каталог пуст — нечего сохранять"
+    )
+
+    setStatus(
+      "Каталог пуст",
+      true
+    )
+
+    return
+
+  }
+
+  downloadJson(
+    CATALOG
+  )
+
+  log(
+    "Файл сохранён"
+  )
 
 }
 
