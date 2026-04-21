@@ -100,6 +100,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       <a class="scroll-link" href="poems/poem_no1.html">Ночи зимой длинны.</a>
       <a class="scroll-link" href="poems/poem_no2.html">Ноябрь.. Сомнения</a>
       <a class="scroll-link" href="poems/poem_o1.html">О нетленной любви</a>
+      <a class="scroll-link" href="poems/poem_ob.html">Общага</a>
       <a class="scroll-link" href="poems/poem_od11.html">Одиннадцатистишья</a>
       <a class="scroll-link" href="poems/poem_od.html">Одуванчики</a>
       <a class="scroll-link" href="poems/poem_oi.html">Ой ты гой еси!..</a>
