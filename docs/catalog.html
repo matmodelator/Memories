@@ -2,15 +2,26 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+
+<!-- Адаптация под мобильные -->
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
+
 <title>Каталог Memories</title>
 
 <style>
+
+/*
+========================================
+БАЗОВЫЕ СТИЛИ СТРАНИЦЫ
+========================================
+*/
+
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
   background: #f4f6f8;
-  margin: 0;
+  color: #222;
 }
 
 header {
@@ -21,12 +32,19 @@ header {
 }
 
 .container {
-  max-width: 820px;
-  margin: 30px auto;
+  max-width: 980px;
+  margin: 24px auto;
   background: white;
   padding: 24px;
-  border-radius: 10px;
+  border-radius: 12px;
+  box-sizing: border-box;
 }
+
+/*
+========================================
+КНОПКА
+========================================
+*/
 
 button {
   padding: 12px 18px;
@@ -38,25 +56,63 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  background: #1d4ed8;
+}
+
+/*
+========================================
+СТАТУС
+========================================
+*/
+
+.status {
+  margin: 16px 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  white-space: pre-wrap;
+}
+
+.status.good {
+  color: #166534;
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.status.bad {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+/*
+========================================
+ЛОГ
+========================================
+*/
+
 .log {
   margin-top: 20px;
   background: #0f172a;
   color: #dbeafe;
   padding: 14px;
   border-radius: 8px;
-  height: 300px;
+  height: 340px;
   overflow: auto;
   font-family: Consolas, monospace;
   font-size: 13px;
   white-space: pre-wrap;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>Каталог Memories</h1>
+  <h1>Каталог Memories</h1>
 </header>
 
 <div class="container">
@@ -65,25 +121,130 @@ button {
 Собрать catalog.json
 </button>
 
+<div id="status" class="status">
+Готов к сборке каталога
+</div>
+
 <div id="log" class="log"></div>
 
 </div>
 
 <script>
 
+/*
+========================================
+ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+========================================
+*/
+
+let CATALOG = []
+
 const logBox =
   document.getElementById("log")
 
+const statusBox =
+  document.getElementById("status")
+
+/*
+========================================
+ЛОГ
+========================================
+*/
+
 function log(text) {
+
   logBox.textContent +=
     text + "\n"
+
+  logBox.scrollTop =
+    logBox.scrollHeight
+
 }
 
-function clean(text) {
-  return String(text || "")
+/*
+========================================
+СТАТУС
+========================================
+*/
+
+function setStatus(text, error = false) {
+
+  statusBox.textContent = text
+
+  if (error)
+    statusBox.className =
+      "status bad"
+  else
+    statusBox.className =
+      "status good"
+
+}
+
+/*
+========================================
+ОЧИСТКА ТЕКСТА
+========================================
+*/
+
+function clean(value) {
+
+  return String(value || "")
+    .replace(/\r/g, "")
+    .replace(/\n/g, " ")
     .replace(/\s+/g, " ")
     .trim()
+
 }
+
+/*
+========================================
+ОПРЕДЕЛЕНИЕ РАЗДЕЛА
+========================================
+*/
+
+function detectSection(file) {
+
+  if (file.startsWith("poems/"))
+    return "poems"
+
+  if (file.startsWith("songs/"))
+    return "songs"
+
+  if (file.startsWith("stories/"))
+    return "stories"
+
+  return ""
+
+}
+
+/*
+========================================
+ПОЛУЧЕНИЕ TAGS ИЗ RESUME
+========================================
+*/
+
+function extractTags(resume) {
+
+  if (!resume)
+    return []
+
+  return resume
+
+    .toLowerCase()
+
+    .replace(/[.,:;!?—–]/g, " ")
+
+    .split(/\s+/)
+
+    .filter(Boolean)
+
+}
+
+/*
+========================================
+ЧТЕНИЕ HTML
+========================================
+*/
 
 async function fetchHtml(path) {
 
@@ -92,14 +253,23 @@ async function fetchHtml(path) {
   const res =
     await fetch(path)
 
+  if (!res.ok)
+    throw new Error(path)
+
   return await res.text()
 
 }
 
-async function getPoemFiles() {
+/*
+========================================
+СПИСОК ФАЙЛОВ
+========================================
+*/
+
+async function getFilesFromPage(page) {
 
   const html =
-    await fetchHtml("poems.html")
+    await fetchHtml(page)
 
   const doc =
     new DOMParser()
@@ -110,21 +280,36 @@ async function getPoemFiles() {
       doc.querySelectorAll("a[href]")
     )
 
-  const files =
-    links
-      .map(a =>
-        a.getAttribute("href")
-      )
-      .filter(href =>
-        /poems\/poem_.*\.html/i
-          .test(href)
-      )
+  return links
 
-  log("Найдено файлов: " + files.length)
+    .map(a =>
+      a.getAttribute("href")
+    )
 
-  return files
+    .filter(href =>
+
+      /poems\/poem_.*\.html/i
+        .test(href)
+
+      ||
+
+      /songs\/song_.*\.html/i
+        .test(href)
+
+      ||
+
+      /stories\/story_.*\.html/i
+        .test(href)
+
+    )
 
 }
+
+/*
+========================================
+ИЗВЛЕЧЕНИЕ window.poem
+========================================
+*/
 
 function extractPoem(html) {
 
@@ -140,9 +325,7 @@ function extractPoem(html) {
     const code =
       s.textContent
 
-    if (
-      !code.includes("window.poem")
-    )
+    if (!code.includes("window.poem"))
       continue
 
     try {
@@ -161,7 +344,11 @@ function extractPoem(html) {
 
     }
 
-    catch {}
+    catch (e) {
+
+      log("Ошибка разбора")
+
+    }
 
   }
 
@@ -169,64 +356,191 @@ function extractPoem(html) {
 
 }
 
+/*
+========================================
+СБОРКА КАТАЛОГА
+========================================
+*/
+
 async function buildCatalog() {
 
-  logBox.textContent = ""
+  try {
 
-  const files =
-    await getPoemFiles()
+    logBox.textContent = ""
 
-  const catalog = []
+    setStatus(
+      "Сборка каталога..."
+    )
 
-  for (const file of files) {
+    /*
+    ========================================
+    ЧИТАЕМ ВСЕ СПИСКИ
+    ========================================
+    */
 
-    const html =
-      await fetchHtml(file)
+    const pages = [
 
-    const poem =
-      extractPoem(html)
+      "poems.html",
+      "songs.html",
+      "stories.html"
 
-    if (!poem)
-      continue
+    ]
 
-    catalog.push({
+    let files = []
 
-      title:
-        clean(poem.title),
+    for (const page of pages) {
 
-      author:
-        clean(poem.author),
+      try {
 
-      year:
-        clean(poem.year),
+        const list =
+          await getFilesFromPage(page)
 
-      style:
-        clean(poem.style),
+        files =
+          files.concat(list)
 
-      file:
-        file,
+      }
 
-      resume:
-        clean(poem.resume),
+      catch {
 
-      tags:
-        poem.tags || []
+        log(
+          "Пропуск страницы: " +
+          page
+        )
 
-    })
+      }
 
-    log("Добавлен: " +
-        poem.title)
+    }
+
+    /*
+    ========================================
+    УБИРАЕМ ДУБЛИКАТЫ
+    ========================================
+    */
+
+    files =
+      Array.from(
+        new Set(files)
+      )
+
+    log(
+      "Найдено файлов: " +
+      files.length
+    )
+
+    /*
+    ========================================
+    ЧИТАЕМ КАЖДЫЙ ФАЙЛ
+    ========================================
+    */
+
+    CATALOG = []
+
+    for (const file of files) {
+
+      try {
+
+        const html =
+          await fetchHtml(file)
+
+        const poem =
+          extractPoem(html)
+
+        if (!poem)
+          continue
+
+        /*
+        ========================================
+        ДОБАВЛЯЕМ ЗАПИСЬ
+        ========================================
+        */
+
+        CATALOG.push({
+
+          title:
+            clean(poem.title),
+
+          file:
+            file,
+
+          section:
+            detectSection(file),
+
+          tags:
+            extractTags(
+              poem.resume
+            )
+
+        })
+
+        log(
+          "Добавлен: " +
+          poem.title
+        )
+
+      }
+
+      catch (e) {
+
+        log(
+          "Ошибка файла: " +
+          file
+        )
+
+      }
+
+    }
+
+    /*
+    ========================================
+    ПРОВЕРКА
+    ========================================
+    */
+
+    if (!CATALOG.length)
+      throw new Error(
+        "Каталог пуст"
+      )
+
+    /*
+    ========================================
+    СОХРАНЕНИЕ
+    ========================================
+    */
+
+    downloadJson(
+      CATALOG
+    )
+
+    setStatus(
+      "Готово. Записей: " +
+      CATALOG.length
+    )
 
   }
 
-  downloadJson(catalog)
+  catch (e) {
+
+    setStatus(
+      "Ошибка: " +
+      e.message,
+      true
+    )
+
+  }
 
 }
+
+/*
+========================================
+СОХРАНЕНИЕ JSON
+========================================
+*/
 
 function downloadJson(data) {
 
   const blob =
     new Blob(
+
       [
         JSON.stringify(
           data,
@@ -234,14 +548,18 @@ function downloadJson(data) {
           2
         )
       ],
+
       {
         type:
-        "application/json"
+          "application/json"
       }
+
     )
 
   const url =
-    URL.createObjectURL(blob)
+    URL.createObjectURL(
+      blob
+    )
 
   const a =
     document.createElement("a")
