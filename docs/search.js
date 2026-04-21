@@ -192,10 +192,14 @@ function renderResults(list) {
         : ""
 
     a.innerHTML = `
-      <div class="search-title">${safe(item.title)}</div>
-      <div class="search-meta">${meta}</div>
-      <div class="search-tags">${tags}</div>
-    `
+  <div class="search-title">
+    ${safe(item.title)}
+  </div>
+
+  <div class="search-meta">
+    ${meta}
+  </div>
+`
 
     resultsBox.appendChild(a)
 
