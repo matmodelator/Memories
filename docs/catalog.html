@@ -2,7 +2,7 @@
 
 <!--
 catalog.html
-version: v1.0.3
+version: v1.0.4
 date: 2026-04-21
 -->
 
@@ -244,7 +244,9 @@ function detectSection(file) {
 
 /*
 ========================================
-TAGS
+TAGS ИЗ RESUME
+СЛОВА МЕНЕЕ 4 БУКВ НЕ ПОПАДАЮТ
+ДУБЛИКАТЫ УБИРАЮТСЯ
 ========================================
 */
 
@@ -255,9 +257,12 @@ function extractTags(resume) {
 
   return resume
     .toLowerCase()
-    .replace(/[.,:;!?]/g, " ")
+    .replace(/[.,:;!?()[\]{}"'`«»—–/\\|]+/g, " ")
     .split(/\s+/)
+    .map(word => word.trim())
     .filter(Boolean)
+    .filter(word => word.length >= 4)
+    .filter((word, index, arr) => arr.indexOf(word) === index)
 
 }
 
@@ -329,16 +334,73 @@ async function getFilesFromPage(page) {
       hrefs.length
     )
 
-    const files =
-      hrefs.filter(href =>
+    let files = []
 
-        href.includes("poem_")
-        ||
-        href.includes("song_")
-        ||
-        href.includes("story_")
+    if (page === "poems.html") {
+
+      files = hrefs.filter(href =>
+
+        (
+          href.includes("poems/")
+          ||
+          href.includes("poem_")
+        )
+
+        &&
+
+        href.endsWith(".html")
+
+        &&
+
+        !href.endsWith("poems.html")
 
       )
+
+    }
+
+    else if (page === "songs.html") {
+
+      files = hrefs.filter(href =>
+
+        (
+          href.includes("songs/")
+          ||
+          href.includes("song_")
+        )
+
+        &&
+
+        href.endsWith(".html")
+
+        &&
+
+        !href.endsWith("songs.html")
+
+      )
+
+    }
+
+    else if (page === "stories.html") {
+
+      files = hrefs.filter(href =>
+
+        (
+          href.includes("stories/")
+          ||
+          href.includes("story_")
+        )
+
+        &&
+
+        href.endsWith(".html")
+
+        &&
+
+        !href.endsWith("stories.html")
+
+      )
+
+    }
 
     log(
       "Подходящих файлов: " +
@@ -364,7 +426,7 @@ async function getFilesFromPage(page) {
 
 /*
 ========================================
-ПОИСК window.poem
+ПОИСК МЕТАДАННЫХ В window.poem
 ========================================
 */
 
@@ -386,12 +448,27 @@ function extractPoemMeta(source, file) {
 
   const titleMatch =
     source.match(
-      /title\s*:\s*["'`](.*?)["'`]/s
+      /title\s*:\s*["'`]([\s\S]*?)["'`]/s
     )
 
   const resumeMatch =
     source.match(
-      /resume\s*:\s*["'`](.*?)["'`]/s
+      /resume\s*:\s*["'`]([\s\S]*?)["'`]/s
+    )
+
+  const placeMatch =
+    source.match(
+      /place\s*:\s*["'`]([\s\S]*?)["'`]/s
+    )
+
+  const yearMatch =
+    source.match(
+      /year\s*:\s*["'`]([\s\S]*?)["'`]/s
+    )
+
+  const styleMatch =
+    source.match(
+      /style\s*:\s*["'`]([\s\S]*?)["'`]/s
     )
 
   const title =
@@ -404,11 +481,27 @@ function extractPoemMeta(source, file) {
       ? clean(resumeMatch[1])
       : ""
 
+  const place =
+    placeMatch
+      ? clean(placeMatch[1])
+      : ""
+
+  const year =
+    yearMatch
+      ? clean(yearMatch[1])
+      : ""
+
+  const style =
+    styleMatch
+      ? clean(styleMatch[1])
+      : ""
+
   return {
-
     title,
-    resume
-
+    resume,
+    place,
+    year,
+    style
   }
 
 }
@@ -485,14 +578,22 @@ async function buildCatalog() {
         CATALOG.push({
 
           title:
-            meta.title
-            || file,
+            meta.title || file,
 
           file:
             file,
 
           section:
             detectSection(file),
+
+          place:
+            meta.place,
+
+          year:
+            meta.year,
+
+          style:
+            meta.style,
 
           tags:
             extractTags(
@@ -503,7 +604,7 @@ async function buildCatalog() {
 
         log(
           "Добавлен: " +
-          meta.title
+          (meta.title || file)
         )
 
       }
