@@ -1,9 +1,20 @@
 <!DOCTYPE html>
+
+<!--
+catalog.html
+version: v1.0.3
+date: 2026-04-21
+-->
+
 <html lang="ru">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
+
 <title>Каталог Memories</title>
 
 <style>
@@ -73,7 +84,7 @@ button:hover {
   color: #dbeafe;
   padding: 14px;
   border-radius: 8px;
-  height: 360px;
+  height: 380px;
   overflow: auto;
   font-family: Consolas, monospace;
   font-size: 13px;
@@ -81,25 +92,38 @@ button:hover {
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header>
-<h1>Каталог Memories</h1>
+
+<h1>
+Каталог Memories
+</h1>
+
 </header>
 
 <div class="container">
 
 <button onclick="buildCatalog()">
+
 Собрать catalog.json
+
 </button>
 
-<div id="status" class="status">
+<div id="status"
+     class="status">
+
 Готов
+
 </div>
 
-<div id="log" class="log"></div>
+<div id="log"
+     class="log">
+
+</div>
 
 </div>
 
@@ -107,7 +131,33 @@ button:hover {
 
 /*
 ========================================
-ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+ЧТЕНИЕ ВЕРСИИ ИЗ КОММЕНТАРИЯ
+========================================
+*/
+
+function getVersionFromComment() {
+
+  const html =
+    document.documentElement.outerHTML
+
+  const match =
+    html.match(
+      /version:\s*([^\n\r]+)/i
+    )
+
+  if (match)
+    return match[1].trim()
+
+  return "unknown"
+
+}
+
+const FILE_VERSION =
+  getVersionFromComment()
+
+/*
+========================================
+ГЛОБАЛЬНЫЕ
 ========================================
 */
 
@@ -143,7 +193,8 @@ function log(text) {
 
 function setStatus(text, error = false) {
 
-  statusBox.textContent = text
+  statusBox.textContent =
+    text
 
   if (error)
     statusBox.className =
@@ -156,7 +207,7 @@ function setStatus(text, error = false) {
 
 /*
 ========================================
-ОЧИСТКА ТЕКСТА
+ОЧИСТКА
 ========================================
 */
 
@@ -172,7 +223,7 @@ function clean(value) {
 
 /*
 ========================================
-ОПРЕДЕЛЕНИЕ РАЗДЕЛА
+РАЗДЕЛ
 ========================================
 */
 
@@ -193,7 +244,7 @@ function detectSection(file) {
 
 /*
 ========================================
-ПОЛУЧЕНИЕ TAGS ИЗ RESUME
+TAGS
 ========================================
 */
 
@@ -204,7 +255,7 @@ function extractTags(resume) {
 
   return resume
     .toLowerCase()
-    .replace(/[.,:;!?—–]/g, " ")
+    .replace(/[.,:;!?]/g, " ")
     .split(/\s+/)
     .filter(Boolean)
 
@@ -212,20 +263,24 @@ function extractTags(resume) {
 
 /*
 ========================================
-ЧТЕНИЕ HTML
+FETCH HTML
 ========================================
 */
 
 async function fetchHtml(path) {
 
-  log("Открываю: " + path)
+  log(
+    "Открываю: " +
+    path
+  )
 
   const res =
     await fetch(path)
 
   if (!res.ok)
     throw new Error(
-      "Не удалось открыть: " + path
+      "Не удалось открыть: " +
+      path
     )
 
   return await res.text()
@@ -234,7 +289,7 @@ async function fetchHtml(path) {
 
 /*
 ========================================
-ПОЛУЧЕНИЕ СПИСКА ФАЙЛОВ
+СПИСОК ФАЙЛОВ
 ========================================
 */
 
@@ -260,12 +315,19 @@ async function getFilesFromPage(page) {
     const hrefs =
       links
         .map(a =>
-          (a.getAttribute("href") || "").trim()
+          a.getAttribute("href")
         )
         .filter(Boolean)
 
-    log("Страница: " + page)
-    log("Всего ссылок: " + hrefs.length)
+    log(
+      "Страница: " +
+      page
+    )
+
+    log(
+      "Всего ссылок: " +
+      hrefs.length
+    )
 
     const files =
       hrefs.filter(href =>
@@ -278,7 +340,10 @@ async function getFilesFromPage(page) {
 
       )
 
-    log("Подходящих файлов: " + files.length)
+    log(
+      "Подходящих файлов: " +
+      files.length
+    )
 
     return files
 
@@ -287,7 +352,7 @@ async function getFilesFromPage(page) {
   catch {
 
     log(
-      "Не удалось открыть страницу: " +
+      "Ошибка страницы: " +
       page
     )
 
@@ -299,103 +364,58 @@ async function getFilesFromPage(page) {
 
 /*
 ========================================
-ИЗВЛЕЧЕНИЕ window.poem
+ПОИСК window.poem
 ========================================
 */
 
-function extractPoem(html, file) {
+function extractPoemMeta(source, file) {
 
-  const doc =
-    new DOMParser()
-      .parseFromString(
-        html,
-        "text/html"
-      )
+  const start =
+    source.indexOf("window.poem")
 
-  const scripts =
-    Array.from(
-      doc.querySelectorAll("script")
+  if (start === -1) {
+
+    log(
+      "window.poem не найден: " +
+      file
     )
 
-  log(
-    "Скриптов в " +
-    file +
-    ": " +
-    scripts.length
-  )
-
-  for (const s of scripts) {
-
-    const code =
-      s.textContent || ""
-
-    if (
-      !code.includes("window.poem")
-      &&
-      !code.includes("author:")
-      &&
-      !code.includes("title:")
-    ) {
-      continue
-    }
-
-    try {
-
-      const poem =
-        new Function(`
-          let window = {};
-          let poem = null;
-
-          let document = {
-            addEventListener: function(event, callback) {
-              if (event === "DOMContentLoaded" && typeof callback === "function") {
-                callback();
-              }
-            }
-          };
-
-          ${code}
-
-          return window.poem || poem || null;
-        `)()
-
-      if (poem) {
-
-        log(
-          "Найден poem: " +
-          file
-        )
-
-        return poem
-
-      }
-
-    }
-
-    catch (e) {
-
-      log(
-        "Ошибка разбора: " +
-        file +
-        " | " +
-        e.message
-      )
-
-    }
+    return null
 
   }
 
-  log(
-    "poem не найден: " +
-    file
-  )
+  const titleMatch =
+    source.match(
+      /title\s*:\s*["'`](.*?)["'`]/s
+    )
 
-  return null
+  const resumeMatch =
+    source.match(
+      /resume\s*:\s*["'`](.*?)["'`]/s
+    )
+
+  const title =
+    titleMatch
+      ? clean(titleMatch[1])
+      : ""
+
+  const resume =
+    resumeMatch
+      ? clean(resumeMatch[1])
+      : ""
+
+  return {
+
+    title,
+    resume
+
+  }
 
 }
+
 /*
 ========================================
-СБОРКА КАТАЛОГА
+BUILD
 ========================================
 */
 
@@ -404,6 +424,11 @@ async function buildCatalog() {
   try {
 
     logBox.textContent = ""
+
+    log(
+      "Версия файла: " +
+      FILE_VERSION
+    )
 
     setStatus(
       "Сборка каталога..."
@@ -419,12 +444,6 @@ async function buildCatalog() {
 
     let files = []
 
-    /*
-    ========================================
-    ЧИТАЕМ ВСЕ СПИСКИ
-    ========================================
-    */
-
     for (const page of pages) {
 
       const list =
@@ -434,12 +453,6 @@ async function buildCatalog() {
         files.concat(list)
 
     }
-
-    /*
-    ========================================
-    УБИРАЕМ ДУБЛИКАТЫ
-    ========================================
-    */
 
     files =
       Array.from(
@@ -453,53 +466,44 @@ async function buildCatalog() {
 
     CATALOG = []
 
-    /*
-    ========================================
-    ЧИТАЕМ КАЖДЫЙ ФАЙЛ
-    ========================================
-    */
-
     for (const file of files) {
 
       try {
 
-        const html =
+        const source =
           await fetchHtml(file)
 
-        const poem =
-          extractPoem(
-            html,
+        const meta =
+          extractPoemMeta(
+            source,
             file
           )
 
-        if (!poem)
+        if (!meta)
           continue
 
         CATALOG.push({
 
           title:
-            clean(
-              poem.title
-            ),
+            meta.title
+            || file,
 
           file:
             file,
 
           section:
-            detectSection(
-              file
-            ),
+            detectSection(file),
 
           tags:
             extractTags(
-              poem.resume
+              meta.resume
             )
 
         })
 
         log(
           "Добавлен: " +
-          poem.title
+          meta.title
         )
 
       }
@@ -525,18 +529,12 @@ async function buildCatalog() {
         "Каталог пуст"
       )
 
-    /*
-    ========================================
-    СОХРАНЕНИЕ
-    ========================================
-    */
-
     downloadJson(
       CATALOG
     )
 
     setStatus(
-      "Готово. Записей: " +
+      "Готово: " +
       CATALOG.length
     )
 
@@ -556,7 +554,7 @@ async function buildCatalog() {
 
 /*
 ========================================
-СОХРАНЕНИЕ JSON
+DOWNLOAD JSON
 ========================================
 */
 
@@ -564,6 +562,7 @@ function downloadJson(data) {
 
   const blob =
     new Blob(
+
       [
         JSON.stringify(
           data,
@@ -571,10 +570,12 @@ function downloadJson(data) {
           2
         )
       ],
+
       {
         type:
           "application/json"
       }
+
     )
 
   const url =
@@ -594,6 +595,15 @@ function downloadJson(data) {
   a.click()
 
 }
+
+log(
+  "Версия файла: " +
+  FILE_VERSION
+)
+
+log(
+  "catalog.html загружен"
+)
 
 </script>
 
