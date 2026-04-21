@@ -38,22 +38,8 @@
       <a href="author.html" class="nav-item">Автор</a>
   </nav>
 
-  <!-- SEARCH ASIDE -->
-<aside id="searchAside">
 
-  <div class="search-title">
-    Поиск
-  </div>
 
-  <input
-    id="searchInput"
-    type="text"
-    placeholder="название, место, год, стиль, тег"
-  >
-
-  <div id="searchInfo"></div>
-  <div id="searchResults"></div>
-</aside>
   
   <!-- Утилита переадресации для Меню -->
   <script src="nav.js"></script>
@@ -110,8 +96,19 @@ window.addEventListener("memoryLinesReady", function () {
 </script>
  
  --> 
+  <!-- SEARCH ASIDE -->
+ <aside id="searchAside">
+  <div class="search-title">Поиск</div>
+  <input
+    id="searchInput"
+    type="text"
+    placeholder="название, место, год, стиль, тег"
+  >
+  <div id="searchInfo"></div>
+  <div id="searchResults"></div>
+</aside>
 
 <script src="search.js"></script>
-  
+
 </body>
 </html>
