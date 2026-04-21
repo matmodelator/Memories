@@ -332,25 +332,32 @@ function extractPoem(html, file) {
     if (
       !code.includes("window.poem")
       &&
-      !code.includes("const poem")
+      !code.includes("author:")
       &&
-      !code.includes("let poem")
-      &&
-      !code.includes("var poem")
-    )
+      !code.includes("title:")
+    ) {
       continue
+    }
 
     try {
 
       const poem =
-        new Function(
-          `
+        new Function(`
           let window = {};
           let poem = null;
+
+          let document = {
+            addEventListener: function(event, callback) {
+              if (event === "DOMContentLoaded" && typeof callback === "function") {
+                callback();
+              }
+            }
+          };
+
           ${code}
-          return window.poem || poem;
-          `
-        )()
+
+          return window.poem || poem || null;
+        `)()
 
       if (poem) {
 
@@ -369,7 +376,9 @@ function extractPoem(html, file) {
 
       log(
         "Ошибка разбора: " +
-        file
+        file +
+        " | " +
+        e.message
       )
 
     }
@@ -384,7 +393,6 @@ function extractPoem(html, file) {
   return null
 
 }
-
 /*
 ========================================
 СБОРКА КАТАЛОГА
