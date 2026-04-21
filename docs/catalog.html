@@ -2,18 +2,15 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-
-<!-- Адаптация под мобильные -->
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
-
 <title>Каталог Memories</title>
 
 <style>
 
 /*
 ========================================
-БАЗОВЫЕ СТИЛИ СТРАНИЦЫ
+БАЗОВЫЕ СТИЛИ
 ========================================
 */
 
@@ -21,7 +18,6 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f4f6f8;
-  color: #222;
 }
 
 header {
@@ -37,14 +33,7 @@ header {
   background: white;
   padding: 24px;
   border-radius: 12px;
-  box-sizing: border-box;
 }
-
-/*
-========================================
-КНОПКА
-========================================
-*/
 
 button {
   padding: 12px 18px;
@@ -60,38 +49,23 @@ button:hover {
   background: #1d4ed8;
 }
 
-/*
-========================================
-СТАТУС
-========================================
-*/
-
 .status {
   margin: 16px 0;
   padding: 12px 14px;
   border-radius: 8px;
   background: #eff6ff;
   border: 1px solid #bfdbfe;
-  white-space: pre-wrap;
 }
 
 .status.good {
-  color: #166534;
   background: #f0fdf4;
   border-color: #bbf7d0;
 }
 
 .status.bad {
-  color: #b91c1c;
   background: #fef2f2;
   border-color: #fecaca;
 }
-
-/*
-========================================
-ЛОГ
-========================================
-*/
 
 .log {
   margin-top: 20px;
@@ -99,7 +73,7 @@ button:hover {
   color: #dbeafe;
   padding: 14px;
   border-radius: 8px;
-  height: 340px;
+  height: 360px;
   overflow: auto;
   font-family: Consolas, monospace;
   font-size: 13px;
@@ -112,7 +86,7 @@ button:hover {
 <body>
 
 <header>
-  <h1>Каталог Memories</h1>
+<h1>Каталог Memories</h1>
 </header>
 
 <div class="container">
@@ -122,7 +96,7 @@ button:hover {
 </button>
 
 <div id="status" class="status">
-Готов к сборке каталога
+Готов
 </div>
 
 <div id="log" class="log"></div>
@@ -204,13 +178,13 @@ function clean(value) {
 
 function detectSection(file) {
 
-  if (file.startsWith("poems/"))
+  if (file.includes("poems/"))
     return "poems"
 
-  if (file.startsWith("songs/"))
+  if (file.includes("songs/"))
     return "songs"
 
-  if (file.startsWith("stories/"))
+  if (file.includes("stories/"))
     return "stories"
 
   return ""
@@ -229,13 +203,9 @@ function extractTags(resume) {
     return []
 
   return resume
-
     .toLowerCase()
-
     .replace(/[.,:;!?—–]/g, " ")
-
     .split(/\s+/)
-
     .filter(Boolean)
 
 }
@@ -254,7 +224,9 @@ async function fetchHtml(path) {
     await fetch(path)
 
   if (!res.ok)
-    throw new Error(path)
+    throw new Error(
+      "Не удалось открыть: " + path
+    )
 
   return await res.text()
 
@@ -262,46 +234,66 @@ async function fetchHtml(path) {
 
 /*
 ========================================
-СПИСОК ФАЙЛОВ
+ПОЛУЧЕНИЕ СПИСКА ФАЙЛОВ
 ========================================
 */
 
 async function getFilesFromPage(page) {
 
-  const html =
-    await fetchHtml(page)
+  try {
 
-  const doc =
-    new DOMParser()
-      .parseFromString(html, "text/html")
+    const html =
+      await fetchHtml(page)
 
-  const links =
-    Array.from(
-      doc.querySelectorAll("a[href]")
+    const doc =
+      new DOMParser()
+        .parseFromString(
+          html,
+          "text/html"
+        )
+
+    const links =
+      Array.from(
+        doc.querySelectorAll("a[href]")
+      )
+
+    const hrefs =
+      links
+        .map(a =>
+          (a.getAttribute("href") || "").trim()
+        )
+        .filter(Boolean)
+
+    log("Страница: " + page)
+    log("Всего ссылок: " + hrefs.length)
+
+    const files =
+      hrefs.filter(href =>
+
+        href.includes("poem_")
+        ||
+        href.includes("song_")
+        ||
+        href.includes("story_")
+
+      )
+
+    log("Подходящих файлов: " + files.length)
+
+    return files
+
+  }
+
+  catch {
+
+    log(
+      "Не удалось открыть страницу: " +
+      page
     )
 
-  return links
+    return []
 
-    .map(a =>
-      a.getAttribute("href")
-    )
-
-    .filter(href =>
-
-      /poems\/poem_.*\.html/i
-        .test(href)
-
-      ||
-
-      /songs\/song_.*\.html/i
-        .test(href)
-
-      ||
-
-      /stories\/story_.*\.html/i
-        .test(href)
-
-    )
+  }
 
 }
 
@@ -311,21 +303,41 @@ async function getFilesFromPage(page) {
 ========================================
 */
 
-function extractPoem(html) {
+function extractPoem(html, file) {
 
   const doc =
     new DOMParser()
-      .parseFromString(html, "text/html")
+      .parseFromString(
+        html,
+        "text/html"
+      )
 
   const scripts =
-    doc.querySelectorAll("script")
+    Array.from(
+      doc.querySelectorAll("script")
+    )
+
+  log(
+    "Скриптов в " +
+    file +
+    ": " +
+    scripts.length
+  )
 
   for (const s of scripts) {
 
     const code =
-      s.textContent
+      s.textContent || ""
 
-    if (!code.includes("window.poem"))
+    if (
+      !code.includes("window.poem")
+      &&
+      !code.includes("const poem")
+      &&
+      !code.includes("let poem")
+      &&
+      !code.includes("var poem")
+    )
       continue
 
     try {
@@ -334,23 +346,40 @@ function extractPoem(html) {
         new Function(
           `
           let window = {};
+          let poem = null;
           ${code}
-          return window.poem;
+          return window.poem || poem;
           `
         )()
 
-      if (poem)
+      if (poem) {
+
+        log(
+          "Найден poem: " +
+          file
+        )
+
         return poem
+
+      }
 
     }
 
     catch (e) {
 
-      log("Ошибка разбора")
+      log(
+        "Ошибка разбора: " +
+        file
+      )
 
     }
 
   }
+
+  log(
+    "poem не найден: " +
+    file
+  )
 
   return null
 
@@ -372,12 +401,6 @@ async function buildCatalog() {
       "Сборка каталога..."
     )
 
-    /*
-    ========================================
-    ЧИТАЕМ ВСЕ СПИСКИ
-    ========================================
-    */
-
     const pages = [
 
       "poems.html",
@@ -388,26 +411,19 @@ async function buildCatalog() {
 
     let files = []
 
+    /*
+    ========================================
+    ЧИТАЕМ ВСЕ СПИСКИ
+    ========================================
+    */
+
     for (const page of pages) {
 
-      try {
+      const list =
+        await getFilesFromPage(page)
 
-        const list =
-          await getFilesFromPage(page)
-
-        files =
-          files.concat(list)
-
-      }
-
-      catch {
-
-        log(
-          "Пропуск страницы: " +
-          page
-        )
-
-      }
+      files =
+        files.concat(list)
 
     }
 
@@ -423,17 +439,17 @@ async function buildCatalog() {
       )
 
     log(
-      "Найдено файлов: " +
+      "Всего файлов: " +
       files.length
     )
+
+    CATALOG = []
 
     /*
     ========================================
     ЧИТАЕМ КАЖДЫЙ ФАЙЛ
     ========================================
     */
-
-    CATALOG = []
 
     for (const file of files) {
 
@@ -443,27 +459,28 @@ async function buildCatalog() {
           await fetchHtml(file)
 
         const poem =
-          extractPoem(html)
+          extractPoem(
+            html,
+            file
+          )
 
         if (!poem)
           continue
 
-        /*
-        ========================================
-        ДОБАВЛЯЕМ ЗАПИСЬ
-        ========================================
-        */
-
         CATALOG.push({
 
           title:
-            clean(poem.title),
+            clean(
+              poem.title
+            ),
 
           file:
             file,
 
           section:
-            detectSection(file),
+            detectSection(
+              file
+            ),
 
           tags:
             extractTags(
@@ -479,7 +496,7 @@ async function buildCatalog() {
 
       }
 
-      catch (e) {
+      catch {
 
         log(
           "Ошибка файла: " +
@@ -490,11 +507,10 @@ async function buildCatalog() {
 
     }
 
-    /*
-    ========================================
-    ПРОВЕРКА
-    ========================================
-    */
+    log(
+      "Итоговых записей: " +
+      CATALOG.length
+    )
 
     if (!CATALOG.length)
       throw new Error(
@@ -540,7 +556,6 @@ function downloadJson(data) {
 
   const blob =
     new Blob(
-
       [
         JSON.stringify(
           data,
@@ -548,12 +563,10 @@ function downloadJson(data) {
           2
         )
       ],
-
       {
         type:
           "application/json"
       }
-
     )
 
   const url =
