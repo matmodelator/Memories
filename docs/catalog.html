@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<!-- version: v1.0.5 -->
-<html lang="ru">
+<!--
+catalog.html
+version: v1.0.6
+date: 2026-04-22
+-->
 
 <html lang="ru">
 
@@ -68,6 +71,7 @@ button:hover {
   border-radius: 8px;
   background: #eff6ff;
   border: 1px solid #bfdbfe;
+  white-space: pre-wrap;
 }
 
 .status.good {
@@ -145,16 +149,27 @@ button:hover {
 
 function getVersionFromComment() {
 
-  const html =
-    document.documentElement.outerHTML
+  const nodes =
+    document.childNodes
 
-  const match =
-    html.match(
-      /version:\s*([^\n\r]+)/i
-    )
+  for (const node of nodes) {
 
-  if (match)
-    return match[1].trim()
+    if (node.nodeType === 8) {
+
+      const text =
+        node.nodeValue || ""
+
+      const match =
+        text.match(
+          /version:\s*([^\n\r]+)/i
+        )
+
+      if (match)
+        return match[1].trim()
+
+    }
+
+  }
 
   return "unknown"
 
@@ -215,7 +230,7 @@ function setStatus(text, error = false) {
 
 /*
 ========================================
-ОЧИСТКА
+ОЧИСТКА ТЕКСТА
 ========================================
 */
 
@@ -223,9 +238,34 @@ function clean(value) {
 
   return String(value || "")
     .replace(/\r/g, "")
-    .replace(/\n/g, " ")
+    .replace(/\u00A0/g, " ")
+    .replace(/\t/g, " ")
     .replace(/\s+/g, " ")
     .trim()
+
+}
+
+/*
+========================================
+ПЕРВАЯ СТРОКА ТЕКСТА
+========================================
+*/
+
+function getFirstLine(text) {
+
+  if (!text)
+    return ""
+
+  const lines =
+    String(text)
+      .replace(/\r/g, "")
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean)
+
+  return lines.length
+    ? clean(lines[0])
+    : ""
 
 }
 
@@ -288,7 +328,9 @@ async function fetchHtml(path) {
   )
 
   const res =
-    await fetch(path)
+    await fetch(path, {
+      cache: "no-store"
+    })
 
   if (!res.ok)
     throw new Error(
@@ -328,7 +370,7 @@ async function getFilesFromPage(page) {
     const hrefs =
       links
         .map(a =>
-          a.getAttribute("href")
+          (a.getAttribute("href") || "").trim()
         )
         .filter(Boolean)
 
@@ -479,6 +521,19 @@ function extractPoemMeta(source, file) {
       /style\s*:\s*["'`]([\s\S]*?)["'`]/s
     )
 
+  const textMatch =
+    source.match(
+      /text\s*:\s*`([\s\S]*?)`/s
+    )
+    ||
+    source.match(
+      /text\s*:\s*"([\s\S]*?)"/s
+    )
+    ||
+    source.match(
+      /text\s*:\s*'([\s\S]*?)'/s
+    )
+
   const title =
     titleMatch
       ? clean(titleMatch[1])
@@ -504,12 +559,18 @@ function extractPoemMeta(source, file) {
       ? clean(styleMatch[1])
       : ""
 
+  const text =
+    textMatch
+      ? String(textMatch[1] || "")
+      : ""
+
   return {
     title,
     resume,
     place,
     year,
-    style
+    style,
+    text
   }
 
 }
@@ -583,10 +644,21 @@ async function buildCatalog() {
         if (!meta)
           continue
 
+        if (!meta.title) {
+
+          log(
+            "Пропуск без title: " +
+            file
+          )
+
+          continue
+
+        }
+
         CATALOG.push({
 
           title:
-            meta.title || file,
+            meta.title,
 
           file:
             file,
@@ -603,6 +675,9 @@ async function buildCatalog() {
           style:
             meta.style,
 
+          line:
+            getFirstLine(meta.text),
+
           tags:
             extractTags(
               meta.resume
@@ -612,7 +687,7 @@ async function buildCatalog() {
 
         log(
           "Добавлен: " +
-          (meta.title || file)
+          meta.title
         )
 
       }
@@ -704,7 +779,6 @@ function downloadJson(data) {
 
   const blob =
     new Blob(
-
       [
         JSON.stringify(
           data,
@@ -712,12 +786,10 @@ function downloadJson(data) {
           2
         )
       ],
-
       {
         type:
           "application/json"
       }
-
     )
 
   const url =
@@ -730,7 +802,6 @@ function downloadJson(data) {
 
   a.href =
     url
-
   a.download =
     "catalog.json"
 
