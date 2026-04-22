@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-catalog.html
-version: v1.0.6
-date: 2026-04-22
--->
+<!-- version: v1.0.7 -->
 
 <html lang="ru">
 
@@ -143,7 +139,7 @@ button:hover {
 
 /*
 ========================================
-ЧТЕНИЕ ВЕРСИИ ИЗ КОММЕНТАРИЯ
+ЧТЕНИЕ ВЕРСИИ ИЗ HTML-КОММЕНТАРИЯ
 ========================================
 */
 
@@ -477,6 +473,8 @@ async function getFilesFromPage(page) {
 /*
 ========================================
 ПОИСК МЕТАДАННЫХ В window.poem
+TITLE ЧИТАЕМ, НО ДЛЯ КАТАЛОГА НЕ ИСПОЛЬЗУЕМ
+TITLE В КАТАЛОГЕ = ПЕРВАЯ СТРОКА ТЕКСТА
 ========================================
 */
 
@@ -564,13 +562,17 @@ function extractPoemMeta(source, file) {
       ? String(textMatch[1] || "")
       : ""
 
+  const firstLine =
+    getFirstLine(text)
+
   return {
     title,
     resume,
     place,
     year,
     style,
-    text
+    text,
+    firstLine
   }
 
 }
@@ -578,6 +580,8 @@ function extractPoemMeta(source, file) {
 /*
 ========================================
 СБОРКА КАТАЛОГА
+TITLE = ПЕРВАЯ СТРОКА ТЕКСТА
+ИМЯ ФАЙЛА НИКОГДА НЕ ИСПОЛЬЗУЕТСЯ КАК TITLE
 ========================================
 */
 
@@ -644,10 +648,13 @@ async function buildCatalog() {
         if (!meta)
           continue
 
-        if (!meta.title) {
+        const firstLine =
+          meta.firstLine
+
+        if (!firstLine) {
 
           log(
-            "Пропуск без title: " +
+            "Нет первой строки: " +
             file
           )
 
@@ -658,7 +665,7 @@ async function buildCatalog() {
         CATALOG.push({
 
           title:
-            meta.title,
+            firstLine,
 
           file:
             file,
@@ -676,7 +683,7 @@ async function buildCatalog() {
             meta.style,
 
           line:
-            getFirstLine(meta.text),
+            firstLine,
 
           tags:
             extractTags(
@@ -687,7 +694,7 @@ async function buildCatalog() {
 
         log(
           "Добавлен: " +
-          meta.title
+          firstLine
         )
 
       }
