@@ -1,20 +1,22 @@
 [
   {
-    "title": "Проба пера",
+    "title": "Ща как напишу, вы все обалдеете!",
     "file": "poems/shablon.html",
     "section": "poems",
     "place": "уж лучше вы к нам",
     "year": "2027",
     "style": "попса галимая",
+    "line": "Ща как напишу, вы все обалдеете!",
     "tags": []
   },
   {
-    "title": "poems/poem_50.html",
+    "title": "50 лет и один вечер",
     "file": "poems/poem_50.html",
     "section": "poems",
     "place": "Крым",
     "year": "2021",
     "style": "любовная лирика",
+    "line": "50 лет и один вечер",
     "tags": [
       "руках",
       "твоих",
@@ -47,12 +49,13 @@
     ]
   },
   {
-    "title": "Алаверда",
+    "title": "<i>",
     "file": "poems/poem_al.html",
     "section": "poems",
     "place": "Крым",
     "year": "2020",
     "style": "пародия",
+    "line": "<i>",
     "tags": [
       "дороги",
       "выбор",
@@ -66,12 +69,13 @@
     ]
   },
   {
-    "title": "Барахас. Дождь",
+    "title": "Бара́хас. Дождь. Кончается февраль.",
     "file": "poems/poem_ba1.html",
     "section": "poems",
     "place": "Мадрид",
     "year": "2026",
     "style": "любовная лирика",
+    "line": "Бара́хас. Дождь. Кончается февраль.",
     "tags": [
       "барахас",
       "дождь",
@@ -102,12 +106,13 @@
     ]
   },
   {
-    "title": "Барахтаясь в Барахасе",
+    "title": "Барахтаюсь в Бара́хасе как сом.",
     "file": "poems/poem_ba2.html",
     "section": "poems",
     "place": "Далия",
     "year": "2024",
     "style": "любовная лирика",
+    "line": "Барахтаюсь в Бара́хасе как сом.",
     "tags": [
       "барахтаюсь",
       "бара́хасе",
@@ -127,12 +132,13 @@
     ]
   },
   {
-    "title": "poems/poem_ber.html",
+    "title": "Берёзка",
     "file": "poems/poem_ber.html",
     "section": "poems",
     "place": "Москва",
     "year": "1998",
     "style": "любовная лирика",
+    "line": "Берёзка",
     "tags": [
       "любовь",
       "девица",
@@ -148,12 +154,13 @@
     ]
   },
   {
-    "title": "poems/poem_bes.html",
+    "title": "Bésame mucho",
     "file": "poems/poem_bes.html",
     "section": "poems",
     "place": "Москва",
     "year": "2000",
     "style": "любовная лирика",
+    "line": "Bésame mucho",
     "tags": [
       "бестолковые",
       "птицы",
@@ -183,12 +190,13 @@
     ]
   },
   {
-    "title": "poems/poem_bvek.html",
+    "title": "Век одиночества",
     "file": "poems/poem_bvek.html",
     "section": "poems",
     "place": "Рим",
     "year": "2023",
     "style": "гражданская лирика",
+    "line": "Век одиночества",
     "tags": [
       "покуда",
       "один",
@@ -208,12 +216,13 @@
     ]
   },
   {
-    "title": "Верчусь я как щепка",
+    "title": "Верчусь я как щепка,",
     "file": "poems/poem_bver.html",
     "section": "poems",
     "place": "Крым",
     "year": "2014",
     "style": "гражданская лирика",
+    "line": "Верчусь я как щепка,",
     "tags": [
       "кручусь",
       "щепка",
@@ -230,12 +239,13 @@
     ]
   },
   {
-    "title": "Всё кончено",
+    "title": "Всё кончено. Твой статус: не в сети.",
     "file": "poems/poem_bvs1.html",
     "section": "poems",
     "place": "Далия",
     "year": "2025",
     "style": "любовная лирика",
+    "line": "Всё кончено. Твой статус: не в сети.",
     "tags": [
       "кончено",
       "твой",
@@ -262,12 +272,13 @@
     ]
   },
   {
-    "title": "Всё обернётся",
+    "title": "Всё обернётся пеплом, дымом, -",
     "file": "poems/poem_bvs2.html",
     "section": "poems",
     "place": "Тула",
     "year": "2002",
     "style": "гражданская лирика",
+    "line": "Всё обернётся пеплом, дымом, -",
     "tags": [
       "обернётся",
       "пеплом",
@@ -298,12 +309,13 @@
     ]
   },
   {
-    "title": "Всё плохо",
+    "title": "Всё плохо, Булочка,",
     "file": "poems/poem_bvs3.html",
     "section": "poems",
     "place": "Далия",
     "year": "2025",
     "style": "любовная лирика",
+    "line": "Всё плохо, Булочка,",
     "tags": [
       "мысли",
       "страшные",
@@ -323,12 +335,13 @@
     ]
   },
   {
-    "title": "poems/poem_bvsch.html",
+    "title": "Вчерашний парень",
     "file": "poems/poem_bvsch.html",
     "section": "poems",
     "place": "Вильнюс",
     "year": "2002",
     "style": "любовная лирика",
+    "line": "Вчерашний парень",
     "tags": [
       "вчерашней",
       "любви",
@@ -359,12 +372,13 @@
     ]
   },
   {
-    "title": "poems/poem_b1.html",
+    "title": "В небывалых девяностых",
     "file": "poems/poem_b1.html",
     "section": "poems",
     "place": "Москва",
     "year": "1994",
     "style": "любовная лирика",
+    "line": "В небывалых девяностых",
     "tags": [
       "беден",
       "глуп",
@@ -394,12 +408,13 @@
     ]
   },
   {
-    "title": "В хурмяном саду декабрь",
+    "title": "В хурмяно́м саду декабрь.",
     "file": "poems/poem_b2.html",
     "section": "poems",
     "place": "Нетания",
     "year": "2015",
     "style": "граждаская лирика",
+    "line": "В хурмяно́м саду декабрь.",
     "tags": [
       "хурмяном",
       "саду",
@@ -450,12 +465,13 @@
     ]
   },
   {
-    "title": "В центре мира и на краю земли",
+    "title": "В центре мира и на краю земли,",
     "file": "poems/poem_b3.html",
     "section": "poems",
     "place": "Нетания",
     "year": "2019",
     "style": "граждаская лирика",
+    "line": "В центре мира и на краю земли,",
     "tags": [
       "великой",
       "империи",
@@ -477,12 +493,13 @@
     ]
   },
   {
-    "title": "Великий день",
+    "title": "Великий день... Он влез на табурет",
     "file": "poems/poem_de9.html",
     "section": "poems",
     "place": "Нетания",
     "year": "2017",
     "style": "гражданская лирика",
+    "line": "Великий день... Он влез на табурет",
     "tags": [
       "великий",
       "день",
@@ -515,12 +532,13 @@
     ]
   },
   {
-    "title": "Зима которую неделю..",
+    "title": "Зима. Которую неделю,",
     "file": "poems/poem_hzi.html",
     "section": "poems",
     "place": "Далия",
     "year": "2026",
     "style": "любовная и гражданская лирика",
+    "line": "Зима. Которую неделю,",
     "tags": [
       "забытый",
       "богом",
@@ -551,12 +569,13 @@
     ]
   },
   {
-    "title": "Лето бабье на Кипре",
+    "title": "Лето бабье на Кипре.",
     "file": "poems/poem_le.html",
     "section": "poems",
     "place": "Ларнака",
     "year": "2025",
     "style": "любовная лирика",
+    "line": "Лето бабье на Кипре.",
     "tags": [
       "море",
       "шепчет",
@@ -612,12 +631,13 @@
     ]
   },
   {
-    "title": "poems/poem_mog.html",
+    "title": "Может быть, я не дал,",
     "file": "poems/poem_mog.html",
     "section": "poems",
     "place": "Москва",
     "year": "2000",
     "style": "любовная лирика",
+    "line": "Может быть, я не дал,",
     "tags": [
       "значит",
       "сумел",
@@ -636,21 +656,23 @@
     ]
   },
   {
-    "title": "Мос.ру",
+    "title": "Москва уходит задними дворами,",
     "file": "poems/poem_mos.html",
     "section": "poems",
     "place": "Нетания",
     "year": "2016",
     "style": "гражданская лирика",
+    "line": "Москва уходит задними дворами,",
     "tags": []
   },
   {
-    "title": "ОБЩАГА",
+    "title": "Предчувствие-2",
     "file": "poems/poem_ob.html",
     "section": "poems",
     "place": "Москва",
     "year": "2013",
     "style": "лирика",
+    "line": "Предчувствие-2",
     "tags": [
       "отшумели",
       "отсмеялись",
@@ -695,12 +717,13 @@
     ]
   },
   {
-    "title": "poems/poem_per.html",
+    "title": "ПервоМай",
     "file": "poems/poem_per.html",
     "section": "poems",
     "place": "Москва",
     "year": "2012",
     "style": "любовная лирика",
+    "line": "ПервоМай",
     "tags": [
       "раздавлен",
       "разбит",
@@ -727,12 +750,13 @@
     ]
   },
   {
-    "title": "Пёсья рыжь",
+    "title": "<i>",
     "file": "poems/poem_pes.html",
     "section": "poems",
     "place": "Нетания",
     "year": "2020",
     "style": "пародия",
+    "line": "<i>",
     "tags": [
       "рыжий",
       "ухой",
@@ -751,12 +775,13 @@
     ]
   },
   {
-    "title": "Пилат",
+    "title": "Исчез зелёный полоз электрички,",
     "file": "poems/poem_pi.html",
     "section": "poems",
     "place": "Мытищи",
     "year": "1990",
     "style": "любовная лирика",
+    "line": "Исчез зелёный полоз электрички,",
     "tags": [
       "исчез",
       "зелёный",
@@ -795,12 +820,13 @@
     ]
   },
   {
-    "title": "poems/poem_sem.html",
+    "title": "Семистишья",
     "file": "poems/poem_sem.html",
     "section": "poems",
     "place": "Далия",
     "year": "2024",
     "style": "любовная и гражданская лирика",
+    "line": "Семистишья",
     "tags": [
       "крестьянки",
       "топчут",
@@ -833,12 +859,13 @@
     ]
   },
   {
-    "title": "poems/poem_sm.html",
+    "title": "Смеркается Испания у ног",
     "file": "poems/poem_sm.html",
     "section": "poems",
     "place": "Порту",
     "year": "2025",
     "style": "любовная лирика",
+    "line": "Смеркается Испания у ног",
     "tags": [
       "смеркается",
       "испания",
@@ -871,12 +898,13 @@
     ]
   },
   {
-    "title": "poems/poem_yan.html",
+    "title": "Январи",
     "file": "poems/poem_yan.html",
     "section": "poems",
     "place": "Нетания",
     "year": "2019",
     "style": "любовная лирика",
+    "line": "Январи",
     "tags": [
       "обрывается",
       "снег",
@@ -929,12 +957,13 @@
     ]
   },
   {
-    "title": "Очень в целом мире вырос",
+    "title": "/памяти Владимира Высоцкого/",
     "file": "/Memories/songs/korona.html",
     "section": "songs",
     "place": "Нетания",
     "year": "2020",
     "style": "бардовская песня",
+    "line": "/памяти Владимира Высоцкого/",
     "tags": [
       "если",
       "хилый",
@@ -947,12 +976,13 @@
     ]
   },
   {
-    "title": "Мы не были..",
+    "title": "Январь, шампанское, девчонки,",
     "file": "/Memories/songs/we_were_no.html",
     "section": "songs",
     "place": "Нетания",
     "year": "2021",
     "style": "блюз",
+    "line": "Январь, шампанское, девчонки,",
     "tags": [
       "хочется",
       "назад",
@@ -980,12 +1010,13 @@
     ]
   },
   {
-    "title": "/Memories/stories/baba.html",
+    "title": "Хорошая квартира",
     "file": "/Memories/stories/baba.html",
     "section": "stories",
     "place": "Нетания",
     "year": "2017",
     "style": "рассказ",
+    "line": "Хорошая квартира",
     "tags": [
       "хорошая",
       "квартира",
@@ -998,12 +1029,13 @@
     ]
   },
   {
-    "title": "/Memories/stories/ded.html",
+    "title": "Дед",
     "file": "/Memories/stories/ded.html",
     "section": "stories",
     "place": "Нетания",
     "year": "2021",
     "style": "рассказ",
+    "line": "Дед",
     "tags": [
       "тогда",
       "знал",
