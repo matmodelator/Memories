@@ -63,8 +63,10 @@ async function loadCatalog() {
 */
 
 function setInfo(text) {
+
   if (infoBox)
     infoBox.textContent = text
+
 }
 
 /*
@@ -108,6 +110,8 @@ function makeSearchText(item) {
       item.place,
       item.year,
       item.style,
+      item.section,
+      item.line,
       Array.isArray(item.tags)
         ? item.tags.join(" ")
         : ""
@@ -148,144 +152,6 @@ function searchCatalog(query) {
 
 /*
 ========================================
-ОТРИСОВКА РЕЗУЛЬТАТОВ
-========================================
-*/
-
-function renderResults(list) {
-
-list = sortByYear(list)
-  
-  if (!resultsBox)
-    return
-
-  resultsBox.innerHTML = ""
-
-  if (!list.length) {
-    setInfo("Ничего не найдено")
-    return
-  }
-
-  setInfo("Найдено: " + list.length)
-
-  list.forEach(item => {
-
-    const a =
-      document.createElement("a")
-
-    a.href =
-      item.file
-
-    a.className =
-      "search-item"
-
-    const meta = [
-      safe(item.section),
-      safe(item.place),
-      safe(item.year),
-      safe(item.style)
-    ]
-    .filter(Boolean)
-    .join(" | ")
-
-    const tags =
-      Array.isArray(item.tags)
-        ? item.tags.join(", ")
-        : ""
-
-   const yearPlace = [
-
-  safe(item.year),
-  safe(item.place)
-
-]
-.filter(Boolean)
-.join(" | ")
-
-const sectionStyle = [
-
-  safe(item.section),
-  safe(item.style)
-
-]
-.filter(Boolean)
-.join(" | ")
-
-const firstLine =
-  safe(item.line)
-
-const query =
-  input.value
-
-const yearPlace = [
-
-  safe(item.year),
-  safe(item.place)
-
-]
-.filter(Boolean)
-.join(" | ")
-
-const sectionStyle = [
-
-  safe(item.section),
-  safe(item.style)
-
-]
-.filter(Boolean)
-.join(" | ")
-
-const firstLine =
-  safe(item.line)
-
-a.innerHTML = `
-
-  <div class="search-title">
-
-    ${highlight(
-      safe(item.title),
-      query
-    )}
-
-  </div>
-
-  <div class="search-line">
-
-    ${highlight(
-      firstLine,
-      query
-    )}
-
-  </div>
-
-  <div class="search-meta">
-
-    ${highlight(
-      yearPlace,
-      query
-    )}
-
-  </div>
-
-  <div class="search-meta">
-
-    ${highlight(
-      sectionStyle,
-      query
-    )}
-
-  </div>
-
-`
-
-    resultsBox.appendChild(a)
-
-  })
-
-}
-
-/*
-========================================
 СОРТИРОВКА ПО ГОДУ
 НОВЫЕ СВЕРХУ
 ========================================
@@ -316,7 +182,7 @@ function sortByYear(list) {
 function highlight(text, query) {
 
   if (!query)
-    return text
+    return safe(text)
 
   const words =
     query
@@ -325,13 +191,16 @@ function highlight(text, query) {
       .filter(Boolean)
 
   let result =
-    String(text)
+    String(text || "")
 
   words.forEach(function(word) {
 
+    const escapedWord =
+      word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+
     const re =
       new RegExp(
-        "(" + word + ")",
+        "(" + escapedWord + ")",
         "gi"
       )
 
@@ -344,6 +213,97 @@ function highlight(text, query) {
   })
 
   return result
+
+}
+
+/*
+========================================
+ОТРИСОВКА РЕЗУЛЬТАТОВ
+========================================
+*/
+
+function renderResults(list) {
+
+  list = sortByYear(list)
+
+  if (!resultsBox)
+    return
+
+  resultsBox.innerHTML = ""
+
+  if (!list.length) {
+    setInfo("Ничего не найдено")
+    return
+  }
+
+  setInfo("Найдено: " + list.length)
+
+  const query =
+    input ? input.value : ""
+
+  list.forEach(item => {
+
+    const a =
+      document.createElement("a")
+
+    a.href =
+      item.file
+
+    a.className =
+      "search-item"
+
+    const yearPlace = [
+      safe(item.year),
+      safe(item.place)
+    ]
+    .filter(Boolean)
+    .join(" | ")
+
+    const sectionStyle = [
+      safe(item.section),
+      safe(item.style)
+    ]
+    .filter(Boolean)
+    .join(" | ")
+
+    const firstLine =
+      safe(item.line)
+
+    a.innerHTML = `
+
+      <div class="search-title">
+        ${highlight(
+          safe(item.title),
+          query
+        )}
+      </div>
+
+      <div class="search-line">
+        ${highlight(
+          firstLine,
+          query
+        )}
+      </div>
+
+      <div class="search-meta">
+        ${highlight(
+          yearPlace,
+          query
+        )}
+      </div>
+
+      <div class="search-meta">
+        ${highlight(
+          sectionStyle,
+          query
+        )}
+      </div>
+
+    `
+
+    resultsBox.appendChild(a)
+
+  })
 
 }
 
@@ -371,6 +331,9 @@ function clearResults() {
 */
 
 function handleSearch() {
+
+  if (!input)
+    return
 
   const query =
     input.value
