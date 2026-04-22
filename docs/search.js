@@ -154,6 +154,8 @@ function searchCatalog(query) {
 
 function renderResults(list) {
 
+list = sortByYear(list)
+  
   if (!resultsBox)
     return
 
@@ -191,19 +193,157 @@ function renderResults(list) {
         ? item.tags.join(", ")
         : ""
 
-    a.innerHTML = `
+   const yearPlace = [
+
+  safe(item.year),
+  safe(item.place)
+
+]
+.filter(Boolean)
+.join(" | ")
+
+const sectionStyle = [
+
+  safe(item.section),
+  safe(item.style)
+
+]
+.filter(Boolean)
+.join(" | ")
+
+const firstLine =
+  safe(item.line)
+
+const query =
+  input.value
+
+const yearPlace = [
+
+  safe(item.year),
+  safe(item.place)
+
+]
+.filter(Boolean)
+.join(" | ")
+
+const sectionStyle = [
+
+  safe(item.section),
+  safe(item.style)
+
+]
+.filter(Boolean)
+.join(" | ")
+
+const firstLine =
+  safe(item.line)
+
+a.innerHTML = `
+
   <div class="search-title">
-    ${safe(item.title)}
+
+    ${highlight(
+      safe(item.title),
+      query
+    )}
+
+  </div>
+
+  <div class="search-line">
+
+    ${highlight(
+      firstLine,
+      query
+    )}
+
   </div>
 
   <div class="search-meta">
-    ${meta}
+
+    ${highlight(
+      yearPlace,
+      query
+    )}
+
   </div>
+
+  <div class="search-meta">
+
+    ${highlight(
+      sectionStyle,
+      query
+    )}
+
+  </div>
+
 `
 
     resultsBox.appendChild(a)
 
   })
+
+}
+
+/*
+========================================
+СОРТИРОВКА ПО ГОДУ
+НОВЫЕ СВЕРХУ
+========================================
+*/
+
+function sortByYear(list) {
+
+  return list.sort(function(a, b) {
+
+    const yearA =
+      parseInt(a.year) || 0
+
+    const yearB =
+      parseInt(b.year) || 0
+
+    return yearB - yearA
+
+  })
+
+}
+
+/*
+========================================
+ПОДСВЕТКА СЛОВ
+========================================
+*/
+
+function highlight(text, query) {
+
+  if (!query)
+    return text
+
+  const words =
+    query
+      .toLowerCase()
+      .split(" ")
+      .filter(Boolean)
+
+  let result =
+    String(text)
+
+  words.forEach(function(word) {
+
+    const re =
+      new RegExp(
+        "(" + word + ")",
+        "gi"
+      )
+
+    result =
+      result.replace(
+        re,
+        '<span class="search-highlight">$1</span>'
+      )
+
+  })
+
+  return result
 
 }
 
