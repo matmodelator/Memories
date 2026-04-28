@@ -112,9 +112,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       <a class="scroll-link" href="poems/poem_po.html">Пока ещё не сделалась беда</a>
       <a class="scroll-link" href="poems/poem_pre.html">Предчувствие</a>
       <a class="scroll-link" href="poems/poem_pro.html">Проезжая Литву</a>
-      <a class="scroll-link" href="poems/poem_pro1.html">Прощай!</a>
-      <a class="scroll-link" href="poems/poem_pro2.html">Прощания</a>
-      <a class="scroll-link" href="poems/poem_pro3.html">Прощаюсь с озером</a>
+      <a class="scroll-link" href="poems/poem_pro1.html">Просто</a>
+      <a class="scroll-link" href="poems/poem_pro2.html">Прощай!</a>
+      <a class="scroll-link" href="poems/poem_pro3.html">Прощания</a>
+      <a class="scroll-link" href="poems/poem_pro4.html">Прощаюсь с озером</a>
       <a class="scroll-link" href="poems/poem_seb.html">Севастопольский вальс</a>
       <a class="scroll-link" href="poems/poem_sem.html">Семистишья</a>
       <a class="scroll-link" href="poems/poem_sen.html">Сентябрь в Далии</a>
