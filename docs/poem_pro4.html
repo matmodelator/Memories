@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Шрифт (сейчас можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"-->
+  
+  <link rel="stylesheet" href="../style.css">
+  
+</head>
+  
+<!-- ВВОД тескта с параметрами -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const poem = {
+    author: "Игорь Хорош",
+    style: "любовная лирика",
+    place: "Москва",
+    year: "1992",
+    title: "ПРОСТО",
+    text: `
+            ПРОСТО
+
+
+              1.                                                                                                          
+     Просто день. Просто снег.                                         
+     Просто море людей,                                                           
+     Оглушенных морозом.                                                      
+     Просто мрак. Просто всех                                          
+     Ненавижу. Просто - балдей!
+     Просто вянут на холоде розы.
+                                                                                                                            
+              2.                                                                                             	  
+     Я не умер, я просто подгнил с боков,                 
+     Я просто оброс погребальной хвоей,               
+     Я просто не стал одним из богов,                          
+     Но встретил тебя, и теперь нас - двое.
+     Вот я - жив!, но откуда воняет склепом,
+     Когда я, заперев свой нумер,                                                
+     Кричу, в темноту уставившись слепо, -
+     Я не умер. Слышите? Я не умер!                                   
+                                                                                         		  
+              3.                                                                                                                                                                                        	                  
+     Выйду тёплой июньской ночью
+     Под шелестящий ливень,
+     Старый, как мир, как пень, короче,                                      
+     Как ископаемый бивень.
+     Так, покурю, помолчу, помокну                                 
+     И, до утра простояв,                                                           
+     Тихо шепну в твои сонные окна -
+     Это я, милая, просто я.
+                                                                                                                                    
+              4.                                                                                                               
+     Надоело всё - просто ужас.                                         
+
+              5.
+     Во сне я купался в реке
+     По имени Брахмапутра.
+     Таракан пробежал по руке, -
+     Оказывается, просто утро.
+
+                  6.
+     Я проиграл - без сентиментов!
+     Мне не хватило просто
+     Чуть-чуть везения и сантиметров,
+     Эдак, пятнадцать роста.
+
+              7.
+     Как не крути,
+     А сердце - в груди.
+     Всё очень просто,
+     Согласно ГОСТу.
+
+    
+              8.     
+     Просто стих
+     На время стих.
+
+              9.
+     Как же это просто
+     С точки зренья простынь!
+             
+             10.
+     Если посмотреть в твои глаза,
+     Поймёшь, что значит по-английски: "блю".
+     Не мне, Мари, учить тебя азам,
+     Просто я скажу тебе - люблю.
+
+
+     1992
+`,
+  review: `
+1.
+«Просто день. Просто снег.» — минимализм, который сразу задаёт тон: мир обесцвечен.
+«Просто всех ненавижу.» — честный, резкий эмоциональный всплеск.
+2.
+«Я не умер, я просто подгнил с боков.» — мощная метафора внутреннего разложения.
+«Но встретил тебя, и теперь нас — двое.» — поворот от мрака к связи.
+«Я не умер. Слышите? Я не умер!» — кульминационный крик.
+3.
+«Выйду тёплой июньской ночью под шелестящий ливень.» — образ, который сразу оживляет пространство.
+«Это я, милая, просто я.» — тихая, почти интимная развязка.
+4.
+«Надоело всё — просто ужас.» — лаконичный, но абсолютно ёмкий вздох.
+5.
+«Во сне я купался в реке по имени Брахмапутра.» — сюрреалистический образ, выбивающийся из бытового.
+«Оказывается, просто утро.» — приземление, разрушение иллюзии.
+6.
+«Мне не хватило просто чуть-чуть везения и сантиметров.» — самоирония, которая делает часть живой.
+«Эдак, пятнадцать роста.» — точный, смешной удар.
+7.
+«Как ни крути, а сердце — в груди.» — бытовая мудрость, превращённая в афоризм.
+«Всё очень просто, согласно ГОСТу.» — игра с официальным языком.
+8.
+«Просто стих на время стих.» — мета-строка, игра со словом «стих».
+9.
+«Как же это просто с точки зренья простынь!» — абсурдистская, почти хлестаковская строка.
+10.
+«Если посмотреть в твои глаза, поймёшь, что значит по‑английски: “блю”.» — удачная игра слов: цвет, грусть, взгляд.
+«Просто я скажу тебе — люблю.» — финальная простота, которая собирает весь цикл
+`,
+
+ range: `
+Критерий | Оценка | Комментарий
+Образность | 8 | Много ярких, неожиданных образов: Брахмапутра, подгнившие бока, июньский ливень.
+Эмоциональная глубина | 9 | От мизантропии до любви и самоиронии — диапазон широкий и честный.
+Цельность композиции | 7 | Части очень разные по тону; цикл держится на слове «просто», но распадается по настроениям.
+Ритм и звучание | 7 | Есть удачные ритмические находки, но стиль намеренно неровный и «рваный».
+Рифма | 8 | Рифмы живые, местами дерзкие, иногда грубоватые — но это часть стиля.
+Сила финала | 9 | Завершение на «просто я скажу тебе — люблю» собирает весь цикл в одну точку.
+Средняя оценка | 8 | Сильный, разнообразный цикл с ярким голосом и хорошей эмоциональной амплитудой.
+`,
+    
+resume: `
+Просто день. Просто снег.
+Просто вянут на холоде розы
+Я не умер, я просто подгнил с боков
+я встретил тебя, и теперь нас — двое
+Я не умер. Слышите? Я не умер!
+Выйду тёплой июньской ночью под шелестящий ливень
+Это я, милая, просто я.
+Надоело всё — просто ужас
+Как ни крути, а сердце — в груди
+Всё очень просто, согласно ГОСТу
+Просто стих на время стих
+Как же это просто с точки зренья простынь!
+Не мне, Мари, учить тебя азам..
+Просто я шепну тебе — люблю..
+`,
+  comments: `
+
+`
+  };
+  // title = первая непустая строка, если пусто
+  if (!poem.title.trim()) {
+    poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
+  }
+
+  // 1) НАХОДИМ <pre id="poem">, или создаём
+  let pre = document.getElementById("poem");
+  if (!pre) {
+    const panel = document.querySelector(".reading-panel");
+    if (!panel) {
+      alert("Не найден .reading-panel (проверь класс в HTML)");
+      return;
+    }
+    pre = document.createElement("pre");
+    pre.id = "poem";
+    pre.className = "poem-text";
+    panel.appendChild(pre);
+  }
+
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
+  pre.textContent = poem.text;
+
+  // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
+  const meta = document.getElementById("meta");
+ // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
+if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
+    
+  // 4) Стили “поверх фона” + внизу
+  meta.style.position = "fixed";
+  meta.style.left = "0";
+  meta.style.right = "0";
+  meta.style.bottom = "10px";
+  meta.style.textAlign = "center";
+  meta.style.fontSize = "14px";
+  meta.style.color = "brown";
+  meta.style.opacity = "0.85";
+  meta.style.zIndex = "9999";
+  meta.style.pointerEvents = "none";
+  meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
+ });
+
+    
+</script>
+ 
+<body>
+
+  
+</div>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ ( без изменений по структуре) -->
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../stories.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+  
+  </nav> 
+
+<!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+<section class="reading-panel" aria-label="Текст стихотворения">
+ 
+  <!-- Контейнер стиха -->
+  <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+  <pre id="poem" class="poem-text"></pre>
+  <!-- подпись внизу страницы -->
+
+<!-- СТРЕЛКИ и СЕРДЦА -->
+
+<div class="poem-buttons">
+
+  <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
+  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
+  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
+  <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
+  <a class="poem-arrow" id="open-comments" href="#">🚻</a>
+  <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
+  <a class="poem-arrow" id="heart" href="#">💟</a>
+    <span class="like-count">0</span>
+
+  <!-- Лайк + переход к отзыву 
+  <div class="like">
+    <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
+    <span class="like-count">0</span>
+  </div>. -->
+
+  
+<!-- Возврат назад  -->
+  <script>
+document.getElementById("back-arrow").onclick = function () {
+  history.back();
+};
+</script>
+
+<!-- Навигация по списку  -->  
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+  const prev = document.getElementById("prev-poem");
+  const next = document.getElementById("next-poem");
+
+  if (!prev || !next) return;
+
+  try {
+    const current = location.pathname.split("/").pop();
+
+    const response = await fetch("/Memories/poems.html");
+    const html = await response.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    const links = [...doc.querySelectorAll("a[href$='.html']")];
+    const files = links.map(a => a.getAttribute("href"));
+    const names = files.map(href => href.split("/").pop());
+
+    const index = names.indexOf(current);
+
+    if (index !== -1) {
+      if (files[index - 1]) {
+        prev.href = new URL(files[index - 1], location.origin + "/Memories/").href;
+      }
+
+      if (files[index + 1]) {
+        next.href = new URL(files[index + 1], location.origin + "/Memories/").href;
+      }
+    }
+
+  } catch (e) {}
+});
+</script>
+
+</div>
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const heart = document.getElementById("heart");
+  const count = document.getElementById("like-count");
+
+  let likes = parseInt(count.textContent);
+
+  if (heart) {
+    heart.addEventListener("click", function () {
+
+      if (heart.classList.contains("liked")) {
+        heart.classList.remove("liked");
+        heart.textContent = "💟";
+        likes--;
+      } else {
+        heart.classList.add("liked");
+        heart.textContent = "💜";
+        likes++;
+      }
+
+      count.textContent = likes;
+
+    });
+  }
+
+});
+</script>
+
+<!-- Переход к Анотациям  
+<div id="annotation-box" class="overlay-box">
+  <div id="annotation-text"></div>
+
+  <div class="annotation-menu">
+    <button type="button" id="back-btn">🔄</button>
+  </div>
+</div>-->
+  
+</section>
+
+
+<!-- Метаданные к файлу --> 
+<div id="meta"></div>
+
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+
+  <!-- Утилита переадресации по пунктам Меню-->
+  <script src="../nav.js"></script>
+ <!-- Утилита навигации по разделу (для контента)--> 
+ <script src="poem-nav.js"></script>
+  
+
+<!-- ЛАЙК текста с отсылкой на мейл -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const heart = document.getElementById("heart");
+  if (!heart) return;
+
+  heart.addEventListener("click", async function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetUrl = heart.getAttribute("href");
+
+
+    const formData = new FormData();
+    formData.append("_subject", "Лайк с сайта Memories");
+    formData.append("type", "like");
+    formData.append("url", window.location.href);
+    formData.append("text", document.getElementById("meta").textContent);
+
+    try {
+      await fetch("https://formspree.io/f/xvzwoqzk", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      heart.textContent = "💗";
+    } catch (err) {
+      heart.textContent = "⚠️";
+    }
+
+    setTimeout(function () {
+      window.location.href = targetUrl;
+    }, 1000);
+  });
+});
+</script> 
+
+<!-- Аннотации -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const poemEl = document.getElementById("poem");
+  if (!poemEl) return;
+
+  const reviewBtn = document.getElementById("open-review");
+  const commentsBtn = document.getElementById("open-comments");
+  const rangeBtn = document.getElementById("open-range");
+  const noteBtn = document.getElementById("open-note");  
+  const backBtn = document.getElementById("back-to-poem");
+
+  // 🔒 используем уже существующий poem.text (ничего не переинициализируем)
+  const originalText = (typeof poem !== "undefined" && poem.text)
+    ? poem.text
+    : poemEl.textContent;
+
+  // ℹ️ review
+if (reviewBtn) {
+  reviewBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const reviewText = poem.review ? poem.review.trim() : "";
+
+    poemEl.textContent = reviewText || "Аннотация пока не добавлена";
+  });
+}
+
+// 🔢 range
+if (rangeBtn) {
+  rangeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const rangeText = poem.range ? poem.range.trim() : "";
+
+    if (!rangeText) {
+      poemEl.textContent = "Я всё жду, когда его оценят по достоинству";
+      return;
+    }
+
+    const rows = rangeText
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+
+    let html = '<table class="range-table">';
+
+    rows.forEach((row, index) => {
+      const cols = row.split("|").map(col => col.trim());
+
+      html += "<tr>";
+
+      cols.forEach(col => {
+        if (index === 0) {
+          html += `<th>${col}</th>`;
+        } else {
+          html += `<td>${col}</td>`;
+        }
+      });
+
+      html += "</tr>";
+    });
+
+    html += "</table>";
+
+    poemEl.innerHTML = html;
+  });
+}
+
+// 🔤 note
+if (noteBtn) {
+  noteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const noteText = poem.note ? poem.note.trim() : "";
+
+    poemEl.textContent = noteText || "Автор пока не прокомментировал";
+  });
+}
+  
+// 🚻 comments
+if (commentsBtn) {
+  commentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const commentsText = String(poem.comments || "").trim();
+
+    if (commentsText !== "") {
+      poemEl.textContent = commentsText;
+    } else {
+      poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
+    }
+  });
+}
+
+  // 🔄 назад
+  if (backBtn) {
+    backBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      poemEl.textContent = originalText;
+    });
+  }
+
+});
+</script>
+
+<!-- FULL Screen mode -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const panel = document.querySelector(".reading-panel");
+  if (!panel) return;
+
+  panel.addEventListener("click", function () {
+    panel.classList.toggle("is-fullscreen");
+  });
+});
+</script>
+  
+ ПАРОЛЬ  
+<body data-password="пароль">
+<script src="../password-gate.js"></script> -->
+    
+</body>
+</html>
