@@ -127,7 +127,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       <a class="scroll-link" href="poems/poem_st2.html">Старик и море - 2</a>
       <a class="scroll-link" href="poems/poem_st3.html">Старик и море - 3</a>
       <a class="scroll-link" href="poems/poem_su.html">Сумрак в комнате</a>
-      <a class="scroll-link" href="poems/poem_ta.html">Там любил я</a>
+      <a class="scroll-link" href="poems/poem_tak.html">Так кончается всё</a>
+      <a class="scroll-link" href="poems/poem_tam.html">Там любил я</a>
       <a class="scroll-link" href="poems/poem_te.html">Теперь я часто думаю о том</a>
       <a class="scroll-link" href="poems/poem_to.html">То ли море шумит</a>
       <a class="scroll-link" href="poems/poem_ty.html">Ты мне вослед, прошу не сквернословь</a>
