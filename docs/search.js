@@ -1,6 +1,6 @@
 /*
 ========================================
-JSON верстя в консоли  fix /2.1.5
+JSON как массив  fix /2.1.6
 ========================================
 */
 
@@ -59,14 +59,30 @@ async function loadCatalog() {
     const data =
   await res.json()
 
-console.log(
-  "CATALOG JSON VERSION:",
-  data.version
-)
+if (Array.isArray(data)) {
 
-CATALOG =
-  data.items || []
+  console.log(
+    "CATALOG JSON VERSION:",
+    "old array format"
+  )
 
+  CATALOG =
+    data
+
+}
+
+else {
+
+  console.log(
+    "CATALOG JSON VERSION:",
+    data.version
+  )
+
+  CATALOG =
+    data.items || []
+
+}
+    
 console.table(
       CATALOG.map(item => ({
         file: item.file,
