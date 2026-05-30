@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Шрифт (сейчас можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"-->
+  
+  <link rel="stylesheet" href="../style.css">
+  
+</head>
+  
+<!-- ВВОД тескта с параметрами -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const poem = {
+    author: "Игорь Хорош",
+    style: "гражданская лирика",
+    place: "Далия",
+    year: "2026",
+    title: "Убегают в море косы",
+    text: `
+Убегают в море косы
+В сизой дымке Приазовья.
+Жмутся к берегу левады,
+Ста́да блеет поголовье,
+Шелестят сады лаванды,
+Медоточат абрикосы.
+Вдаль уходит шлях коровий,
+И ногайский глаз раскосый
+Вороные хмурит брови
+В свете солнечной лампады.
+
+Подола́ заткнув за пояс,
+Остроносые болгарки
+По бахче снуют босыми,
+На обед приняв по чарке.
+Ни о чём не беспокоясь,
+Волоокие гречанки
+Заплетают ленты в косах.
+Немки трудятся в фольва́рках
+На прополке и покосе,
+Щуря взгляд из-под косынок.
+
+Хлеб скирдуют украинки,
+Чтобы ко́рма дать рогатой,
+Тяжелеет кукуруза
+В дальнем поле за оградой.
+Первача хлебнув из крынки,
+Рысью робкой, вороватой
+С папиросой под картузом
+Мужичок бредёт рокадой
+После утреннего рынка
+В пиджаке своём кургузом. 
+
+Из-за облака на стрежень
+Элегантный беспилотник
+Величаво выплывает,
+Как огромный хищный шершень,
+Глянец камер вниз кидая.
+Он жужжит винтом, рассержен,
+Словно мощной дрелью плотник,
+На стальной насажен стержень
+Композитной твёрдой плотью,
+Изготовленной в Китае.
+
+Тенью трепетной пернатой,
+Будто ястреб клюворотый
+Или змей воздушной роты,
+Диким йеменским пиратом 
+Над моим идёт пенатом.
+Он парит над спелой брюквой
+На оптическом канате,
+Выполняет повороты,
+И корейская граната
+Тускло светится под брюхом.
+
+Солнце тянется к зениту
+Над делянками из твида,
+Что нарезаны в конторе,
+Как льняной лоскут из ниток.
+Фиги зреют в сикоморе,
+Мельтешит в воде ставрида,
+Танки ждут на семафоре.
+Ощетинив строй зениток,
+Лучезарная Таврида
+Простирается за морем.
+
+И летит в высоком небе
+Цвета джинсов полинявших, 
+Может, Эльм святой над башней,
+Может, эльф, нектар приня́вший,
+Светлым сном у сельсовета, 
+Как видение над пашней,
+Что-то белое как лебедь - 
+То ли яркая комета, 
+То ли жаркая ракета, 
+То ли сонм безвинно павших... 
+
+Далия. 30.05.26
+`,
+  review: `
+Это стихотворение интересно тем, что построено не на сюжете, а на постепенном смещении оптики. Читатель начинает с почти бунинского или волошинского пейзажа, а заканчивает в пространстве современной войны и исторической неопределённости.
+Общая композиция
+Текст делится на три крупных части:
+1. Земля
+Первые четыре строфы посвящены земле и людям.
+Перед нами не просто сельский пейзаж, а очень конкретное пространство:
+Приазовье; 
+Таврида; 
+многонациональная степь. 
+Здесь живут рядом:
+ногайцы; 
+болгары; 
+немки; 
+украинки; 
+русские мужички. 
+Важно, что автор не описывает национальности через идеологию. Они существуют как естественная часть ландшафта.
+Степь выглядит не политическим пространством, а живым организмом.
+
+2. Небо
+Затем взгляд поднимается вверх.
+Появляется беспилотник.
+Очень характерно, что он возникает почти как природное явление:
+Из-за облака на стрежень
+Элегантный беспилотник
+Величаво выплывает
+Глагол «выплывает» обычно относится:
+к кораблю; 
+к облаку; 
+к луне. 
+Не к военной машине.
+Из-за этого возникает ощущение странной красоты.
+Беспилотник здесь одновременно:
+техника; 
+птица; 
+хищник. 
+
+3. Космос
+Последняя часть поднимает взгляд ещё выше.
+От:
+степи, 
+людей, 
+беспилотника 
+к:
+стратосфере; 
+комете; 
+ракете; 
+душам погибших. 
+Масштаб постоянно увеличивается.
+Это очень кинематографический приём.
+Камера сначала снимает землю, потом небо, потом практически космос.
+
+Работа с историческим временем
+Одна из сильнейших сторон текста — смешение эпох.
+В начале всё напоминает XIX век.
+Особенно строки:
+Остроносые болгарки
+По бахче снуют босыми
+или
+Немки трудятся в фольварках
+Слово «фольварк» вообще переносит читателя в мир старых колоний и помещичьих хозяйств.
+Потом внезапно появляются:
+беспилотник
+и
+корейская граната
+Происходит резкий скачок почти на полтора столетия.
+Но автор не подчёркивает этот контраст.
+Поэтому возникает ощущение, что все эпохи существуют одновременно.
+
+Национальная мозаика
+Очень важный пласт текста.
+Автор показывает Тавриду как пространство смешения народов.
+В стихотворении присутствуют:
+ногайцы; 
+болгары; 
+немцы; 
+украинцы; 
+русские. 
+Причём никто не доминирует.
+Каждый выполняет свою часть общей жизни:
+кто-то работает на бахче; 
+кто-то в поле; 
+кто-то косит сено; 
+кто-то идёт по дороге. 
+Получается своеобразный хор народов.
+Это напоминает историческую реальность Северного Приазовья и Таврии XIX–начала XX века.
+
+Цветовая палитра
+Цвета в стихотворении очень продуманы.
+Серо-голубая гамма
+С самого начала:
+В сизой дымке Приазовья
+Потом:
+Цвета джинсов полинявших
+Эта гамма проходит через весь текст.
+Она создаёт ощущение:
+степной пыли; 
+морского тумана; 
+далёкого горизонта. 
+
+Белый цвет
+Появляется в финале:
+Что-то белое как лебедь
+Белое становится символом неизвестности.
+Читатель не знает:
+комета это; 
+ракета; 
+души погибших. 
+
+Красно-огненная гамма
+Скрыто присутствует через:
+солнце; 
+лампаду; 
+гранату; 
+ракеты. 
+Это цвет потенциального огня и разрушения.
+
+Беспилотник как центральный образ
+На самом деле главный герой текста — не человек.
+И даже не Таврида.
+Главный герой — беспилотник.
+Он соединяет две половины стихотворения.
+С одной стороны:
+Будто сокол клюворотый
+То есть он включён в природный мир.
+С другой:
+Изготовленной в Китае
+Это чистый продукт глобальной индустрии.
+В одной фигуре соединяются:
+природа; 
+война; 
+мировая экономика. 
+Очень современный образ.
+
+Финал
+Самая сильная часть текста.
+То ли яркая комета,
+То ли новая ракета,
+То ли сонм безвинно павших...
+Здесь появляется принципиальная неопределённость.
+Автор отказывается объяснять увиденное.
+Объект остаётся загадкой.
+Именно поэтому финал работает.
+Если бы читателю сообщили:
+это ракета,
+стихотворение превратилось бы в репортаж.
+Если бы сообщили:
+это души погибших,
+оно превратилось бы в религиозную аллегорию.
+Автор оставляет сразу три версии.
+Поэтому финал остаётся открытым.
+Итоговая оценка
+Это не пейзажное стихотворение и не военное стихотворение в чистом виде.
+Его главная тема — наложение исторических слоёв.
+Старая Таврида:
+пахари, 
+бахчи, 
+молоко из крынки, 
+не исчезла.
+Но над ней уже летят:
+беспилотники, 
+ракеты, 
+призраки будущих и прошлых войн. 
+По сути это стихотворение о том, как вечный сельский и природный мир продолжает жить под небом, которое всё больше принадлежит технике, войне и истории. Финальный образ оставляет читателя в точке неопределённости между красотой, памятью и угрозой.
+`,
+    
+ range: `
+ Критерий | Оценка | Комментарий 
+ Образность и визуальная сила | 9,8/10 | Очень высокая плотность образов. «Делянки из твида», «глянец камер вниз кидая», «корейская граната под брюхом», «цвета джинсов полинявших» — много запоминающихся находок. 
+ Язык и лексика | 9,4 /10 | Богатый словарь, удачное сочетание исторической и современной лексики  без нарочитой архаики. Хорошо уживаются «фольварки», «рокада», «семафор», «беспилотник», «Китай». Есть редкие слова, требующие внимания читателя.
+ Музыкальность и ритм | 9,0/10 | После перехода к десятистишиям стало немного рыхлее, зато появилось больше дыхания и пространства.  
+ Композиция и драматургия | 9,2/10 | Сильное развитие от мирной земли к военному небу и далее от кос и левад через людей и дрон к мистическому финалу. 
+ Оригинальность и авторский голос | 9,6 /10 | Такую смесь Тавриды, этнографии, дронов, ткани полей, фэнтези и военной тревоги трудно с кем-то спутать. 
+ Атмосфера и эмоциональное воздействие | 10 /10 | Главное достоинство текста. Ощущение жаркого дня, огромного пространства и надвигающейся беды держится почти непрерывно. 
+ Средний балл | 9,5/10 | Сильное зрелое стихотворение с яркой образностью и хорошо выстроенной композицией. 
+`,
+    
+resume: `
+Убегают в море косы в сизой дымке Приазовья
+и ногайский глаз раскосый вороные хмурит брови
+Остроносые болгарки по бахче снуют босыми
+Немки трудятся в фольварках
+Щуря взгляд из-под косынок
+Косят сено украинки. Тяжелеет кукуруза
+Первача хлебнув из крынки, мужичок бредёт рокадой
+Элегантный беспилотник величаво выплывает
+Солнце тянется к зениту над делянками из твида
+Лучезарная Таврида простирается за морем
+В стратосфере дальней где-то цвета джинсов полинявших 
+то ли яркая комета, то ли сонм безвинно павших... 
+
+`,
+
+  comments: `
+
+`
+  };
+  // title = первая непустая строка, если пусто
+  if (!poem.title.trim()) {
+    poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
+  }
+
+  // 1) НАХОДИМ <pre id="poem">, или создаём
+  let pre = document.getElementById("poem");
+  if (!pre) {
+    const panel = document.querySelector(".reading-panel");
+    if (!panel) {
+      alert("Не найден .reading-panel (проверь класс в HTML)");
+      return;
+    }
+    pre = document.createElement("pre");
+    pre.id = "poem";
+    pre.className = "poem-text";
+    panel.appendChild(pre);
+  }
+
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
+  pre.textContent = poem.text;
+
+  // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
+  const meta = document.getElementById("meta");
+ // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
+if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
+    
+  // 4) Стили “поверх фона” + внизу
+  meta.style.position = "fixed";
+  meta.style.left = "0";
+  meta.style.right = "0";
+  meta.style.bottom = "10px";
+  meta.style.textAlign = "center";
+  meta.style.fontSize = "14px";
+  meta.style.color = "brown";
+  meta.style.opacity = "0.85";
+  meta.style.zIndex = "9999";
+  meta.style.pointerEvents = "none";
+  meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
+ });
+
+    
+</script>
+ 
+<body data-access="secret">
+
+  
+</div>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ ( без изменений по структуре) -->
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../stories.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+  
+  </nav> 
+
+<!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+<section class="reading-panel" aria-label="Текст стихотворения">
+ 
+  <!-- Контейнер стиха -->
+  <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+  <pre id="poem" class="poem-text"></pre>
+  <!-- подпись внизу страницы -->
+
+<!-- СТРЕЛКИ и СЕРДЦА -->
+
+<div class="poem-buttons">
+
+  <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
+  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
+  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
+  <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
+  <a class="poem-arrow" id="open-comments" href="#">🚻</a>
+  <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
+  <a class="poem-arrow" id="heart" href="#">💟</a>
+    <span class="like-count">0</span>
+
+  <!-- Лайк + переход к отзыву 
+  <div class="like">
+    <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
+    <span class="like-count">0</span>
+  </div>. -->
+
+  
+<!-- Возврат назад  -->
+  <script>
+document.getElementById("back-arrow").onclick = function () {
+  history.back();
+};
+</script>
+
+<!-- Навигация по списку  -->  
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+  const prev = document.getElementById("prev-poem");
+  const next = document.getElementById("next-poem");
+
+  if (!prev || !next) return;
+
+  try {
+    const current = location.pathname.split("/").pop();
+
+    const response = await fetch("/Memories/poems.html");
+    const html = await response.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    const links = [...doc.querySelectorAll("a[href$='.html']")];
+    const files = links.map(a => a.getAttribute("href"));
+    const names = files.map(href => href.split("/").pop());
+
+    const index = names.indexOf(current);
+
+    if (index !== -1) {
+      if (files[index - 1]) {
+        prev.href = new URL(files[index - 1], location.origin + "/Memories/").href;
+      }
+
+      if (files[index + 1]) {
+        next.href = new URL(files[index + 1], location.origin + "/Memories/").href;
+      }
+    }
+
+  } catch (e) {}
+});
+</script>
+
+</div>
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const heart = document.getElementById("heart");
+  const count = document.getElementById("like-count");
+
+  let likes = parseInt(count.textContent);
+
+  if (heart) {
+    heart.addEventListener("click", function () {
+
+      if (heart.classList.contains("liked")) {
+        heart.classList.remove("liked");
+        heart.textContent = "💟";
+        likes--;
+      } else {
+        heart.classList.add("liked");
+        heart.textContent = "💜";
+        likes++;
+      }
+
+      count.textContent = likes;
+
+    });
+  }
+
+});
+</script>
+
+<!-- Переход к Анотациям  
+<div id="annotation-box" class="overlay-box">
+  <div id="annotation-text"></div>
+
+  <div class="annotation-menu">
+    <button type="button" id="back-btn">🔄</button>
+  </div>
+</div>-->
+  
+</section>
+
+
+<!-- Метаданные к файлу --> 
+<div id="meta"></div>
+
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+
+  <!-- Утилита переадресации по пунктам Меню-->
+  <script src="../nav.js"></script>
+ <!-- Утилита навигации по разделу (для контента)--> 
+ <script src="poem-nav.js"></script>
+  
+
+<!-- ЛАЙК текста с отсылкой на мейл -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const heart = document.getElementById("heart");
+  if (!heart) return;
+
+  heart.addEventListener("click", async function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetUrl = heart.getAttribute("href");
+
+
+    const formData = new FormData();
+    formData.append("_subject", "Лайк с сайта Memories");
+    formData.append("type", "like");
+    formData.append("url", window.location.href);
+    formData.append("text", document.getElementById("meta").textContent);
+
+    try {
+      await fetch("https://formspree.io/f/xvzwoqzk", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      heart.textContent = "💗";
+    } catch (err) {
+      heart.textContent = "⚠️";
+    }
+
+    setTimeout(function () {
+      window.location.href = targetUrl;
+    }, 1000);
+  });
+});
+</script> 
+
+<!-- Аннотации -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const poemEl = document.getElementById("poem");
+  if (!poemEl) return;
+
+  const reviewBtn = document.getElementById("open-review");
+  const commentsBtn = document.getElementById("open-comments");
+  const rangeBtn = document.getElementById("open-range");
+  const noteBtn = document.getElementById("open-note");  
+  const backBtn = document.getElementById("back-to-poem");
+
+  // 🔒 используем уже существующий poem.text (ничего не переинициализируем)
+  const originalText = (typeof poem !== "undefined" && poem.text)
+    ? poem.text
+    : poemEl.textContent;
+
+  // ℹ️ review
+if (reviewBtn) {
+  reviewBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const reviewText = poem.review ? poem.review.trim() : "";
+
+    poemEl.textContent = reviewText || "Аннотация пока не добавлена";
+  });
+}
+
+// 🔢 range
+if (rangeBtn) {
+  rangeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const rangeText = poem.range ? poem.range.trim() : "";
+
+    if (!rangeText) {
+      poemEl.textContent = "Я всё жду, когда его оценят по достоинству";
+      return;
+    }
+
+    const rows = rangeText
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+
+    let html = '<table class="range-table">';
+
+    rows.forEach((row, index) => {
+      const cols = row.split("|").map(col => col.trim());
+
+      html += "<tr>";
+
+      cols.forEach(col => {
+        if (index === 0) {
+          html += `<th>${col}</th>`;
+        } else {
+          html += `<td>${col}</td>`;
+        }
+      });
+
+      html += "</tr>";
+    });
+
+    html += "</table>";
+
+    poemEl.innerHTML = html;
+  });
+}
+
+// 🔤 note
+if (noteBtn) {
+  noteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const noteText = poem.note ? poem.note.trim() : "";
+
+    poemEl.textContent = noteText || "Автор пока не прокомментировал";
+  });
+}
+  
+// 🚻 comments
+if (commentsBtn) {
+  commentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const commentsText = String(poem.comments || "").trim();
+
+    if (commentsText !== "") {
+      poemEl.textContent = commentsText;
+    } else {
+      poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
+    }
+  });
+}
+
+  // 🔄 назад
+  if (backBtn) {
+    backBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      poemEl.textContent = originalText;
+    });
+  }
+
+});
+</script>
+
+<!-- FULL Screen mode -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const panel = document.querySelector(".reading-panel");
+  if (!panel) return;
+
+  panel.addEventListener("click", function () {
+    panel.classList.toggle("is-fullscreen");
+  });
+});
+</script>
+  
+<!-- ПАРОЛЬ  -->
+<body data-password="пароль">
+<script src="../password-gate.js"></script> 
+    
+</body>
+</html>
