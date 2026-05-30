@@ -1,10 +1,26 @@
 /*
 ========================================
+добавлен РАСШИРЕННЫЙ поиск /2.0.0
+========================================
+*/
+
+
+
+
+/*
+========================================
 ПОИСК ПО CATALOG.JSON
+БЫСТРЫЙ / РАСШИРЕННЫЙ
 ========================================
 */
 
 let CATALOG = []
+
+let TEXT_INDEX = {}
+let textIndexReady = false
+
+let searchMode =
+  "fast"
 
 const input =
   document.getElementById("searchInput")
@@ -14,6 +30,15 @@ const resultsBox =
 
 const infoBox =
   document.getElementById("searchInfo")
+
+const fastSearchBtn =
+  document.getElementById("fastSearchBtn")
+
+const advancedSearchBtn =
+  document.getElementById("advancedSearchBtn")
+
+const searchDescription =
+  document.getElementById("searchDescription")
 
 /*
 ========================================
@@ -98,7 +123,7 @@ function normalize(value) {
 
 /*
 ========================================
-ОБЩАЯ СТРОКА ДЛЯ ПОИСКА
+ОБЩАЯ СТРОКА ДЛЯ БЫСТРОГО ПОИСКА
 ========================================
 */
 
@@ -122,7 +147,77 @@ function makeSearchText(item) {
 
 /*
 ========================================
-ПОИСК
+ИЗВЛЕЧЕНИЕ ТОЛЬКО ТЕКСТА ПРОИЗВЕДЕНИЯ
+ИЗ window.poem.text
+========================================
+*/
+
+function extractPoemText(html) {
+
+  const match =
+    String(html || "").match(
+      /text\s*:\s*`([\s\S]*?)`/
+    )
+
+  if (!match)
+    return ""
+
+  return match[1]
+
+}
+
+/*
+========================================
+ПЕРЕКЛЮЧЕНИЕ РЕЖИМА ПОИСКА
+========================================
+*/
+
+function updateSearchMode() {
+
+  if (!input)
+    return
+
+  if (searchMode === "fast") {
+
+    input.placeholder =
+      "название, место, год, стиль, тег"
+
+    if (searchDescription) {
+      searchDescription.textContent =
+        "Быстрый поиск по тегам"
+    }
+
+    if (fastSearchBtn)
+      fastSearchBtn.classList.add("active")
+
+    if (advancedSearchBtn)
+      advancedSearchBtn.classList.remove("active")
+
+  }
+
+  else {
+
+    input.placeholder =
+      "слово или фраза из текста"
+
+    if (searchDescription) {
+      searchDescription.textContent =
+        "Расширенный поиск по текстам"
+    }
+
+    if (fastSearchBtn)
+      fastSearchBtn.classList.remove("active")
+
+    if (advancedSearchBtn)
+      advancedSearchBtn.classList.add("active")
+
+  }
+
+}
+
+/*
+========================================
+БЫСТРЫЙ ПОИСК ПО CATALOG.JSON
 ========================================
 */
 
@@ -144,6 +239,95 @@ function searchCatalog(query) {
 
     return words.every(word =>
       haystack.includes(word)
+    )
+
+  })
+
+}
+
+/*
+========================================
+ЗАГРУЗКА ТЕКСТОВ ИЗ ФАЙЛОВ
+ТОЛЬКО window.poem.text
+========================================
+*/
+
+async function buildTextIndex() {
+
+  if (textIndexReady)
+    return
+
+  setInfo("Загрузка текстов...")
+
+  for (const item of CATALOG) {
+
+    if (!item.file)
+      continue
+
+    try {
+
+      const res =
+        await fetch(item.file, {
+          cache: "no-store"
+        })
+
+      if (!res.ok)
+        continue
+
+      const html =
+        await res.text()
+
+      const poemText =
+        extractPoemText(html)
+
+      TEXT_INDEX[item.file] =
+        normalize(poemText)
+
+    }
+
+    catch (e) {
+
+      console.warn(
+        "Не удалось загрузить файл:",
+        item.file,
+        e
+      )
+
+    }
+
+  }
+
+  textIndexReady =
+    true
+
+}
+
+/*
+========================================
+РАСШИРЕННЫЙ ПОИСК ПО ТЕКСТАМ ФАЙЛОВ
+========================================
+*/
+
+async function searchTexts(query) {
+
+  await buildTextIndex()
+
+  const q =
+    normalize(query)
+
+  if (!q)
+    return []
+
+  const words =
+    q.split(" ").filter(Boolean)
+
+  return CATALOG.filter(item => {
+
+    const fileText =
+      TEXT_INDEX[item.file] || ""
+
+    return words.every(word =>
+      fileText.includes(word)
     )
 
   })
@@ -224,19 +408,24 @@ function highlight(text, query) {
 
 function renderResults(list) {
 
-  list = sortByYear(list)
+  list =
+    sortByYear(list)
 
   if (!resultsBox)
     return
 
-  resultsBox.innerHTML = ""
+  resultsBox.innerHTML =
+    ""
 
   if (!list.length) {
     setInfo("Ничего не найдено")
     return
   }
 
-  setInfo("Найдено: " + list.length)
+  setInfo(
+    "Найдено: " +
+    list.length
+  )
 
   const query =
     input ? input.value : ""
@@ -256,15 +445,15 @@ function renderResults(list) {
       safe(item.year),
       safe(item.place)
     ]
-    .filter(Boolean)
-    .join(" | ")
+      .filter(Boolean)
+      .join(" | ")
 
     const sectionStyle = [
       safe(item.section),
       safe(item.style)
     ]
-    .filter(Boolean)
-    .join(" | ")
+      .filter(Boolean)
+      .join(" | ")
 
     const firstLine =
       safe(item.line)
@@ -316,7 +505,8 @@ function renderResults(list) {
 function clearResults() {
 
   if (resultsBox)
-    resultsBox.innerHTML = ""
+    resultsBox.innerHTML =
+      ""
 
   setInfo(
     "Введите слово для поиска"
@@ -330,7 +520,7 @@ function clearResults() {
 ========================================
 */
 
-function handleSearch() {
+async function handleSearch() {
 
   if (!input)
     return
@@ -343,8 +533,22 @@ function handleSearch() {
     return
   }
 
-  const found =
-    searchCatalog(query)
+  let found =
+    []
+
+  if (searchMode === "advanced") {
+
+    found =
+      await searchTexts(query)
+
+  }
+
+  else {
+
+    found =
+      searchCatalog(query)
+
+  }
 
   renderResults(found)
 
@@ -362,8 +566,51 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   clearResults()
 
+  updateSearchMode()
+
   if (input) {
-    input.addEventListener("input", handleSearch)
+
+    input.addEventListener(
+      "input",
+      handleSearch
+    )
+
+  }
+
+  if (fastSearchBtn) {
+
+    fastSearchBtn.addEventListener(
+      "click",
+      function () {
+
+        searchMode =
+          "fast"
+
+        updateSearchMode()
+
+        handleSearch()
+
+      }
+    )
+
+  }
+
+  if (advancedSearchBtn) {
+
+    advancedSearchBtn.addEventListener(
+      "click",
+      function () {
+
+        searchMode =
+          "advanced"
+
+        updateSearchMode()
+
+        handleSearch()
+
+      }
+    )
+
   }
 
 })
