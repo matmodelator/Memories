@@ -1,6 +1,6 @@
 /*
 ========================================
-свитч РАСШИРЕННЫЙ/БЫСТРЫЙ fix /2.1.1
+свитч  fix /2.1.2
 ========================================
 */
 
@@ -554,6 +554,28 @@ async function handleSearch() {
   }
 
   renderResults(found)
+
+}
+
+/*
+========================================
+ПЕРЕКЛЮЧЕНИЕ РЕЖИМА
+========================================
+*/
+
+function toggleSearchMode() {
+
+  if (searchMode === "fast") {
+    searchMode = "advanced"
+  }
+
+  else {
+    searchMode = "fast"
+  }
+
+  updateSearchMode()
+
+  handleSearch()
 
 }
 
