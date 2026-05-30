@@ -1,6 +1,6 @@
 /*
 ========================================
-Список файлов поиска  fix /2.1.4
+JSON верстя в консоли  fix /2.1.5
 ========================================
 */
 
@@ -56,8 +56,16 @@ async function loadCatalog() {
       throw new Error("catalog.json не найден")
     }
 
-    CATALOG =
-      await res.json()
+    const data =
+  await res.json()
+
+console.log(
+  "CATALOG JSON VERSION:",
+  data.version
+)
+
+CATALOG =
+  data.items || []
 
 console.table(
       CATALOG.map(item => ({
