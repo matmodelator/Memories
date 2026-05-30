@@ -1,11 +1,11 @@
 /*
 ========================================
-Консоль брузера  fix /2.1.3
+Список файлов поиска  fix /2.1.4
 ========================================
 */
 
 console.log(
-  "SEARCH VERSION v2.1.3"
+  "SEARCH VERSION v2.1.4"
 )
 /*
 ========================================
@@ -59,6 +59,14 @@ async function loadCatalog() {
     CATALOG =
       await res.json()
 
+console.table(
+      CATALOG.map(item => ({
+        file: item.file,
+        title: item.title
+      }))
+    )
+
+    
     setInfo(
       "Каталог загружен: " +
       CATALOG.length
