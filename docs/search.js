@@ -1,12 +1,12 @@
 /*
 ========================================
-свитч  fix /2.1.2
+Консоль брузера  fix /2.1.3
 ========================================
 */
 
-
-
-
+console.log(
+  "SEARCH VERSION v2.1.2"
+)
 /*
 ========================================
 ПОИСК ПО CATALOG.JSON
@@ -169,10 +169,10 @@ function extractPoemText(html) {
 ========================================
 */
 
-function updateSearchMode() {
+function setSearchMode(mode) {
 
-  if (!input)
-    return
+  searchMode =
+    mode
 
   if (searchMode === "fast") {
 
@@ -180,17 +180,13 @@ function updateSearchMode() {
       "название, место, год, стиль, тег"
 
     if (searchDescription) {
-
       searchDescription.textContent =
         "Быстрый поиск по тегам"
-
     }
 
     if (searchModeSwitch) {
-
       searchModeSwitch.textContent =
         "Расширенный"
-
     }
 
   }
@@ -201,17 +197,13 @@ function updateSearchMode() {
       "слово или фраза из текста"
 
     if (searchDescription) {
-
       searchDescription.textContent =
         "Расширенный поиск по текстам"
-
     }
 
     if (searchModeSwitch) {
-
       searchModeSwitch.textContent =
         "Быстрый"
-
     }
 
   }
@@ -563,17 +555,19 @@ async function handleSearch() {
 ========================================
 */
 
-function toggleSearchMode() {
+function toggleSearchMode(e) {
 
-  if (searchMode === "fast") {
-    searchMode = "advanced"
+  if (e) {
+    e.preventDefault()
+    e.stopPropagation()
   }
 
-  else {
-    searchMode = "fast"
-  }
+  const nextMode =
+    searchMode === "fast"
+      ? "advanced"
+      : "fast"
 
-  updateSearchMode()
+  setSearchMode(nextMode)
 
   handleSearch()
 
@@ -591,7 +585,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   clearResults()
 
-  updateSearchMode()
+  setSearchMode("fast")
 
   if (input) {
 
