@@ -1,6 +1,6 @@
 /*
 ========================================
-свитч РАСШИРЕННЫЙ/БЫСТРЫЙ поиск /2.1.0
+свитч РАСШИРЕННЫЙ/БЫСТРЫЙ fix /2.1.1
 ========================================
 */
 
@@ -32,9 +32,7 @@ const infoBox =
   document.getElementById("searchInfo")
 
 const searchModeSwitch =
-  document.getElementById(
-    "searchModeSwitch"
-  )
+  document.getElementById("searchModeSwitch")
 
 const searchDescription =
   document.getElementById("searchDescription")
@@ -176,20 +174,23 @@ function updateSearchMode() {
   if (!input)
     return
 
-  searchMode =
-    searchModeSwitch &&
-    searchModeSwitch.checked
-      ? "advanced"
-      : "fast"
-
   if (searchMode === "fast") {
 
     input.placeholder =
       "название, место, год, стиль, тег"
 
     if (searchDescription) {
+
       searchDescription.textContent =
         "Быстрый поиск по тегам"
+
+    }
+
+    if (searchModeSwitch) {
+
+      searchModeSwitch.textContent =
+        "Расширенный"
+
     }
 
   }
@@ -200,13 +201,23 @@ function updateSearchMode() {
       "слово или фраза из текста"
 
     if (searchDescription) {
+
       searchDescription.textContent =
         "Расширенный поиск по текстам"
+
+    }
+
+    if (searchModeSwitch) {
+
+      searchModeSwitch.textContent =
+        "Быстрый"
+
     }
 
   }
 
 }
+
 /*
 ========================================
 БЫСТРЫЙ ПОИСК ПО CATALOG.JSON
@@ -572,8 +583,13 @@ document.addEventListener("DOMContentLoaded", async function () {
   if (searchModeSwitch) {
 
   searchModeSwitch.addEventListener(
-    "change",
+    "click",
     function () {
+
+      searchMode =
+        searchMode === "fast"
+          ? "advanced"
+          : "fast"
 
       updateSearchMode()
 
