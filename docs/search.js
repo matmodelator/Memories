@@ -604,22 +604,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   if (searchModeSwitch) {
 
-  searchModeSwitch.addEventListener(
-    "click",
-    function () {
+    searchModeSwitch.addEventListener(
+      "click",
+      toggleSearchMode
+    )
 
-      searchMode =
-        searchMode === "fast"
-          ? "advanced"
-          : "fast"
-
-      updateSearchMode()
-
-      handleSearch()
-
-    }
-  )
-
-}
+  }
 
 })
+
+
