@@ -102,24 +102,24 @@ window.addEventListener("memoryLinesReady", function () {
 
   <div class="search-title">Поиск</div>
 
-  <!-- РЕЖИМ ПОИСКА -->
-  <div class="search-mode">
+ <!-- РЕЖИМ ПОИСКА -->
+<div class="search-mode">
 
-    <button
-      id="fastSearchBtn"
-      class="search-mode-btn active"
-      type="button">
-      Быстрый
-    </button>
+  <span>Быстрый</span>
 
-    <button
-      id="advancedSearchBtn"
-      class="search-mode-btn"
-      type="button">
-      Расширенный
-    </button>
+  <label class="search-switch">
 
-  </div>
+    <input
+      id="searchModeSwitch"
+      type="checkbox">
+
+    <span class="search-slider"></span>
+
+  </label>
+
+  <span>Расширенный</span>
+
+</div>
 
   <!-- ПОЛЕ ПОИСКА -->
   <input
