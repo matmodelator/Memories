@@ -96,18 +96,48 @@ window.addEventListener("memoryLinesReady", function () {
 </script>
  
  --> 
+  
   <!-- SEARCH ASIDE -->
- <aside id="searchAside">
+<aside id="searchAside">
+
   <div class="search-title">Поиск</div>
+
+  <!-- РЕЖИМ ПОИСКА -->
+  <div class="search-mode">
+
+    <button
+      id="fastSearchBtn"
+      class="search-mode-btn active"
+      type="button">
+      Быстрый
+    </button>
+
+    <button
+      id="advancedSearchBtn"
+      class="search-mode-btn"
+      type="button">
+      Расширенный
+    </button>
+
+  </div>
+
+  <!-- ПОЛЕ ПОИСКА -->
   <input
     id="searchInput"
     type="text"
     placeholder="название, место, год, стиль, тег"
   >
-  <div id="searchInfo"></div>
-  <div id="searchResults"></div>
-</aside>
 
+  <!-- ОПИСАНИЕ РЕЖИМА -->
+  <div id="searchDescription" class="search-description">
+    Быстрый поиск по тегам
+  </div>
+
+  <div id="searchInfo"></div>
+
+  <div id="searchResults"></div>
+
+</aside>
 <script src="search.js"></script>
 
 </body>
