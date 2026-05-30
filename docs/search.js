@@ -1,6 +1,6 @@
 /*
 ========================================
-добавлен РАСШИРЕННЫЙ поиск /2.0.0
+свитч РАСШИРЕННЫЙ/БЫСТРЫЙ поиск /2.1.0
 ========================================
 */
 
@@ -31,11 +31,10 @@ const resultsBox =
 const infoBox =
   document.getElementById("searchInfo")
 
-const fastSearchBtn =
-  document.getElementById("fastSearchBtn")
-
-const advancedSearchBtn =
-  document.getElementById("advancedSearchBtn")
+const searchModeSwitch =
+  document.getElementById(
+    "searchModeSwitch"
+  )
 
 const searchDescription =
   document.getElementById("searchDescription")
@@ -177,6 +176,12 @@ function updateSearchMode() {
   if (!input)
     return
 
+  searchMode =
+    searchModeSwitch &&
+    searchModeSwitch.checked
+      ? "advanced"
+      : "fast"
+
   if (searchMode === "fast") {
 
     input.placeholder =
@@ -186,12 +191,6 @@ function updateSearchMode() {
       searchDescription.textContent =
         "Быстрый поиск по тегам"
     }
-
-    if (fastSearchBtn)
-      fastSearchBtn.classList.add("active")
-
-    if (advancedSearchBtn)
-      advancedSearchBtn.classList.remove("active")
 
   }
 
@@ -205,16 +204,9 @@ function updateSearchMode() {
         "Расширенный поиск по текстам"
     }
 
-    if (fastSearchBtn)
-      fastSearchBtn.classList.remove("active")
-
-    if (advancedSearchBtn)
-      advancedSearchBtn.classList.add("active")
-
   }
 
 }
-
 /*
 ========================================
 БЫСТРЫЙ ПОИСК ПО CATALOG.JSON
@@ -577,40 +569,19 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   }
 
-  if (fastSearchBtn) {
+  if (searchModeSwitch) {
 
-    fastSearchBtn.addEventListener(
-      "click",
-      function () {
+  searchModeSwitch.addEventListener(
+    "change",
+    function () {
 
-        searchMode =
-          "fast"
+      updateSearchMode()
 
-        updateSearchMode()
+      handleSearch()
 
-        handleSearch()
+    }
+  )
 
-      }
-    )
-
-  }
-
-  if (advancedSearchBtn) {
-
-    advancedSearchBtn.addEventListener(
-      "click",
-      function () {
-
-        searchMode =
-          "advanced"
-
-        updateSearchMode()
-
-        handleSearch()
-
-      }
-    )
-
-  }
+}
 
 })
