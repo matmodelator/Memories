@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- version: v1.0.7 -->
+<!-- version: v1.0.8 -->
 
 <html lang="ru">
 
@@ -788,10 +788,16 @@ function downloadJson(data) {
     new Blob(
       [
         JSON.stringify(
-          data,
-          null,
-          2
-        )
+  {
+    version:
+      "catalog-" + new Date().toISOString(),
+
+    items:
+      data
+  },
+  null,
+  2
+)
       ],
       {
         type:
