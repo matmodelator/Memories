@@ -5,7 +5,7 @@
 */
 
 console.log(
-  "SEARCH VERSION v2.1.2"
+  "SEARCH VERSION v2.1.3"
 )
 /*
 ========================================
