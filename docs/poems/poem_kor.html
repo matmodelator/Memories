@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Шрифт (сейчас можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"-->
+  
+  <link rel="stylesheet" href="../style.css">
+  
+</head>
+  
+<!-- ВВОД тескта с параметрами -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  window.poem = {
+    author: "Игорь Хорош",
+    year: "1996",
+    style: "любовная лирика",
+    place: "Москва",
+    title: "Королева Марго",
+    
+    text: `
+Будет ночь. Будет сноп серебристых огней.
+Будут песни хмельные в стакане вина.
+Будет полулуна, что теперь не видна.
+Все мои помыслы будут о ней.
+
+Буду зорко следить за движением глаз,
+Буду жадно искать прикасания рук,
+И мой взгляд, как стрелою натянутый лук,
+Будет бить наповал, разумеется, вас.
+
+Будут спины людей без имён и без лиц,
+Будут пьяные танцы на грязном полу.
+Только ты для меня на роскошном балу,
+Только твой поцелуй, скоротечный как блиц.
+
+А потом мы сольёмся в безумном танго́,
+В бесконечном полёте сгорающих тел,
+Где кричу я напрасно, белея как мел, -
+Я люблю Вас, люблю, королева Марго!..
+`,
+
+review: `
+Аннотация от ИИ
+
+Здесь действительно интересно не столько само любовное признание, сколько несколько параллельных движений, которые идут одновременно.
+
+1. Движение местоимений
+Строфа	Местоимение	Дистанция
+1	я, о ней	максимальная, несубъектная
+2	вас	далёкая, формальная, множественная или обобщенная
+3	ты / твой	интимная, близкая
+4	мы / Вас	одновременно слияние и поклонение
+
+То есть линия выглядит так:
+
+она → вы → ты → мы → Вас
+
+Последнее «Вас» особенно интересно.
+
+Логически после «мы» ожидалось бы:
+
+люблю тебя
+
+Но появляется:
+
+люблю Вас
+
+Герой после близости снова возводит женщину на пьедестал.
+
+2. Движение пространства
+Строфа	Пространство
+1	ночь
+2	лицо, руки
+3	бал, толпа
+4	танго, полёт
+
+Получается расширение:
+
+комната → тело → общество → космос
+
+Последний катрен вообще выходит из бытовой реальности.
+
+3. Движение взгляда
+Строфа	Что происходит
+1	думает
+2	смотрит
+3	выделяет
+4	кричит
+
+Последовательность:
+
+мысль → взгляд → выбор → признание
+
+Очень логичная драматургия.
+
+4. Движение времени
+
+Весь текст написан через будущее:
+
+Будет
+Будут
+Буду
+
+Но в финале происходит сбой.
+
+Появляется настоящее:
+
+Где кричу я напрасно
+
+Не:
+
+буду кричать
+
+А:
+
+кричу
+
+То есть герой внезапно оказывается внутри события.
+
+Это сильный приём.
+
+5. Движение телесности
+Строфа	Контакт
+1	отсутствует
+2	лицо, руки
+3	поцелуй
+4	сгорающие тела
+
+Очень плавное нарастание физической близости.
+
+6. Движение статуса героини
+
+Это, пожалуй, самая интересная линия.
+
+Строфа	Кто она
+1	объект мечты
+2	женщина
+3	единственная среди толпы
+4	королева
+
+То есть происходит возвышение.
+
+Не:
+
+женщина → любовница
+
+А:
+
+женщина → символ
+
+Поэтому финал звучит почти театрально:
+
+Я люблю Вас, люблю, королева Марго!..
+
+7. Движение мира вокруг
+Строфа	Мир
+1	отсутствует
+2	исчезает
+3	появляется толпа
+4	снова исчезает
+
+Очень красивая дуга:
+
+герой → героиня → толпа → только они
+
+Поэтому третий катрен так важен.
+
+Без него стихотворение было бы просто признанием в любви.
+
+С ним появляется момент выбора:
+
+Будут спины людей без имён и без лиц...
+Только ты для меня...
+
+Именно там происходит главный психологический поворот текста. Не в финале, а в третьей строфе. Именно там герой выбирает одного человека из всего мира.
+
+Именно поэтому текст читается непрерывно.
+
+Он устроен как постепенное приближение камеры.
+
+Сначала ночной город.
+
+Потом женщина в толпе.
+
+Потом глаза.
+
+Потом руки.
+
+Потом поцелуй.
+
+Потом два тела.
+
+Это практически кинематографический монтаж, и для стихотворения такого объёма сделано очень аккуратно.
+`,
+    
+range: `
+| Критерий | Оценка | Комментарий |
+| Композиция | 9.3 | Очень сильное движение «ней → вас → ты → мы → Вам». Стихотворение построено на постепенном сокращении дистанции между героями. |
+| Музыкальность | 9.1 | Повторы «Будет / Будут / Буду» создают единый ритм ожидания и хорошо держат интонацию до самого финала. |
+| Образность | 8.4 | Есть сильные находки («спины людей без имён и без лиц», «взгляд как натянутый лук»), но значительная часть образов принадлежит традиционной романтической поэтике. |
+| Эмоциональная сила | 9.5 | Главное достоинство текста. Чувство выглядит искренним, непосредственным и эмоционально убедительным. |
+| Рифма | 8.8 | Рифмы крепкие, чистые и функциональные. Работают на мелодику текста, не привлекая лишнего внимания к себе. |
+| Авторский голос | 8.3 | Уже заметна склонность к психологической драматургии и композиционным решениям, но влияние классической любовной лирики ещё довольно велико. |
+| Итог | 9.0 | Сильное раннее любовное стихотворение, где основную роль играет не сюжет, а постепенное превращение мечты в близость. |
+`,
+    
+resume: `
+Будет ночь. Будет сноп серебристых огней.
+Буду зорко следить за движением глаз
+Буду жадно искать прикасания рук
+Будут спины людей без имён и без лиц..
+Только Вы для меня на роскошном балу!
+Только твой поцелуй, скоротечный как блиц.
+А потом мы сольёмся в безумном танго..
+Я люблю Вас, люблю, королева Марго!..
+`,
+
+note: `.
+
+`,
+    
+comments: `
+
+`
+  };
+
+
+  // title = первая непустая строка, если пусто
+  if (!poem.title.trim()) {
+    poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
+  }
+
+  // 1) НАХОДИМ <pre id="poem">, или создаём
+  let pre = document.getElementById("poem");
+  if (!pre) {
+    const panel = document.querySelector(".reading-panel");
+    if (!panel) {
+      alert("Не найден .reading-panel (проверь класс в HTML)");
+      return;
+    }
+    pre = document.createElement("pre");
+    pre.id = "poem";
+    pre.className = "poem-text";
+    panel.appendChild(pre);
+  }
+
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
+pre.innerHTML = poem.text;
+
+  // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
+  const meta = document.getElementById("meta");
+ // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
+if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
+    
+  // 4) Стили “поверх фона” + внизу
+  meta.style.position = "fixed";
+  meta.style.left = "0";
+  meta.style.right = "0";
+  meta.style.bottom = "10px";
+  meta.style.textAlign = "center";
+  meta.style.fontSize = "14px";
+  meta.style.color = "brown";
+  meta.style.opacity = "0.85";
+  meta.style.zIndex = "9999";
+  meta.style.pointerEvents = "none";
+  meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
+ });
+    
+</script>
+ 
+<body>
+	
+<!-- ОРИЕНТАЦИЯ -->
+ <div id="rotate-message">
+Пожалуйста, поверните устройство горизонтально
+</div>
+  
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ ( без изменений по структуре) -->
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../stories.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+  
+  </nav> 
+
+  <!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+<section class="reading-panel" aria-label="Текст стихотворения">
+ 
+  <!-- Контейнер стиха -->
+  <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+  <pre id="poem" class="poem-text"></pre>
+  <!-- подпись внизу страницы -->
+
+<!-- СТРЕЛКИ и СЕРДЦА -->
+
+<div class="poem-buttons">
+
+  <a class="story-arrow" href="/Memories/poems.html">◀️</a>
+  <a class="story-arrow" id="prev-poem" href="#">⬆️</a>
+  <a class="story-arrow" id="next-poem" href="#">⬇️</a>
+  <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
+  <a class="poem-arrow" id="open-range" href="#">🔢</a>
+  <a class="poem-arrow" id="open-note" href="#">🔤</a>
+  <a class="poem-arrow" id="open-comments" href="#">🚻</a>
+  <a class="poem-arrow" id="send-comments" href="#">🚮</a>
+  <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
+  <a class="poem-arrow" id="heart" href="#">💟</a>
+    <span class="like-count">0</span>
+
+  <!-- Лайк + переход к отзыву 
+  <div class="like">
+    <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
+    <span class="like-count">0</span>
+  </div>. -->
+
+<!-- Локальный счетчик лайков  -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const heart = document.getElementById("heart");
+  const count = document.querySelector(".like-count");
+
+  if (!heart || !count) return;
+
+  const key = "likes_" + location.pathname;
+
+  // берём сохранённое или стартовое из HTML
+  let likes = localStorage.getItem(key);
+
+  if (likes === null) {
+    likes = parseInt(count.textContent) || 0;
+  } else {
+    likes = parseInt(likes);
+  }
+
+  count.textContent = likes;
+
+  heart.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    likes++;
+    count.textContent = likes;
+
+    localStorage.setItem(key, likes);
+
+  });
+
+});
+</script>
+  
+<!-- Возврат назад  -->
+  <script>
+document.getElementById("back-arrow").onclick = function () {
+  history.back();
+};
+</script> 
+
+<!-- Навигация по списку  -->  
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+  const prev = document.getElementById("prev-poem");
+  const next = document.getElementById("next-poem");
+
+  if (!prev || !next) return;
+
+  try {
+    const current = location.pathname.split("/").pop();
+
+    const response = await fetch("/Memories/poems.html");
+    const html = await response.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    const links = [...doc.querySelectorAll("a[href$='.html']")];
+    const files = links.map(a => a.getAttribute("href"));
+    const names = files.map(href => href.split("/").pop());
+
+    const index = names.indexOf(current);
+
+    if (index !== -1) {
+      if (files[index - 1]) {
+        prev.href = new URL(files[index - 1], location.origin + "/Memories/").href;
+      }
+
+      if (files[index + 1]) {
+        next.href = new URL(files[index + 1], location.origin + "/Memories/").href;
+      }
+    }
+
+  } catch (e) {}
+});
+</script>
+
+</div>
+
+  
+</section>
+
+
+<!-- Метаданные к файлу --> 
+<div id="meta"></div>
+
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+
+  <!-- Утилита переадресации по пунктам Меню-->
+  <script src="../nav.js"></script>
+ <!-- Утилита навигации по разделу (для контента)  -->
+ <script src="poem-nav.js"></script>
+  
+
+<!-- ЛАЙК текста с отсылкой на мейл -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const heart = document.getElementById("heart");
+  if (!heart) return;
+
+  heart.addEventListener("click", async function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetUrl = heart.getAttribute("href");
+
+
+    const formData = new FormData();
+    formData.append("_subject", "Лайк с сайта Memories");
+    formData.append("type", "like");
+    formData.append("url", window.location.href);
+    formData.append("text", document.getElementById("meta").textContent);
+
+    try {
+      await fetch("https://formspree.io/f/xvzwoqzk", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      heart.textContent = "💗";
+    } catch (err) {
+      heart.textContent = "⚠️";
+    }
+
+    setTimeout(function () {
+      window.location.href = targetUrl;
+    }, 1000);
+  });
+});
+</script> 
+
+<!-- Аннотации -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const poemEl = document.getElementById("poem");
+  if (!poemEl) return;
+
+  const reviewBtn = document.getElementById("open-review");
+  const commentsBtn = document.getElementById("open-comments");
+  const rangeBtn = document.getElementById("open-range");
+  const noteBtn = document.getElementById("open-note");  
+  const backBtn = document.getElementById("back-to-poem");
+
+  // 🔒 используем уже существующий poem.text (ничего не переинициализируем)
+  const originalText = (typeof poem !== "undefined" && poem.text)
+    ? poem.text
+    : poemEl.textContent;
+
+  // ℹ️ review
+if (reviewBtn) {
+  reviewBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const reviewText = poem.review ? poem.review.trim() : "";
+
+    poemEl.textContent = reviewText || "Аннотация пока не добавлена";
+  });
+}
+
+// 🔢 range
+if (rangeBtn) {
+  rangeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const rangeText = poem.range ? poem.range.trim() : "";
+
+    if (!rangeText) {
+      poemEl.textContent = "Я всё жду, когда его оценят по достоинству";
+      return;
+    }
+
+    const rows = rangeText
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+
+    let html = '<table class="range-table">';
+
+    rows.forEach((row, index) => {
+      const cols = row.split("|").map(col => col.trim());
+
+      html += "<tr>";
+
+      cols.forEach(col => {
+        if (index === 0) {
+          html += `<th>${col}</th>`;
+        } else {
+          html += `<td>${col}</td>`;
+        }
+      });
+
+      html += "</tr>";
+    });
+
+    html += "</table>";
+
+    poemEl.innerHTML = html;
+  });
+}
+
+// 🔤 note
+if (noteBtn) {
+  noteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const noteText = poem.note ? poem.note.trim() : "";
+
+    poemEl.innerHTML = noteText || "Автор пока не прокомментировал";
+  });
+}
+  
+// 🚻 open-comments
+
+	
+if (commentsBtn) {
+  commentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const commentsText = String(poem.comments || "").trim();
+
+    if (commentsText !== "") {
+      poemEl.textContent = commentsText;
+    } else {
+      poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
+    }
+  });
+}
+	
+// 🚻 send-comments	
+
+
+const sendCommentsBtn = document.getElementById("send-comments");
+
+if (sendCommentsBtn) {
+  sendCommentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+    poemEl.innerHTML = `
+      <div class="form-box">
+
+        <h2></h2>
+
+<p>
+  Если вы хотите оставить комментарий, заполните форму ниже <br>
+  Оотзыв появится на сайте спустя некоторое время после модерации
+</p>
+       
+
+        <form class="contact-form" action="https://formspree.io/f/xvzwoqzk" method="POST">
+
+          <input type="hidden" name="_subject" value="Сообщение с сайта Memories">
+
+          <input type="text" name="name" placeholder="Ваше имя" required>
+
+          <input type="email" name="email" placeholder="Ваш email(не обязательно)">
+
+          <textarea name="message" rows="7" placeholder="Ваше сообщение" required></textarea>
+
+          <button type="submit">Отправить</button>
+
+        </form>
+
+      </div>
+    `;
+
+    const reviewForm = poemEl.querySelector(".contact-form");
+
+    if (reviewForm) {
+      reviewForm.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+
+      reviewForm.querySelectorAll("input, textarea, button, label").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+      });
+    }
+  });
+}
+	
+
+// 🔄 назад — логика кнопки:
+// если сейчас уже показан текст стиха → переключаем full screen
+// если показано другое поле (аннотация, range, note, comments) → просто возвращаем текст
+// при этом предотвращаем всплытие клика до reading-panel
+
+const panel = document.querySelector(".reading-panel");
+
+if (backBtn) {
+  backBtn.addEventListener("click", function (e) {
+
+    e.preventDefault();      // не выполнять переход по ссылке
+    e.stopPropagation();     // не передавать клик панели (чтобы не сработал fullscreen)
+
+    // если сейчас отображается исходный текст стиха
+    if (poemEl.innerHTML === originalText) {
+
+      // переключаем режим full screen ↔ обычный
+      panel.classList.toggle("is-fullscreen");
+
+    } else {
+
+      // иначе просто возвращаем текст стиха без переключения режима
+      poemEl.innerHTML = originalText;
+
+    }
+
+  });
+}
+});
+</script>
+
+<!-- FULL Screen mode -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Находим область чтения
+  const panel = document.querySelector(".reading-panel");
+  if (!panel) return;
+
+  // Обработчик клика по reading-panel
+  panel.addEventListener("click", function (e) {
+
+    // Страховка: если клик не внутри reading-panel — ничего не делаем
+    // (обычно не требуется, но безопасно оставить)
+    if (!panel.contains(e.target)) return;
+
+    // ВАЖНО:
+    // Если клик был по панели кнопок (.poem-buttons),
+    // то fullscreen НЕ переключаем.
+    // Это блокирует реакции на:
+    // ◀️ ⬆️ ⬇️ ℹ️ 🔢 🔤 🚻 🔄 💟
+    if (e.target.closest(".poem-buttons")) return;
+
+    // Если клик был по самому полю чтения (тексту или фону),
+    // переключаем режим full screen
+    panel.classList.toggle("is-fullscreen");
+
+  });
+
+});
+</script>
+	
+<!-- ПАРОЛЬ 
+<body data-password="пароль">
+<script src="../password-gate.js"></script>-->
+    
+</body>
+</html>
