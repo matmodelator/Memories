@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Шрифт (сейчас можешь менять в CSS) 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"-->
+  
+  <link rel="stylesheet" href="../style.css">
+  
+</head>
+  
+<!-- ВВОД тескта с параметрами -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  window.poem = {
+    author: "Игорь Хорош",
+    style: "любовная лирика",
+    place: "Москва",
+    year: "2001",
+    title: "Моё маленькое сердце",
+    text: `
+Соне.
+
+/Милый, это самая прекрасная песня в мире
+Это самые потрясающие строки, потому что они единственные для меня
+Я тебя обожаю/ 
+
+
+Я молю тебя остаться, -
+Ты уходишь непременно, -
+Это очень современно
+Там, где я живу.
+
+Но иконой чудотворной
+Образ твой нерукотворный, -
+Замирая от восторга,
+Я к тебе плыву.
+
+И ты берёшь, слегка ссутулясь,
+В эти тёплые ладони
+Моё маленькое сердце,
+Которым я тебя люблю.
+
+Я дарю тебе на память 
+Глаз своих сухие слёзы, -
+Может, это несерьёзно,
+Может, это – блеф.
+
+Ты мне даришь наважденье
+Губ своих на день рожденья,
+Я взлетаю к наслажденьям,
+Как крылатый лев.
+
+И ты берёшь, слегка ссутулясь,
+В эти тёплые ладони
+Моё маленькое сердце,
+Которым я тебя люблю.
+
+Я ловлю, чтобы оттаять,
+На щеках твоё дыханье,
+Погоди, моя кохання,
+Не беги за дверь.
+
+Только слов моих молитвы
+Пусть звучат над полем битвы,
+Где лежу, тобой убитый,
+Я как дивный зверь.
+
+И ты берёшь, слегка ссутулясь,
+В эти тёплые ладони
+Моё маленькое сердце,
+Которым я тебя ...
+
+
+Лето 2001, на даче - лето 2026, чёрт знает где
+`,
+  review: `
+Это именно песня, а не стихотворение в чистом виде.
+Если убрать припев, текст сразу потеряет значительную часть силы. А хороший признак песни — когда припев является эмоционическим центром.
+Здесь весь текст фактически существует ради строк:
+И ты берёшь, слегка ссутулясь,
+В эти тёплые ладони
+Моё маленькое сердце,
+Которым я тебя люблю.
+Самая удачная строка во всём тексте:
+Моё маленькое сердце,
+Которым я тебя люблю.
+Потому что любовь определяется не через душу, разум или судьбу, а через конкретный живой орган. Есть почти детская прямота, которая хорошо работает в песне.
+Интересно и то, что текст построен на постоянном противостоянии:
+я прошу остаться
+—
+ты уходишь
+я дарю
+—
+ты даришь
+я молюсь
+—
+я убит
+То есть отношения всё время балансируют между счастьем и потерей.
+Самая слабая часть — отдельные красивые слова:
+чудотворной
+нерукотворный
+наважденье
+наслажденья
+Они немного напоминают лексику эстрадной романтической песни конца 1990-х — начала 2000-х и сегодня звучат чуть более штампованно, чем остальной текст.
+А вот:
+Погоди, моя кохання
+до сих пор звучит живо, потому что неожиданно и лично.
+Финал тоже удачный:
+Где лежу, тобой убитый,
+Я как дивный зверь.
+После этого припев обрывается на:
+Которым я тебя...
+Именно недосказанность делает окончание сильнее полного повторения последней строки. Здесь возникает ощущение, что чувство уже не помещается в слова.
+`,
+    
+ range: `
+Критерий| Оценка | Комментарий
+Композиция | 8.7 | Куплетно-припевная структура работает хорошо. Каждый куплет развивает одно и то же чувство, а рефрен удерживает эмоциональное ядро песни.
+Музыкальность | 9.6 | Самая сильная сторона текста. Строки буквально просятся на мелодию. Повторы, плавные интонации и припев создают ощущение готовой песни.
+Образность | 8.4 | Образы простые и романтические: икона, крылатый лев, поле битвы, дивный зверь. Они не поражают новизной, но хорошо работают внутри песенной формы.
+Эмоциональная сила | 9.3 | Искренность почти без защиты. Текст построен на открытом признании в любви и страхе потери. Именно это создаёт его воздействие.
+Размер и рифма | 8.6 | Размер достаточно ровный для песни, хотя местами ощущается подчинённость мелодии, а не стиху. Рифмы преимущественно простые: «непременно — современно», «нерукотворный — восторга», «рожденья — наслажденьям». Главное здесь не рифма, а вокальная интонация.
+Авторский голос | 8.8 | Голос молодой, романтический и абсолютно неироничный. Сейчас такая степень открытости встречается редко, поэтому текст звучит довольно узнаваемо.
+Итог | 8.9 | Хорошая лирическая песня начала 2000-х. Главная ценность не в литературных находках, а в эмоциональной подлинности и очень сильной музыкальной природе текста. 
+`,
+    
+resume: `
+Моё маленькое сердце, которым я тебя люблю
+Я молю тебя остаться, ты уходишь непременно..
+Я дарю тебе на память глаз своих сухие слёзы
+..и ты берёшь, слегка ссутулясь, в эти тёплые ладони
+Я ловлю, чтобы оттаять, на щеках твоё дыханье
+Погоди, моя кохання, не беги за дверь.
+Только слов моих молитвы пусть звучат над полем битвы
+Моё маленькое сердце, которым я тебя...
+`,
+
+note: `
+Милый, это самая прекрасная песня в мире
+Это самые потрясающие строки, потому что они единственные для меня
+Я тебя обожаю 
+`,
+    
+  comments: `
+Милый, это самая прекрасная песня в мире
+Это самые потрясающие строки, потому что они единственные для меня
+Я тебя обожаю 
+`
+  };
+  // title = первая непустая строка, если пусто
+  if (!poem.title.trim()) {
+    poem.title = poem.text.split("\n").find(l => l.trim())?.trim() || "";
+  }
+
+  // 1) НАХОДИМ <pre id="poem">, или создаём
+  let pre = document.getElementById("poem");
+  if (!pre) {
+    const panel = document.querySelector(".reading-panel");
+    if (!panel) {
+      alert("Не найден .reading-panel (проверь класс в HTML)");
+      return;
+    }
+    pre = document.createElement("pre");
+    pre.id = "poem";
+    pre.className = "poem-text";
+    panel.appendChild(pre);
+  }
+
+  // 2) ВСТАВЛЯЕМ ТЕКСТ (в <pre> это будет “без изменений”)
+  pre.textContent = poem.text;
+
+  // 3) НИЖНЯЯ ПОДПИСЬ (С автором и БЕЗ)
+  const meta = document.getElementById("meta");
+ // if (meta) meta.textContent = `${poem.author} — ${poem.title} — ${poem.year}`;}); 
+if (meta) meta.textContent = `${poem.title} — ${poem.year}`;
+    
+  // 4) Стили “поверх фона” + внизу
+  meta.style.position = "fixed";
+  meta.style.left = "0";
+  meta.style.right = "0";
+  meta.style.bottom = "10px";
+  meta.style.textAlign = "center";
+  meta.style.fontSize = "14px";
+  meta.style.color = "brown";
+  meta.style.opacity = "0.85";
+  meta.style.zIndex = "9999";
+  meta.style.pointerEvents = "none";
+  meta.style.textShadow = "0 1px 2px rgba(0,0,0,0.7)";
+ });
+
+    
+</script>
+ 
+<body data-access="secret">
+
+  
+</div>
+
+  <!-- Фон (на уровень выше) -->
+  <img src="../desktop-bg1.jpg" class="bg-image" alt="Background">
+
+  <!-- МЕНЮ ( без изменений по структуре) -->
+
+  <nav class="main-nav">
+    <a href="../poems.html" class="nav-item" data-text="Стихи">Стихи</a>
+    <a href="../stories.html" class="nav-item" data-text="Проза">Проза</a>
+    <a href="../songs.html" class="nav-item" data-text="Песни">Песни</a>
+    <a href="../author.html" class="nav-item" data-text="Автор">Автор</a>
+  
+  </nav> 
+
+<!-- ОБЛАСТЬ ЧТЕНИЯ (скроллится) -->
+<section class="reading-panel" aria-label="Текст стихотворения">
+ 
+  <!-- Контейнер стиха -->
+  <!-- ВАЖНО: pre сохраняет пробелы/табуляции/переносы -->
+  <pre id="poem" class="poem-text"></pre>
+  <!-- подпись внизу страницы -->
+
+<!-- СТРЕЛКИ и СЕРДЦА -->
+
+<div class="poem-buttons">
+
+  <a class="poem-arrow" href="/Memories/poems.html">◀️</a>
+  <a class="poem-arrow" id="prev-poem" href="#">⬆️</a>
+  <a class="poem-arrow" id="next-poem" href="#">⬇️</a>
+  <a class="poem-arrow" id="open-review" href="#">ℹ️</a>
+  <a class="poem-arrow" id="open-comments" href="#">🚻</a>
+  <a class="poem-arrow" id="back-to-poem" href="#">🔄</a>
+  <a class="poem-arrow" id="heart" href="#">💟</a>
+    <span class="like-count">0</span>
+
+  <!-- Лайк + переход к отзыву 
+  <div class="like">
+    <a href="/Memories/comments.html" id="heart" title="Нравится💜">💟</a>
+    <span class="like-count">0</span>
+  </div>. -->
+
+  
+<!-- Возврат назад  -->
+  <script>
+document.getElementById("back-arrow").onclick = function () {
+  history.back();
+};
+</script>
+
+<!-- Навигация по списку  -->  
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+  const prev = document.getElementById("prev-poem");
+  const next = document.getElementById("next-poem");
+
+  if (!prev || !next) return;
+
+  try {
+    const current = location.pathname.split("/").pop();
+
+    const response = await fetch("/Memories/poems.html");
+    const html = await response.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    const links = [...doc.querySelectorAll("a[href$='.html']")];
+    const files = links.map(a => a.getAttribute("href"));
+    const names = files.map(href => href.split("/").pop());
+
+    const index = names.indexOf(current);
+
+    if (index !== -1) {
+      if (files[index - 1]) {
+        prev.href = new URL(files[index - 1], location.origin + "/Memories/").href;
+      }
+
+      if (files[index + 1]) {
+        next.href = new URL(files[index + 1], location.origin + "/Memories/").href;
+      }
+    }
+
+  } catch (e) {}
+});
+</script>
+
+</div>
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const heart = document.getElementById("heart");
+  const count = document.getElementById("like-count");
+
+  let likes = parseInt(count.textContent);
+
+  if (heart) {
+    heart.addEventListener("click", function () {
+
+      if (heart.classList.contains("liked")) {
+        heart.classList.remove("liked");
+        heart.textContent = "💟";
+        likes--;
+      } else {
+        heart.classList.add("liked");
+        heart.textContent = "💜";
+        likes++;
+      }
+
+      count.textContent = likes;
+
+    });
+  }
+
+});
+</script>
+
+<!-- Переход к Анотациям  
+<div id="annotation-box" class="overlay-box">
+  <div id="annotation-text"></div>
+
+  <div class="annotation-menu">
+    <button type="button" id="back-btn">🔄</button>
+  </div>
+</div>-->
+  
+</section>
+
+
+<!-- Метаданные к файлу --> 
+<div id="meta"></div>
+
+
+<script>
+document.addEventListener("click", function(e) {
+    const readingPanel = document.querySelector(".reading-panel");
+    const nav = document.querySelector(".main-nav");
+
+    if (!readingPanel.contains(e.target) && !nav.contains(e.target)) {
+        window.location.href = "../index.html";
+    }
+});
+</script>
+
+  <!-- Утилита переадресации по пунктам Меню-->
+  <script src="../nav.js"></script>
+ <!-- Утилита навигации по разделу (для контента)--> 
+ <script src="poem-nav.js"></script>
+  
+
+<!-- ЛАЙК текста с отсылкой на мейл -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const heart = document.getElementById("heart");
+  if (!heart) return;
+
+  heart.addEventListener("click", async function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetUrl = heart.getAttribute("href");
+
+
+    const formData = new FormData();
+    formData.append("_subject", "Лайк с сайта Memories");
+    formData.append("type", "like");
+    formData.append("url", window.location.href);
+    formData.append("text", document.getElementById("meta").textContent);
+
+    try {
+      await fetch("https://formspree.io/f/xvzwoqzk", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      heart.textContent = "💗";
+    } catch (err) {
+      heart.textContent = "⚠️";
+    }
+
+    setTimeout(function () {
+      window.location.href = targetUrl;
+    }, 1000);
+  });
+});
+</script> 
+
+<!-- Аннотации -->
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const poemEl = document.getElementById("poem");
+  if (!poemEl) return;
+
+  const reviewBtn = document.getElementById("open-review");
+  const commentsBtn = document.getElementById("open-comments");
+  const rangeBtn = document.getElementById("open-range");
+  const noteBtn = document.getElementById("open-note");  
+  const backBtn = document.getElementById("back-to-poem");
+
+  // 🔒 используем уже существующий poem.text (ничего не переинициализируем)
+  const originalText = (typeof poem !== "undefined" && poem.text)
+    ? poem.text
+    : poemEl.textContent;
+
+  // ℹ️ review
+if (reviewBtn) {
+  reviewBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const reviewText = poem.review ? poem.review.trim() : "";
+
+    poemEl.textContent = reviewText || "Аннотация пока не добавлена";
+  });
+}
+
+// 🔢 range
+if (rangeBtn) {
+  rangeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const rangeText = poem.range ? poem.range.trim() : "";
+
+    if (!rangeText) {
+      poemEl.textContent = "Я всё жду, когда его оценят по достоинству";
+      return;
+    }
+
+    const rows = rangeText
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+
+    let html = '<table class="range-table">';
+
+    rows.forEach((row, index) => {
+      const cols = row.split("|").map(col => col.trim());
+
+      html += "<tr>";
+
+      cols.forEach(col => {
+        if (index === 0) {
+          html += `<th>${col}</th>`;
+        } else {
+          html += `<td>${col}</td>`;
+        }
+      });
+
+      html += "</tr>";
+    });
+
+    html += "</table>";
+
+    poemEl.innerHTML = html;
+  });
+}
+
+// 🔤 note
+if (noteBtn) {
+  noteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const noteText = poem.note ? poem.note.trim() : "";
+
+    poemEl.textContent = noteText || "Автор пока не прокомментировал";
+  });
+}
+  
+// 🚻 comments
+if (commentsBtn) {
+  commentsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const commentsText = String(poem.comments || "").trim();
+
+    if (commentsText !== "") {
+      poemEl.textContent = commentsText;
+    } else {
+      poemEl.textContent = "Отзывов читателей пока нет 🤷‍♂️";
+    }
+  });
+}
+
+  // 🔄 назад
+  if (backBtn) {
+    backBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      poemEl.textContent = originalText;
+    });
+  }
+
+});
+</script>
+
+<!-- FULL Screen mode -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const panel = document.querySelector(".reading-panel");
+  if (!panel) return;
+
+  panel.addEventListener("click", function () {
+    panel.classList.toggle("is-fullscreen");
+  });
+});
+</script>
+  
+<!-- ПАРОЛЬ  -->
+<body data-password="пароль">
+<script src="../password-gate.js"></script> 
+    
+    
+</body>
+</html>
