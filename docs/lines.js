@@ -150,7 +150,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   <a class="scroll-link" href="/Memories/songs/all_good.html">Всё ОК (All good)</a>
   <a class="scroll-link" href="/Memories/songs/fly.html">Жёлтая муха тоски (Fly)</a>
   <a class="scroll-link" href="/Memories/songs/korona.html">Коронавирь (Korona)</a>   
-  <a class="scroll-link" href="/Memories/songs/no_hide_face.html">Не пряча лица (No hide face)</a>    
+  <a class="scroll-link" href="/Memories/songs/my_little_heart.html">Моё маленькое сердце (My little heart)</a>      
+  <a class="scroll-link" href="/Memories/songs/no_hide_face.html">Не пряча лица (No hide face)</a>     
   <a class="scroll-link" href="/Memories/songs/we_were_no.html">Шампанское!.. (We were no)</a>
   <a class="scroll-link" href="/Memories/stories/baba.html">Хорошая квартира</a>
   <a class="scroll-link" href="/Memories/stories/ded.html">Дед</a>
