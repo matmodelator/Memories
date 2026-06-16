@@ -142,10 +142,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       <a class="scroll-link" href="poems/poem_wts1.html">Четыре года времени</a>
       <a class="scroll-link" href="poems/poem_wts2.html">Что позади..</a>
       <a class="scroll-link" href="poems/poem_xe.html">Эвкалипты шумят тополями</a>
-      <a class="scroll-link" href="poems/poem_ya.html">Я б...</a>
-      <a class="scroll-link" href="poems/poem_ya1.html">Я Вас любил</a>
-      <a class="scroll-link" href="poems/poem_ya2.html">Я как спившийся командарм</a>
-      <a class="scroll-link" href="poems/poem_ya3.html">Я тщусь понять</a>
+      <a class="scroll-link" href="poems/poem_ya1.html">Я б...</a>
+      <a class="scroll-link" href="poems/poem_ya2.html">Я Вас любил</a>
+      <a class="scroll-link" href="poems/poem_ya3.html">Я как спившийся командарм</a>
+      <a class="scroll-link" href="poems/poem_ya4.html">Я ступал будто Ной</a>
+      <a class="scroll-link" href="poems/poem_ya5.html">Я тщусь понять</a>
       <a class="scroll-link" href="poems/poem_yan.html">Январи</a>
   <a class="scroll-link" href="/Memories/songs/all_good.html">Всё ОК (All good)</a>
   <a class="scroll-link" href="/Memories/songs/fly.html">Жёлтая муха тоски (Fly)</a>
