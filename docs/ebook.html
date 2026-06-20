@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Memories — EPUB Builder</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #111827;
+}
+
+header {
+  background: #2563eb;
+  color: white;
+  padding: 16px;
+  text-align: center;
+}
+
+main {
+  max-width: 1100px;
+  margin: 24px auto;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  align-items: flex-end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field label {
+  font-size: 13px;
+  color: #374151;
+}
+
+input,
+button {
+  font-size: 15px;
+  padding: 8px 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type="text"] {
+  min-width: 240px;
+}
+
+#bookList {
+  margin-top: 18px;
+  border-top: 1px solid #d1d5db;
+}
+
+.book-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 120px 90px;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.book-title {
+  font-weight: bold;
+}
+
+.book-meta {
+  color: #6b7280;
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.book-path {
+  color: #9ca3af;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.controls button {
+  padding: 4px 8px;
+}
+
+#log {
+  margin-top: 18px;
+  white-space: pre-wrap;
+  background: #111827;
+  color: #d1d5db;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <h1>Memories — EPUB Builder</h1>
+</header>
+
+<main>
+
+  <div class="row">
+    <div class="field">
+      <label>Book title</label>
+      <input id="bookTitle" type="text" value="Memories">
+    </div>
+
+    <div class="field">
+      <label>Author</label>
+      <input id="bookAuthor" type="text" value="Игорь Хорош">
+    </div>
+
+    <div class="field">
+      <label>EPUB file name</label>
+      <input id="bookFileName" type="text" value="Memories.epub">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label>Open folder</label>
+      <input id="folderInput" type="file" webkitdirectory multiple accept=".html,.htm">
+    </div>
+
+    <div class="field">
+      <label>Open files</label>
+      <input id="filesInput" type="file" multiple accept=".html,.htm">
+    </div>
+  </div>
+
+  <div class="row">
+    <button id="selectAllBtn">Select all</button>
+    <button id="unselectAllBtn">Unselect all</button>
+    <button id="makeEpubBtn">Make EPUB</button>
+  </div>
+
+  <div id="bookList"></div>
+
+  <div id="log">Ready.</div>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script>
+let bookItems = [];
+
+/* ========================================
+   LOG
+======================================== */
+
+function log(message) {
+  document.getElementById("log").textContent = message;
+}
+
+/* ========================================
+   FILE INPUTS
+======================================== */
+
+document.getElementById("folderInput").addEventListener("change", async function () {
+  await loadBookFiles(Array.from(this.files));
+  this.value = "";
+});
+
+document.getElementById("filesInput").addEventListener("change", async function () {
+  await loadBookFiles(Array.from(this.files));
+  this.value = "";
+});
+
+/* ========================================
+   LOAD MEMORIES FILES
+======================================== */
+
+async function loadBookFiles(files) {
+  const htmlFiles = files
+    .filter(file => /\.(html|htm)$/i.test(file.name))
+    .sort((a, b) => getPath(a).localeCompare(getPath(b)));
+
+  bookItems = [];
+
+  for (const file of htmlFiles) {
+    const html = await file.text();
+    const poem = extractPoemObject(html);
+
+    if (!poem || !poem.text) {
+      continue;
+    }
+
+    let title = String(poem.title || "").trim();
+
+    if (!title) {
+      title = String(poem.text)
+        .split("\n")
+        .find(line => line.trim())
+        ?.trim() || file.name.replace(/\.(html|htm)$/i, "");
+    }
+
+    bookItems.push({
+      file: file,
+      path: getPath(file),
+      title: title,
+      author: poem.author || "",
+      style: poem.style || "",
+      place: poem.place || "",
+      year: poem.year || "",
+      text: poem.text || "",
+      review: poem.review || "",
+      range: poem.range || "",
+      resume: poem.resume || "",
+      note: poem.note || "",
+      comments: poem.comments || "",
+      selected: true
+    });
+  }
+
+  renderBookList();
+
+  log(
+    "HTML files: " + htmlFiles.length + "\n" +
+    "Memories texts found: " + bookItems.length
+  );
+}
+
+function getPath(file) {
+  return file.webkitRelativePath || file.name;
+}
+
+/* ========================================
+   EXTRACT window.poem OBJECT
+======================================== */
+
+function extractPoemObject(html) {
+  const match = html.match(/window\.poem\s*=\s*({[\s\S]*?})\s*;/);
+
+  if (!match) {
+    return null;
+  }
+
+  try {
+    return Function('"use strict"; return (' + match[1] + ');')();
+  } catch (e) {
+    console.error("Poem parse error:", e);
+    return null;
+  }
+}
+
+/* ========================================
+   RENDER LIST
+======================================== */
+
+function renderBookList() {
+  const box = document.getElementById("bookList");
+  box.innerHTML = "";
+
+  bookItems.forEach((item, index) => {
+    const row = document.createElement("div");
+    row.className = "book-item";
+
+    row.innerHTML = `
+      <input type="checkbox" ${item.selected ? "checked" : ""}>
+
+      <div>
+        <div class="book-title">${escapeHtml(item.title)}</div>
+        <div class="book-meta">${escapeHtml(makeMetaLine(item))}</div>
+        <div class="book-path">${escapeHtml(item.path)}</div>
+      </div>
+
+      <div class="controls">
+        <button data-action="up">↑</button>
+        <button data-action="down">↓</button>
+      </div>
+
+      <div>${index + 1}</div>
+    `;
+
+    row.querySelector("input").addEventListener("change", function (e) {
+      item.selected = e.target.checked;
+    });
+
+    row.querySelector('[data-action="up"]').addEventListener("click", function () {
+      moveItem(index, index - 1);
+    });
+
+    row.querySelector('[data-action="down"]').addEventListener("click", function () {
+      moveItem(index, index + 1);
+    });
+
+    box.appendChild(row);
+  });
+}
+
+function makeMetaLine(item) {
+  const parts = [];
+
+  if (item.author) parts.push(item.author);
+  if (item.place) parts.push(item.place);
+  if (item.year) parts.push(item.year);
+  if (item.style) parts.push(item.style);
+
+  return parts.join(" — ");
+}
+
+function moveItem(from, to) {
+  if (to < 0 || to >= bookItems.length) return;
+
+  const item = bookItems.splice(from, 1)[0];
+  bookItems.splice(to, 0, item);
+
+  renderBookList();
+}
+
+document.getElementById("selectAllBtn").addEventListener("click", function () {
+  bookItems.forEach(item => item.selected = true);
+  renderBookList();
+});
+
+document.getElementById("unselectAllBtn").addEventListener("click", function () {
+  bookItems.forEach(item => item.selected = false);
+  renderBookList();
+});
+
+/* ========================================
+   MAKE EPUB
+======================================== */
+
+document.getElementById("makeEpubBtn").addEventListener("click", makeEpub);
+
+async function makeEpub() {
+  const selected = bookItems.filter(item => item.selected);
+
+  if (!selected.length) {
+    alert("No selected texts.");
+    return;
+  }
+
+  const bookTitle = document.getElementById("bookTitle").value.trim() || "Memories";
+  const bookAuthor = document.getElementById("bookAuthor").value.trim() || "Игорь Хорош";
+
+  let fileName = document.getElementById("bookFileName").value.trim() || "Memories.epub";
+
+  if (!fileName.toLowerCase().endsWith(".epub")) {
+    fileName += ".epub";
+  }
+
+  const zip = new JSZip();
+
+  zip.file("mimetype", "application/epub+zip", {
+    compression: "STORE"
+  });
+
+  zip.file("META-INF/container.xml", makeContainerXml());
+
+  const chapters = [];
+
+  for (let i = 0; i < selected.length; i++) {
+    const item = selected[i];
+    const chapterFile = "chapter" + String(i + 1).padStart(3, "0") + ".xhtml";
+
+    chapters.push({
+      id: "chapter" + (i + 1),
+      href: chapterFile,
+      title: item.title
+    });
+
+    zip.file("OEBPS/" + chapterFile, makeChapterXhtml(item));
+  }
+
+  zip.file("OEBPS/nav.xhtml", makeNavXhtml(bookTitle, chapters));
+  zip.file("OEBPS/content.opf", makeContentOpf(bookTitle, bookAuthor, chapters));
+
+  const blob = await zip.generateAsync({
+    type: "blob",
+    mimeType: "application/epub+zip"
+  });
+
+  downloadBlob(blob, fileName);
+
+  log("EPUB created: " + fileName + "\nTexts: " + selected.length);
+}
+
+/* ========================================
+   EPUB FILES
+======================================== */
+
+function makeContainerXml() {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+  <rootfiles>
+    <rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/>
+  </rootfiles>
+</container>`;
+}
+
+function makeContentOpf(bookTitle, bookAuthor, chapters) {
+  const manifestItems = chapters.map(ch => {
+    return `<item id="${ch.id}" href="${ch.href}" media-type="application/xhtml+xml"/>`;
+  }).join("\n    ");
+
+  const spineItems = chapters.map(ch => {
+    return `<itemref idref="${ch.id}"/>`;
+  }).join("\n    ");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="bookid">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:identifier id="bookid">memories-${Date.now()}</dc:identifier>
+    <dc:title>${escapeXml(bookTitle)}</dc:title>
+    <dc:creator>${escapeXml(bookAuthor)}</dc:creator>
+    <dc:language>ru</dc:language>
+    <meta property="dcterms:modified">${getEpubDate()}</meta>
+  </metadata>
+
+  <manifest>
+    <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    ${manifestItems}
+  </manifest>
+
+  <spine>
+    ${spineItems}
+  </spine>
+</package>`;
+}
+
+function makeNavXhtml(bookTitle, chapters) {
+  const items = chapters.map(ch => {
+    return `<li><a href="${ch.href}">${escapeXml(ch.title)}</a></li>`;
+  }).join("\n      ");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:epub="http://www.idpf.org/2007/ops"
+      xml:lang="ru"
+      lang="ru">
+<head>
+  <title>${escapeXml(bookTitle)}</title>
+</head>
+<body>
+  <nav epub:type="toc" id="toc">
+    <h1>${escapeXml(bookTitle)}</h1>
+    <ol>
+      ${items}
+    </ol>
+  </nav>
+</body>
+</html>`;
+}
+
+function makeChapterXhtml(item) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="ru"
+      lang="ru">
+<head>
+  <title>${escapeXml(item.title)}</title>
+  <meta charset="UTF-8"/>
+  <style>
+    body {
+      font-family: serif;
+      line-height: 1.6;
+      margin: 2em;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1em;
+      font-size: 1.6em;
+    }
+
+    .meta {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2em;
+      font-size: 0.9em;
+    }
+
+    .poem {
+      white-space: pre-wrap;
+      font-family: serif;
+      font-size: 1em;
+      line-height: 1.7;
+    }
+
+    .review-title {
+      margin-top: 3em;
+      border-top: 1px solid #ccc;
+      padding-top: 1em;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>${escapeXml(item.title)}</h1>
+
+  <div class="meta">${escapeXml(makeMetaLine(item))}</div>
+
+  <div class="poem">${escapeXml(String(item.text || "").trim())}</div>
+
+</body>
+</html>`;
+}
+
+/* ========================================
+   HELPERS
+======================================== */
+
+function getEpubDate() {
+  return new Date().toISOString().replace(/\.\d+Z$/, "Z");
+}
+
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function escapeXml(text) {
+  return escapeHtml(text);
+}
+
+function downloadBlob(blob, fileName) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  setTimeout(function () {
+    URL.revokeObjectURL(url);
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
