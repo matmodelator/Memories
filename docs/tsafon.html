@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Tsafon — недвижимость Севера Израиля</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f5f7;
+      color: #111827;
+    }
+
+    header {
+      background: #0f172a;
+      color: white;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .tagline {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    .hero {
+      background: white;
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 34px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: #4b5563;
+      font-size: 17px;
+    }
+
+    .search-box {
+      background: white;
+      padding: 18px;
+      border-radius: 16px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    }
+
+    input,
+    select,
+    button {
+      height: 42px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      padding: 0 12px;
+      font-size: 15px;
+    }
+
+    button {
+      border: none;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .stat {
+      background: white;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 26px;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 20px;
+    }
+
+    aside {
+      background: white;
+      padding: 18px;
+      border-radius: 16px;
+      height: fit-content;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    }
+
+    aside h3 {
+      margin-top: 0;
+    }
+
+    .filter-group {
+      margin-bottom: 18px;
+    }
+
+    .filter-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .filter-group input,
+    .filter-group select {
+      width: 100%;
+    }
+
+    .cards {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .photo {
+      background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+      min-height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 42px;
+    }
+
+    .info {
+      padding: 18px;
+    }
+
+    .top-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+      color: #111827;
+    }
+
+    .badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .verified {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .new {
+      background: #e0f2fe;
+      color: #075985;
+    }
+
+    .need-check {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .address {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: #4b5563;
+      margin-bottom: 12px;
+    }
+
+    .note {
+      background: #f8fafc;
+      border-left: 4px solid #2563eb;
+      padding: 10px 12px;
+      color: #374151;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    footer {
+      text-align: center;
+      color: #6b7280;
+      padding: 30px 16px;
+    }
+
+    @media (max-width: 900px) {
+      .search-box,
+      .stats,
+      .layout,
+      .card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <div class="logo">Tsafon</div>
+    <div class="tagline">Проверенная недвижимость Севера Израиля</div>
+  </div>
+
+  <button onclick="alert('Добавление объекта будет в админке')">
+    Добавить объект
+  </button>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Квартиры и дома на Севере Израиля</h1>
+    <p>
+      Каталог объектов с ручной проверкой, историей цены и отметкой актуальности.
+    </p>
+  </section>
+
+  <section class="search-box">
+    <select id="cityFilter">
+      <option value="">Город</option>
+      <option>Кармиэль</option>
+      <option>Нагария</option>
+      <option>Акко</option>
+      <option>Маалот</option>
+      <option>Афула</option>
+      <option>Тверия</option>
+    </select>
+
+    <select id="typeFilter">
+      <option value="">Тип</option>
+      <option>Квартира</option>
+      <option>Дом</option>
+      <option>Пентхаус</option>
+      <option>Участок</option>
+    </select>
+
+    <input id="minPrice" type="number" placeholder="Цена от" />
+    <input id="maxPrice" type="number" placeholder="Цена до" />
+    <input id="roomsFilter" type="number" placeholder="Комнат" />
+
+    <button onclick="applyFilters()">Найти</button>
+  </section>
+
+  <section class="stats">
+    <div class="stat">
+      <strong id="totalCount">3</strong>
+      <span>объекта в базе</span>
+    </div>
+
+    <div class="stat">
+      <strong>2</strong>
+      <span>проверено вручную</span>
+    </div>
+
+    <div class="stat">
+      <strong>1</strong>
+      <span>с изменением цены</span>
+    </div>
+
+    <div class="stat">
+      <strong>Север</strong>
+      <span>фокус проекта</span>
+    </div>
+  </section>
+
+  <section class="layout">
+
+    <aside>
+      <h3>Фильтры</h3>
+
+      <div class="filter-group">
+        <label>Статус</label>
+        <select id="statusFilter">
+          <option value="">Все</option>
+          <option value="verified">Проверено</option>
+          <option value="new">Новое</option>
+          <option value="need-check">Нужно проверить</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Продавец</label>
+        <select>
+          <option>Все</option>
+          <option>Хозяин</option>
+          <option>Маклер</option>
+          <option>Неизвестно</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Особенности</label>
+        <select>
+          <option>Любые</option>
+          <option>Мамад</option>
+          <option>Лифт</option>
+          <option>Балкон</option>
+          <option>Парковка</option>
+        </select>
+      </div>
+    </aside>
+
+    <section class="cards" id="cards">
+
+      <article class="card" data-city="Кармиэль" data-price="1390000" data-rooms="4" data-status="verified">
+        <div class="photo">🏠</div>
+
+        <div class="info">
+          <div class="top-line">
+            <div class="price">₪ 1,390,000</div>
+            <div class="badge verified">Проверено</div>
+          </div>
+
+          <div class="address">Кармиэль, район Рамат Рабин</div>
+
+          <div class="details">
+            <span>4 комнаты</span>
+            <span>92 м²</span>
+            <span>3 этаж</span>
+            <span>балкон</span>
+            <span>парковка</span>
+          </div>
+
+          <div class="note">
+            Цена подтверждена. Объект в продаже. Было ₪ 1,450,000.
+          </div>
+
+          <div class="meta">
+            Проверено: 22.06.2026 · Источник: Yad2 · Продавец: маклер
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-city="Нагария" data-price="1120000" data-rooms="3" data-status="new">
+        <div class="photo">🏢</div>
+
+        <div class="info">
+          <div class="top-line">
+            <div class="price">₪ 1,120,000</div>
+            <div class="badge new">Новое</div>
+          </div>
+
+          <div class="address">Нагария, центр</div>
+
+          <div class="details">
+            <span>3 комнаты</span>
+            <span>74 м²</span>
+            <span>2 этаж</span>
+            <span>лифт</span>
+          </div>
+
+          <div class="note">
+            Добавлено в базу. Требуется звонок для проверки актуальности.
+          </div>
+
+          <div class="meta">
+            Добавлено: 22.06.2026 · Источник: Facebook · Продавец: неизвестно
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-city="Акко" data-price="980000" data-rooms="3" data-status="need-check">
+        <div class="photo">🏘️</div>
+
+        <div class="info">
+          <div class="top-line">
+            <div class="price">₪ 980,000</div>
+            <div class="badge need-check">Нужно проверить</div>
+          </div>
+
+          <div class="address">Акко, север города</div>
+
+          <div class="details">
+            <span>3 комнаты</span>
+            <span>68 м²</span>
+            <span>1 этаж</span>
+            <span>без лифта</span>
+          </div>
+
+          <div class="note">
+            Телефон не ответил. Повторная проверка нужна через 2 дня.
+          </div>
+
+          <div class="meta">
+            Последняя проверка: 20.06.2026 · Источник: Yad2 · Продавец: хозяин
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+  </section>
+
+</main>
+
+<footer>
+  Tsafon · недвижимость Севера Израиля · MVP версия
+</footer>
+
+<script>
+  function applyFilters() {
+    const city = document.getElementById("cityFilter").value;
+    const minPrice = Number(document.getElementById("minPrice").value || 0);
+    const maxPrice = Number(document.getElementById("maxPrice").value || 999999999);
+    const rooms = Number(document.getElementById("roomsFilter").value || 0);
+    const status = document.getElementById("statusFilter").value;
+
+    const cards = document.querySelectorAll(".card");
+
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cardCity = card.dataset.city;
+      const cardPrice = Number(card.dataset.price);
+      const cardRooms = Number(card.dataset.rooms);
+      const cardStatus = card.dataset.status;
+
+      let visible = true;
+
+      if (city && cardCity !== city) visible = false;
+      if (cardPrice < minPrice) visible = false;
+      if (cardPrice > maxPrice) visible = false;
+      if (rooms && cardRooms !== rooms) visible = false;
+      if (status && cardStatus !== status) visible = false;
+
+      card.style.display = visible ? "grid" : "none";
+
+      if (visible) visibleCount++;
+    });
+
+    document.getElementById("totalCount").textContent = visibleCount;
+  }
+
+  document.getElementById("statusFilter").addEventListener("change", applyFilters);
+</script>
+
+</body>
+</html>
