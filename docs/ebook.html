@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- version: v2.0.0
-ВЫБОР РАЗДЕЛОВ И ТЕКСТОВ-->
+<!-- version: v2.1.0 
+РАСШИРЕННЫЙ ВЫБОР-->
 
 <html lang="ru">
 
@@ -14,13 +14,6 @@
 <title>eBook Memories</title>
 
 <style>
-
-/*
-========================================
-БАЗОВЫЕ СТИЛИ
-========================================
-*/
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -35,54 +28,15 @@ header {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 24px auto;
   background: white;
   padding: 24px;
   border-radius: 12px;
 }
 
+.settings,
 .buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-button {
-  padding: 12px 18px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  background: #2563eb;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #1d4ed8;
-}
-
-.status {
-  margin: 16px 0;
-  padding: 12px 14px;
-  border-radius: 8px;
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
-  white-space: pre-wrap;
-}
-
-.status.good {
-  background: #f0fdf4;
-  border-color: #bbf7d0;
-}
-
-.status.bad {
-  background: #fef2f2;
-  border-color: #fecaca;
-}
-
-.settings {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -106,6 +60,48 @@ button:hover {
   min-width: 220px;
 }
 
+button,
+select {
+  padding: 10px 12px;
+  font-size: 15px;
+  border-radius: 8px;
+}
+
+button {
+  border: none;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.small-btn {
+  padding: 5px 8px;
+  font-size: 13px;
+}
+
+.status {
+  margin: 16px 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  white-space: pre-wrap;
+}
+
+.status.good {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.status.bad {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
 .section-box {
   margin-top: 18px;
   border: 1px solid #dbeafe;
@@ -120,11 +116,16 @@ button:hover {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  flex: 1;
 }
 
 .item-row {
   display: grid;
-  grid-template-columns: 34px 1fr 90px;
+  grid-template-columns: 34px 1fr 180px 90px;
   gap: 10px;
   align-items: center;
   padding: 10px 12px;
@@ -152,24 +153,18 @@ button:hover {
   gap: 4px;
 }
 
-.move-buttons button {
-  padding: 4px 8px;
-  font-size: 13px;
-}
-
 .log {
   margin-top: 20px;
   background: #0f172a;
   color: #dbeafe;
   padding: 14px;
   border-radius: 8px;
-  height: 320px;
+  height: 300px;
   overflow: auto;
   font-family: Consolas, monospace;
   font-size: 13px;
   white-space: pre-wrap;
 }
-
 </style>
 
 </head>
@@ -195,45 +190,32 @@ button:hover {
   </div>
 
   <div class="field">
-    <label>Имя файла</label>
-    <input id="bookFileName" value="Memories.epub">
+    <label>Имя файла без расширения</label>
+    <input id="bookFileName" value="Memories">
   </div>
 
 </div>
 
 <div class="buttons">
-
-<button onclick="scanBook()">
-Scan
-</button>
-
-<button onclick="selectAll(true)">
-Select all
-</button>
-
-<button onclick="selectAll(false)">
-Unselect all
-</button>
-
-<button onclick="makeEpub()">
-Make EPUB
-</button>
-
+  <button onclick="scanBook()">Scan</button>
+  <button onclick="addSection()">New section</button>
+  <button onclick="selectAll(true)">Select all</button>
+  <button onclick="selectAll(false)">Unselect all</button>
+  <button onclick="makeEpub()">Make EPUB</button>
+  <button onclick="makePdf()">Make PDF</button>
 </div>
 
-<div id="status"
-     class="status">
-Готов
-</div>
+<div id="status" class="status">Готов</div>
 
 <div id="list"></div>
 
-<div id="log"
-     class="log"></div>
+<div id="log" class="log"></div>
 
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js"></script>
 
 <script>
 
@@ -243,16 +225,40 @@ Make EPUB
 ========================================
 */
 
+let SECTIONS = []
 let BOOK_ITEMS = []
 
-const logBox =
-  document.getElementById("log")
+const logBox = document.getElementById("log")
+const statusBox = document.getElementById("status")
+const listBox = document.getElementById("list")
 
-const statusBox =
-  document.getElementById("status")
+/*
+========================================
+СТАРТОВЫЕ РАЗДЕЛЫ
+========================================
+*/
 
-const listBox =
-  document.getElementById("list")
+function resetSections() {
+
+  SECTIONS = [
+    {
+      id: "poems",
+      title: "Стихи",
+      selected: true
+    },
+    {
+      id: "stories",
+      title: "Проза",
+      selected: true
+    },
+    {
+      id: "songs",
+      title: "Песни",
+      selected: true
+    }
+  ]
+
+}
 
 /*
 ========================================
@@ -261,13 +267,8 @@ const listBox =
 */
 
 function log(text) {
-
-  logBox.textContent +=
-    text + "\n"
-
-  logBox.scrollTop =
-    logBox.scrollHeight
-
+  logBox.textContent += text + "\n"
+  logBox.scrollTop = logBox.scrollHeight
 }
 
 /*
@@ -277,13 +278,8 @@ function log(text) {
 */
 
 function setStatus(text, error = false) {
-
-  statusBox.textContent =
-    text
-
-  statusBox.className =
-    error ? "status bad" : "status good"
-
+  statusBox.textContent = text
+  statusBox.className = error ? "status bad" : "status good"
 }
 
 /*
@@ -293,80 +289,35 @@ function setStatus(text, error = false) {
 */
 
 function clean(value) {
-
   return String(value || "")
     .replace(/\r/g, "")
     .replace(/\u00A0/g, " ")
     .replace(/\t/g, " ")
     .replace(/\s+/g, " ")
     .trim()
-
 }
 
 function getFirstLine(text) {
+  const lines = String(text || "")
+    .replace(/\r/g, "")
+    .split("\n")
+    .map(line => line.trim())
+    .filter(Boolean)
 
-  const lines =
-    String(text || "")
-      .replace(/\r/g, "")
-      .split("\n")
-      .map(line => line.trim())
-      .filter(Boolean)
-
-  return lines.length
-    ? clean(lines[0])
-    : ""
-
+  return lines.length ? clean(lines[0]) : ""
 }
 
 /*
 ========================================
-РАЗДЕЛЫ
+РАЗДЕЛ ПО ФАЙЛУ
 ========================================
 */
 
-function detectSection(file) {
-
-  if (file.includes("poems/"))
-    return "poems"
-
-  if (file.includes("songs/"))
-    return "songs"
-
-  if (file.includes("stories/"))
-    return "stories"
-
-  return ""
-
-}
-
-function sectionTitle(section) {
-
-  if (section === "poems")
-    return "Стихи"
-
-  if (section === "stories")
-    return "Проза"
-
-  if (section === "songs")
-    return "Песни"
-
-  return "Тексты"
-
-}
-
-function sectionPage(section) {
-
-  if (section === "poems")
-    return "poems.html"
-
-  if (section === "stories")
-    return "stories.html"
-
-  if (section === "songs")
-    return "songs.html"
-
-  return ""
-
+function detectSectionId(file) {
+  if (file.includes("poems/")) return "poems"
+  if (file.includes("stories/")) return "stories"
+  if (file.includes("songs/")) return "songs"
+  return "poems"
 }
 
 /*
@@ -376,25 +327,16 @@ FETCH HTML
 */
 
 async function fetchHtml(path) {
+  log("Открываю: " + path)
 
-  log(
-    "Открываю: " +
-    path
-  )
-
-  const res =
-    await fetch(path, {
-      cache: "no-store"
-    })
+  const res = await fetch(path, {
+    cache: "no-store"
+  })
 
   if (!res.ok)
-    throw new Error(
-      "Не удалось открыть: " +
-      path
-    )
+    throw new Error("Не удалось открыть: " + path)
 
   return await res.text()
-
 }
 
 /*
@@ -407,117 +349,49 @@ async function getFilesFromPage(page) {
 
   try {
 
-    const html =
-      await fetchHtml(page)
+    const html = await fetchHtml(page)
 
-    const doc =
-      new DOMParser()
-        .parseFromString(
-          html,
-          "text/html"
-        )
+    const doc = new DOMParser()
+      .parseFromString(html, "text/html")
 
-    const links =
-      Array.from(
-        doc.querySelectorAll("a[href]")
-      )
-
-    const hrefs =
-      links
-        .map(a =>
-          (a.getAttribute("href") || "").trim()
-        )
-        .filter(Boolean)
+    const hrefs = Array.from(doc.querySelectorAll("a[href]"))
+      .map(a => (a.getAttribute("href") || "").trim())
+      .filter(Boolean)
 
     let files = []
 
     if (page === "poems.html") {
-
       files = hrefs.filter(href =>
-
-        (
-          href.includes("poems/")
-          ||
-          href.includes("poem_")
-        )
-
-        &&
-
-        href.endsWith(".html")
-
-        &&
-
+        (href.includes("poems/") || href.includes("poem_")) &&
+        href.endsWith(".html") &&
         !href.endsWith("poems.html")
-
       )
-
     }
 
-    else if (page === "songs.html") {
-
+    if (page === "stories.html") {
       files = hrefs.filter(href =>
-
-        (
-          href.includes("songs/")
-          ||
-          href.includes("song_")
-        )
-
-        &&
-
-        href.endsWith(".html")
-
-        &&
-
-        !href.endsWith("songs.html")
-
-      )
-
-    }
-
-    else if (page === "stories.html") {
-
-      files = hrefs.filter(href =>
-
-        (
-          href.includes("stories/")
-          ||
-          href.includes("story_")
-        )
-
-        &&
-
-        href.endsWith(".html")
-
-        &&
-
+        (href.includes("stories/") || href.includes("story_")) &&
+        href.endsWith(".html") &&
         !href.endsWith("stories.html")
-
       )
-
     }
 
-    log(
-      "Страница: " +
-      page
-    )
+    if (page === "songs.html") {
+      files = hrefs.filter(href =>
+        (href.includes("songs/") || href.includes("song_")) &&
+        href.endsWith(".html") &&
+        !href.endsWith("songs.html")
+      )
+    }
 
-    log(
-      "Подходящих файлов: " +
-      files.length
-    )
+    log("Страница: " + page)
+    log("Подходящих файлов: " + files.length)
 
     return files
 
-  }
+  } catch {
 
-  catch {
-
-    log(
-      "Ошибка страницы: " +
-      page
-    )
-
+    log("Ошибка страницы: " + page)
     return []
 
   }
@@ -526,22 +400,20 @@ async function getFilesFromPage(page) {
 
 /*
 ========================================
-ИЗВЛЕЧЕНИЕ ПОЛЕЙ ИЗ window.poem
+ИЗВЛЕЧЕНИЕ ПОЛЕЙ window.poem
 ========================================
 */
 
 function extractField(source, name) {
 
-  const reg =
-    new RegExp(
-      name + "\\s*:\\s*`([\\s\\S]*?)`|" +
-      name + "\\s*:\\s*\"([\\s\\S]*?)\"|" +
-      name + "\\s*:\\s*'([\\s\\S]*?)'",
-      "s"
-    )
+  const reg = new RegExp(
+    name + "\\s*:\\s*`([\\s\\S]*?)`|" +
+    name + "\\s*:\\s*\"([\\s\\S]*?)\"|" +
+    name + "\\s*:\\s*'([\\s\\S]*?)'",
+    "s"
+  )
 
-  const match =
-    source.match(reg)
+  const match = source.match(reg)
 
   if (!match)
     return ""
@@ -553,65 +425,30 @@ function extractField(source, name) {
 function extractPoemData(source, file) {
 
   if (!source.includes("window.poem")) {
-
-    log(
-      "window.poem не найден: " +
-      file
-    )
-
+    log("window.poem не найден: " + file)
     return null
-
   }
 
-  const text =
-    extractField(source, "text")
+  const text = extractField(source, "text")
 
   if (!text) {
-
-    log(
-      "text не найден: " +
-      file
-    )
-
+    log("text не найден: " + file)
     return null
-
   }
 
-  const titleRaw =
-    extractField(source, "title")
-
-  const title =
-    clean(titleRaw) || getFirstLine(text)
+  const titleRaw = extractField(source, "title")
+  const title = clean(titleRaw) || getFirstLine(text)
 
   return {
-
-    file:
-      file,
-
-    section:
-      detectSection(file),
-
-    title:
-      title,
-
-    author:
-      clean(extractField(source, "author")),
-
-    place:
-      clean(extractField(source, "place")),
-
-    year:
-      clean(extractField(source, "year")),
-
-    style:
-      clean(extractField(source, "style")),
-
-    text:
-      String(text || ""),
-
-    selected:
-      true
-
+    file: file,
+    sectionId: detectSectionId(file),
+    title: title,
+    author: clean(extractField(source, "author")),
+    place: clean(extractField(source, "place")),
+    year: clean(extractField(source, "year")),
+    style: clean(extractField(source, "style")),
+    text: String(text || ""),
+    selected: true
   }
 
 }
@@ -626,78 +463,48 @@ async function scanBook() {
 
   try {
 
-    logBox.textContent =
-      ""
+    logBox.textContent = ""
+    listBox.innerHTML = ""
 
-    listBox.innerHTML =
-      ""
+    resetSections()
+    BOOK_ITEMS = []
 
-    BOOK_ITEMS =
-      []
-
-    setStatus(
-      "Сканирование..."
-    )
+    setStatus("Сканирование...")
 
     const pages = [
       "poems.html",
-      "songs.html",
-      "stories.html"
+      "stories.html",
+      "songs.html"
     ]
 
     let files = []
 
     for (const page of pages) {
-
-      const list =
-        await getFilesFromPage(page)
-
-      files =
-        files.concat(list)
-
+      const list = await getFilesFromPage(page)
+      files = files.concat(list)
     }
 
-    files =
-      Array.from(
-        new Set(files)
-      )
+    files = Array.from(new Set(files))
 
-    log(
-      "Всего файлов: " +
-      files.length
-    )
+    log("Всего файлов: " + files.length)
 
     for (const file of files) {
 
       try {
 
-        const source =
-          await fetchHtml(file)
-
-        const item =
-          extractPoemData(
-            source,
-            file
-          )
+        const source = await fetchHtml(file)
+        const item = extractPoemData(source, file)
 
         if (!item)
           continue
 
         BOOK_ITEMS.push(item)
 
-        log(
-          "Добавлен: " +
-          item.title
-        )
+        log("Добавлен: " + item.title)
 
-      }
+      } catch {
 
-      catch {
-
-        log(
-          "Ошибка файла: " +
-          file
-        )
+        log("Ошибка файла: " + file)
 
       }
 
@@ -705,20 +512,11 @@ async function scanBook() {
 
     renderList()
 
-    setStatus(
-      "Найдено произведений: " +
-      BOOK_ITEMS.length
-    )
+    setStatus("Найдено произведений: " + BOOK_ITEMS.length)
 
-  }
+  } catch (e) {
 
-  catch (e) {
-
-    setStatus(
-      "Ошибка: " +
-      e.message,
-      true
-    )
+    setStatus("Ошибка: " + e.message, true)
 
   }
 
@@ -726,77 +524,70 @@ async function scanBook() {
 
 /*
 ========================================
-ОТРИСОВКА СПИСКА
+ОТРИСОВКА
 ========================================
 */
 
 function renderList() {
 
-  listBox.innerHTML =
-    ""
+  listBox.innerHTML = ""
 
-  const sections = [
-    "poems",
-    "stories",
-    "songs"
-  ]
+  for (const section of SECTIONS) {
 
-  for (const section of sections) {
+    const items = BOOK_ITEMS.filter(item =>
+      item.sectionId === section.id
+    )
 
-    const items =
-      BOOK_ITEMS.filter(
-        item => item.section === section
-      )
+    const box = document.createElement("div")
+    box.className = "section-box"
 
-    if (!items.length)
-      continue
+    const allChecked =
+      items.length && items.every(item => item.selected)
 
-    const box =
-      document.createElement("div")
+    const head = document.createElement("div")
+    head.className = "section-head"
 
-    box.className =
-      "section-box"
+    head.innerHTML = `
+      <input type="checkbox" ${section.selected && allChecked ? "checked" : ""}>
+      <span class="section-title">${escapeHtml(section.title)} (${items.length})</span>
+      <button class="small-btn" data-action="up">↑</button>
+      <button class="small-btn" data-action="down">↓</button>
+      <button class="small-btn" data-action="rename">Rename</button>
+      <button class="small-btn" data-action="delete">Delete</button>
+    `
 
-    const checked =
-      items.every(item => item.selected)
-
-    const head =
-      document.createElement("div")
-
-    head.className =
-      "section-head"
-
-    head.innerHTML =
-      `
-      <input type="checkbox" ${checked ? "checked" : ""}>
-      <span>${sectionTitle(section)} (${items.length})</span>
-      `
-
-    const sectionCheck =
-      head.querySelector("input")
+    const sectionCheck = head.querySelector("input")
 
     sectionCheck.addEventListener("change", function () {
-
-      items.forEach(item => {
-        item.selected = sectionCheck.checked
-      })
-
+      section.selected = sectionCheck.checked
+      items.forEach(item => item.selected = sectionCheck.checked)
       renderList()
-
     })
+
+    head.querySelector('[data-action="up"]').onclick = function () {
+      moveSection(section, -1)
+    }
+
+    head.querySelector('[data-action="down"]').onclick = function () {
+      moveSection(section, 1)
+    }
+
+    head.querySelector('[data-action="rename"]').onclick = function () {
+      renameSection(section)
+    }
+
+    head.querySelector('[data-action="delete"]').onclick = function () {
+      deleteSection(section)
+    }
 
     box.appendChild(head)
 
-    items.forEach(item => {
+    for (const item of items) {
 
-      const row =
-        document.createElement("div")
+      const row = document.createElement("div")
+      row.className = "item-row"
 
-      row.className =
-        "item-row"
-
-      row.innerHTML =
-        `
+      row.innerHTML = `
         <input type="checkbox" ${item.selected ? "checked" : ""}>
 
         <div>
@@ -805,39 +596,47 @@ function renderList() {
           <div class="item-file">${escapeHtml(item.file)}</div>
         </div>
 
+        <select></select>
+
         <div class="move-buttons">
-          <button data-move="up">↑</button>
-          <button data-move="down">↓</button>
+          <button class="small-btn" data-move="up">↑</button>
+          <button class="small-btn" data-move="down">↓</button>
         </div>
-        `
+      `
 
-      row.querySelector("input")
-        .addEventListener("change", function (e) {
+      row.querySelector("input").addEventListener("change", function (e) {
+        item.selected = e.target.checked
+      })
 
-          item.selected =
-            e.target.checked
+      const select = row.querySelector("select")
 
-          renderList()
+      for (const s of SECTIONS) {
+        const opt = document.createElement("option")
+        opt.value = s.id
+        opt.textContent = s.title
 
-        })
+        if (s.id === item.sectionId)
+          opt.selected = true
 
-      row.querySelector('[data-move="up"]')
-        .addEventListener("click", function () {
+        select.appendChild(opt)
+      }
 
-          moveItem(item, -1)
+      select.addEventListener("change", function () {
+        item.sectionId = select.value
+        renderList()
+      })
 
-        })
+      row.querySelector('[data-move="up"]').onclick = function () {
+        moveItem(item, -1)
+      }
 
-      row.querySelector('[data-move="down"]')
-        .addEventListener("click", function () {
-
-          moveItem(item, 1)
-
-        })
+      row.querySelector('[data-move="down"]').onclick = function () {
+        moveItem(item, 1)
+      }
 
       box.appendChild(row)
 
-    })
+    }
 
     listBox.appendChild(box)
 
@@ -849,16 +648,95 @@ function makeMetaLine(item) {
 
   const parts = []
 
-  if (item.place)
-    parts.push(item.place)
-
-  if (item.year)
-    parts.push(item.year)
-
-  if (item.style)
-    parts.push(item.style)
+  if (item.place) parts.push(item.place)
+  if (item.year) parts.push(item.year)
+  if (item.style) parts.push(item.style)
 
   return parts.join(" — ")
+
+}
+
+/*
+========================================
+РАЗДЕЛЫ
+========================================
+*/
+
+function addSection() {
+
+  const title = prompt("Название нового раздела:")
+
+  if (!title || !title.trim())
+    return
+
+  const id =
+    "section_" + Date.now()
+
+  SECTIONS.push({
+    id: id,
+    title: title.trim(),
+    selected: true
+  })
+
+  renderList()
+
+}
+
+function renameSection(section) {
+
+  const title = prompt("Новое название раздела:", section.title)
+
+  if (!title || !title.trim())
+    return
+
+  section.title = title.trim()
+
+  renderList()
+
+}
+
+function deleteSection(section) {
+
+  const items = BOOK_ITEMS.filter(item =>
+    item.sectionId === section.id
+  )
+
+  const ok = confirm(
+    "Удалить раздел \"" +
+    section.title +
+    "\" из текущей книги?\n\n" +
+    "Текстов в разделе: " +
+    items.length
+  )
+
+  if (!ok)
+    return
+
+  SECTIONS = SECTIONS.filter(s =>
+    s.id !== section.id
+  )
+
+  BOOK_ITEMS = BOOK_ITEMS.filter(item =>
+    item.sectionId !== section.id
+  )
+
+  renderList()
+
+}
+
+function moveSection(section, direction) {
+
+  const index = SECTIONS.indexOf(section)
+  const target = index + direction
+
+  if (target < 0 || target >= SECTIONS.length)
+    return
+
+  const temp = SECTIONS[index]
+  SECTIONS[index] = SECTIONS[target]
+  SECTIONS[target] = temp
+
+  renderList()
 
 }
 
@@ -870,6 +748,10 @@ function makeMetaLine(item) {
 
 function selectAll(value) {
 
+  SECTIONS.forEach(section => {
+    section.selected = value
+  })
+
   BOOK_ITEMS.forEach(item => {
     item.selected = value
   })
@@ -880,49 +762,77 @@ function selectAll(value) {
 
 /*
 ========================================
-ПЕРЕСТАНОВКА
+ПЕРЕСТАНОВКА ТЕКСТОВ
 ========================================
 */
 
 function moveItem(item, direction) {
 
-  const sectionItems =
-    BOOK_ITEMS.filter(x =>
-      x.section === item.section
-    )
+  const sectionItems = BOOK_ITEMS.filter(x =>
+    x.sectionId === item.sectionId
+  )
 
-  const localIndex =
-    sectionItems.indexOf(item)
-
-  const targetLocalIndex =
-    localIndex + direction
+  const localIndex = sectionItems.indexOf(item)
+  const targetLocalIndex = localIndex + direction
 
   if (
-    targetLocalIndex < 0
-    ||
+    targetLocalIndex < 0 ||
     targetLocalIndex >= sectionItems.length
   )
     return
 
-  const targetItem =
-    sectionItems[targetLocalIndex]
+  const targetItem = sectionItems[targetLocalIndex]
 
-  const indexA =
-    BOOK_ITEMS.indexOf(item)
+  const indexA = BOOK_ITEMS.indexOf(item)
+  const indexB = BOOK_ITEMS.indexOf(targetItem)
 
-  const indexB =
-    BOOK_ITEMS.indexOf(targetItem)
-
-  const temp =
-    BOOK_ITEMS[indexA]
-
-  BOOK_ITEMS[indexA] =
-    BOOK_ITEMS[indexB]
-
-  BOOK_ITEMS[indexB] =
-    temp
+  const temp = BOOK_ITEMS[indexA]
+  BOOK_ITEMS[indexA] = BOOK_ITEMS[indexB]
+  BOOK_ITEMS[indexB] = temp
 
   renderList()
+
+}
+
+/*
+========================================
+ВЫБРАННЫЕ ДАННЫЕ
+========================================
+*/
+
+function getSelectedSectionsWithItems() {
+
+  const result = []
+
+  for (const section of SECTIONS) {
+
+    if (!section.selected)
+      continue
+
+    const items = BOOK_ITEMS.filter(item =>
+      item.sectionId === section.id &&
+      item.selected
+    )
+
+    if (!items.length)
+      continue
+
+    result.push({
+      section: section,
+      items: items
+    })
+
+  }
+
+  return result
+
+}
+
+function getBaseFileName() {
+
+  return clean(
+    document.getElementById("bookFileName").value
+  ) || "Memories"
 
 }
 
@@ -936,71 +846,31 @@ async function makeEpub() {
 
   try {
 
-    const selected =
-      BOOK_ITEMS.filter(item =>
-        item.selected
-      )
+    const data = getSelectedSectionsWithItems()
 
-    if (!selected.length) {
-
-      setStatus(
-        "Ничего не выбрано",
-        true
-      )
-
+    if (!data.length) {
+      setStatus("Ничего не выбрано", true)
       return
-
     }
 
-    const title =
-      clean(
-        document.getElementById("bookTitle").value
-      )
-      ||
-      "Memories"
+    const bookTitle =
+      clean(document.getElementById("bookTitle").value) || "Memories"
 
-    const author =
-      clean(
-        document.getElementById("bookAuthor").value
-      )
-      ||
-      "Игорь Хорош"
+    const bookAuthor =
+      clean(document.getElementById("bookAuthor").value) || "Игорь Хорош"
 
-    let fileName =
-      clean(
-        document.getElementById("bookFileName").value
-      )
-      ||
-      "Memories.epub"
+    const fileName =
+      getBaseFileName() + ".epub"
 
-    if (!fileName.toLowerCase().endsWith(".epub"))
-      fileName += ".epub"
+    setStatus("Сборка EPUB...")
 
-    setStatus(
-      "Сборка EPUB..."
-    )
+    await saveEpub(data, bookTitle, bookAuthor, fileName)
 
-    await saveEpub(
-      selected,
-      title,
-      author,
-      fileName
-    )
+    setStatus("EPUB готов")
 
-    setStatus(
-      "EPUB готов: " +
-      selected.length
-    )
+  } catch (e) {
 
-  }
-
-  catch (e) {
-
-    setStatus(
-      "Ошибка EPUB: " +
-      e.message,
-      true
-    )
+    setStatus("Ошибка EPUB: " + e.message, true)
 
   }
 
@@ -1008,21 +878,161 @@ async function makeEpub() {
 
 /*
 ========================================
-СОХРАНЕНИЕ EPUB
+MAKE PDF
 ========================================
 */
 
-async function saveEpub(items, bookTitle, bookAuthor, fileName) {
+function makePdf() {
 
-  const zip =
-    new JSZip()
+  const data = getSelectedSectionsWithItems()
+
+  if (!data.length) {
+    setStatus("Ничего не выбрано", true)
+    return
+  }
+
+  const bookTitle =
+    clean(document.getElementById("bookTitle").value) || "Memories"
+
+  const bookAuthor =
+    clean(document.getElementById("bookAuthor").value) || "Игорь Хорош"
+
+  const fileName =
+    getBaseFileName() + ".pdf"
+
+  const content = []
+
+  content.push({
+    text: bookTitle,
+    style: "bookTitle"
+  })
+
+  content.push({
+    text: bookAuthor,
+    style: "bookAuthor",
+    pageBreak: "after"
+  })
+
+  for (const group of data) {
+
+    content.push({
+      text: group.section.title,
+      style: "sectionTitle",
+      pageBreak: content.length > 2 ? "before" : undefined
+    })
+
+    for (const item of group.items) {
+
+      content.push({
+        text: item.title,
+        style: "chapterTitle",
+        pageBreak: "before"
+      })
+
+      const meta =
+        makeMetaLine(item)
+
+      if (meta) {
+        content.push({
+          text: meta,
+          style: "meta"
+        })
+      }
+
+      content.push({
+        text: String(item.text || "").trim(),
+        style: "poem"
+      })
+
+    }
+
+  }
+
+  const docDefinition = {
+    info: {
+      title: bookTitle,
+      author: bookAuthor
+    },
+
+    pageSize: "A4",
+
+    pageMargins: [
+      60,
+      60,
+      60,
+      60
+    ],
+
+    content: content,
+
+    defaultStyle: {
+      font: "Roboto",
+      fontSize: 12
+    },
+
+    styles: {
+      bookTitle: {
+        fontSize: 28,
+        bold: true,
+        alignment: "center",
+        margin: [0, 180, 0, 20]
+      },
+
+      bookAuthor: {
+        fontSize: 16,
+        alignment: "center"
+      },
+
+      sectionTitle: {
+        fontSize: 24,
+        bold: true,
+        alignment: "center",
+        margin: [0, 200, 0, 0]
+      },
+
+      chapterTitle: {
+        fontSize: 18,
+        bold: true,
+        alignment: "center",
+        margin: [0, 0, 0, 20]
+      },
+
+      meta: {
+        fontSize: 10,
+        color: "#666666",
+        alignment: "center",
+        margin: [0, 0, 0, 20]
+      },
+
+      poem: {
+        fontSize: 12,
+        lineHeight: 1.35,
+        margin: [0, 0, 0, 0]
+      }
+    }
+  }
+
+  pdfMake.createPdf(docDefinition).download(fileName)
+
+  setStatus("PDF готов")
+
+}
+
+/*
+========================================
+SAVE EPUB
+========================================
+*/
+
+async function saveEpub(data, bookTitle, bookAuthor, fileName) {
+
+  const zip = new JSZip()
 
   zip.file(
     "mimetype",
     "application/epub+zip",
     {
-      compression:
-        "STORE"
+      compression: "STORE"
     }
   )
 
@@ -1035,47 +1045,26 @@ async function saveEpub(items, bookTitle, bookAuthor, fileName) {
 
   let index = 1
 
-  const sections = [
-    "poems",
-    "stories",
-    "songs"
-  ]
-
-  for (const section of sections) {
-
-    const sectionItems =
-      items.filter(item =>
-        item.section === section
-      )
-
-    if (!sectionItems.length)
-      continue
+  for (const group of data) {
 
     const sectionFile =
-      "section-" + section + ".xhtml"
+      "section-" + cleanFileName(group.section.id) + ".xhtml"
 
     const sectionId =
-      "section-" + section
+      "section-" + cleanFileName(group.section.id)
 
     chapters.push({
-      id:
-        sectionId,
-
-      href:
-        sectionFile,
-
-      title:
-        sectionTitle(section)
+      id: sectionId,
+      href: sectionFile,
+      title: group.section.title
     })
 
     zip.file(
       "OEBPS/" + sectionFile,
-      makeSectionXhtml(
-        sectionTitle(section)
-      )
+      makeSectionXhtml(group.section.title)
     )
 
-    for (const item of sectionItems) {
+    for (const item of group.items) {
 
       const chapterFile =
         "chapter" +
@@ -1086,14 +1075,9 @@ async function saveEpub(items, bookTitle, bookAuthor, fileName) {
         "chapter" + index
 
       chapters.push({
-        id:
-          chapterId,
-
-        href:
-          chapterFile,
-
-        title:
-          item.title
+        id: chapterId,
+        href: chapterFile,
+        title: item.title
       })
 
       zip.file(
@@ -1109,39 +1093,22 @@ async function saveEpub(items, bookTitle, bookAuthor, fileName) {
 
   zip.file(
     "OEBPS/nav.xhtml",
-    makeNavXhtml(
-      bookTitle,
-      chapters
-    )
+    makeNavXhtml(bookTitle, chapters)
   )
 
   zip.file(
     "OEBPS/content.opf",
-    makeContentOpf(
-      bookTitle,
-      bookAuthor,
-      chapters
-    )
+    makeContentOpf(bookTitle, bookAuthor, chapters)
   )
 
-  const blob =
-    await zip.generateAsync({
-      type:
-        "blob",
+  const blob = await zip.generateAsync({
+    type: "blob",
+    mimeType: "application/epub+zip"
+  })
 
-      mimeType:
-        "application/epub+zip"
-    })
+  downloadBlob(blob, fileName)
 
-  downloadBlob(
-    blob,
-    fileName
-  )
-
-  log(
-    "Файл сохранён: " +
-    fileName
-  )
+  log("Файл сохранён: " + fileName)
 
 }
 
@@ -1164,19 +1131,17 @@ function makeContainerXml() {
 
 function makeContentOpf(bookTitle, bookAuthor, chapters) {
 
-  const manifest =
-    chapters
-      .map(ch =>
-        `<item id="${ch.id}" href="${ch.href}" media-type="application/xhtml+xml"/>`
-      )
-      .join("\n    ")
+  const manifest = chapters
+    .map(ch =>
+      `<item id="${ch.id}" href="${ch.href}" media-type="application/xhtml+xml"/>`
+    )
+    .join("\n    ")
 
-  const spine =
-    chapters
-      .map(ch =>
-        `<itemref idref="${ch.id}"/>`
-      )
-      .join("\n    ")
+  const spine = chapters
+    .map(ch =>
+      `<itemref idref="${ch.id}"/>`
+    )
+    .join("\n    ")
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="bookid">
@@ -1202,12 +1167,11 @@ function makeContentOpf(bookTitle, bookAuthor, chapters) {
 
 function makeNavXhtml(bookTitle, chapters) {
 
-  const items =
-    chapters
-      .map(ch =>
-        `<li><a href="${ch.href}">${escapeXml(ch.title)}</a></li>`
-      )
-      .join("\n      ")
+  const items = chapters
+    .map(ch =>
+      `<li><a href="${ch.href}">${escapeXml(ch.title)}</a></li>`
+    )
+    .join("\n      ")
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -1298,17 +1262,12 @@ DOWNLOAD
 
 function downloadBlob(blob, fileName) {
 
-  const url =
-    URL.createObjectURL(blob)
+  const url = URL.createObjectURL(blob)
 
-  const a =
-    document.createElement("a")
+  const a = document.createElement("a")
 
-  a.href =
-    url
-
-  a.download =
-    fileName
+  a.href = url
+  a.download = fileName
 
   a.click()
 
@@ -1345,9 +1304,16 @@ function escapeXml(text) {
 
 }
 
-log(
-  "ebook.html загружен"
-)
+function cleanFileName(text) {
+
+  return String(text || "")
+    .replace(/[^a-zA-Z0-9_-]/g, "_")
+
+}
+
+resetSections()
+
+log("ebook.html загружен")
 
 </script>
 
